@@ -102,3 +102,6 @@ tools/secrets-vault.ps1
 /public/sitemap-creators-*.xml
 /public/sitemap-videos-*.xml
 /public/creator-index.json
+/public/video-map/
+/public/category-data/
+/public/sitemap-categories.xml

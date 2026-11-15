@@ -1,0 +1,56 @@
+---
+// Category page from public/category-data/<category>.json (scripts/prebuild-categories.mjs). Counts are titles labelled in our catalog.
+export const prerender = false;
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { env } from 'cloudflare:workers';
+
+const { category } = Astro.params;
+const get = async (p: string) => {
+  try {
+    const url = new URL(p, Astro.url);
+    const r = (env as any)?.ASSETS ? await (env as any).ASSETS.fetch(url) : await fetch(url);
+    return r.ok ? await r.json() : null;
+  } catch { return null; }
+};
+const d: any = /^[a-z0-9-]+$/.test(category || '') ? await get(`/category-data/${category}.json`) : null;
+if (!d?.slug) return new Response(null, { status: 404 });
+const others: any[] = ((await get('/category-data/_index.json')) || []).filter((o: any) => o.slug !== d.slug);
+Astro.response.headers.set('Cache-Control', 'public, max-age=86400, stale-while-revalidate=604800');
+
+const fmt = (x: number) => x.toLocaleString('en-US');
+const big = (x: number) => (x >= 1e9 ? `${(x / 1e9).toFixed(1)}B` : x >= 1e6 ? `${(x / 1e6).toFixed(1)}M` : x >= 1e3 ? `${Math.round(x / 1e3)}K` : String(x));
+const len = (s: number) => (s >= 3600 ? `${Math.floor(s / 3600)} h ${Math.round((s % 3600) / 60)} min` : s >= 60 ? `${Math.round(s / 60)} min` : `${s} sec`);
+const lower = d.name.toLowerCase();
+const h1 = `${d.name} ASMR videos`;
+const lead = `Our catalog has ${fmt(d.count)} videos labelled ${lower} from ${fmt(d.creators)} creators. The median one runs ${d.medianMin} minutes, and ${d.over60Pct}% are over an hour.`;
+const src = `Built ${d.built} from video titles in our catalog, not from listening. Views from YouTube.`;
+const topH = `Top creators for ${lower}`;
+const desc = `${fmt(d.count)} ${lower} ASMR videos from ${fmt(d.creators)} creators: median ${d.medianMin} min, the most watched, the newest, and who makes the most.`.slice(0, 160);
+const rows = (list: any[]) => list.map((v: any) => ({ href: `/creators/${v.slug}/v/${v.id}/`, t: v.t, meta: `${v.c}, ${len(v.d)}${v.v != null ? `, ${big(v.v)} views` : ''}` }));
+const topRows = rows(d.top);
+const newRows = rows(d.newest);
+const creatorRows = d.topCreators.map((c: any) => ({ href: `/creators/${c.slug}/`, title: c.title, meta: `${fmt(c.count)} ${lower} videos${c.typical != null ? `, typical video ${c.typical} min` : ''}` }));
+---
+<BaseLayout title={h1} description={desc} canonical={`/asmr/${d.slug}/`}>
+  <h1>{h1}</h1>
+  <p class="lead">{lead}</p>
+  <p class="src">{src}</p>
+  <h2>{topH}</h2>
+  <ol>{creatorRows.map((c: any) => <li><a href={c.href}>{c.title}</a> <span class="vm">{c.meta}</span></li>)}</ol>
+  <h2>Most watched</h2>
+  <ol>{topRows.map((v: any) => <li><a href={v.href}>{v.t}</a> <span class="vm">{v.meta}</span></li>)}</ol>
+  <h2>Newest</h2>
+  <ul class="plain">{newRows.map((v: any) => <li><a href={v.href}>{v.t}</a> <span class="vm">{v.meta}</span></li>)}</ul>
+  {others.length > 0 && (<>
+    <h2>Other categories</h2>
+    <p>{others.map((o: any) => <a class="cat" href={`/asmr/${o.slug}/`}>{o.name}</a>)}</p>
+  </>)}
+</BaseLayout>
+
+<style>
+  .lead { font-size: 1.05rem; }
+  .src { font-size: 0.85rem; color: var(--text-3, #999); }
+  .vm { font-size: 0.8rem; color: var(--text-3, #999); }
+  .plain { padding-left: 1.1rem; }
+  .cat { display: inline-block; margin: 0 0.8rem 0.4rem 0; }
+</style>

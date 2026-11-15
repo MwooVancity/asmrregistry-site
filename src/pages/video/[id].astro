@@ -7,8 +7,30 @@ import { deriveVideoFaqs } from '../../lib/video-faqs';
 import { getDb } from '../../lib/db';
 import { deriveSessionGuide } from '../../lib/video-insights';
 import { getSimilarVideos } from '../../lib/similar-videos';
+import { env } from 'cloudflare:workers';
 
 const { id } = Astro.params;
+
+// One page per video: if a creator file holds this id, 301 to the richer creator video page.
+// Shard = first char code (see scripts/prebuild-video-map.mjs). Parsed shards cached per Worker instance.
+// Any failure (shard missing, bad JSON) falls through to the D1 page. Id case is kept as-is.
+const g = globalThis as any;
+const vmCache: Map<number, Record<string, string>> = (g.__videoMapCache ||= new Map());
+if (id) {
+  try {
+    const k = id.charCodeAt(0);
+    let m = vmCache.get(k);
+    if (!m) {
+      const u = new URL(`/video-map/${k}.json`, Astro.url);
+      const r = (env as any)?.ASSETS ? await (env as any).ASSETS.fetch(u) : await fetch(u);
+      m = r.ok ? await r.json() : {};
+      vmCache.set(k, m!);
+    }
+    const fresh = !(m as any).__exp || Date.now() < Date.parse((m as any).__exp); // map past its data's 30 days: no redirect
+    const slug = fresh && id !== '__exp' && Object.hasOwn(m!, id) ? m![id] : undefined;
+    if (slug) return Astro.redirect(`/creators/${slug}/v/${id}/`, 301);
+  } catch {}
+}
 let db: any;
 let video: any;
 try {
