@@ -120,6 +120,7 @@ const card = (v: any) => ({ ...v, meta: [len(v.d), v.v != null ? `${big(v.v)} vi
 </BaseLayout>
 
 <style is:global>
+  #cv-player iframe { display: block; width: 100%; max-width: 720px; height: auto; aspect-ratio: 16 / 9; border: 0; border-radius: 10px; }
   .ear-ad2 { display: flex; justify-content: center; margin: 1.5rem 0; min-height: 250px; }
   .cv-list { list-style: none; padding: 0; margin: 0.75rem 0; }
   .cv-list li { display: grid; grid-template-columns: 96px 1fr auto; gap: 0.6rem; align-items: center; padding: 0.35rem 0; border-bottom: 1px solid var(--border); }
@@ -143,7 +144,6 @@ const card = (v: any) => ({ ...v, meta: [len(v.d), v.v != null ? `${big(v.v)} vi
   .cv-bar input[type=search] { flex: 1 1 14rem; padding: 0.45rem 0.6rem; }
   .cv-bar button, .cv-wl { padding: 0.35rem 0.8rem; border-radius: 999px; border: 1px solid var(--border); background: var(--bg-2); color: var(--accent); cursor: pointer; }
   .cv-wl { font-size: 0.75rem; padding: 0.1rem 0.5rem; }
-  #cv-player iframe { width: 100%; max-width: 720px; aspect-ratio: 16 / 9; border: 0; border-radius: 10px; }
   .crumb { font-size: 0.85rem; color: var(--text-3, #999); margin-top: 1rem; }
   .pill { padding: 0.45rem 0.9rem; border-radius: 999px; border: 1px solid var(--border); background: var(--bg-2); color: var(--accent); cursor: pointer; font: inherit; }
   .pill.main { background: var(--accent); color: #fff; border-color: var(--accent); }
