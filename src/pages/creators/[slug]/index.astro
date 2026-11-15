@@ -17,6 +17,13 @@ const triggerUrl = (t: string): string | undefined => _pub.get(t) ?? (_alias[t] 
 
 const { slug } = Astro.params;
 const c: any = slug ? (creators as any)[slug] : null;
+// v2 data file wins when it exists (full upload list, owner 2026-11-15); old snapshot pages otherwise.
+try {
+  const { env } = await import('cloudflare:workers');
+  const u = new URL(`/creator-data/${slug}.json`, Astro.url);
+  const r = (env as any)?.ASSETS ? await (env as any).ASSETS.fetch(u) : null;
+  if (r?.ok) return Astro.rewrite(`/creator-v2/${slug}/`);
+} catch {}
 if (!c) return new Response(null, { status: 404 });
 
 const name = c.name as string;

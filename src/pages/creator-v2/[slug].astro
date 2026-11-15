@@ -1,0 +1,91 @@
+---
+// Creator page v2 (owner 2026-11-15): every public video of the creator plus facts computed from their whole channel,
+// from public/creator-data/<slug>.json (tools/creator-build.mjs). Reached by rewrite from /creators/<slug>/; canonical
+// stays on /creators/. Data older than 30 days is not shown (YouTube API rule); the page 404s instead.
+export const prerender = false;
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { env } from 'cloudflare:workers';
+
+const { slug } = Astro.params;
+let d: any = null;
+try {
+  const url = new URL(`/creator-data/${slug}.json`, Astro.url);
+  const r = (env as any)?.ASSETS ? await (env as any).ASSETS.fetch(url) : await fetch(url);
+  if (r.ok) d = await r.json();
+} catch {}
+if (!d || Date.now() - Date.parse(d.fetched) > 30 * 864e5) return new Response(null, { status: 404 });
+Astro.response.headers.set('Cache-Control', 'public, max-age=3600, stale-while-revalidate=86400');
+
+const ch = d.channel, n = d.counts, L = d.lengths;
+const fmt = (x: number) => x.toLocaleString('en-US');
+const big = (x: number) => (x >= 1e9 ? `${(x / 1e9).toFixed(1)}B` : x >= 1e6 ? `${(x / 1e6).toFixed(1)}M` : x >= 1e3 ? `${Math.round(x / 1e3)}K` : String(x));
+const len = (s: number) => (s >= 3600 ? `${Math.floor(s / 3600)} h ${Math.round((s % 3600) / 60)} min` : `${Math.round(s / 60)} min`);
+const daysSince = Math.round((Date.parse(d.fetched) - Date.parse(d.last)) / 864e5);
+const active = daysSince <= 60;
+const years = Object.entries(d.byYear as Record<string, number>).sort();
+const peak = years.reduce((a, b) => (b[1] > a[1] ? b : a), years[0] || ['', 0]);
+const title = `${ch.title}: all ${fmt(n.public)} videos, most watched and stats`;
+const desc = `Every ${ch.title} video in one list, most watched first, with what they make most, typical length, Shorts vs full videos and whether they still upload. Data from YouTube, ${d.fetched}.`.slice(0, 160);
+const lead = `${ch.title} has ${fmt(n.public)} public videos on YouTube${ch.subs ? ` and ${big(ch.subs)} subscribers` : ''}, ${big(ch.views)} views in total, uploading since ${d.first.slice(0, 4)}. ${active ? `They are still uploading: the latest video went up ${daysSince <= 1 ? 'in the last day' : `${daysSince} days`} before our check.` : `Their latest upload was ${d.last}, ${daysSince} days before our check.`} The typical full video runs ${L.medianMin} minutes; ${n.shorts ? `${fmt(n.shorts)} of their uploads are Shorts.` : 'they post no Shorts.'}`;
+const SHOW = 48;
+const card = (v: any) => ({ ...v, meta: [len(v.d), v.v != null ? `${big(v.v)} views` : '', v.p.slice(0, 4)].filter(Boolean).join(' · ') });
+---
+<BaseLayout title={title} description={desc} canonical={`/creators/${slug}/`}>
+  <h1>{`${ch.title} ASMR videos`}</h1>
+  <p class="lead">{lead}</p>
+  <p class="src">{`Counts and views from YouTube, checked ${d.fetched}. Trigger labels come from titles, not listening.`}</p>
+
+  <h2>Start here: their most watched</h2>
+  <div class="video-grid">
+    {d.top.slice(0, 6).map(card).map((v: any) => (
+      <article class="video-card"><button type="button" class="vplay" data-v={v.id} aria-label={`Play ${v.t}`}>
+        <div class="video-thumb"><img src={`https://i.ytimg.com/vi/${v.id}/mqdefault.jpg`} alt={v.t} loading="lazy" width="320" height="180" /></div>
+        <p class="vt">{v.t}</p><p class="vm">{v.meta}</p></button></article>
+    ))}
+  </div>
+
+  {d.sleepPick.length >= 2 && (<>
+    <h2>{`${ch.title} for sleep: their most watched over an hour`}</h2>
+    <ul class="plain">{d.sleepPick.map(card).map((v: any) => <li><button type="button" class="vplay linkish" data-v={v.id} aria-label={`Play ${v.t}`}>{v.t}</button> <span class="vm">{v.meta}</span></li>)}</ul>
+  </>)}
+
+  <h2>What they make, from their titles</h2>
+  {d.triggers.length > 0 ? (
+    <ul class="plain">{d.triggers.map(([t, c]) => <li>{`${t}: ${fmt(c)} of ${fmt(n.full)} full videos`}</li>)}</ul>
+  ) : <p>No clear trigger words in their titles.</p>}
+
+  <h2>How long their videos run</h2>
+  <table class="t"><thead><tr><th scope="col">Under 10 min</th><th scope="col">10 to 30 min</th><th scope="col">30 to 60 min</th><th scope="col">Over an hour</th><th scope="col">Shorts</th></tr></thead>
+    <tbody><tr><td>{fmt(L.under10)}</td><td>{fmt(L.m10to30)}</td><td>{fmt(L.m30to60)}</td><td>{fmt(L.over60)}</td><td>{fmt(n.shorts)}</td></tr></tbody></table>
+
+  <h2>Uploads by year</h2>
+  <p>{`Their busiest year was ${peak[0]} with ${fmt(Number(peak[1]))} uploads.`}</p>
+  <div class="tw"><table class="t"><thead><tr>{years.map(([y]) => <th scope="col">{y}</th>)}</tr></thead><tbody><tr>{years.map(([, c]) => <td>{fmt(c)}</td>)}</tr></tbody></table></div>
+
+  <h2>Newest uploads</h2>
+  <ul class="plain">{d.newest.map(card).map((v: any) => <li><button type="button" class="vplay linkish" data-v={v.id} aria-label={`Play ${v.t}`}>{v.t}</button> <span class="vm">{`${v.p} · ${v.meta}`}</span></li>)}</ul>
+
+  <h2>{`All ${fmt(d.all.length)} ${ch.title} videos, most watched first`}</h2>
+  <ol class="all">
+    {d.all.map(card).map((v: any, i: number) => (
+      <li hidden={i >= SHOW} class={i >= SHOW ? 'more' : ''}><button type="button" class="vplay linkish" data-v={v.id} aria-label={`Play ${v.t}`}>{v.t}</button> <span class="vm">{v.meta}</span></li>
+    ))}
+  </ol>
+  {d.all.length > SHOW && <button type="button" class="showall" onclick="this.previousElementSibling.querySelectorAll('.more').forEach(e=>e.hidden=false);this.remove()">{`Show all ${fmt(d.all.length)}`}</button>}
+  <p class="src"><a href={`https://www.youtube.com/channel/${ch.id}`} rel="nofollow noopener" target="_blank">{`${ch.title} on YouTube`}</a> · <a href="/best/best-asmr-youtube-channels/">Compare channels</a></p>
+  <script src="/js/vplay.js" defer></script>
+</BaseLayout>
+
+<style>
+  .lead { font-size: 1.05rem; }
+  .src { font-size: 0.85rem; color: var(--text-3, #999); }
+  .vm { font-size: 0.8rem; color: var(--text-3, #999); }
+  .plain { padding-left: 1.1rem; }
+  .linkish { background: none; border: 0; padding: 0; color: var(--accent); cursor: pointer; text-align: left; font: inherit; }
+  .t { border-collapse: collapse; font-size: 0.9rem; }
+  .t th, .t td { padding: 0.35rem 0.6rem; border-bottom: 1px solid var(--border); text-align: center; }
+  .tw { overflow-x: auto; }
+  .all { padding-left: 1.4rem; }
+  .all li { margin: 0.3rem 0; }
+  .showall { margin-top: 0.75rem; padding: 0.5rem 1rem; border-radius: 999px; border: 1px solid var(--border); background: var(--bg-2); color: var(--accent); cursor: pointer; }
+</style>
