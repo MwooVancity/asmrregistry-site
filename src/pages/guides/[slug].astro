@@ -1,0 +1,177 @@
+---
+export const prerender = false;
+
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import BreadcrumbNav from '../../components/BreadcrumbNav.astro';
+import ContentSections from '../../components/ContentSections.astro';
+import RelatedPages from '../../components/RelatedPages.astro';
+import CatalogFacts from '../../components/CatalogFacts.astro';
+import ResearchCount from '../../components/ResearchCount.astro';
+import TriggerSampler from '../../components/TriggerSampler.astro';
+import TriggerStatsTable from '../../components/TriggerStatsTable.astro';
+import StatsShare from '../../components/StatsShare.astro';
+import TrendsByYear from '../../components/TrendsByYear.astro';
+import MakerGaps from '../../components/MakerGaps.astro';
+import PlayNow from '../../components/PlayNow.astro';
+import SpanishCatalog from '../../components/SpanishCatalog.astro';
+import TitleClaims from '../../components/TitleClaims.astro';
+import LengthChange from '../../components/LengthChange.astro';
+import LanguageMap from '../../components/LanguageMap.astro';
+import hub from '../../lib/hub-data-all.json';
+import { DATA_DOI } from '../../lib/dataset';
+const SAMPLER = new Set(['what-is-asmr', 'how-to-find-your-asmr-triggers', 'why-doesnt-asmr-work-for-me', 'asmr-tingles-not-working', 'asmr-immunity']);
+import { getPagesByType } from '../../lib/ledger';
+import { getContent } from '../../lib/page-content';
+
+const { slug } = Astro.params;
+if (!slug) return new Response(null, { status: 404 });
+
+const page = [...getPagesByType('INFO_GUIDE'), ...getPagesByType('GUIDE')].find(p => p.slug === slug);
+if (!page) return new Response(null, { status: 404 });
+
+const content = getContent(page.slug);
+if ((content as any)?.status === 'redirected' && (content as any).redirectTo) return Astro.redirect((content as any).redirectTo, 301);
+
+Astro.response.headers.set('Cache-Control', 'public, max-age=3600, stale-while-revalidate=86400');
+
+const title = content?.title || `${page.headKeyword.split(' ').map(w => w === 'asmr' ? 'ASMR' : w.charAt(0).toUpperCase() + w.slice(1)).join(' ')} — Complete Guide`;
+const desc = content?.metaDescription || `Everything you need to know about ${page.headKeyword}. ${page.totalDemand.toLocaleString()} monthly searches answered.`;
+const h1 = content?.h1 || page.headKeyword.split(' ').map(w => w === 'asmr' ? 'ASMR' : w.charAt(0).toUpperCase() + w.slice(1)).join(' ');
+
+const SITE = 'https://asmrregistry.com';
+const breadcrumbs = [
+  { name: 'Home', url: '/' },
+  { name: 'Guides', url: '/guides/' },
+  { name: h1, url: page.targetUrl },
+];
+
+const faqItems = content?.faqItems || [];
+// Noindex placeholder guides (no real content yet) — AdSense rejects thin/placeholder pages
+const hasRealContent = !!(content?.introHtml?.trim());
+const guideRobots = hasRealContent ? undefined : 'noindex,follow';
+
+const jsonLd: any[] = [
+  {
+    "@type": "Article",
+    "@id": `${SITE}${page.targetUrl}#article`,
+    "headline": title,
+    "description": desc,
+    "url": `${SITE}${page.targetUrl}`,
+    "author": { "@id": `${SITE}/#editorial` },
+    "publisher": { "@id": `${SITE}/#organization` },
+    "image": `${SITE}/og-default.png`,
+    ...(content?.lastUpdated ? { "dateModified": new Date(content.lastUpdated).toISOString() } : {}),
+  },
+  {
+    "@type": "BreadcrumbList",
+    "itemListElement": breadcrumbs.map((b, i) => ({
+      "@type": "ListItem", "position": i + 1,
+      "name": b.name, "item": `${SITE}${b.url}`,
+    })),
+  },
+];
+
+// Our own CSVs as Dataset markup, so Google Dataset Search can list them (counts and shares only, no YouTube data).
+const DATASETS: Record<string, { name: string; file: string; about: string }> = {
+  'asmr-statistics': { name: 'ASMR videos by trigger', file: 'asmr-trigger-stats.csv', about: 'Video count, median length, share over 30 minutes and share labelled no talking for each main ASMR trigger' },
+  'asmr-trends': { name: 'ASMR videos by upload year', file: 'asmr-trends-by-year.csv', about: 'Video count, median length, share over one hour, share labelled no talking, Korean-language share and trigger shares by upload year' },
+};
+const ds = DATASETS[page.slug];
+if (ds) jsonLd.push({
+  "@type": "Dataset",
+  "name": `${ds.name} (ASMR Registry catalog)`,
+  "description": `${ds.about}, computed from the ASMR Registry catalog of tagged YouTube ASMR videos. Trigger tags come from titles and descriptions, not listening. Updated with each site build.`,
+  "url": `${SITE}${page.targetUrl}`,
+  "creator": { "@id": `${SITE}/#organization` },
+  "license": "https://creativecommons.org/licenses/by/4.0/",
+  "isAccessibleForFree": true,
+  "identifier": `https://doi.org/${DATA_DOI}`,
+  "@id": `${SITE}${page.targetUrl}#dataset`,
+  ...(page.slug === 'asmr-trends' && (hub as any).trends?.length ? { "temporalCoverage": `${(hub as any).trends[0].year}/${(hub as any).catalogDate}` } : {}),
+  "dateModified": (hub as any).catalogDate,
+  "distribution": [{ "@type": "DataDownload", "encodingFormat": "text/csv", "contentUrl": `${SITE}/data/${ds.file}` }],
+});
+
+if (faqItems.length > 0) {
+  jsonLd.push({
+    "@type": "FAQPage",
+    "mainEntity": faqItems.map(f => ({
+      "@type": "Question", "name": f.question,
+      "acceptedAnswer": { "@type": "Answer", "text": f.answer },
+    })),
+  });
+}
+---
+
+<BaseLayout title={title} description={desc} canonical={page.targetUrl} jsonLd={jsonLd} robots={guideRobots}>
+  <BreadcrumbNav items={breadcrumbs} />
+
+  <h1>{h1}</h1>
+  <p class="byline">By <a href="/about/">ASMR Registry Editorial</a>{content?.lastUpdated ? ` · Updated ${new Date(content.lastUpdated).toLocaleDateString('en-US', {month:'long', year:'numeric'})}` : ''}</p>
+
+  {page.slug === 'rain-sounds-for-sleeping' && <PlayNow trigger="rain" label="rain" />}
+  {page.slug === 'que-es-asmr' && <SpanishCatalog />}
+  {page.slug === 'is-asmr-good-for-you' && <TitleClaims />}
+  {page.slug === 'asmr-trends' && <TrendsByYear />}
+  {page.slug === 'asmr-trends' && <LengthChange mode="table" />}
+  {page.slug === 'asmr-trends' && <LanguageMap />}
+
+  {content?.introHtml ? (
+    <div class="guide-body" set:html={content.introHtml} />
+  ) : (
+    <div class="guide-placeholder">
+      <p>This guide is being written and will be published soon.</p>
+      <p><strong>{page.headKeyword}</strong> gets {page.totalDemand.toLocaleString()} monthly searches.</p>
+    </div>
+  )}
+
+  <CatalogFacts slug={page.slug} />
+  <ResearchCount slug={page.slug} />
+  {SAMPLER.has(page.slug) && <TriggerSampler />}
+  {page.slug === 'asmr-statistics' && <TriggerStatsTable />}
+  {page.slug === 'asmr-statistics' && <StatsShare />}
+  {page.slug === 'how-to-make-asmr-videos' && <MakerGaps />}
+
+  {faqItems.length > 0 && (
+    <section class="faq">
+      <h2>Frequently asked questions</h2>
+      {faqItems.map(f => (
+        <details>
+          <summary>{f.question}</summary>
+          <p>{f.answer}</p>
+        </details>
+      ))}
+    </section>
+  )}
+
+
+  <RelatedPages slug={page.slug} exclude={(content?.crossLinks || []).map((l: any) => l.href)} />
+  <ContentSections
+    sections={content?.sections}
+    dataset={(content as any)?.dataset}
+    proTips={content?.proTips}
+    crossLinks={content?.crossLinks}
+    references={content?.references}
+    currentSlug={slug}
+    pageType="INFO_GUIDE"
+  />
+</BaseLayout>
+
+<style>
+  .guide-body { font-size: 1.05rem; line-height: 1.8; color: var(--text-1); }
+  .guide-body h2 { font-size: 1.25rem; margin: 2rem 0 0.5rem; }
+  .guide-body h3 { font-size: 1.1rem; margin: 1.5rem 0 0.5rem; }
+  .guide-body p { margin: 0 0 1rem; }
+  .guide-body ul, .guide-body ol { padding-left: 1.25rem; margin: 0 0 1rem; }
+  .guide-body li { margin: 0.4rem 0; line-height: 1.6; }
+  .guide-placeholder { padding: 2rem; background: var(--bg-2); border-radius: 8px; text-align: center; color: var(--text-3); }
+  section { margin: 2rem 0; }
+  section h2 { font-size: 1.15rem; margin: 0 0 0.75rem; }
+  .faq details { border-bottom: 1px solid var(--border, #2a2a3e); }
+  .faq summary { padding: 0.75rem 0; cursor: pointer; font-weight: 500; color: var(--text-1); list-style: none; }
+  .faq summary::before { content: '+ '; color: var(--accent, #7c3aed); font-weight: 700; }
+  .faq details[open] summary::before { content: '− '; }
+  .faq p { padding: 0 0 0.75rem; color: var(--text-2); line-height: 1.6; }
+  .keyword-cloud { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+  .kw-tag { padding: 0.3rem 0.7rem; background: var(--bg-3); border: 1px solid var(--border); border-radius: 999px; font-size: 0.8rem; color: var(--text-3); }
+</style>

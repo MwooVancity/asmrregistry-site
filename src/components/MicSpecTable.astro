@@ -1,0 +1,67 @@
+---
+// Gear mic pages: maker specs, each read on the maker's own page on READ. One group per page (usb, xlr, binaural),
+// so no two pages carry the same table. Not tested by us. Noise figures copied in the maker's own wording.
+const READ = '2026-11-09';
+const { group } = Astro.props as { group: 'usb' | 'xlr' | 'binaural' };
+const G = {
+  usb: {
+    h: 'USB microphones compared, from the makers\' own pages',
+    rows: [
+      ['RØDE NT-USB+', 'Condenser', 'Cardioid', 'Not stated', '118 dB (10% THD)', 'USB only', '$179', 'https://rode.com/en-us/products/nt-usb-plus'],
+      ['Audio-Technica AT2020USB-X', 'Condenser', 'Cardioid', 'Not stated', 'Not stated', 'USB only', '$169', 'https://www.audio-technica.com/en-us/at2020usb-x'],
+      ['Elgato Wave:3 MK.2', 'Condenser', 'Cardioid', 'Not stated', '130 dB', 'USB only', '$169.99', 'https://www.elgato.com/us/en/p/wave-3-black'],
+      ['Logitech G Yeti GX', 'Dynamic', 'Supercardioid', 'Signal-to-noise 78 dB', '135 dB (1% THD)', 'USB only', '$169.99', 'https://www.logitechg.com/en-us/shop/p/yeti-gx-gaming-microphone'],
+      ['Shure MV7+', 'Dynamic', 'Cardioid', 'Not stated', 'Not stated', 'USB, or XLR into an interface', '$299 ($255 on sale)', 'https://www.shure.com/en-US/products/microphones/mv7'],
+      ['FIFINE K669B', 'Condenser', 'Unidirectional', 'Signal-to-noise 78 dB', '130 dB (1% THD)', 'USB only', '$36.99', 'https://fifinemicrophone.com/products/fifine-k669b-microphone'],
+    ],
+    note: 'Four of the six makers publish no self-noise figure for their USB mic, so you cannot compare hiss under a whisper from the spec sheet alone. If quiet whispering is your main sound, the XLR mics on our XLR page publish it.',
+    link: ['/gear/asmr-xlr-microphone/', 'XLR microphones compared'],
+  },
+  xlr: {
+    h: 'XLR microphones compared, from the makers\' own pages',
+    rows: [
+      ['RØDE NT1 5th Generation', 'Condenser (also USB-C)', 'Cardioid', 'Self-noise 4 dBA', '142 dB', '48V phantom on XLR', '$249', 'https://rode.com/en-us/products/nt1-5th-generation'],
+      ['Audio-Technica AT4040', 'Condenser', 'Cardioid', 'Noise 12 dB SPL', '145 dB (1% THD)', '48V phantom', '$329', 'https://www.audio-technica.com/en-us/at4040'],
+      ['RØDE NT5 (pair for stereo)', 'Small condenser', 'Cardioid', 'Self-noise 16 dBA', '143 dB', '48V phantom', '$229 each, $449 pair', 'https://rode.com/en-us/products/nt5'],
+      ['Audio-Technica AT2020', 'Condenser', 'Cardioid', 'Noise 20 dB SPL', '144 dB (1% THD)', '48V phantom', '$119', 'https://www.audio-technica.com/en-us/at2020'],
+      ['Shure SM7B', 'Dynamic', 'Cardioid', 'Not stated (dynamic)', 'Not stated', 'Interface, no phantom', '$439 ($369 on sale)', 'https://www.shure.com/en-US/products/microphones/sm7b'],
+    ],
+    note: 'Lower self-noise means less hiss under quiet sounds. Sorted quietest first by the maker figure. Audio-Technica does not say whether its figure is A-weighted, so treat close numbers across brands as roughly equal. A dynamic mic like the SM7B has very low hiss of its own but needs a lot of gain, so a quiet whisper often brings up interface noise instead.',
+  },
+  binaural: {
+    h: 'Binaural microphones compared, from the makers\' own pages',
+    rows: [
+      ['Roland CS-10EM', 'In-ear', 'Omni', 'Signal-to-noise over 60 dB', 'Not stated', 'Plug-in power from a recorder', 'Not listed', 'https://www.roland.com/us/products/cs-10em/specifications/'],
+      ['3Dio Free Space', 'Ears only', 'Omni', 'Signal-to-noise 80 dB', '122 dB', '9V battery, 3.5 mm out', '$449', 'https://3diosound.com/products/free-space-binaural-microphone'],
+      ['3Dio Free Space XLR', 'Ears only', 'Omni', 'Signal-to-noise 80 dB', '122 dB', '48V phantom on XLR', '$699', 'https://3diosound.com/products/free-space-xlr-binaural-microphone'],
+      ['3Dio Free Space Pro II', 'Ears only, DPA capsules', 'Omni', 'Signal-to-noise 71 dB(A)', '134 dB', '48V phantom on XLR', '$2,199', 'https://3diosound.com/products/free-space-pro-binaural-microphone'],
+      ['Neumann KU 100', 'Full dummy head', 'Ear', 'Self-noise 16 dBA; signal-to-noise 78 dB', '135 dB (0.5% THD)', '48V phantom or 6 AA', 'Not listed', 'https://www.neumann.com/en-gb/products/microphones/ku-100/'],
+    ],
+    note: 'Higher signal-to-noise means less hiss. Makers measure it differently, so a few dB apart is not a real difference. The 3.5 mm versions need a recorder with a mic preamp; the XLR versions need an interface with phantom power.',
+  },
+}[group];
+---
+<section class="msp">
+  <h2>{G.h}</h2>
+  {/* template-lint-ok: one-off spec table caveat */}
+  <p>{`Specs and US prices as listed by each maker on ${READ}; prices change with sales and region. We have not tried these microphones.`}</p>
+  <div class="msp-wrap">
+    <table>
+      <thead><tr><th scope="col">Microphone</th><th scope="col">Type</th><th scope="col">Pattern</th><th scope="col">Noise (maker wording)</th><th scope="col">Max loudness</th><th scope="col">Power and hookup</th><th scope="col">Price</th></tr></thead>
+      <tbody>
+        {G.rows.map(([n, t, p, noise, spl, pw, price, url]) => (
+          <tr><td><a href={url} target="_blank" rel="noopener nofollow">{n}</a></td><td>{t}</td><td>{p}</td><td>{noise}</td><td>{spl}</td><td>{pw}</td><td>{price}</td></tr>
+        ))}
+      </tbody>
+    </table>
+  </div>
+  <p>{G.note}{(G as any).link && <> <a href={(G as any).link[0]}>{(G as any).link[1]}</a>.</>}</p>
+</section>
+
+<style>
+  .msp { margin: 2rem 0; }
+  .msp-wrap { overflow-x: auto; }
+  .msp table { width: 100%; border-collapse: collapse; font-size: 0.88rem; }
+  .msp th, .msp td { text-align: left; padding: 0.45rem 0.5rem; border-bottom: 1px solid var(--border); vertical-align: top; }
+  .msp th { color: var(--text-1); font-weight: 600; }
+</style>

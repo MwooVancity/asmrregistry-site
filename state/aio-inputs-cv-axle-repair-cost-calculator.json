@@ -1,0 +1,28 @@
+{
+  "formulaId": "cv_axle",
+  "slug": "cv-axle-repair-cost-calculator",
+  "aioInputs": [
+    {"name": "numberOfAxles", "description": "How many CV axles need replacement (1 or 2)"},
+    {"name": "axlePosition", "description": "Front, rear, or both (affects labor time and part cost)"},
+    {"name": "vehicleType", "description": "Dropdown: sedan / SUV / truck / minivan — affects part price range"},
+    {"name": "partQuality", "description": "Dropdown: budget aftermarket / OEM-equivalent / OEM dealer — largest cost driver"},
+    {"name": "diyOrShop", "description": "DIY vs. shop flag — eliminates labor cost (~$150–$300/axle) for DIY"},
+    {"name": "laborRateRegion", "description": "Dropdown: low-cost region / average / high-cost metro — shop rate varies $80–$160/hr"}
+  ],
+  "aioOutputs": [
+    {"name": "totalEstimatedCost", "description": "All-in estimate: parts + labor (or parts only for DIY)"},
+    {"name": "partsCost", "description": "CV axle part(s) cost range based on quality tier and vehicle type"},
+    {"name": "laborCost", "description": "Shop labor estimate at selected regional rate (shown as $0 for DIY)"},
+    {"name": "perAxleCost", "description": "Cost per axle when replacing two — shows discount effect of shared labor"}
+  ],
+  "aioProseQuestions": [
+    "How much does it cost to replace a CV axle?",
+    "Is it cheaper to replace one CV axle or both at the same time?",
+    "Can I replace a CV axle myself and how much would I save?",
+    "How long does CV axle replacement take at a shop?",
+    "Does vehicle type (SUV vs sedan) affect CV axle replacement cost?"
+  ],
+  "aioIncludesExcludes": "Estimate covers CV axle shaft(s) and installation labor; excludes CV boot-only repairs, wheel alignment after replacement, or any additional suspension/drivetrain damage found during inspection.",
+  "aioDisclaimer": "Actual shop quotes vary by make/model, local labor rates, and whether the shop uses OEM or aftermarket parts — get at least two written estimates before authorizing work.",
+  "verifiedGovUrls": []
+}

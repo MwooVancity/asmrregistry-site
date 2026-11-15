@@ -1,0 +1,1726 @@
+{
+  "dupes": [
+    {
+      "sent": "it's video or audio of someone eating, close-mic'd so you can hear chewing, swallowing, and food textures clearly",
+      "slugs": [
+        "eating-sounds",
+        "eating-sounds",
+        "eating-sounds",
+        "eating-sounds",
+        "eating-sounds",
+        "eating-sounds",
+        "eating-sounds",
+        "eating-sounds"
+      ],
+      "count": 8
+    },
+    {
+      "sent": "many people find the sounds calming or satisfying",
+      "slugs": [
+        "eating-sounds",
+        "eating-sounds",
+        "eating-sounds",
+        "eating-sounds",
+        "eating-sounds",
+        "eating-sounds",
+        "eating-sounds",
+        "eating-sounds"
+      ],
+      "count": 8
+    },
+    {
+      "sent": "it's a subset of asmr that's grown into its own genre, sometimes overlapping with mukbang",
+      "slugs": [
+        "eating-sounds",
+        "eating-sounds",
+        "eating-sounds",
+        "eating-sounds",
+        "eating-sounds",
+        "eating-sounds",
+        "eating-sounds",
+        "eating-sounds"
+      ],
+      "count": 8
+    },
+    {
+      "sent": "it's video or audio of someone speaking very softly, close to a microphone",
+      "slugs": [
+        "whispering",
+        "whispering",
+        "whispering",
+        "whispering",
+        "whispering",
+        "whispering",
+        "whispering",
+        "whispering"
+      ],
+      "count": 8
+    },
+    {
+      "sent": "the quiet, breathy voice creates a calm, tingly sensation for many listeners",
+      "slugs": [
+        "whispering",
+        "whispering",
+        "whispering",
+        "whispering",
+        "whispering",
+        "whispering",
+        "whispering",
+        "whispering"
+      ],
+      "count": 8
+    },
+    {
+      "sent": "it's one of the oldest and most popular asmr triggers",
+      "slugs": [
+        "whispering",
+        "whispering",
+        "whispering",
+        "whispering",
+        "whispering",
+        "whispering",
+        "whispering",
+        "whispering"
+      ],
+      "count": 8
+    },
+    {
+      "sent": "tapping asmr is video or audio content where someone taps their fingers on surfaces like glass, wood, plastic, or boxes",
+      "slugs": [
+        "tapping",
+        "tapping",
+        "tapping",
+        "tapping",
+        "tapping",
+        "tapping",
+        "tapping",
+        "tapping"
+      ],
+      "count": 8
+    },
+    {
+      "sent": "the repetitive sound triggers a tingling, relaxing sensation in people who respond to it",
+      "slugs": [
+        "tapping",
+        "tapping",
+        "tapping",
+        "tapping",
+        "tapping",
+        "tapping",
+        "tapping",
+        "tapping"
+      ],
+      "count": 8
+    },
+    {
+      "sent": "vr asmr is 360-degree immersive video or audio designed to trigger the tingling, calm sensation some people feel from soft sounds",
+      "slugs": [
+        "vr-asmr",
+        "vr-asmr",
+        "vr-asmr",
+        "vr-asmr",
+        "vr-asmr",
+        "vr-asmr",
+        "vr-asmr",
+        "vr-asmr"
+      ],
+      "count": 8
+    },
+    {
+      "sent": "you watch it in a headset so the environment surrounds you instead of playing on a flat screen",
+      "slugs": [
+        "vr-asmr",
+        "vr-asmr",
+        "vr-asmr",
+        "vr-asmr",
+        "vr-asmr",
+        "vr-asmr",
+        "vr-asmr",
+        "vr-asmr"
+      ],
+      "count": 8
+    },
+    {
+      "sent": "it's an audio-only asmr experience, usually a whispered or soft-spoken recording released as a podcast episode",
+      "slugs": [
+        "asmr-podcast",
+        "asmr-podcast",
+        "asmr-podcast",
+        "asmr-podcast",
+        "asmr-podcast",
+        "asmr-podcast",
+        "asmr-podcast",
+        "asmr-podcast"
+      ],
+      "count": 8
+    },
+    {
+      "sent": "you listen like you would any podcast, but the goal is relaxation or sleep, not information",
+      "slugs": [
+        "asmr-podcast",
+        "asmr-podcast",
+        "asmr-podcast",
+        "asmr-podcast",
+        "asmr-podcast",
+        "asmr-podcast",
+        "asmr-podcast",
+        "asmr-podcast"
+      ],
+      "count": 8
+    },
+    {
+      "sent": "soft speaking asmr is someone talking quietly and calmly into a microphone, close enough that you feel like they're speaking just to you",
+      "slugs": [
+        "soft-speaking",
+        "soft-speaking",
+        "soft-speaking",
+        "soft-speaking",
+        "soft-speaking",
+        "soft-speaking",
+        "soft-speaking",
+        "soft-speaking"
+      ],
+      "count": 8
+    },
+    {
+      "sent": "the voice is full but gentle, usually without background music or sound effects",
+      "slugs": [
+        "soft-speaking",
+        "soft-speaking",
+        "soft-speaking",
+        "soft-speaking",
+        "soft-speaking",
+        "soft-speaking",
+        "soft-speaking",
+        "soft-speaking"
+      ],
+      "count": 8
+    },
+    {
+      "sent": "it's audio or video content designed to produce a calm, tingly feeling that quiets anxious thoughts",
+      "slugs": [
+        "anxiety",
+        "anxiety",
+        "anxiety",
+        "anxiety",
+        "anxiety",
+        "anxiety",
+        "anxiety",
+        "anxiety"
+      ],
+      "count": 8
+    },
+    {
+      "sent": "common elements include soft whispering, gentle tapping, and slow movements",
+      "slugs": [
+        "anxiety",
+        "anxiety",
+        "anxiety",
+        "anxiety",
+        "anxiety",
+        "anxiety",
+        "anxiety",
+        "anxiety"
+      ],
+      "count": 8
+    },
+    {
+      "sent": "it's not therapy, but it works for a lot of people who need to unwind fast",
+      "slugs": [
+        "anxiety",
+        "anxiety",
+        "anxiety",
+        "anxiety",
+        "anxiety",
+        "anxiety",
+        "anxiety",
+        "anxiety"
+      ],
+      "count": 8
+    },
+    {
+      "sent": "it's audio of soft mouth noises like lip smacking, tongue clicking, or gentle eating sounds recorded close to a microphone",
+      "slugs": [
+        "mouth-sounds",
+        "mouth-sounds",
+        "mouth-sounds",
+        "mouth-sounds",
+        "mouth-sounds",
+        "mouth-sounds",
+        "mouth-sounds",
+        "mouth-sounds"
+      ],
+      "count": 8
+    },
+    {
+      "sent": "many people find these sounds deeply relaxing, sometimes triggering a pleasant tingling feeling in the scalp or spine",
+      "slugs": [
+        "mouth-sounds",
+        "mouth-sounds",
+        "mouth-sounds",
+        "mouth-sounds",
+        "mouth-sounds",
+        "mouth-sounds",
+        "mouth-sounds",
+        "mouth-sounds"
+      ],
+      "count": 8
+    },
+    {
+      "sent": "it's asmr content where the creator makes intentional soft sounds, like tapping, crinkling, or brushing, without speaking",
+      "slugs": [
+        "no-talking",
+        "no-talking",
+        "no-talking",
+        "no-talking",
+        "no-talking",
+        "no-talking",
+        "no-talking",
+        "no-talking"
+      ],
+      "count": 8
+    },
+    {
+      "sent": "the focus is purely on the sounds, with no voice or narration at all",
+      "slugs": [
+        "no-talking",
+        "no-talking",
+        "no-talking",
+        "no-talking",
+        "no-talking",
+        "no-talking",
+        "no-talking",
+        "no-talking"
+      ],
+      "count": 8
+    },
+    {
+      "sent": "the four letters expand to autonomous sensory meridian response",
+      "slugs": [
+        "what-does-asmr-stand-for",
+        "what-does-asmr-stand-for",
+        "what-does-asmr-stand-for",
+        "what-does-asmr-stand-for",
+        "what-does-asmr-stand-for",
+        "what-does-asmr-stand-for",
+        "what-does-asmr-stand-for",
+        "what-does-asmr-stand-for"
+      ],
+      "count": 8
+    },
+    {
+      "sent": "it's gentle sound content, soft voices, tapping, rain, whispering, that some people with ptsd use to feel calmer or fall asleep",
+      "slugs": [
+        "asmr-for-ptsd",
+        "asmr-for-ptsd",
+        "asmr-for-ptsd",
+        "asmr-for-ptsd",
+        "asmr-for-ptsd",
+        "asmr-for-ptsd",
+        "asmr-for-ptsd",
+        "asmr-for-ptsd"
+      ],
+      "count": 8
+    },
+    {
+      "sent": "it doesn't treat ptsd, but it can help your body feel less on alert in the moment",
+      "slugs": [
+        "asmr-for-ptsd",
+        "asmr-for-ptsd",
+        "asmr-for-ptsd",
+        "asmr-for-ptsd",
+        "asmr-for-ptsd",
+        "asmr-for-ptsd",
+        "asmr-for-ptsd",
+        "asmr-for-ptsd"
+      ],
+      "count": 8
+    },
+    {
+      "sent": "it's videos where creators organize, decorate, or clean a room while whispering or making soft handling sounds",
+      "slugs": [
+        "asmr-room-setup",
+        "asmr-room-setup",
+        "asmr-room-setup",
+        "asmr-room-setup",
+        "asmr-room-setup",
+        "asmr-room-setup",
+        "asmr-room-setup",
+        "asmr-room-setup"
+      ],
+      "count": 8
+    },
+    {
+      "sent": "the slow pacing and repetitive sounds trigger a calm, tingly feeling in viewers who are sensitive to asmr",
+      "slugs": [
+        "asmr-room-setup",
+        "asmr-room-setup",
+        "asmr-room-setup",
+        "asmr-room-setup",
+        "asmr-room-setup",
+        "asmr-room-setup",
+        "asmr-room-setup",
+        "asmr-room-setup"
+      ],
+      "count": 8
+    },
+    {
+      "sent": "asmr is the shorthand for a calming sensory response",
+      "slugs": [
+        "whats-asmr",
+        "whats-asmr",
+        "asmr-meaning-in-social-media",
+        "asmr-meaning-in-social-media",
+        "asmr-meaning-in-social-media",
+        "asmr-meaning-in-social-media",
+        "asmr-meaning-in-social-media",
+        "asmr-meaning-in-social-media"
+      ],
+      "count": 8
+    },
+    {
+      "sent": "it's asmr content focused on audio recording gear",
+      "slugs": [
+        "asmr-audio-interface",
+        "asmr-audio-interface",
+        "asmr-audio-interface",
+        "asmr-audio-interface",
+        "asmr-audio-interface",
+        "asmr-audio-interface",
+        "asmr-audio-interface"
+      ],
+      "count": 7
+    },
+    {
+      "sent": "creators handle microphones, audio interfaces, cables, and knobs up close to a mic",
+      "slugs": [
+        "asmr-audio-interface",
+        "asmr-audio-interface",
+        "asmr-audio-interface",
+        "asmr-audio-interface",
+        "asmr-audio-interface",
+        "asmr-audio-interface",
+        "asmr-audio-interface"
+      ],
+      "count": 7
+    },
+    {
+      "sent": "the clean, detailed sounds of hardware clicks and packaging are what people find relaxing",
+      "slugs": [
+        "asmr-audio-interface",
+        "asmr-audio-interface",
+        "asmr-audio-interface",
+        "asmr-audio-interface",
+        "asmr-audio-interface",
+        "asmr-audio-interface",
+        "asmr-audio-interface"
+      ],
+      "count": 7
+    },
+    {
+      "sent": "videos where the sounds of painting, brushes on canvas, paint mixing, palette knives, are recorded closely to trigger a calm or tingly feeling",
+      "slugs": [
+        "painting",
+        "painting",
+        "painting",
+        "painting",
+        "painting",
+        "painting"
+      ],
+      "count": 6
+    },
+    {
+      "sent": "it's recorded outdoor sounds, rain, streams, wind, forests, oceans, played back to help you relax, focus, or sleep",
+      "slugs": [
+        "nature",
+        "nature",
+        "nature",
+        "nature",
+        "nature",
+        "nature"
+      ],
+      "count": 6
+    },
+    {
+      "sent": "others pair the sounds with video of the actual location",
+      "slugs": [
+        "nature",
+        "nature",
+        "nature",
+        "nature",
+        "nature",
+        "nature"
+      ],
+      "count": 6
+    },
+    {
+      "sent": "asmr artists are creators who make videos designed to trigger a tingling, calming sensation using soft voices, tapping, crinkling, and roleplay scenarios",
+      "slugs": [
+        "asmr-artists",
+        "asmr-artists",
+        "asmr-artists",
+        "asmr-artists",
+        "asmr-artists",
+        "asmr-artists"
+      ],
+      "count": 6
+    },
+    {
+      "sent": "you watch or listen and it helps you relax, sleep, or reduce anxiety",
+      "slugs": [
+        "asmr-artists",
+        "asmr-artists",
+        "asmr-artists",
+        "asmr-artists",
+        "asmr-artists",
+        "asmr-artists"
+      ],
+      "count": 6
+    },
+    {
+      "sent": "it's a tingling, calm feeling some people get from soft sounds like whispering, tapping, or crinkling paper",
+      "slugs": [
+        "what-does-asmr-stand-for",
+        "what-does-asmr-stand-for",
+        "what-does-asmr-stand-for",
+        "what-does-asmr-stand-for",
+        "what-does-asmr-stand-for",
+        "what-does-asmr-stand-for"
+      ],
+      "count": 6
+    },
+    {
+      "sent": "the sensation usually starts at the scalp and moves down the spine",
+      "slugs": [
+        "what-does-asmr-stand-for",
+        "what-does-asmr-stand-for",
+        "what-does-asmr-stand-for",
+        "what-does-asmr-stand-for",
+        "what-does-asmr-stand-for",
+        "what-does-asmr-stand-for"
+      ],
+      "count": 6
+    },
+    {
+      "sent": "asmr apps are platforms or tools for finding audio and video that triggers a relaxing, tingly sensation",
+      "slugs": [
+        "best-asmr-apps",
+        "best-asmr-apps",
+        "best-asmr-apps",
+        "best-asmr-apps",
+        "best-asmr-apps",
+        "best-asmr-apps"
+      ],
+      "count": 6
+    },
+    {
+      "sent": "most people use youtube, spotify, or dedicated sleep apps like calm",
+      "slugs": [
+        "best-asmr-apps",
+        "best-asmr-apps",
+        "best-asmr-apps",
+        "best-asmr-apps",
+        "best-asmr-apps",
+        "best-asmr-apps"
+      ],
+      "count": 6
+    },
+    {
+      "sent": "the goal is calm, not content consumption",
+      "slugs": [
+        "best-asmr-apps",
+        "best-asmr-apps",
+        "best-asmr-apps",
+        "best-asmr-apps",
+        "best-asmr-apps",
+        "best-asmr-apps"
+      ],
+      "count": 6
+    },
+    {
+      "sent": "it's asmr content made specifically to help you fall asleep, usually in spanish",
+      "slugs": [
+        "asmr-para-dormir",
+        "asmr-para-dormir",
+        "asmr-para-dormir",
+        "asmr-para-dormir",
+        "asmr-para-dormir",
+        "asmr-para-dormir"
+      ],
+      "count": 6
+    },
+    {
+      "sent": "expect slow voices, soft sounds like rain or tapping, and low-stimulation visuals",
+      "slugs": [
+        "asmr-para-dormir",
+        "asmr-para-dormir",
+        "asmr-para-dormir",
+        "asmr-para-dormir",
+        "asmr-para-dormir",
+        "asmr-para-dormir"
+      ],
+      "count": 6
+    },
+    {
+      "sent": "the goal is to quiet your thoughts, not entertain you",
+      "slugs": [
+        "asmr-para-dormir",
+        "asmr-para-dormir",
+        "asmr-para-dormir",
+        "asmr-para-dormir",
+        "asmr-para-dormir",
+        "asmr-para-dormir"
+      ],
+      "count": 6
+    },
+    {
+      "sent": "it's asmr content made for studying, usually soft background sounds like rain, pages turning, or quiet ambience",
+      "slugs": [
+        "asmr-para-estudiar",
+        "asmr-para-estudiar",
+        "asmr-para-estudiar",
+        "asmr-para-estudiar",
+        "asmr-para-estudiar",
+        "asmr-para-estudiar"
+      ],
+      "count": 6
+    },
+    {
+      "sent": "the goal is blocking distraction noise and keeping your brain calm enough to concentrate, not to fall asleep",
+      "slugs": [
+        "asmr-para-estudiar",
+        "asmr-para-estudiar",
+        "asmr-para-estudiar",
+        "asmr-para-estudiar",
+        "asmr-para-estudiar",
+        "asmr-para-estudiar"
+      ],
+      "count": 6
+    },
+    {
+      "sent": "it's asmr content made specifically to calm anxiety, usually in spanish",
+      "slugs": [
+        "asmr-para-ansiedad",
+        "asmr-para-ansiedad",
+        "asmr-para-ansiedad",
+        "asmr-para-ansiedad",
+        "asmr-para-ansiedad",
+        "asmr-para-ansiedad"
+      ],
+      "count": 6
+    },
+    {
+      "sent": "creators use soft voices, gentle sounds, and slow pacing to help your body stop feeling alert and threatened",
+      "slugs": [
+        "asmr-para-ansiedad",
+        "asmr-para-ansiedad",
+        "asmr-para-ansiedad",
+        "asmr-para-ansiedad",
+        "asmr-para-ansiedad",
+        "asmr-para-ansiedad"
+      ],
+      "count": 6
+    },
+    {
+      "sent": "it's not a cure, but it gives your brain something soothing to focus on",
+      "slugs": [
+        "asmr-para-ansiedad",
+        "asmr-para-ansiedad",
+        "asmr-para-ansiedad",
+        "asmr-para-ansiedad",
+        "asmr-para-ansiedad",
+        "asmr-para-ansiedad"
+      ],
+      "count": 6
+    },
+    {
+      "sent": "it's asmr that uses quick, sharp sounds like fast tapping, rapid page turning, or energetic scratching",
+      "slugs": [
+        "fast-aggressive-asmr",
+        "fast-aggressive-asmr",
+        "fast-aggressive-asmr",
+        "fast-aggressive-asmr",
+        "fast-aggressive-asmr",
+        "fast-aggressive-asmr"
+      ],
+      "count": 6
+    },
+    {
+      "sent": "it triggers tingles through intensity and speed instead of slow, gentle movements",
+      "slugs": [
+        "fast-aggressive-asmr",
+        "fast-aggressive-asmr",
+        "fast-aggressive-asmr",
+        "fast-aggressive-asmr",
+        "fast-aggressive-asmr",
+        "fast-aggressive-asmr"
+      ],
+      "count": 6
+    },
+    {
+      "sent": "some people respond to this style much better than soft whispering",
+      "slugs": [
+        "fast-aggressive-asmr",
+        "fast-aggressive-asmr",
+        "fast-aggressive-asmr",
+        "fast-aggressive-asmr",
+        "fast-aggressive-asmr",
+        "fast-aggressive-asmr"
+      ],
+      "count": 6
+    },
+    {
+      "sent": "it's content where creators use quality cameras to capture close-up triggers, like tapping, brushing, or whispering, with sharp visuals that match the crisp audio",
+      "slugs": [
+        "best-asmr-camera",
+        "best-asmr-camera",
+        "best-asmr-camera",
+        "best-asmr-camera",
+        "best-asmr-camera",
+        "best-asmr-camera"
+      ],
+      "count": 6
+    },
+    {
+      "sent": "the right camera keeps the image smooth and in focus so nothing pulls you out of the experience",
+      "slugs": [
+        "best-asmr-camera",
+        "best-asmr-camera",
+        "best-asmr-camera",
+        "best-asmr-camera",
+        "best-asmr-camera",
+        "best-asmr-camera"
+      ],
+      "count": 6
+    },
+    {
+      "sent": "it's audio that plays two slightly different tones, one in each ear",
+      "slugs": [
+        "binaural-beats-guide",
+        "binaural-beats-guide",
+        "binaural-beats-guide",
+        "binaural-beats-guide",
+        "binaural-beats-guide",
+        "binaural-beats-guide"
+      ],
+      "count": 6
+    },
+    {
+      "sent": "your brain processes the gap between them and syncs to that frequency",
+      "slugs": [
+        "binaural-beats-guide",
+        "binaural-beats-guide",
+        "binaural-beats-guide",
+        "binaural-beats-guide",
+        "binaural-beats-guide",
+        "binaural-beats-guide"
+      ],
+      "count": 6
+    },
+    {
+      "sent": "it's ambient audio, rain, rivers, ocean, forest, played while you fall asleep",
+      "slugs": [
+        "nature-sounds-for-sleep",
+        "nature-sounds-for-sleep",
+        "nature-sounds-for-sleep",
+        "nature-sounds-for-sleep",
+        "nature-sounds-for-sleep",
+        "nature-sounds-for-sleep"
+      ],
+      "count": 6
+    },
+    {
+      "sent": "it gives your brain something steady to settle into instead of cycling through thoughts or reacting to household noise",
+      "slugs": [
+        "nature-sounds-for-sleep",
+        "nature-sounds-for-sleep",
+        "nature-sounds-for-sleep",
+        "nature-sounds-for-sleep",
+        "nature-sounds-for-sleep",
+        "nature-sounds-for-sleep"
+      ],
+      "count": 6
+    },
+    {
+      "sent": "it's recorded environmental sound, like rain, rivers, forests, or coffee shops, played to help you relax or sleep",
+      "slugs": [
+        "ambient-sounds",
+        "ambient-sounds",
+        "ambient-sounds",
+        "ambient-sounds",
+        "ambient-sounds",
+        "ambient-sounds"
+      ],
+      "count": 6
+    },
+    {
+      "sent": "the goal is a steady background that gives your mind something calm to rest on",
+      "slugs": [
+        "ambient-sounds",
+        "ambient-sounds",
+        "ambient-sounds",
+        "ambient-sounds",
+        "ambient-sounds",
+        "ambient-sounds"
+      ],
+      "count": 6
+    },
+    {
+      "sent": "it's asmr content focused on sounds made on or near a microphone: tapping, scratching, brushing, and handling the mic itself",
+      "slugs": [
+        "asmr-microphone",
+        "asmr-microphone",
+        "asmr-microphone",
+        "asmr-microphone",
+        "asmr-microphone",
+        "asmr-microphone"
+      ],
+      "count": 6
+    },
+    {
+      "sent": "the close-proximity recording creates detailed textures that trigger relaxation for a lot of people",
+      "slugs": [
+        "asmr-microphone",
+        "asmr-microphone",
+        "asmr-microphone",
+        "asmr-microphone",
+        "asmr-microphone",
+        "asmr-microphone"
+      ],
+      "count": 6
+    },
+    {
+      "sent": "misophonia is when certain sounds cause intense anger or disgust",
+      "slugs": [
+        "misophonia-and-asmr",
+        "misophonia-and-asmr",
+        "misophonia-and-asmr",
+        "misophonia-and-asmr",
+        "misophonia-and-asmr",
+        "misophonia-and-asmr"
+      ],
+      "count": 6
+    },
+    {
+      "sent": "asmr is when certain sounds cause calm or tingles",
+      "slugs": [
+        "misophonia-and-asmr",
+        "misophonia-and-asmr",
+        "misophonia-and-asmr",
+        "misophonia-and-asmr",
+        "misophonia-and-asmr",
+        "misophonia-and-asmr"
+      ],
+      "count": 6
+    },
+    {
+      "sent": "some people experience both, which means they need to choose asmr sounds very carefully",
+      "slugs": [
+        "misophonia-and-asmr",
+        "misophonia-and-asmr",
+        "misophonia-and-asmr",
+        "misophonia-and-asmr",
+        "misophonia-and-asmr",
+        "misophonia-and-asmr"
+      ],
+      "count": 6
+    },
+    {
+      "sent": "asmr is the tingling, relaxed feeling triggered by soft sounds like whispering or tapping",
+      "slugs": [
+        "vagus-nerve-and-asmr",
+        "vagus-nerve-and-asmr",
+        "vagus-nerve-and-asmr",
+        "vagus-nerve-and-asmr",
+        "vagus-nerve-and-asmr",
+        "vagus-nerve-and-asmr"
+      ],
+      "count": 6
+    },
+    {
+      "sent": "it activates the body's calm-down system, including the vagus nerve, which runs from your brain down through your chest and gut",
+      "slugs": [
+        "vagus-nerve-and-asmr",
+        "vagus-nerve-and-asmr",
+        "vagus-nerve-and-asmr",
+        "vagus-nerve-and-asmr",
+        "vagus-nerve-and-asmr",
+        "vagus-nerve-and-asmr"
+      ],
+      "count": 6
+    },
+    {
+      "sent": "it's a genre of youtube videos where creators use microphones to record soft sounds like whispering, tapping, and crinkling",
+      "slugs": [
+        "best-asmr-youtube-channels",
+        "best-asmr-youtube-channels",
+        "best-asmr-youtube-channels",
+        "best-asmr-youtube-channels",
+        "best-asmr-youtube-channels",
+        "best-asmr-youtube-channels"
+      ],
+      "count": 6
+    },
+    {
+      "sent": "the goal is to trigger a calm, tingly feeling in the viewer",
+      "slugs": [
+        "best-asmr-youtube-channels",
+        "best-asmr-youtube-channels",
+        "best-asmr-youtube-channels",
+        "best-asmr-youtube-channels",
+        "best-asmr-youtube-channels",
+        "best-asmr-youtube-channels"
+      ],
+      "count": 6
+    },
+    {
+      "sent": "the best channels do it consistently and with good audio",
+      "slugs": [
+        "best-asmr-youtube-channels",
+        "best-asmr-youtube-channels",
+        "best-asmr-youtube-channels",
+        "best-asmr-youtube-channels",
+        "best-asmr-youtube-channels",
+        "best-asmr-youtube-channels"
+      ],
+      "count": 6
+    },
+    {
+      "sent": "it's video content where someone carves designs into a bar of soap while a close-up mic captures the scraping, flaking, and crunching sounds",
+      "slugs": [
+        "soap-carving",
+        "soap-carving",
+        "soap-carving",
+        "soap-carving",
+        "soap-carving",
+        "soap-carving"
+      ],
+      "count": 6
+    },
+    {
+      "sent": "those sounds trigger a calming, tingly feeling in people who respond to this type of audio",
+      "slugs": [
+        "soap-carving",
+        "soap-carving",
+        "soap-carving",
+        "soap-carving",
+        "soap-carving",
+        "soap-carving"
+      ],
+      "count": 6
+    },
+    {
+      "sent": "it's asmr content that actually triggers the relaxing, tingly feeling most people are looking for",
+      "slugs": [
+        "best-asmr",
+        "best-asmr",
+        "best-asmr",
+        "best-asmr",
+        "best-asmr",
+        "best-asmr"
+      ],
+      "count": 6
+    },
+    {
+      "sent": "the best versions use clear audio, a calm pace, and triggers like soft speaking, tapping, or crinkling without jarring cuts or loud surprises",
+      "slugs": [
+        "best-asmr",
+        "best-asmr",
+        "best-asmr",
+        "best-asmr",
+        "best-asmr",
+        "best-asmr"
+      ],
+      "count": 6
+    },
+    {
+      "sent": "asmr in text means someone or something triggered a calm, tingly, or deeply satisfying feeling",
+      "slugs": [
+        "what-does-asmr-mean-in-text",
+        "what-does-asmr-mean-in-text",
+        "what-does-asmr-mean-in-text",
+        "what-does-asmr-mean-in-text",
+        "what-does-asmr-mean-in-text",
+        "what-does-asmr-mean-in-text"
+      ],
+      "count": 6
+    },
+    {
+      "sent": "it stands for autonomous sensory meridian response, but in texting it's shorthand for anything that feels unexpectedly soothing or pleasurable to experience",
+      "slugs": [
+        "what-does-asmr-mean-in-text",
+        "what-does-asmr-mean-in-text",
+        "what-does-asmr-mean-in-text",
+        "what-does-asmr-mean-in-text",
+        "what-does-asmr-mean-in-text",
+        "what-does-asmr-mean-in-text"
+      ],
+      "count": 6
+    },
+    {
+      "sent": "on social media it refers to content, usually videos, that uses soft sounds like whispering or tapping to create a relaxing or tingly feeling",
+      "slugs": [
+        "asmr-meaning-in-social-media",
+        "asmr-meaning-in-social-media",
+        "asmr-meaning-in-social-media",
+        "asmr-meaning-in-social-media",
+        "asmr-meaning-in-social-media",
+        "asmr-meaning-in-social-media"
+      ],
+      "count": 6
+    },
+    {
+      "sent": "asmr is a tingling, calming sensation some people feel in response to soft sounds like whispering, tapping, or crinkling",
+      "slugs": [
+        "how-to-do-asmr",
+        "how-to-do-asmr",
+        "how-to-do-asmr",
+        "how-to-do-asmr",
+        "how-to-do-asmr",
+        "how-to-do-asmr"
+      ],
+      "count": 6
+    },
+    {
+      "sent": "not everyone tingles, but almost everyone who tries it gets at least a little relaxed",
+      "slugs": [
+        "how-to-do-asmr",
+        "how-to-do-asmr",
+        "how-to-do-asmr",
+        "how-to-do-asmr",
+        "how-to-do-asmr",
+        "how-to-do-asmr"
+      ],
+      "count": 6
+    },
+    {
+      "sent": "asmr is a calm, tingling sensation that starts at your scalp and moves down your neck and spine",
+      "slugs": [
+        "why-does-asmr-make-you-tingle",
+        "why-does-asmr-make-you-tingle",
+        "why-does-asmr-make-you-tingle",
+        "why-does-asmr-make-you-tingle",
+        "why-does-asmr-make-you-tingle",
+        "why-does-asmr-make-you-tingle"
+      ],
+      "count": 6
+    },
+    {
+      "sent": "it's triggered by soft sounds like whispering or tapping",
+      "slugs": [
+        "why-does-asmr-make-you-tingle",
+        "why-does-asmr-make-you-tingle",
+        "why-does-asmr-make-you-tingle",
+        "why-does-asmr-make-you-tingle",
+        "why-does-asmr-make-you-tingle",
+        "why-does-asmr-make-you-tingle"
+      ],
+      "count": 6
+    },
+    {
+      "sent": "your brain responds to these sounds by releasing chemicals that make you feel relaxed and safe",
+      "slugs": [
+        "why-does-asmr-make-you-tingle",
+        "why-does-asmr-make-you-tingle",
+        "why-does-asmr-make-you-tingle",
+        "why-does-asmr-make-you-tingle",
+        "why-does-asmr-make-you-tingle",
+        "why-does-asmr-make-you-tingle"
+      ],
+      "count": 6
+    },
+    {
+      "sent": "live asmr is a real-time stream where a creator performs calming triggers like whispering, tapping, or roleplay while you watch",
+      "slugs": [
+        "live-asmr",
+        "live-asmr",
+        "live-asmr",
+        "live-asmr",
+        "live-asmr",
+        "live-asmr"
+      ],
+      "count": 6
+    },
+    {
+      "sent": "unlike recordings, the creator can read your requests in chat and respond during the session",
+      "slugs": [
+        "live-asmr",
+        "live-asmr",
+        "live-asmr",
+        "live-asmr",
+        "live-asmr",
+        "live-asmr"
+      ],
+      "count": 6
+    },
+    {
+      "sent": "lofi asmr combines lo-fi music, which has that soft, slightly nostalgic sound, with asmr triggers like whispering, rain, or tapping",
+      "slugs": [
+        "what-is-lofi-asmr",
+        "what-is-lofi-asmr",
+        "what-is-lofi-asmr",
+        "what-is-lofi-asmr",
+        "what-is-lofi-asmr",
+        "what-is-lofi-asmr"
+      ],
+      "count": 6
+    },
+    {
+      "sent": "you get the calming effect of both at once",
+      "slugs": [
+        "what-is-lofi-asmr",
+        "what-is-lofi-asmr",
+        "what-is-lofi-asmr",
+        "what-is-lofi-asmr",
+        "what-is-lofi-asmr",
+        "what-is-lofi-asmr"
+      ],
+      "count": 6
+    },
+    {
+      "sent": "it's designed to help you relax, study, or sleep",
+      "slugs": [
+        "what-is-lofi-asmr",
+        "what-is-lofi-asmr",
+        "what-is-lofi-asmr",
+        "what-is-lofi-asmr",
+        "what-is-lofi-asmr",
+        "what-is-lofi-asmr"
+      ],
+      "count": 6
+    },
+    {
+      "sent": "it's soft, repetitive sound content, typing, paper, rain, quiet ambience, designed to keep your brain calm and engaged without demanding attention",
+      "slugs": [
+        "asmr-for-focus",
+        "asmr-for-focus",
+        "asmr-for-focus",
+        "asmr-for-focus",
+        "asmr-for-focus",
+        "asmr-for-focus"
+      ],
+      "count": 6
+    },
+    {
+      "sent": "it fills silence in a way that reduces distraction instead of adding to it",
+      "slugs": [
+        "asmr-for-focus",
+        "asmr-for-focus",
+        "asmr-for-focus",
+        "asmr-for-focus",
+        "asmr-for-focus",
+        "asmr-for-focus"
+      ],
+      "count": 6
+    },
+    {
+      "sent": "it's asmr content focused on sounds made by hands, like tapping fingers, rubbing palms, fluttering nails, or handling objects",
+      "slugs": [
+        "hand-sounds",
+        "hand-sounds",
+        "hand-sounds",
+        "hand-sounds",
+        "hand-sounds",
+        "hand-sounds"
+      ],
+      "count": 6
+    },
+    {
+      "sent": "just close-recorded hand movements that trigger a calm, tingly feeling in some people",
+      "slugs": [
+        "hand-sounds",
+        "hand-sounds",
+        "hand-sounds",
+        "hand-sounds",
+        "hand-sounds",
+        "hand-sounds"
+      ],
+      "count": 6
+    },
+    {
+      "sent": "it's audio or video of someone eating food close to a microphone",
+      "slugs": [
+        "chewing",
+        "chewing",
+        "chewing",
+        "chewing",
+        "chewing",
+        "chewing"
+      ],
+      "count": 6
+    },
+    {
+      "sent": "the sounds, crunching, soft chewing, swallowing, trigger a relaxing tingle response in people who are sensitive to it",
+      "slugs": [
+        "chewing",
+        "chewing",
+        "chewing",
+        "chewing",
+        "chewing",
+        "chewing"
+      ],
+      "count": 6
+    },
+    {
+      "sent": "it's audio or video of liquids being poured, like water, tea, oil, or sand",
+      "slugs": [
+        "pouring",
+        "pouring",
+        "pouring",
+        "pouring",
+        "pouring",
+        "pouring"
+      ],
+      "count": 6
+    },
+    {
+      "sent": "the consistent sound and rhythm triggers a relaxed, tingly feeling in people sensitive to it",
+      "slugs": [
+        "pouring",
+        "pouring",
+        "pouring",
+        "pouring",
+        "pouring",
+        "pouring"
+      ],
+      "count": 6
+    },
+    {
+      "sent": "it's one of the most common asmr categories",
+      "slugs": [
+        "pouring",
+        "pouring",
+        "pouring",
+        "pouring",
+        "pouring",
+        "pouring"
+      ],
+      "count": 6
+    },
+    {
+      "sent": "it's close-mic'd audio of soft kiss and lip sounds recorded to trigger a relaxing tingle sensation",
+      "slugs": [
+        "kisses",
+        "kisses",
+        "kisses",
+        "kisses",
+        "kisses"
+      ],
+      "count": 5
+    },
+    {
+      "sent": "creators record directly into a microphone to capture the intimate, quiet detail your ears respond to",
+      "slugs": [
+        "kisses",
+        "kisses",
+        "kisses",
+        "kisses",
+        "kisses"
+      ],
+      "count": 5
+    },
+    {
+      "sent": "it's video or audio of someone brushing hair, a microphone, or a surface with a brush",
+      "slugs": [
+        "brushing",
+        "brushing",
+        "brushing",
+        "brushing",
+        "brushing"
+      ],
+      "count": 5
+    },
+    {
+      "sent": "the repetitive strokes and soft bristle sounds trigger a relaxing, tingly feeling in many people",
+      "slugs": [
+        "brushing",
+        "brushing",
+        "brushing",
+        "brushing",
+        "brushing"
+      ],
+      "count": 5
+    },
+    {
+      "sent": "no special knowledge required to enjoy it",
+      "slugs": [
+        "brushing",
+        "brushing",
+        "brushing",
+        "brushing",
+        "brushing"
+      ],
+      "count": 5
+    }
+  ],
+  "pagesWithDupes": [
+    [
+      "headache",
+      52
+    ],
+    [
+      "personal-attention",
+      48
+    ],
+    [
+      "how-to-make-asmr-videos",
+      45
+    ],
+    [
+      "is-asmr-good-for-you",
+      44
+    ],
+    [
+      "sand",
+      42
+    ],
+    [
+      "hair-play",
+      42
+    ],
+    [
+      "fabric-sounds",
+      42
+    ],
+    [
+      "sleep",
+      40
+    ],
+    [
+      "slime",
+      39
+    ],
+    [
+      "unintentional-asmr",
+      38
+    ],
+    [
+      "scratching",
+      38
+    ],
+    [
+      "ai-asmr-generator",
+      38
+    ],
+    [
+      "asmr-games",
+      37
+    ],
+    [
+      "kids",
+      36
+    ],
+    [
+      "cooking",
+      36
+    ],
+    [
+      "sleep-stories",
+      36
+    ],
+    [
+      "massage",
+      34
+    ],
+    [
+      "ocean",
+      34
+    ],
+    [
+      "cranial-nerve-exam",
+      34
+    ],
+    [
+      "pink-noise",
+      33
+    ],
+    [
+      "crinkling",
+      32
+    ],
+    [
+      "asmr-for-studying",
+      31
+    ],
+    [
+      "positive-affirmations",
+      31
+    ],
+    [
+      "how-do-asmr-youtubers-make-money-without-ads",
+      30
+    ],
+    [
+      "roleplay",
+      30
+    ],
+    [
+      "doctor-roleplay",
+      30
+    ],
+    [
+      "brown-noise-vs-white-noise",
+      29
+    ],
+    [
+      "rain-sounds-for-sleeping",
+      28
+    ],
+    [
+      "brown-noise-for-sleep",
+      28
+    ],
+    [
+      "how-asmr-affects-the-brain",
+      28
+    ],
+    [
+      "anxiety",
+      26
+    ],
+    [
+      "misophonia",
+      26
+    ],
+    [
+      "asmr-for-meditation",
+      26
+    ],
+    [
+      "eating-sounds",
+      25
+    ],
+    [
+      "whispering",
+      24
+    ],
+    [
+      "asmr-audio-interface",
+      23
+    ],
+    [
+      "spray-sounds",
+      22
+    ],
+    [
+      "what-does-asmr-stand-for",
+      21
+    ],
+    [
+      "best-asmr-videos",
+      20
+    ],
+    [
+      "what-is-asmr-massage",
+      20
+    ],
+    [
+      "asmr-para-ansiedad",
+      20
+    ],
+    [
+      "cardboard-sounds",
+      20
+    ],
+    [
+      "misophonia-and-asmr",
+      19
+    ],
+    [
+      "why-does-asmr-make-you-tingle",
+      19
+    ],
+    [
+      "nail-painting",
+      19
+    ],
+    [
+      "best-asmr-apps",
+      18
+    ],
+    [
+      "asmr-para-dormir",
+      18
+    ],
+    [
+      "fast-aggressive-asmr",
+      18
+    ],
+    [
+      "asmr-room-setup",
+      18
+    ],
+    [
+      "best-asmr-youtube-channels",
+      18
+    ],
+    [
+      "what-is-lofi-asmr",
+      18
+    ],
+    [
+      "pouring",
+      18
+    ],
+    [
+      "tapping",
+      16
+    ],
+    [
+      "vr-asmr",
+      16
+    ],
+    [
+      "asmr-podcast",
+      16
+    ],
+    [
+      "soft-speaking",
+      16
+    ],
+    [
+      "mouth-sounds",
+      16
+    ],
+    [
+      "no-talking",
+      16
+    ],
+    [
+      "asmr-for-ptsd",
+      16
+    ],
+    [
+      "sound-sensitivity",
+      16
+    ],
+    [
+      "asmr-in-japan",
+      16
+    ],
+    [
+      "wind-sounds",
+      16
+    ],
+    [
+      "layered-sounds",
+      16
+    ],
+    [
+      "asmr-storytime",
+      16
+    ],
+    [
+      "brushing",
+      15
+    ],
+    [
+      "asmr-significado",
+      15
+    ],
+    [
+      "plastic-sounds",
+      15
+    ],
+    [
+      "asmr-para-estudiar",
+      14
+    ],
+    [
+      "asmr-in-korea",
+      14
+    ],
+    [
+      "scissors-sounds",
+      14
+    ],
+    [
+      "nature",
+      13
+    ],
+    [
+      "nature-sounds-for-sleep",
+      13
+    ],
+    [
+      "ambient-sounds",
+      13
+    ],
+    [
+      "vagus-nerve-and-asmr",
+      13
+    ],
+    [
+      "best-asmr",
+      13
+    ],
+    [
+      "what-does-asmr-mean-in-text",
+      13
+    ],
+    [
+      "asmr-for-focus",
+      13
+    ],
+    [
+      "best-asmr-youtuber-rankings",
+      13
+    ],
+    [
+      "asmr-artists",
+      12
+    ],
+    [
+      "reading-to-you",
+      12
+    ],
+    [
+      "best-asmr-camera",
+      12
+    ],
+    [
+      "binaural-beats-guide",
+      12
+    ],
+    [
+      "asmr-community",
+      12
+    ],
+    [
+      "asmr-microphone",
+      12
+    ],
+    [
+      "soap-carving",
+      12
+    ],
+    [
+      "asmr-meaning-in-social-media",
+      12
+    ],
+    [
+      "how-to-do-asmr",
+      12
+    ],
+    [
+      "live-asmr",
+      12
+    ],
+    [
+      "hand-sounds",
+      12
+    ],
+    [
+      "chewing",
+      12
+    ],
+    [
+      "asmr-trends",
+      12
+    ],
+    [
+      "glass-sounds",
+      11
+    ],
+    [
+      "kisses",
+      10
+    ],
+    [
+      "asmr-gear-tools",
+      10
+    ],
+    [
+      "whispering-asmr",
+      8
+    ],
+    [
+      "painting",
+      6
+    ],
+    [
+      "que-es-asmr",
+      5
+    ],
+    [
+      "bfe-meaning-asmr",
+      5
+    ],
+    [
+      "asmr-for-stress",
+      4
+    ],
+    [
+      "crafting-asmr",
+      4
+    ],
+    [
+      "asmr-for-insomnia",
+      4
+    ],
+    [
+      "asmr-for-pain",
+      4
+    ],
+    [
+      "medieval-asmr",
+      4
+    ],
+    [
+      "triggers-overview",
+      3
+    ],
+    [
+      "breathing",
+      2
+    ],
+    [
+      "asmr-equipment",
+      2
+    ],
+    [
+      "spa-roleplay",
+      2
+    ],
+    [
+      "asmr-for-adhd",
+      2
+    ],
+    [
+      "10-hour-asmr",
+      2
+    ],
+    [
+      "tingles",
+      2
+    ],
+    [
+      "whats-asmr",
+      2
+    ],
+    [
+      "asmr-for-anxiety",
+      2
+    ],
+    [
+      "bells",
+      2
+    ],
+    [
+      "mukbang-asmr",
+      2
+    ],
+    [
+      "cleaning-asmr",
+      2
+    ],
+    [
+      "bubble-wrap",
+      2
+    ],
+    [
+      "asmr-for-ocd",
+      2
+    ]
+  ]
+}

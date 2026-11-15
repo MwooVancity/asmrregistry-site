@@ -1,0 +1,62 @@
+---
+// /best/best-sleep-headphones/: maker specs (each read on the maker's page, date below) next to how long sleep
+// videos in our catalog run, so a reader can see whether a battery outlasts what they play. Not tested by us.
+import hub from '../lib/hub-data-all.json';
+
+const READ = '2026-11-08';
+// hours: playback per charge as the maker states it (null = wired or no playback). Shortest stated figure is used
+// for the catalog comparison, so the comparison never flatters a product.
+const P = [
+  { name: 'soundcore Sleep A30', type: 'Sleep earbuds', audio: 'Yes', anc: 'Active', battery: 'About 6 h with ANC on at high volume; 8 to 10 h default, which switches to built-in sounds once you sleep', hours: 6, extra: 'About 3 g per bud', price: '$199.99', url: 'https://www.soundcore.com/products/d1301-sleep-a30-smart-anc-earbuds-for-sleeping' },
+  { name: 'soundcore Sleep A20', type: 'Sleep earbuds', audio: 'Yes', anc: 'Passive only', battery: '10 h Bluetooth mode; 14 h Sleep mode', hours: 10, extra: '3.1 g per bud', price: '$179.99', url: 'https://www.soundcore.com/products/sleep-a20-sleeping-earbuds' },
+  { name: 'Ozlo Sleepbuds 2', type: 'Sleep earbuds', audio: 'Yes', anc: 'Passive only', battery: 'Up to 14 h at 50% volume; switches to its own masking sound when you sleep', hours: 14, extra: '1.6 g each, 12 mm deep', price: '$279', url: 'https://ozlosleep.com/products/sleepbuds' },
+  { name: 'QuietOn 4', type: 'Noise-blocking earbuds', audio: 'No', anc: 'Active', battery: 'Up to 28 h', hours: null, extra: '1.8 g per bud', price: '259 €', url: 'https://quieton.com/shop/quieton-4-sleep-earbuds/' },
+  { name: 'SleepPhones Wireless', type: 'Headband', audio: 'Yes', anc: 'Not stated', battery: '24 h', hours: 24, extra: 'Thin speakers in a fabric band', price: '$99.95', url: 'https://www.sleepphones.com/products/sleepphones/wireless-headband-headphones' },
+  { name: 'SleepPhones Classic', type: 'Headband, wired', audio: 'Yes', anc: 'Not stated', battery: 'No battery (3.5 mm cable)', hours: null, extra: 'Thin speakers in a fabric band', price: '$39.95', url: 'https://www.sleepphones.com/products/sleepphones/classic-headband-headphones' },
+  { name: 'Manta SOUND Sleep Mask', type: 'Sleep mask', audio: 'Yes', anc: 'Not stated', battery: '24 h at 100% volume', hours: 24, extra: 'Speakers 5 mm thick', price: '$159', url: 'https://mantasleep.com/products/manta-sleep-mask-sound' },
+  { name: 'CozyPhones 4.0 (kids 3+)', type: 'Headband, kids', audio: 'Yes', anc: 'Not stated', battery: 'Up to 16 h Bluetooth; also wired', hours: 16, extra: 'Flat speakers', price: '$29.99', url: 'https://www.cozyphones.com/products/cozyphones-3-0-toddler-headband-headphones' },
+];
+const { sleepLengths: s, catalogDate } = hub as any;
+// Share of sleep videos at least as long as each battery figure (prebuild stores these exact hour marks).
+const longer = (h: number) => s.over[h];
+---
+{s?.count > 0 && (
+<section class="shp">
+  <h2>Sleep headphones compared, from the makers' own pages</h2>
+  {/* template-lint-ok: one-off spec table caveat */}
+  <p>Specs and prices as listed by each maker on {READ}; prices change with sales and region. We have not tried these products.</p>
+  <div class="shp-wrap">
+    <table>
+      <thead><tr><th scope="col">Product</th><th scope="col">Type</th><th scope="col">Plays your audio</th><th scope="col">Noise cancelling</th><th scope="col">Battery (maker figure)</th><th scope="col">Size</th><th scope="col">Price</th></tr></thead>
+      <tbody>
+        {P.map((p) => (
+          <tr><td><a href={p.url} target="_blank" rel="noopener nofollow">{p.name}</a></td><td>{p.type}</td><td>{p.audio}</td><td>{p.anc}</td><td>{p.battery}</td><td>{p.extra}</td><td>{p.price}</td></tr>
+        ))}
+      </tbody>
+    </table>
+  </div>
+
+  <h2>Will the battery outlast your video?</h2>
+  <p>{`In our catalog (${catalogDate}), ${s.count.toLocaleString('en-US')} ASMR videos are tagged for sleep. ${s.over[1]}% run an hour or more, ${s.over[4]}% run 4 hours or more and ${s.over[8]}% run 8 hours or more.`} So a single video rarely outlasts a sleep earbud; an autoplaying playlist or an 8 to 10 hour rain video can.</p>
+  <div class="shp-wrap">
+    <table>
+      {/* template-lint-ok: one-off table caption */}
+      <caption>Shortest battery figure each maker states, against sleep-tagged videos in our catalog. Tags come from titles and descriptions.</caption>
+      <thead><tr><th scope="col">Product</th><th scope="col">Battery used here</th><th scope="col">Sleep videos at least that long</th></tr></thead>
+      <tbody>
+        {P.filter((p) => p.hours).map((p) => (
+          <tr><td>{p.name}</td><td>{p.hours} h</td><td>{longer(p.hours!) == null ? 'not computed' : longer(p.hours!) === 0 ? 'under 1%' : `${longer(p.hours!)}%`}</td></tr>
+        ))}
+      </tbody>
+    </table>
+  </div>
+</section>
+)}
+
+<style>
+  .shp { margin: 2rem 0; }
+  .shp-wrap { overflow-x: auto; }
+  .shp table { width: 100%; border-collapse: collapse; font-size: 0.88rem; }
+  .shp caption { text-align: left; font-size: 0.85rem; color: var(--text-3, #999); padding-bottom: 0.3rem; }
+  .shp th, .shp td { padding: 0.35rem 0.4rem; border-bottom: 1px solid var(--border, #2a2a3e); text-align: left; vertical-align: top; }
+</style>

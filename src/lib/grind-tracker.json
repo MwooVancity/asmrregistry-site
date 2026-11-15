@@ -1,0 +1,831 @@
+{
+  "batchSize": 5,
+  "totalPages": 91,
+  "totalBatches": 19,
+  "batches": {
+    "1": {
+      "status": "done",
+      "pages": [
+        {
+          "slug": "sleep-sounds",
+          "type": "GUIDE",
+          "demand": 116000,
+          "url": "/guides/sleep-sounds/",
+          "grindStatus": "done",
+          "deployedDate": "2026-08-05"
+        },
+        {
+          "slug": "white-noise",
+          "type": "GUIDE",
+          "demand": 98000,
+          "url": "/guides/white-noise/",
+          "grindStatus": "done",
+          "deployedDate": "2026-08-05"
+        },
+        {
+          "slug": "rain-sounds-for-sleeping",
+          "type": "GUIDE",
+          "demand": 68000,
+          "url": "/guides/rain-sounds-for-sleeping/",
+          "grindStatus": "done",
+          "deployedDate": "2026-08-05"
+        },
+        {
+          "slug": "frisson",
+          "type": "GUIDE",
+          "demand": 55000,
+          "url": "/guides/frisson/",
+          "grindStatus": "done",
+          "deployedDate": "2026-08-05"
+        },
+        {
+          "slug": "brown-noise",
+          "type": "GUIDE",
+          "demand": 50000,
+          "url": "/guides/brown-noise/",
+          "grindStatus": "done",
+          "deployedDate": "2026-08-05"
+        }
+      ]
+    },
+    "2": {
+      "status": "done",
+      "pages": [
+        {
+          "slug": "misophonia",
+          "type": "GUIDE",
+          "demand": 24000,
+          "url": "/guides/misophonia/",
+          "grindStatus": "done",
+          "deployedDate": "2026-08-05"
+        },
+        {
+          "slug": "asmr-for-studying",
+          "type": "GUIDE",
+          "demand": 21000,
+          "url": "/guides/asmr-for-studying/",
+          "grindStatus": "done",
+          "deployedDate": "2026-08-05"
+        },
+        {
+          "slug": "ai-asmr-generator",
+          "type": "GUIDE",
+          "demand": 19000,
+          "url": "/guides/ai-asmr-generator/",
+          "grindStatus": "done",
+          "deployedDate": "2026-08-05"
+        },
+        {
+          "slug": "pink-noise",
+          "type": "GUIDE",
+          "demand": 18000,
+          "url": "/guides/pink-noise/",
+          "grindStatus": "done",
+          "deployedDate": "2026-08-05"
+        },
+        {
+          "slug": "sound-therapy-and-asmr",
+          "type": "GUIDE",
+          "demand": 16000,
+          "url": "/guides/sound-therapy-and-asmr/",
+          "grindStatus": "done",
+          "deployedDate": "2026-08-05"
+        }
+      ]
+    },
+    "3": {
+      "status": "done",
+      "pages": [
+        {
+          "slug": "binaural-beats-guide",
+          "type": "GUIDE",
+          "demand": 15000,
+          "url": "/guides/binaural-beats-guide/",
+          "grindStatus": "done",
+          "deployedDate": "2026-08-05"
+        },
+        {
+          "slug": "brown-noise-for-sleep",
+          "type": "GUIDE",
+          "demand": 12000,
+          "url": "/guides/brown-noise-for-sleep/",
+          "grindStatus": "done",
+          "deployedDate": "2026-08-05"
+        },
+        {
+          "slug": "massage",
+          "type": "TRIGGER_HUB",
+          "demand": 8120,
+          "url": "/massage/",
+          "grindStatus": "done",
+          "deployedDate": "2026-08-05"
+        },
+        {
+          "slug": "brown-noise-vs-white-noise",
+          "type": "GUIDE",
+          "demand": 8000,
+          "url": "/guides/brown-noise-vs-white-noise/",
+          "grindStatus": "done",
+          "deployedDate": "2026-08-05"
+        },
+        {
+          "slug": "how-asmr-affects-the-brain",
+          "type": "GUIDE",
+          "demand": 6000,
+          "url": "/guides/how-asmr-affects-the-brain/",
+          "grindStatus": "done",
+          "deployedDate": "2026-08-05"
+        }
+      ]
+    },
+    "4": {
+      "status": "done",
+      "pages": [
+        {
+          "slug": "eating-sounds",
+          "type": "TRIGGER_HUB",
+          "demand": 4760,
+          "url": "/eating-sounds/",
+          "grindStatus": "done",
+          "deployedDate": "2026-08-05"
+        },
+        {
+          "slug": "nature-sounds-for-sleep",
+          "type": "GUIDE",
+          "demand": 3000,
+          "url": "/guides/nature-sounds-for-sleep/",
+          "grindStatus": "done",
+          "deployedDate": "2026-08-05"
+        },
+        {
+          "slug": "ambient-sounds",
+          "type": "GUIDE",
+          "demand": 3000,
+          "url": "/guides/ambient-sounds/",
+          "grindStatus": "done",
+          "deployedDate": "2026-08-05"
+        },
+        {
+          "slug": "asmr-community",
+          "type": "GUIDE",
+          "demand": 3000,
+          "url": "/guides/asmr-community/",
+          "grindStatus": "done",
+          "deployedDate": "2026-08-05"
+        },
+        {
+          "slug": "asmr-artists",
+          "type": "CREATOR_LIST",
+          "demand": 2580,
+          "url": "/creators/",
+          "grindStatus": "done",
+          "deployedDate": "2026-08-05"
+        }
+      ]
+    },
+    "5": {
+      "status": "done",
+      "pages": [
+        {
+          "slug": "asmr-games",
+          "type": "FORMAT_HUB",
+          "demand": 2510,
+          "url": "/asmr-games/",
+          "grindStatus": "done",
+          "deployedDate": "2026-08-05"
+        },
+        {
+          "slug": "whispering",
+          "type": "TRIGGER_HUB",
+          "demand": 2420,
+          "url": "/whispering/",
+          "grindStatus": "done",
+          "deployedDate": "2026-08-05"
+        },
+        {
+          "slug": "asmr-microphone",
+          "type": "EQUIPMENT",
+          "demand": 2400,
+          "url": "/gear/asmr-microphone/",
+          "grindStatus": "done",
+          "deployedDate": "2026-08-05"
+        },
+        {
+          "slug": "asmr-gear-tools",
+          "type": "EQUIPMENT",
+          "demand": 2300,
+          "url": "/gear/asmr-gear-tools/",
+          "grindStatus": "done",
+          "deployedDate": "2026-08-05"
+        },
+        {
+          "slug": "whats-asmr",
+          "type": "INFO_GUIDE",
+          "demand": 2270,
+          "url": "/guides/whats-asmr/",
+          "grindStatus": "done",
+          "deployedDate": "2026-08-05"
+        }
+      ]
+    },
+    "6": {
+      "status": "done",
+      "pages": [
+        {
+          "slug": "misophonia-and-asmr",
+          "type": "GUIDE",
+          "demand": 2000,
+          "url": "/guides/misophonia-and-asmr/",
+          "grindStatus": "done",
+          "deployedDate": "2026-08-05"
+        },
+        {
+          "slug": "vagus-nerve-and-asmr",
+          "type": "GUIDE",
+          "demand": 2000,
+          "url": "/guides/vagus-nerve-and-asmr/",
+          "grindStatus": "done",
+          "deployedDate": "2026-08-05"
+        },
+        {
+          "slug": "sleep",
+          "type": "INTENT_HUB",
+          "demand": 1940,
+          "url": "/sleep/",
+          "grindStatus": "done",
+          "deployedDate": "2026-08-05"
+        },
+        {
+          "slug": "slime",
+          "type": "TRIGGER_HUB",
+          "demand": 1630,
+          "url": "/slime/",
+          "grindStatus": "done",
+          "deployedDate": "2026-08-05"
+        },
+        {
+          "slug": "triggers-overview",
+          "type": "TRIGGER_HUB",
+          "demand": 1590,
+          "url": "/triggers/",
+          "grindStatus": "done",
+          "deployedDate": "2026-08-05"
+        }
+      ]
+    },
+    "7": {
+      "status": "done",
+      "pages": [
+        {
+          "slug": "personal-attention",
+          "type": "TRIGGER_HUB",
+          "demand": 1440,
+          "url": "/personal-attention/",
+          "grindStatus": "done",
+          "deployedDate": "2026-08-05"
+        },
+        {
+          "slug": "sound-sensitivity",
+          "type": "GUIDE",
+          "demand": 1400,
+          "url": "/guides/sound-sensitivity/",
+          "grindStatus": "done",
+          "deployedDate": "2026-08-05"
+        },
+        {
+          "slug": "glass-sounds",
+          "type": "TRIGGER_HUB",
+          "demand": 1370,
+          "url": "/glass-sounds/",
+          "grindStatus": "done",
+          "deployedDate": "2026-08-05"
+        },
+        {
+          "slug": "vr-asmr",
+          "type": "FORMAT_HUB",
+          "demand": 1170,
+          "url": "/vr-asmr/",
+          "grindStatus": "done",
+          "deployedDate": "2026-08-05"
+        },
+        {
+          "slug": "kids",
+          "type": "INTENT_HUB",
+          "demand": 1150,
+          "url": "/kids/",
+          "grindStatus": "done",
+          "deployedDate": "2026-08-05"
+        }
+      ]
+    },
+    "8": {
+      "status": "done",
+      "pages": [
+        {
+          "slug": "typing",
+          "type": "TRIGGER_HUB",
+          "demand": 1120,
+          "url": "/typing/",
+          "grindStatus": "done",
+          "deployedDate": "2026-08-05"
+        },
+        {
+          "slug": "asmr-equipment",
+          "type": "EQUIPMENT",
+          "demand": 1100,
+          "url": "/gear/asmr-equipment/",
+          "grindStatus": "done",
+          "deployedDate": "2026-08-05"
+        },
+        {
+          "slug": "best-asmr-youtube-channels",
+          "type": "BEST_LIST",
+          "demand": 1050,
+          "url": "/best/best-asmr-youtube-channels/",
+          "grindStatus": "done",
+          "deployedDate": "2026-08-05"
+        },
+        {
+          "slug": "unintentional-asmr",
+          "type": "FORMAT_HUB",
+          "demand": 1020,
+          "url": "/unintentional-asmr/",
+          "grindStatus": "done",
+          "deployedDate": "2026-08-05"
+        },
+        {
+          "slug": "rain",
+          "type": "TRIGGER_HUB",
+          "demand": 980,
+          "url": "/rain/",
+          "grindStatus": "done",
+          "deployedDate": "2026-08-05"
+        }
+      ]
+    },
+    "9": {
+      "status": "done",
+      "pages": [
+        {
+          "slug": "kisses",
+          "type": "TRIGGER_HUB",
+          "demand": 920,
+          "url": "/kisses/",
+          "grindStatus": "done",
+          "deployedDate": "2026-08-05"
+        },
+        {
+          "slug": "best-asmr-videos",
+          "type": "BEST_LIST",
+          "demand": 900,
+          "url": "/best/best-asmr-videos/",
+          "grindStatus": "done",
+          "deployedDate": "2026-08-05"
+        },
+        {
+          "slug": "is-asmr-good-for-you",
+          "type": "INFO_GUIDE",
+          "demand": 780,
+          "url": "/guides/is-asmr-good-for-you/",
+          "grindStatus": "done",
+          "deployedDate": "2026-08-05"
+        },
+        {
+          "slug": "ocean",
+          "type": "TRIGGER_HUB",
+          "demand": 750,
+          "url": "/ocean/",
+          "grindStatus": "done",
+          "deployedDate": "2026-08-05"
+        },
+        {
+          "slug": "soap-carving",
+          "type": "TRIGGER_HUB",
+          "demand": 680,
+          "url": "/soap-carving/",
+          "grindStatus": "done",
+          "deployedDate": "2026-08-05"
+        }
+      ]
+    },
+    "10": {
+      "status": "done",
+      "pages": [
+        {
+          "slug": "how-to-make-asmr-videos",
+          "type": "INFO_GUIDE",
+          "demand": 680,
+          "url": "/guides/how-to-make-asmr-videos/",
+          "grindStatus": "done",
+          "deployedDate": "2026-08-05"
+        },
+        {
+          "slug": "what-does-asmr-stand-for",
+          "type": "INFO_GUIDE",
+          "demand": 630,
+          "url": "/guides/what-does-asmr-stand-for/",
+          "grindStatus": "done",
+          "deployedDate": "2026-08-05"
+        },
+        {
+          "slug": "scratching",
+          "type": "TRIGGER_HUB",
+          "demand": 590,
+          "url": "/scratching/",
+          "grindStatus": "done",
+          "deployedDate": "2026-08-05"
+        },
+        {
+          "slug": "asmr-meaning-slang",
+          "type": "INFO_GUIDE",
+          "demand": 510,
+          "url": "/guides/asmr-meaning-slang/",
+          "grindStatus": "done",
+          "deployedDate": "2026-08-05"
+        },
+        {
+          "slug": "best-asmr",
+          "type": "BEST_LIST",
+          "demand": 500,
+          "url": "/best/best-asmr/",
+          "grindStatus": "done",
+          "deployedDate": "2026-08-05"
+        }
+      ]
+    },
+    "11": {
+      "status": "done",
+      "pages": [
+        {
+          "slug": "best-earbuds-for-asmr",
+          "type": "BEST_LIST",
+          "demand": 480,
+          "url": "/best/best-earbuds-for-asmr/",
+          "grindStatus": "done",
+          "deployedDate": "2026-08-05"
+        },
+        {
+          "slug": "best-asmr-for-sleep",
+          "type": "BEST_LIST",
+          "demand": 450,
+          "url": "/best/best-asmr-for-sleep/",
+          "grindStatus": "done",
+          "deployedDate": "2026-08-05"
+        },
+        {
+          "slug": "sand",
+          "type": "TRIGGER_HUB",
+          "demand": 430,
+          "url": "/sand/",
+          "grindStatus": "done",
+          "deployedDate": "2026-08-05"
+        },
+        {
+          "slug": "best-microphone-for-asmr",
+          "type": "BEST_LIST",
+          "demand": 420,
+          "url": "/best/best-microphone-for-asmr/",
+          "grindStatus": "done",
+          "deployedDate": "2026-08-05"
+        },
+        {
+          "slug": "asmr-significado",
+          "type": "INFO_GUIDE",
+          "demand": 350,
+          "url": "/guides/asmr-significado/",
+          "grindStatus": "done",
+          "deployedDate": "2026-08-05"
+        }
+      ]
+    },
+    "12": {
+      "status": "done",
+      "pages": [
+        {
+          "slug": "cooking",
+          "type": "TRIGGER_HUB",
+          "demand": 310,
+          "url": "/cooking/",
+          "grindStatus": "done",
+          "deployedDate": "2026-08-05"
+        },
+        {
+          "slug": "que-es-asmr",
+          "type": "INFO_GUIDE",
+          "demand": 310,
+          "url": "/guides/que-es-asmr/",
+          "grindStatus": "done",
+          "deployedDate": "2026-08-05"
+        },
+        {
+          "slug": "what-is-asmr-massage",
+          "type": "INFO_GUIDE",
+          "demand": 310,
+          "url": "/guides/what-is-asmr-massage/",
+          "grindStatus": "done",
+          "deployedDate": "2026-08-05"
+        },
+        {
+          "slug": "what-does-asmr-mean-in-text",
+          "type": "INFO_GUIDE",
+          "demand": 300,
+          "url": "/guides/what-does-asmr-mean-in-text/",
+          "grindStatus": "done",
+          "deployedDate": "2026-08-05"
+        },
+        {
+          "slug": "best-asmr-microphone",
+          "type": "BEST_LIST",
+          "demand": 300,
+          "url": "/best/best-asmr-microphone/",
+          "grindStatus": "done",
+          "deployedDate": "2026-08-05"
+        }
+      ]
+    },
+    "13": {
+      "status": "done",
+      "pages": [
+        {
+          "slug": "asmr-meaning-in-social-media",
+          "type": "INFO_GUIDE",
+          "demand": 250,
+          "url": "/guides/asmr-meaning-in-social-media/",
+          "grindStatus": "done",
+          "deployedDate": "2026-08-05"
+        },
+        {
+          "slug": "how-to-do-asmr",
+          "type": "INFO_GUIDE",
+          "demand": 250,
+          "url": "/guides/how-to-do-asmr/",
+          "grindStatus": "done",
+          "deployedDate": "2026-08-05"
+        },
+        {
+          "slug": "why-does-asmr-make-you-tingle",
+          "type": "INFO_GUIDE",
+          "demand": 250,
+          "url": "/guides/why-does-asmr-make-you-tingle/",
+          "grindStatus": "done",
+          "deployedDate": "2026-08-05"
+        },
+        {
+          "slug": "how-to-make-ai-asmr-videos",
+          "type": "INFO_GUIDE",
+          "demand": 250,
+          "url": "/guides/how-to-make-ai-asmr-videos/",
+          "grindStatus": "done",
+          "deployedDate": "2026-08-05"
+        },
+        {
+          "slug": "best-headphones-for-asmr",
+          "type": "BEST_LIST",
+          "demand": 250,
+          "url": "/best/best-headphones-for-asmr/",
+          "grindStatus": "done",
+          "deployedDate": "2026-08-05"
+        }
+      ]
+    },
+    "14": {
+      "status": "done",
+      "pages": [
+        {
+          "slug": "asmr-podcast",
+          "type": "FORMAT_HUB",
+          "demand": 250,
+          "url": "/asmr-podcast/",
+          "grindStatus": "done",
+          "deployedDate": "2026-08-05"
+        },
+        {
+          "slug": "tapping",
+          "type": "TRIGGER_HUB",
+          "demand": 220,
+          "url": "/tapping/",
+          "grindStatus": "done",
+          "deployedDate": "2026-08-05"
+        },
+        {
+          "slug": "painting",
+          "type": "TRIGGER_HUB",
+          "demand": 200,
+          "url": "/painting/",
+          "grindStatus": "done",
+          "deployedDate": "2026-08-05"
+        },
+        {
+          "slug": "what-is-mommy-asmr",
+          "type": "INFO_GUIDE",
+          "demand": 200,
+          "url": "/guides/what-is-mommy-asmr/",
+          "grindStatus": "done",
+          "deployedDate": "2026-08-05"
+        },
+        {
+          "slug": "best-kept-secret-asmr",
+          "type": "BEST_LIST",
+          "demand": 200,
+          "url": "/best/best-kept-secret-asmr/",
+          "grindStatus": "done",
+          "deployedDate": "2026-08-05"
+        }
+      ]
+    },
+    "15": {
+      "status": "done",
+      "pages": [
+        {
+          "slug": "live-asmr",
+          "type": "FORMAT_HUB",
+          "demand": 190,
+          "url": "/live-asmr/",
+          "grindStatus": "done",
+          "deployedDate": "2026-08-05"
+        },
+        {
+          "slug": "hair-play",
+          "type": "TRIGGER_HUB",
+          "demand": 180,
+          "url": "/hair-play/",
+          "grindStatus": "done",
+          "deployedDate": "2026-08-05"
+        },
+        {
+          "slug": "soft-speaking",
+          "type": "TRIGGER_HUB",
+          "demand": 160,
+          "url": "/soft-speaking/",
+          "grindStatus": "done",
+          "deployedDate": "2026-08-05"
+        },
+        {
+          "slug": "anxiety",
+          "type": "INTENT_HUB",
+          "demand": 160,
+          "url": "/anxiety/",
+          "grindStatus": "done",
+          "deployedDate": "2026-08-05"
+        },
+        {
+          "slug": "how-to-start-an-asmr-channel",
+          "type": "INFO_GUIDE",
+          "demand": 160,
+          "url": "/guides/how-to-start-an-asmr-channel/",
+          "grindStatus": "done",
+          "deployedDate": "2026-08-05"
+        }
+      ]
+    },
+    "16": {
+      "status": "done",
+      "pages": [
+        {
+          "slug": "lofi-asmr",
+          "type": "FORMAT_HUB",
+          "demand": 150,
+          "url": "/lofi-asmr/",
+          "grindStatus": "done",
+          "deployedDate": "2026-08-05"
+        },
+        {
+          "slug": "mouth-sounds",
+          "type": "TRIGGER_HUB",
+          "demand": 130,
+          "url": "/mouth-sounds/",
+          "grindStatus": "done",
+          "deployedDate": "2026-08-05"
+        },
+        {
+          "slug": "no-talking",
+          "type": "TRIGGER_HUB",
+          "demand": 130,
+          "url": "/no-talking/",
+          "grindStatus": "done",
+          "deployedDate": "2026-08-05"
+        },
+        {
+          "slug": "breathing",
+          "type": "TRIGGER_HUB",
+          "demand": 110,
+          "url": "/breathing/",
+          "grindStatus": "done",
+          "deployedDate": "2026-08-05"
+        },
+        {
+          "slug": "what-is-lofi-asmr",
+          "type": "INFO_GUIDE",
+          "demand": 100,
+          "url": "/guides/what-is-lofi-asmr/",
+          "grindStatus": "done",
+          "deployedDate": "2026-08-05"
+        }
+      ]
+    },
+    "17": {
+      "status": "done",
+      "pages": [
+        {
+          "slug": "how-to-create-asmr-food-content",
+          "type": "INFO_GUIDE",
+          "demand": 100,
+          "url": "/guides/how-to-create-asmr-food-content/",
+          "grindStatus": "done",
+          "deployedDate": "2026-08-05"
+        },
+        {
+          "slug": "binaural",
+          "type": "TRIGGER_HUB",
+          "demand": 90,
+          "url": "/binaural/",
+          "grindStatus": "done",
+          "deployedDate": "2026-08-05"
+        },
+        {
+          "slug": "how-do-asmr-youtubers-make-money-without-ads",
+          "type": "INFO_GUIDE",
+          "demand": 80,
+          "url": "/guides/how-do-asmr-youtubers-make-money-without-ads/",
+          "grindStatus": "done",
+          "deployedDate": "2026-08-05"
+        },
+        {
+          "slug": "light-patterns",
+          "type": "TRIGGER_HUB",
+          "demand": 70,
+          "url": "/light-patterns/",
+          "grindStatus": "done",
+          "deployedDate": "2026-08-05"
+        },
+        {
+          "slug": "headache",
+          "type": "INTENT_HUB",
+          "demand": 70,
+          "url": "/headache/",
+          "grindStatus": "done",
+          "deployedDate": "2026-08-05"
+        }
+      ]
+    },
+    "18": {
+      "status": "done",
+      "pages": [
+        {
+          "slug": "brushing",
+          "type": "TRIGGER_HUB",
+          "demand": 60,
+          "url": "/brushing/",
+          "grindStatus": "done",
+          "deployedDate": "2026-08-05"
+        },
+        {
+          "slug": "nature",
+          "type": "TRIGGER_HUB",
+          "demand": 60,
+          "url": "/nature/",
+          "grindStatus": "done",
+          "deployedDate": "2026-08-05"
+        },
+        {
+          "slug": "bfe-meaning-asmr",
+          "type": "INFO_GUIDE",
+          "demand": 60,
+          "url": "/guides/bfe-meaning-asmr/",
+          "grindStatus": "done",
+          "deployedDate": "2026-08-05"
+        },
+        {
+          "slug": "relax",
+          "type": "INTENT_HUB",
+          "demand": 50,
+          "url": "/relax/",
+          "grindStatus": "done",
+          "deployedDate": "2026-08-05"
+        },
+        {
+          "slug": "long-asmr",
+          "type": "FORMAT_HUB",
+          "demand": 50,
+          "url": "/long-asmr/",
+          "grindStatus": "done",
+          "deployedDate": "2026-08-05"
+        }
+      ]
+    },
+    "19": {
+      "status": "done",
+      "pages": [
+        {
+          "slug": "fireplace-asmr",
+          "type": "REGISTRY",
+          "demand": 0,
+          "url": "/fireplace-asmr/",
+          "grindStatus": "done",
+          "deployedDate": "2026-08-07"
+        }
+      ]
+    }
+  },
+  "lastRun": "2026-08-07"
+}

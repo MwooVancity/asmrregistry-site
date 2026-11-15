@@ -1,0 +1,197 @@
+{
+ "brown-noise": {
+  "date": "2026-11-11",
+  "rows": [
+   {
+    "label": "Brown noise, any topic",
+    "term": "\"brown noise\"[tiab]",
+    "count": 39
+   },
+   {
+    "label": "Brown noise and sleep",
+    "term": "\"brown noise\"[tiab] AND sleep[tiab]",
+    "count": 3
+   }
+  ]
+ },
+ "brown-noise-for-sleep": {
+  "date": "2026-11-11",
+  "rows": [
+   {
+    "label": "Brown noise and sleep",
+    "term": "\"brown noise\"[tiab] AND sleep[tiab]",
+    "count": 3
+   },
+   {
+    "label": "White noise and sleep",
+    "term": "\"white noise\"[tiab] AND sleep[tiab]",
+    "count": 145
+   }
+  ]
+ },
+ "brown-noise-vs-white-noise": {
+  "date": "2026-11-11",
+  "rows": [
+   {
+    "label": "Brown noise and sleep",
+    "term": "\"brown noise\"[tiab] AND sleep[tiab]",
+    "count": 3
+   },
+   {
+    "label": "Pink noise and sleep",
+    "term": "\"pink noise\"[tiab] AND sleep[tiab]",
+    "count": 40
+   },
+   {
+    "label": "White noise and sleep",
+    "term": "\"white noise\"[tiab] AND sleep[tiab]",
+    "count": 145
+   }
+  ]
+ },
+ "pink-noise": {
+  "date": "2026-11-11",
+  "rows": [
+   {
+    "label": "Pink noise and sleep",
+    "term": "\"pink noise\"[tiab] AND sleep[tiab]",
+    "count": 40
+   },
+   {
+    "label": "Pink noise and memory",
+    "term": "\"pink noise\"[tiab] AND memory[tiab]",
+    "count": 32
+   }
+  ]
+ },
+ "ambient-sounds": {
+  "date": "2026-11-11",
+  "rows": [
+   {
+    "label": "Nature or ambient sound and relaxation",
+    "term": "(\"nature sounds\"[tiab] OR \"ambient sound\"[tiab]) AND (relaxation[tiab] OR stress[tiab])",
+    "count": 71
+   }
+  ]
+ },
+ "asmr-and-highly-sensitive-person": {
+  "date": "2026-11-11",
+  "rows": [
+   {
+    "label": "ASMR, any topic",
+    "term": "\"autonomous sensory meridian response\"[tiab]",
+    "count": 103
+   },
+   {
+    "label": "ASMR and sensory sensitivity",
+    "term": "\"autonomous sensory meridian response\"[tiab] AND (sensitivity[tiab] OR \"sensory processing\"[tiab])",
+    "count": 15
+   }
+  ]
+ },
+ "is-asmr-bad-for-you": {
+  "date": "2026-11-11",
+  "rows": [
+   {
+    "label": "ASMR, any topic",
+    "term": "\"autonomous sensory meridian response\"[tiab]",
+    "count": 103
+   },
+   {
+    "label": "ASMR and misophonia",
+    "term": "\"autonomous sensory meridian response\"[tiab] AND misophonia[tiab]",
+    "count": 11
+   },
+   {
+    "label": "ASMR and sleep",
+    "term": "\"autonomous sensory meridian response\"[tiab] AND sleep[tiab]",
+    "count": 13
+   }
+  ]
+ },
+ "is-asmr-good-for-you": {
+  "date": "2026-11-11",
+  "rows": [
+   {
+    "label": "ASMR, any topic",
+    "term": "\"autonomous sensory meridian response\"[tiab]",
+    "count": 103
+   },
+   {
+    "label": "ASMR and sleep",
+    "term": "\"autonomous sensory meridian response\"[tiab] AND sleep[tiab]",
+    "count": 13
+   },
+   {
+    "label": "ASMR and anxiety or stress",
+    "term": "\"autonomous sensory meridian response\"[tiab] AND (anxiety[tiab] OR stress[tiab])",
+    "count": 22
+   },
+   {
+    "label": "ASMR and pain",
+    "term": "\"autonomous sensory meridian response\"[tiab] AND pain[tiab]",
+    "count": 4
+   },
+   {
+    "label": "ASMR and depression",
+    "term": "\"autonomous sensory meridian response\"[tiab] AND depress*[tiab]",
+    "count": 10
+   },
+   {
+    "label": "ASMR and randomized trial",
+    "term": "\"autonomous sensory meridian response\"[tiab] AND (randomized[tiab] OR randomised[tiab])",
+    "count": 2
+   },
+   {
+    "label": "ASMR and PTSD or trauma",
+    "term": "\"autonomous sensory meridian response\"[tiab] AND (PTSD[tiab] OR trauma*[tiab])",
+    "count": 1
+   },
+   {
+    "label": "ASMR and tinnitus",
+    "term": "\"autonomous sensory meridian response\"[tiab] AND tinnitus[tiab]",
+    "count": 0
+   },
+   {
+    "label": "ASMR and migraine or headache",
+    "term": "\"autonomous sensory meridian response\"[tiab] AND (migraine*[tiab] OR headache*[tiab])",
+    "count": 0
+   },
+   {
+    "label": "ASMR and nausea",
+    "term": "\"autonomous sensory meridian response\"[tiab] AND nausea[tiab]",
+    "count": 0
+   },
+   {
+    "label": "ASMR and OCD",
+    "term": "\"autonomous sensory meridian response\"[tiab] AND (OCD[tiab] OR obsessive[tiab])",
+    "count": 1
+   },
+   {
+    "label": "ASMR and panic",
+    "term": "\"autonomous sensory meridian response\"[tiab] AND panic[tiab]",
+    "count": 0
+   },
+   {
+    "label": "ASMR and older adults",
+    "term": "\"autonomous sensory meridian response\"[tiab] AND (\"older adults\"[tiab] OR elderly[tiab] OR aging[tiab])",
+    "count": 0
+   }
+  ]
+ },
+ "asmr-for-autism": {
+  "date": "2026-11-11",
+  "rows": [
+   {
+    "label": "ASMR, any topic",
+    "term": "\"autonomous sensory meridian response\"[tiab]",
+    "count": 103
+   },
+   {
+    "label": "ASMR and autism",
+    "term": "\"autonomous sensory meridian response\"[tiab] AND (autism[tiab] OR autistic[tiab])",
+    "count": 1
+   }
+  ]
+ }
+}

@@ -1,0 +1,881 @@
+---
+export const prerender = false;
+
+// ════════════════════════════════════════════════════════════════════════════════
+// /debug — ASMR Registry Mission Control
+//
+// Three pillars:
+//   ⚙  PIPELINE   — video enrichment, data quality, queue health
+//   🔎 SEO        — page rendering, sitemap, schema, dups
+//   📄 CONTENT    — keyword ledger, page content, build queue
+//
+// SSR (queries Turso at request time) — noindex, nofollow.
+// ════════════════════════════════════════════════════════════════════════════════
+import { getDb } from '../lib/db';
+import { TRIGGER_GROUPS, VALID_TRIGGERS } from '../lib/constants';
+import { loadLedger } from '../lib/ledger';
+import contentData from '../lib/asmr-page-content.json';
+
+import type { PageContent } from '../lib/page-content';
+// Off in production: one view runs a dozen full-table scans, and a robots.txt line does not stop anyone.
+if (import.meta.env.PROD) return new Response(null, { status: 404 });
+
+const contentStore = contentData as Record<string, PageContent>;
+
+interface Diag {
+  pillar: 'PIPELINE' | 'SEO' | 'CONTENT';
+  sev: 'CRITICAL' | 'WARNING' | 'INFO';
+  code: string;
+  title: string;
+  detail: string;
+  fix: string;
+}
+
+const diags: Diag[] = [];
+let totalPublished = 0, totalDraft = 0, totalQueued = 0, totalChannels = 0;
+let missingTrigger = 0, missingWhyWatch = 0, missingIntent = 0;
+let invalidTrigger = 0;
+let dupPairs = 0, thinCreators = 0, publishedToday = 0;
+let lastSync = 'never', lastCronRun = 'never';
+let topTriggers: { trigger: string; count: number }[] = [];
+let sitemapPageCount = 0, sitemapVideoCount = 0;
+let noDescriptionVideos = 0;
+let dbError = '';
+
+try {
+  const db = getDb();
+
+  // ── core counts ──
+  totalPublished = Number((await db.execute(`SELECT COUNT(*) as c FROM videos WHERE status='published'`)).rows[0]?.c ?? 0);
+  totalDraft = Number((await db.execute(`SELECT COUNT(*) as c FROM videos WHERE status='draft'`)).rows[0]?.c ?? 0);
+  totalChannels = Number((await db.execute(`SELECT COUNT(*) as c FROM creators`)).rows[0]?.c ?? 0);
+
+  try { totalQueued = Number((await db.execute(`SELECT COUNT(*) as c FROM ingest_queue`)).rows[0]?.c ?? 0); } catch {}
+
+  // ── last sync / cron ──
+  const syncRes = await db.execute(`SELECT MAX(last_synchronized) as ls FROM videos WHERE status='published'`);
+  lastSync = syncRes.rows[0]?.ls ? new Date(syncRes.rows[0].ls as string).toISOString().slice(0, 16).replace('T', ' ') : 'never';
+
+  try {
+    const cronRes = await db.execute(`SELECT value FROM cron_state WHERE key = 'last_successful_run'`);
+    lastCronRun = cronRes.rows[0]?.value ? new Date(cronRes.rows[0].value as string).toISOString().slice(0, 16).replace('T', ' ') : 'never';
+  } catch {}
+
+  // ── published today ──
+  publishedToday = Number((await db.execute(`SELECT COUNT(*) as c FROM videos WHERE status='published' AND last_synchronized >= datetime('now', '-1 day')`)).rows[0]?.c ?? 0);
+
+  // ── missing fields ──
+  missingTrigger = Number((await db.execute(`SELECT COUNT(*) as c FROM videos WHERE status='published' AND (primary_trigger IS NULL OR primary_trigger = '')`)).rows[0]?.c ?? 0);
+  missingWhyWatch = Number((await db.execute(`SELECT COUNT(*) as c FROM videos WHERE status='published' AND (why_watch IS NULL OR why_watch = '')`)).rows[0]?.c ?? 0);
+  missingIntent = Number((await db.execute(`SELECT COUNT(*) as c FROM videos WHERE status='published' AND (intents IS NULL OR intents = '' OR intents = '[]')`)).rows[0]?.c ?? 0);
+  noDescriptionVideos = Number((await db.execute(`SELECT COUNT(*) as c FROM videos WHERE status='published' AND (description IS NULL OR description = '')`)).rows[0]?.c ?? 0);
+
+  // ── invalid enum values ──
+  const validTriggersStr = [...VALID_TRIGGERS].map(t => `'${t}'`).join(',');
+  invalidTrigger = Number((await db.execute(`SELECT COUNT(*) as c FROM videos WHERE status='published' AND primary_trigger != '' AND primary_trigger NOT IN (${validTriggersStr})`)).rows[0]?.c ?? 0);
+
+  // ── duplicate titles (same channel, >95% similar by exact match for speed) ──
+  const dupRes = await db.execute(`
+    SELECT COUNT(*) as c FROM (
+      SELECT title, channel_id, COUNT(*) as cnt
+      FROM videos WHERE status='published' AND title != ''
+      GROUP BY LOWER(title), channel_id HAVING cnt > 1
+    )
+  `);
+  dupPairs = Number(dupRes.rows[0]?.c ?? 0);
+
+  // ── thin creators ──
+  try {
+    thinCreators = Number((await db.execute(`SELECT COUNT(*) as c FROM creator_profiles WHERE status='published' AND length(editorial_bio) < 1500`)).rows[0]?.c ?? 0);
+  } catch {}
+
+  // ── top triggers (for coverage check) ──
+  const tRes = await db.execute(`SELECT primary_trigger AS t, COUNT(*) AS cnt FROM videos WHERE status='published' AND primary_trigger != '' GROUP BY primary_trigger ORDER BY cnt DESC LIMIT 20`);
+  topTriggers = tRes.rows.map(r => ({ trigger: String(r.t || ''), count: Number(r.cnt) })).filter(d => d.trigger);
+
+  // ── sitemap counts ──
+  try {
+    const spRes = await db.execute(`SELECT COUNT(*) as c FROM active_pages WHERE sitemap_eligible = TRUE`);
+    sitemapPageCount = Number(spRes.rows[0]?.c ?? 0);
+  } catch {}
+
+} catch (e: any) {
+  dbError = e?.message || String(e);
+}
+
+// ════════════════════════════════════════════════════════════════════════════════
+// CONTENT PAGE ANALYSIS (keyword ledger + page content JSON)
+// ════════════════════════════════════════════════════════════════════════════════
+const ledger = loadLedger();
+const contentPages = ledger.pages.filter(p => p.pageType !== 'CREATOR_NAV');
+
+interface ContentPageStatus {
+  slug: string;
+  pageType: string;
+  headKeyword: string;
+  totalDemand: number;
+  maxCPC: number;
+  moneyScore: number;
+  status: 'published' | 'draft' | 'not-built';
+  contentLength: number;
+  hasFaq: boolean;
+  hasProTips: boolean;
+  hasMeta: boolean;
+  title: string;
+  metaDescription: string;
+}
+
+const pageStatuses: ContentPageStatus[] = contentPages.map(p => {
+  const c = contentStore[p.slug];
+  const isPublished = c && c.status === 'published' && c.introHtml && c.introHtml.length > 500;
+  const isDraft = c && !isPublished;
+  return {
+    slug: p.slug,
+    pageType: p.pageType,
+    headKeyword: p.headKeyword,
+    totalDemand: p.totalDemand,
+    maxCPC: p.maxCPC,
+    moneyScore: p.totalDemand * Math.max(p.maxCPC, 0.10),
+    status: isPublished ? 'published' as const : isDraft ? 'draft' as const : 'not-built' as const,
+    contentLength: c?.introHtml?.length ?? 0,
+    hasFaq: (c?.faqItems?.length ?? 0) > 0,
+    hasProTips: (c?.proTips?.length ?? 0) > 0,
+    hasMeta: (c?.metaDescription?.length ?? 0) > 30,
+    title: c?.title ?? '',
+    metaDescription: c?.metaDescription ?? '',
+  };
+});
+
+const cpPublished = pageStatuses.filter(p => p.status === 'published');
+const cpDraft = pageStatuses.filter(p => p.status === 'draft');
+const cpNotBuilt = pageStatuses.filter(p => p.status === 'not-built');
+
+const demandCaptured = cpPublished.reduce((s, p) => s + p.totalDemand, 0);
+const demandRemaining = pageStatuses.reduce((s, p) => s + p.totalDemand, 0) - demandCaptured;
+const totalLedgerDemand = pageStatuses.reduce((s, p) => s + p.totalDemand, 0);
+
+const buildQueue = [...cpDraft, ...cpNotBuilt].sort((a, b) => b.moneyScore - a.moneyScore);
+
+const thinContentPages = cpPublished.filter(p => p.contentLength < 500);
+
+const pubMissingFaq = cpPublished.filter(p => !p.hasFaq);
+const pubMissingMeta = cpPublished.filter(p => !p.hasMeta);
+const pubMissingProTips = cpPublished.filter(p => !p.hasProTips);
+
+// ── CONTENT GATE (compact mirror of tools/lib/asmr-content-gate.mjs) ──
+function gateWc(text: string): number {
+  return (text || '').replace(/<[^>]+>/g, ' ').replace(/\s+/g, ' ').trim().split(/\s+/).filter(Boolean).length;
+}
+
+interface GateCheck { id: string; pass: boolean; severity: 'critical' | 'warning'; msg: string; }
+
+function runGate(p: PageContent): GateCheck[] {
+  const r: GateCheck[] = [];
+  const chk = (id: string, sev: 'critical' | 'warning', pass: boolean, msg: string) => r.push({ id, pass, severity: sev, msg });
+  const iw = gateWc(p.introHtml || '');
+  const faqs = p.faqItems || [];
+  const tips = p.proTips || [];
+  const links = p.crossLinks || [];
+  const refs = p.references || [];
+
+  chk('title', 'critical', (p.title || '').length > 0, 'title missing');
+  chk('title-len', 'warning', (p.title || '').length >= 20 && (p.title || '').length <= 65, `title ${(p.title || '').length}ch`);
+  chk('meta', 'critical', (p.metaDescription || '').length > 0, 'meta missing');
+  chk('meta-len', 'warning', !p.metaDescription || ((p.metaDescription || '').length >= 70 && (p.metaDescription || '').length <= 160), `meta ${(p.metaDescription || '').length}ch`);
+  chk('h1', 'critical', (p.h1 || '').length > 0, 'h1 missing');
+  chk('intro', 'critical', (p.introHtml || '').length > 0, 'intro missing');
+  chk('intro-words', 'critical', iw >= 300, `${iw}/300 words`);
+  chk('faq-3', 'critical', faqs.length >= 3, `${faqs.length}/3 FAQs`);
+  chk('tips-3', 'critical', tips.length >= 3, `${tips.length}/3 tips`);
+  chk('links-3', 'critical', links.length >= 3, `${links.length}/3 links`);
+  chk('refs', 'warning', refs.length >= 1, `${refs.length}/1 refs`);
+
+  return r;
+}
+
+interface GatedPage {
+  slug: string;
+  pageType: string;
+  moneyScore: number;
+  status: string;
+  totalChecks: number;
+  passingChecks: number;
+  critFails: GateCheck[];
+  warnFails: GateCheck[];
+  passesGate: boolean;
+}
+
+const gatedPages: GatedPage[] = [];
+for (const ps of pageStatuses) {
+  const c = contentStore[ps.slug];
+  if (!c) continue;
+  const checks = runGate(c);
+  const critFails = checks.filter(ch => !ch.pass && ch.severity === 'critical');
+  const warnFails = checks.filter(ch => !ch.pass && ch.severity === 'warning');
+  gatedPages.push({
+    slug: ps.slug,
+    pageType: ps.pageType,
+    moneyScore: ps.moneyScore,
+    status: ps.status,
+    totalChecks: checks.length,
+    passingChecks: checks.filter(ch => ch.pass).length,
+    critFails,
+    warnFails,
+    passesGate: critFails.length === 0,
+  });
+}
+
+const draftGated = gatedPages.filter(g => g.status === 'draft');
+const draftsPassing = draftGated.filter(g => g.passesGate);
+const draftsFailing = draftGated.filter(g => !g.passesGate);
+const publishedGated = gatedPages.filter(g => g.status === 'published');
+const publishedFailing = publishedGated.filter(g => !g.passesGate);
+
+const failureReasonCounts = new Map<string, number>();
+for (const g of draftGated) {
+  for (const f of g.critFails) {
+    failureReasonCounts.set(f.id, (failureReasonCounts.get(f.id) || 0) + 1);
+  }
+}
+const topFailures = [...failureReasonCounts.entries()].sort((a, b) => b[1] - a[1]);
+
+const titleMap = new Map<string, string[]>();
+for (const p of cpPublished) {
+  if (!p.title) continue;
+  const key = p.title.toLowerCase().trim();
+  if (!titleMap.has(key)) titleMap.set(key, []);
+  titleMap.get(key)!.push(p.slug);
+}
+const dupContentTitles = [...titleMap.entries()].filter(([, slugs]) => slugs.length > 1);
+
+const metaMap = new Map<string, string[]>();
+for (const p of cpPublished) {
+  if (!p.metaDescription) continue;
+  const key = p.metaDescription.toLowerCase().trim();
+  if (!metaMap.has(key)) metaMap.set(key, []);
+  metaMap.get(key)!.push(p.slug);
+}
+const dupContentMetas = [...metaMap.entries()].filter(([, slugs]) => slugs.length > 1);
+
+const kwMap = new Map<string, string[]>();
+for (const p of contentPages) {
+  const key = p.headKeyword.toLowerCase().trim();
+  if (!kwMap.has(key)) kwMap.set(key, []);
+  kwMap.get(key)!.push(p.slug);
+}
+const cannibalizedKws = [...kwMap.entries()].filter(([, slugs]) => slugs.length > 1);
+
+const typeDistribution = new Map<string, number>();
+for (const p of contentPages) {
+  typeDistribution.set(p.pageType, (typeDistribution.get(p.pageType) ?? 0) + 1);
+}
+
+// ════════════════════════════════════════════════════════════════════════════════
+// PIPELINE CHECKS
+// ════════════════════════════════════════════════════════════════════════════════
+
+if (dbError) {
+  diags.push({ pillar: 'PIPELINE', sev: 'CRITICAL', code: 'db-down', title: 'Database Unreachable', detail: dbError, fix: 'Check D1 database binding in wrangler.toml' });
+}
+
+if (totalPublished === 0 && !dbError) {
+  diags.push({ pillar: 'PIPELINE', sev: 'CRITICAL', code: 'no-videos', title: 'Zero Published Videos', detail: 'No videos with status=published in the database.', fix: 'Run enrichment pipeline or check video-gate thresholds.' });
+}
+
+if (missingTrigger > 0) {
+  const pct = ((missingTrigger / totalPublished) * 100).toFixed(1);
+  diags.push({ pillar: 'PIPELINE', sev: missingTrigger > 10 ? 'CRITICAL' : 'WARNING', code: 'missing-trigger', title: 'Published Videos Missing Trigger', detail: `${missingTrigger} published videos (${pct}%) have no primary_trigger.`, fix: 'Re-enrich affected videos or check classifier output.' });
+}
+
+// why_watch gate removed: keyword classifier intentionally omits this field.
+
+if (missingIntent > 0) {
+  const pct = ((missingIntent / totalPublished) * 100).toFixed(1);
+  diags.push({ pillar: 'PIPELINE', sev: missingIntent > 10 ? 'CRITICAL' : 'WARNING', code: 'missing-intent', title: 'Published Videos Missing Intent', detail: `${missingIntent} published videos (${pct}%) have no intents.`, fix: 'Re-enrich affected videos.' });
+}
+
+if (invalidTrigger > 0) {
+  diags.push({ pillar: 'PIPELINE', sev: 'CRITICAL', code: 'invalid-trigger', title: 'Invalid Trigger Values', detail: `${invalidTrigger} published videos have a primary_trigger not in VALID_TRIGGERS enum.`, fix: 'Fix in DB or update VALID_TRIGGERS in constants.ts.' });
+}
+
+if (dupPairs > 0) {
+  const rate = ((dupPairs / totalPublished) * 100).toFixed(1);
+  diags.push({ pillar: 'PIPELINE', sev: dupPairs > 5 ? 'CRITICAL' : 'WARNING', code: 'dup-titles', title: 'Duplicate Video Titles', detail: `${dupPairs} same-channel duplicate title groups (${rate}% rate).`, fix: 'Run triage stage or dedup-audit to auto-demote.' });
+}
+
+if (noDescriptionVideos > 0 && noDescriptionVideos > totalPublished * 0.1) {
+  diags.push({ pillar: 'PIPELINE', sev: 'WARNING', code: 'no-description', title: 'Videos Without Description', detail: `${noDescriptionVideos} published videos have no description field.`, fix: 'Descriptions come from YouTube API — check ingest pipeline.' });
+}
+
+if (thinCreators > 0) {
+  diags.push({ pillar: 'PIPELINE', sev: 'INFO', code: 'thin-creators', title: 'Thin Creator Profiles (protected)', detail: `${thinCreators} published creator profiles have editorial_bio < 1500 chars. These are noindexed and excluded from sitemap.`, fix: 'Enrich bios to unlock indexing.' });
+}
+
+if (lastCronRun === 'never' && !dbError) {
+  diags.push({ pillar: 'PIPELINE', sev: 'WARNING', code: 'cron-never', title: 'Cron Never Ran', detail: 'No last_successful_run recorded in cron_state.', fix: 'Check cron-worker deployment and triggers.' });
+} else if (lastCronRun !== 'never') {
+  const hoursSince = (Date.now() - new Date(lastCronRun.replace(' ', 'T') + 'Z').getTime()) / 3600000;
+  if (hoursSince > 26) {
+    diags.push({ pillar: 'PIPELINE', sev: 'CRITICAL', code: 'cron-stale', title: 'Cron Stale', detail: `Last successful cron run was ${Math.round(hoursSince)}h ago.`, fix: 'Check cron-worker logs on Cloudflare dashboard.' });
+  }
+}
+
+// ════════════════════════════════════════════════════════════════════════════════
+// SEO CHECKS
+// ════════════════════════════════════════════════════════════════════════════════
+
+const coveredTriggers = new Set(topTriggers.map(t => t.trigger));
+const uncoveredTriggers = [...VALID_TRIGGERS].filter(t => !coveredTriggers.has(t));
+if (uncoveredTriggers.length > 0 && totalPublished > 50) {
+  diags.push({ pillar: 'SEO', sev: 'INFO', code: 'trigger-coverage', title: 'Uncovered Trigger Types', detail: `${uncoveredTriggers.length} trigger types have 0 published videos: ${uncoveredTriggers.slice(0, 10).join(', ')}${uncoveredTriggers.length > 10 ? '…' : ''}`, fix: 'Seed missing triggers via taxonomy-search or manual ingest.' });
+}
+
+const thinTriggers = topTriggers.filter(t => t.count < 3);
+if (thinTriggers.length > 0) {
+  diags.push({ pillar: 'SEO', sev: 'INFO', code: 'thin-trigger-hubs', title: 'Thin Trigger Hub Pages (protected)', detail: `${thinTriggers.length} trigger hubs have < 3 videos: ${thinTriggers.map(t => `${t.trigger}(${t.count})`).join(', ')}. These are noindexed and excluded from sitemap.`, fix: 'Add more videos for these triggers to unlock indexing.' });
+}
+
+if (totalPublished > 0 && totalPublished < 50) {
+  diags.push({ pillar: 'SEO', sev: 'INFO', code: 'low-volume', title: 'Low Content Volume', detail: `Only ${totalPublished} published videos. Most SEO signals require 100+ indexed pages.`, fix: 'Continue enrichment pipeline to build volume.' });
+}
+
+// ════════════════════════════════════════════════════════════════════════════════
+// CONTENT PAGE CHECKS
+// ════════════════════════════════════════════════════════════════════════════════
+
+if (thinContentPages.length > 0) {
+  diags.push({ pillar: 'CONTENT', sev: 'CRITICAL', code: 'thin-content', title: 'Thin Content Pages', detail: `${thinContentPages.length} published pages have introHtml < 500 chars: ${thinContentPages.map(p => p.slug).join(', ')}`, fix: 'Expand content or revert to draft status.' });
+}
+
+if (dupContentTitles.length > 0) {
+  diags.push({ pillar: 'CONTENT', sev: 'CRITICAL', code: 'dup-content-titles', title: 'Duplicate Page Titles', detail: `${dupContentTitles.length} duplicate title groups: ${dupContentTitles.map(([t, slugs]) => `"${t.slice(0, 40)}…" → ${slugs.join(', ')}`).join('; ')}`, fix: 'Unique title per page — no two pages should share a <title>.' });
+}
+
+if (dupContentMetas.length > 0) {
+  diags.push({ pillar: 'CONTENT', sev: 'WARNING', code: 'dup-content-metas', title: 'Duplicate Meta Descriptions', detail: `${dupContentMetas.length} duplicate meta description groups across published pages.`, fix: 'Write unique meta descriptions for each page.' });
+}
+
+if (cannibalizedKws.length > 0) {
+  diags.push({ pillar: 'CONTENT', sev: 'CRITICAL', code: 'keyword-cannibal', title: 'Keyword Cannibalization', detail: `${cannibalizedKws.length} keywords target multiple pages: ${cannibalizedKws.map(([kw, slugs]) => `"${kw}" → ${slugs.join(', ')}`).slice(0, 5).join('; ')}${cannibalizedKws.length > 5 ? '…' : ''}`, fix: 'Run dedup-ledger.mjs to merge or prune competing pages.' });
+}
+
+if (pubMissingFaq.length > 0) {
+  diags.push({ pillar: 'CONTENT', sev: 'WARNING', code: 'missing-faq', title: 'Published Pages Missing FAQ', detail: `${pubMissingFaq.length} published pages have no FAQ items: ${pubMissingFaq.map(p => p.slug).slice(0, 8).join(', ')}${pubMissingFaq.length > 8 ? '…' : ''}`, fix: 'Add faqItems to page content — drives PAA absorption and FAQ schema.' });
+}
+
+if (pubMissingMeta.length > 0) {
+  diags.push({ pillar: 'CONTENT', sev: 'WARNING', code: 'missing-meta-desc', title: 'Published Pages Missing Meta Description', detail: `${pubMissingMeta.length} published pages have no/short metaDescription: ${pubMissingMeta.map(p => p.slug).slice(0, 8).join(', ')}${pubMissingMeta.length > 8 ? '…' : ''}`, fix: 'Write 70–160 char meta description for each page.' });
+}
+
+if (pubMissingProTips.length > 0) {
+  diags.push({ pillar: 'CONTENT', sev: 'INFO', code: 'missing-protips', title: 'Published Pages Missing Pro Tips', detail: `${pubMissingProTips.length} published pages have no proTips array.`, fix: 'Add proTips to differentiate from competitors.' });
+}
+
+if (publishedFailing.length > 0) {
+  diags.push({ pillar: 'CONTENT', sev: 'WARNING', code: 'gate-published-regress', title: 'Published Pages Failing Gate', detail: `${publishedFailing.length} published pages would fail current gate: ${publishedFailing.map(p => p.slug).slice(0, 5).join(', ')}${publishedFailing.length > 5 ? '…' : ''}`, fix: 'Backfill content to meet gate standards or revert to draft.' });
+}
+
+if (draftGated.length > 0) {
+  const topFails = topFailures.slice(0, 3).map(([id, n]) => `${id}(${n})`).join(', ');
+  diags.push({ pillar: 'CONTENT', sev: draftsPassing.length === 0 ? 'WARNING' : 'INFO', code: 'gate-drafts', title: `${draftsPassing.length}/${draftGated.length} Drafts Pass Gate`, detail: `${draftsFailing.length} drafts blocked.${topFails ? ` Top blockers: ${topFails}` : ''}`, fix: 'Run node tools/auto-publish-content.mjs --report for full gate report.' });
+}
+
+if (buildQueue.length > 0) {
+  const topMoney = buildQueue.slice(0, 3).map(p => `${p.slug}($${Math.round(p.moneyScore)})`).join(', ');
+  diags.push({ pillar: 'CONTENT', sev: 'INFO', code: 'build-queue', title: `${buildQueue.length} Pages in Build Queue`, detail: `Top by money score: ${topMoney}. Total remaining demand: ${demandRemaining.toLocaleString()}/mo.`, fix: 'Build at 5/day velocity cap. Prioritize by money score.' });
+}
+
+// ════════════════════════════════════════════════════════════════════════════════
+// SPLIT, COUNT, ORDER
+// ════════════════════════════════════════════════════════════════════════════════
+const SEV_RANK: Record<string, number> = { CRITICAL: 0, WARNING: 1, INFO: 2 };
+const visible = diags.filter(d => d.sev !== 'INFO').sort((a, b) => SEV_RANK[a.sev] - SEV_RANK[b.sev] || a.code.localeCompare(b.code));
+const infoCount = diags.filter(d => d.sev === 'INFO').length;
+
+const pipeFindings = visible.filter(d => d.pillar === 'PIPELINE');
+const seoFindings = visible.filter(d => d.pillar === 'SEO');
+const contentFindings = visible.filter(d => d.pillar === 'CONTENT');
+const pipeCrit = pipeFindings.filter(d => d.sev === 'CRITICAL').length;
+const pipeWarn = pipeFindings.filter(d => d.sev === 'WARNING').length;
+const seoCrit = seoFindings.filter(d => d.sev === 'CRITICAL').length;
+const seoWarn = seoFindings.filter(d => d.sev === 'WARNING').length;
+const contentCrit = contentFindings.filter(d => d.sev === 'CRITICAL').length;
+const contentWarn = contentFindings.filter(d => d.sev === 'WARNING').length;
+const totalCrit = pipeCrit + seoCrit + contentCrit;
+const totalWarn = pipeWarn + seoWarn + contentWarn;
+
+const verdict = totalCrit > 0
+  ? { cls: 'crit', label: 'ISSUES FOUND', sub: `${totalCrit} critical issue(s) — fix before next deploy` }
+  : totalWarn > 0
+  ? { cls: 'warn', label: 'WARNINGS', sub: `0 critical · ${totalWarn} warning(s)` }
+  : { cls: 'clear', label: 'ALL CLEAR', sub: `No critical/warning findings. ${totalPublished} videos · ${cpPublished.length} content pages healthy.` };
+
+const PILLARS = [
+  { key: 'PIPELINE', icon: '⚙', name: 'Pipeline Health', desc: 'Video enrichment, data quality, queue depth, cron status', findings: pipeFindings, crit: pipeCrit, warn: pipeWarn },
+  { key: 'SEO', icon: '🔎', name: 'SEO Compliance', desc: 'Thin content, duplicate titles, trigger coverage, indexability', findings: seoFindings, crit: seoCrit, warn: seoWarn },
+  { key: 'CONTENT', icon: '📄', name: 'Content Pages', desc: 'Keyword ledger, page content quality, dedup, build queue', findings: contentFindings, crit: contentCrit, warn: contentWarn },
+];
+
+type Priority = 'P0' | 'P1' | 'P2';
+interface PriDiag extends Diag { pri: Priority; }
+const priDiags: PriDiag[] = visible.map(d => ({ ...d, pri: d.sev === 'CRITICAL' ? 'P0' as Priority : 'P1' as Priority })).sort((a, b) => a.pri.localeCompare(b.pri));
+
+const PRI_META: Record<Priority, { label: string; desc: string; color: string; bg: string; border: string }> = {
+  P0: { label: 'P0 — CRITICAL', desc: 'Fix before next deploy.', color: '#fca5a5', bg: '#1b0606', border: '#dc2626' },
+  P1: { label: 'P1 — WARNING', desc: 'Degraded quality — fix soon.', color: '#fcd34d', bg: '#1a1404', border: '#a16207' },
+  P2: { label: 'P2 — BACKLOG', desc: 'Non-urgent improvements.', color: '#94a3b8', bg: '#0e1422', border: '#334155' },
+};
+
+const priGroups = (['P0', 'P1'] as Priority[]).map(p => {
+  const items = priDiags.filter(d => d.pri === p);
+  return { pri: p, ...PRI_META[p], items, count: items.length };
+}).filter(g => g.count > 0);
+
+const fmt = (n: number) => n >= 1e9 ? `${(n/1e9).toFixed(1)}B` : n >= 1e6 ? `${(n/1e6).toFixed(n >= 1e7 ? 0 : 1)}M` : n >= 1000 ? `${(n/1000).toFixed(n >= 10000 ? 0 : 1)}K` : String(n);
+
+const demandPct = totalLedgerDemand > 0 ? ((demandCaptured / totalLedgerDemand) * 100).toFixed(0) : '0';
+---
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="noindex, nofollow" />
+  <meta http-equiv="Cache-Control" content="no-store" />
+  <title>Mission Control — ASMR Registry /debug</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; }
+    body { margin: 0; font-family: ui-monospace, 'SF Mono', 'Segoe UI Mono', Menlo, monospace; background: #0a0e17; color: #cbd5e1; font-size: 13px; line-height: 1.5; }
+    .wrap { max-width: 1500px; margin: 0 auto; padding: 1.25rem 1.25rem 5rem; }
+    h1 { font-size: 1.25rem; font-weight: 700; margin: 0; color: #f1f5f9; letter-spacing: -0.01em; }
+    h2 { font-size: 1.1rem; color: #f1f5f9; margin: 0 0 0.2rem; }
+    .meta { color: #475569; font-size: 0.72rem; margin: 0.2rem 0 1.1rem; }
+
+    .banner { border-radius: 10px; padding: 1rem 1.3rem; margin-bottom: 1.2rem; display: flex; align-items: center; gap: 1.1rem; flex-wrap: wrap; }
+    .banner.crit { background: #1b0606; border: 1.5px solid #dc2626; }
+    .banner.warn { background: #1a1404; border: 1.5px solid #d97706; }
+    .banner.clear { background: #051409; border: 1.5px solid #16a34a; }
+    .dot { width: 13px; height: 13px; border-radius: 50%; flex: none; }
+    .crit .dot { background: #ef4444; box-shadow: 0 0 12px #ef4444; }
+    .warn .dot { background: #f59e0b; box-shadow: 0 0 12px #f59e0b; }
+    .clear .dot { background: #22c55e; box-shadow: 0 0 12px #22c55e; }
+    .b-title { font-size: 1.05rem; font-weight: 700; color: #f8fafc; }
+    .b-sub { font-size: 0.76rem; color: #94a3b8; }
+    .stats { margin-left: auto; display: flex; gap: 1.4rem; text-align: right; }
+    .stat b { display: block; font-size: 1.15rem; color: #e2e8f0; font-weight: 700; }
+    .stat span { font-size: 0.62rem; text-transform: uppercase; letter-spacing: 0.08em; color: #475569; }
+
+    .metrics { display: grid; grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); gap: 0.6rem; margin-bottom: 1.2rem; }
+    .m-card { border: 1px solid #1e293b; border-radius: 8px; padding: 0.75rem; text-align: center; background: #0e1422; }
+    .m-card .v { font-size: 1.3rem; font-weight: 700; color: #e2e8f0; }
+    .m-card .l { font-size: 0.62rem; text-transform: uppercase; letter-spacing: 0.08em; color: #475569; margin-top: 0.15rem; }
+    .m-card.alert .v { color: #f87171; }
+    .m-card.ok .v { color: #4ade80; }
+    .m-card.accent .v { color: #60a5fa; }
+
+    .pillars { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1rem; }
+    @media (max-width: 1200px) { .pillars { grid-template-columns: 1fr 1fr; } }
+    @media (max-width: 780px) { .pillars { grid-template-columns: 1fr; } }
+    .pillar { background: #0e1422; border: 1px solid #1e293b; border-radius: 10px; overflow: hidden; }
+    .p-head { padding: 0.8rem 1rem; border-bottom: 1px solid #1e293b; display: flex; align-items: center; gap: 0.6rem; cursor: pointer; list-style: none; }
+    .p-head::-webkit-details-marker { display: none; }
+    .p-head::before { content: '▸'; color: #475569; font-size: 0.75rem; }
+    details.pillar[open] > .p-head::before { content: '▾'; }
+    .p-icon { font-size: 1.1rem; }
+    .p-name { font-weight: 700; color: #f1f5f9; font-size: 0.92rem; }
+    .p-desc { font-size: 0.68rem; color: #64748b; margin-top: 0.1rem; }
+    .p-counts { margin-left: auto; display: flex; gap: 0.4rem; }
+    .pill { font-size: 0.66rem; font-weight: 700; padding: 0.15rem 0.5rem; border-radius: 20px; }
+    .pill.c { background: #2a0a0a; color: #f87171; border: 1px solid #7f1d1d; }
+    .pill.w { background: #241803; color: #fbbf24; border: 1px solid #78510f; }
+    .pill.ok { background: #07210f; color: #4ade80; border: 1px solid #14532d; }
+    .p-body { padding: 0.5rem; max-height: 72vh; overflow-y: auto; }
+
+    .f { display: grid; grid-template-columns: auto 1fr; gap: 0.55rem; padding: 0.6rem 0.7rem; border-radius: 7px; border-left: 3px solid transparent; margin-bottom: 0.35rem; background: #0a0e17; }
+    .f.CRITICAL { border-left-color: #ef4444; background: #160707; }
+    .f.WARNING { border-left-color: #f59e0b; }
+    .f .tag { font-size: 0.58rem; font-weight: 800; letter-spacing: 0.05em; padding: 0.12rem 0.4rem; border-radius: 4px; height: fit-content; white-space: nowrap; }
+    .CRITICAL .tag { background: #450a0a; color: #fca5a5; }
+    .WARNING .tag { background: #422006; color: #fcd34d; }
+    .f-title { font-weight: 600; color: #e2e8f0; font-size: 0.8rem; }
+    .f-code { color: #475569; font-weight: 400; font-size: 0.68rem; }
+    .f-detail { color: #94a3b8; font-size: 0.74rem; margin-top: 0.12rem; word-break: break-word; }
+    .f-fix { color: #4b7bec; font-size: 0.7rem; margin-top: 0.2rem; }
+    .f-fix::before { content: '→ '; color: #334155; }
+    .empty { padding: 1.5rem; text-align: center; color: #475569; font-size: 0.8rem; }
+    .empty b { color: #4ade80; }
+
+    .section { margin-top: 2rem; border-top: 1px solid #1e293b; padding-top: 1.4rem; }
+    .section p.desc { font-size: 0.72rem; color: #64748b; margin: 0 0 1rem; }
+
+    .pri-panel { margin-bottom: 0.8rem; }
+    .pri-group { border: 1px solid #1e293b; border-radius: 10px; background: #0e1422; margin-bottom: 0.6rem; overflow: hidden; }
+    .pri-head { display: flex; align-items: center; gap: 0.6rem; padding: 0.65rem 1rem; border-bottom: 1px solid #1e293b; cursor: pointer; list-style: none; }
+    .pri-head::-webkit-details-marker { display: none; }
+    .pri-head::before { content: '▸'; color: #475569; font-size: 0.75rem; }
+    details[open] > .pri-head::before { content: '▾'; }
+    .pri-badge { font-size: 0.68rem; font-weight: 800; padding: 0.15rem 0.55rem; border-radius: 5px; letter-spacing: 0.04em; }
+    .pri-title { font-weight: 700; font-size: 0.85rem; color: #f1f5f9; }
+    .pri-desc { font-size: 0.66rem; color: #64748b; }
+    .pri-count { margin-left: auto; font-size: 0.72rem; font-weight: 700; }
+    .pri-body { padding: 0.5rem; max-height: 60vh; overflow-y: auto; }
+
+    .trigger-coverage { margin-top: 1.2rem; padding: 1rem; background: #0e1422; border: 1px solid #1e293b; border-radius: 10px; }
+    .trigger-coverage h2 { font-size: 0.92rem; color: #f1f5f9; margin: 0 0 0.6rem; }
+    .tc-grid { display: flex; flex-wrap: wrap; gap: 0.3rem; }
+    .tc-tag { padding: 0.2rem 0.5rem; border-radius: 4px; font-size: 0.7rem; }
+    .tc-tag.covered { background: #07210f; color: #4ade80; border: 1px solid #14532d; }
+    .tc-tag.thin { background: #241803; color: #fbbf24; border: 1px solid #78510f; }
+    .tc-tag.missing { background: #160707; color: #f87171; border: 1px solid #7f1d1d; }
+
+    .gh-table { width: 100%; border-collapse: collapse; font-size: 0.75rem; }
+    .gh-table th { text-align: left; padding: 0.5rem 0.6rem; border-bottom: 2px solid #1e293b; color: #94a3b8; font-weight: 600; font-size: 0.68rem; text-transform: uppercase; letter-spacing: 0.06em; }
+    .gh-table td { padding: 0.4rem 0.6rem; border-bottom: 1px solid #141c2b; color: #cbd5e1; }
+    .gh-table tr:hover td { background: #111827; }
+    .slug { color: #60a5fa; }
+    .type { font-size: 0.62rem; padding: 0.1rem 0.35rem; border-radius: 3px; font-weight: 600; }
+    .type-info { background: #1e3a5f; color: #93c5fd; }
+    .type-best { background: #3b1f5e; color: #c4b5fd; }
+    .type-equip { background: #1a3a2a; color: #86efac; }
+    .type-hub { background: #3d2b08; color: #fcd34d; }
+    .money { color: #4ade80; font-weight: 600; }
+    .demand { color: #e2e8f0; }
+
+    .funnel { display: flex; gap: 0.5rem; margin-bottom: 1.2rem; }
+    .funnel-step { flex: 1; padding: 0.8rem; border-radius: 8px; text-align: center; background: #0e1422; border: 1px solid #1e293b; }
+    .funnel-step .fv { font-size: 1.5rem; font-weight: 700; }
+    .funnel-step .fl { font-size: 0.62rem; text-transform: uppercase; letter-spacing: 0.08em; color: #475569; margin-top: 0.2rem; }
+    .funnel-step .fp { font-size: 0.68rem; color: #64748b; margin-top: 0.1rem; }
+    .funnel-step.green .fv { color: #4ade80; }
+    .funnel-step.yellow .fv { color: #fbbf24; }
+    .funnel-step.slate .fv { color: #94a3b8; }
+    .funnel-arrow { display: flex; align-items: center; color: #334155; font-size: 1.2rem; }
+
+    .demand-bar { margin-bottom: 1.2rem; }
+    .demand-track { height: 24px; background: #1e293b; border-radius: 6px; overflow: hidden; }
+    .demand-fill { height: 100%; background: linear-gradient(90deg, #16a34a, #4ade80); border-radius: 6px; }
+    .demand-labels { display: flex; justify-content: space-between; font-size: 0.68rem; color: #64748b; margin-top: 0.3rem; }
+
+    .footnote { color: #334155; font-size: 0.66rem; margin-top: 1.2rem; }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <h1>Mission Control <span style="color:#334155;font-weight:400;font-size:0.85rem">/debug</span></h1>
+    <p class="meta">
+      {totalPublished} videos · {totalDraft} vid drafts · {totalChannels} creators ·
+      {cpPublished.length} content pages · {contentPages.length} in ledger ·
+      last sync <code>{lastSync}</code> · cron <code>{lastCronRun}</code> · {infoCount} info suppressed
+    </p>
+
+    <div class={`banner ${verdict.cls}`}>
+      <div class="dot"></div>
+      <div>
+        <div class="b-title">{verdict.label}</div>
+        <div class="b-sub">{verdict.sub}</div>
+      </div>
+      <div class="stats">
+        <div class="stat"><b style={totalCrit > 0 ? 'color:#f87171' : ''}>{totalCrit}</b><span>Critical</span></div>
+        <div class="stat"><b style={totalWarn > 0 ? 'color:#fbbf24' : ''}>{totalWarn}</b><span>Warning</span></div>
+        <div class="stat"><b>{totalPublished}</b><span>Videos</span></div>
+        <div class="stat"><b>{cpPublished.length}</b><span>Pages</span></div>
+        <div class="stat"><b>{totalChannels}</b><span>Creators</span></div>
+      </div>
+    </div>
+
+    <div class="metrics">
+      <div class={`m-card${totalQueued > 50000 ? ' alert' : ''}`}>
+        <div class="v">{fmt(totalQueued)}</div>
+        <div class="l">Queue Depth</div>
+      </div>
+      <div class="m-card">
+        <div class="v">{publishedToday}</div>
+        <div class="l">Published 24h</div>
+      </div>
+      <div class={`m-card${missingTrigger > 0 ? ' alert' : ' ok'}`}>
+        <div class="v">{missingTrigger}</div>
+        <div class="l">No Trigger</div>
+      </div>
+      <div class={`m-card${dupPairs > 0 ? ' alert' : ' ok'}`}>
+        <div class="v">{dupPairs}</div>
+        <div class="l">Dup Titles</div>
+      </div>
+      <div class={`m-card${invalidTrigger > 0 ? ' alert' : ' ok'}`}>
+        <div class="v">{invalidTrigger}</div>
+        <div class="l">Bad Trigger</div>
+      </div>
+      <div class="m-card accent">
+        <div class="v">{fmt(totalLedgerDemand)}</div>
+        <div class="l">Ledger Demand</div>
+      </div>
+      <div class="m-card accent">
+        <div class="v">{demandPct}%</div>
+        <div class="l">Demand Captured</div>
+      </div>
+      <div class={`m-card${draftsPassing.length > 0 ? ' ok' : ''}`}>
+        <div class="v">{draftsPassing.length}/{draftGated.length}</div>
+        <div class="l">Gate Pass</div>
+      </div>
+      <div class={`m-card${buildQueue.length > 0 ? '' : ' ok'}`}>
+        <div class="v">{buildQueue.length}</div>
+        <div class="l">Build Queue</div>
+      </div>
+    </div>
+
+    <div class="funnel">
+      <div class="funnel-step green">
+        <div class="fv">{cpPublished.length}</div>
+        <div class="fl">Published</div>
+        <div class="fp">{fmt(demandCaptured)}/mo captured</div>
+      </div>
+      <div class="funnel-arrow">&rarr;</div>
+      <div class="funnel-step yellow">
+        <div class="fv">{cpDraft.length}</div>
+        <div class="fl">Draft</div>
+        <div class="fp">content exists, not live</div>
+      </div>
+      <div class="funnel-arrow">&rarr;</div>
+      <div class="funnel-step slate">
+        <div class="fv">{cpNotBuilt.length}</div>
+        <div class="fl">Not Built</div>
+        <div class="fp">{fmt(demandRemaining)}/mo remaining</div>
+      </div>
+    </div>
+
+    <div class="demand-bar">
+      <div class="demand-track">
+        <div class="demand-fill" style={`width:${demandPct}%`}></div>
+      </div>
+      <div class="demand-labels">
+        <span>{fmt(demandCaptured)}/mo captured ({demandPct}%)</span>
+        <span>{fmt(demandRemaining)}/mo remaining</span>
+        <span>{fmt(totalLedgerDemand)}/mo total ledger</span>
+      </div>
+    </div>
+
+    <div class="pillars">
+      {PILLARS.map(pl => (
+        <details class="pillar" open={pl.crit > 0}>
+          <summary class="p-head">
+            <span class="p-icon">{pl.icon}</span>
+            <div>
+              <div class="p-name">{pl.name}</div>
+              <div class="p-desc">{pl.desc}</div>
+            </div>
+            <div class="p-counts">
+              {pl.crit > 0 && <span class="pill c">{pl.crit} critical</span>}
+              {pl.warn > 0 && <span class="pill w">{pl.warn} warn</span>}
+              {pl.crit === 0 && pl.warn === 0 && <span class="pill ok">clean</span>}
+            </div>
+          </summary>
+          <div class="p-body">
+            {pl.findings.length === 0 && (
+              <div class="empty"><b>✓ No issues</b><br />All checks pass for this pillar.</div>
+            )}
+            {pl.findings.map(f => (
+              <div class={`f ${f.sev}`}>
+                <span class="tag">{f.sev === 'CRITICAL' ? 'CRIT' : 'WARN'}</span>
+                <div>
+                  <div class="f-title">{f.title} <span class="f-code">{f.code}</span></div>
+                  <div class="f-detail">{f.detail}</div>
+                  {f.fix && <div class="f-fix">{f.fix}</div>}
+                </div>
+              </div>
+            ))}
+          </div>
+        </details>
+      ))}
+    </div>
+
+    {priGroups.length > 0 && (
+      <div class="section">
+        <h2 style="display:flex;align-items:center;gap:0.5rem">
+          <span style="font-size:1.2rem">🎯</span> Priority Queue
+        </h2>
+        <p class="desc">
+          {priDiags.length} findings ranked P0&rarr;P1. P0 = critical (blocks deploy). P1 = warning (fix soon).
+        </p>
+        {priGroups.map(g => (
+          <div class="pri-panel">
+            <details class="pri-group" open={g.pri === 'P0'}>
+              <summary class="pri-head">
+                <span class="pri-badge" style={`color:${g.color};background:${g.bg};border:1px solid ${g.border}`}>{g.pri}</span>
+                <div>
+                  <div class="pri-title">{g.label}</div>
+                  <div class="pri-desc">{g.desc}</div>
+                </div>
+                <span class="pri-count" style={`color:${g.color}`}>{g.count}</span>
+              </summary>
+              <div class="pri-body">
+                {g.items.map(f => (
+                  <div class={`f ${f.sev}`}>
+                    <span class="tag">{f.sev === 'CRITICAL' ? 'CRIT' : 'WARN'}</span>
+                    <div>
+                      <div class="f-title">{f.title} <span class="f-code">{f.code}</span></div>
+                      <div class="f-detail">{f.detail}</div>
+                      {f.fix && <div class="f-fix">{f.fix}</div>}
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </details>
+          </div>
+        ))}
+      </div>
+    )}
+
+    {buildQueue.length > 0 && (
+      <div class="section">
+        <h2 style="display:flex;align-items:center;gap:0.5rem">
+          <span style="font-size:1.2rem">🏗</span> Build Queue ({buildQueue.length} pages)
+        </h2>
+        <p class="desc">
+          Unpublished content pages sorted by money score (demand &times; max(CPC, $0.10)). Velocity cap: 5/day.
+        </p>
+        <div style="background:#0e1422;border:1px solid #1e293b;border-radius:10px;overflow:hidden">
+          <table class="gh-table">
+            <thead>
+              <tr>
+                <th>#</th>
+                <th>Slug</th>
+                <th>Type</th>
+                <th style="text-align:right">Demand</th>
+                <th style="text-align:right">CPC</th>
+                <th style="text-align:right">Money</th>
+                <th>Status</th>
+                <th>Gate</th>
+              </tr>
+            </thead>
+            <tbody>
+              {buildQueue.slice(0, 20).map((p, i) => {
+                const typeClass = p.pageType === 'INFO_GUIDE' ? 'type-info' : p.pageType === 'BEST_LIST' ? 'type-best' : p.pageType === 'EQUIPMENT' ? 'type-equip' : 'type-hub';
+                const gp = gatedPages.find(g => g.slug === p.slug);
+                const gateLabel = !gp ? '—' : gp.passesGate ? '✓ PASS' : `✗ ${gp.critFails.length} fail`;
+                const gateColor = !gp ? '#475569' : gp.passesGate ? '#4ade80' : '#f87171';
+                return (
+                  <tr>
+                    <td style="color:#475569">{i + 1}</td>
+                    <td class="slug">{p.slug}</td>
+                    <td><span class={`type ${typeClass}`}>{p.pageType.replace(/_/g, ' ')}</span></td>
+                    <td style="text-align:right" class="demand">{p.totalDemand.toLocaleString()}/mo</td>
+                    <td style="text-align:right;color:#94a3b8">${p.maxCPC.toFixed(2)}</td>
+                    <td style="text-align:right" class="money">${Math.round(p.moneyScore)}</td>
+                    <td><span style={`color:${p.status === 'draft' ? '#fbbf24' : '#64748b'}`}>{p.status}</span></td>
+                    <td><span style={`color:${gateColor};font-weight:600;font-size:0.7rem`}>{gateLabel}</span></td>
+                  </tr>
+                );
+              })}
+            </tbody>
+          </table>
+          {buildQueue.length > 20 && (
+            <div style="padding:0.5rem 1rem;color:#475569;font-size:0.7rem;border-top:1px solid #1e293b">
+              + {buildQueue.length - 20} more pages not shown
+            </div>
+          )}
+        </div>
+      </div>
+    )}
+
+    {draftGated.length > 0 && (
+      <div class="section">
+        <h2 style="display:flex;align-items:center;gap:0.5rem">
+          <span style="font-size:1.2rem">🔒</span> Content Gate Report ({draftsPassing.length}/{draftGated.length} drafts pass)
+        </h2>
+        <p class="desc">
+          Gate checks mirror tools/lib/asmr-content-gate.mjs. Critical failures block auto-publish. Sorted by money score.
+        </p>
+        {topFailures.length > 0 && (
+          <div style="display:flex;flex-wrap:wrap;gap:0.4rem;margin-bottom:1rem">
+            {topFailures.map(([id, n]) => (
+              <span style={`padding:0.2rem 0.6rem;border-radius:4px;font-size:0.72rem;font-weight:600;background:#160707;color:#f87171;border:1px solid #7f1d1d`}>
+                {id}: {n}/{draftGated.length}
+              </span>
+            ))}
+          </div>
+        )}
+        <div style="background:#0e1422;border:1px solid #1e293b;border-radius:10px;overflow:hidden">
+          <table class="gh-table">
+            <thead>
+              <tr>
+                <th>Slug</th>
+                <th>Type</th>
+                <th style="text-align:right">Money</th>
+                <th style="text-align:center">Gate</th>
+                <th>Blockers</th>
+              </tr>
+            </thead>
+            <tbody>
+              {[...draftGated].sort((a, b) => b.moneyScore - a.moneyScore).slice(0, 30).map(g => {
+                const typeClass = g.pageType === 'INFO_GUIDE' ? 'type-info' : g.pageType === 'BEST_LIST' ? 'type-best' : g.pageType === 'EQUIPMENT' ? 'type-equip' : 'type-hub';
+                return (
+                  <tr>
+                    <td class="slug">{g.slug}</td>
+                    <td><span class={`type ${typeClass}`}>{g.pageType.replace(/_/g, ' ')}</span></td>
+                    <td style="text-align:right" class="money">${Math.round(g.moneyScore)}</td>
+                    <td style="text-align:center">
+                      <span style={`font-weight:700;font-size:0.75rem;color:${g.passesGate ? '#4ade80' : '#f87171'}`}>
+                        {g.passesGate ? `✓ ${g.passingChecks}/${g.totalChecks}` : `✗ ${g.passingChecks}/${g.totalChecks}`}
+                      </span>
+                    </td>
+                    <td style="font-size:0.7rem;color:#94a3b8">
+                      {g.critFails.length > 0
+                        ? g.critFails.map(f => f.id).join(', ')
+                        : g.warnFails.length > 0
+                        ? <span style="color:#fbbf24">{g.warnFails.length} warn</span>
+                        : <span style="color:#4ade80">clean</span>}
+                    </td>
+                  </tr>
+                );
+              })}
+            </tbody>
+          </table>
+          {draftGated.length > 30 && (
+            <div style="padding:0.5rem 1rem;color:#475569;font-size:0.7rem;border-top:1px solid #1e293b">
+              + {draftGated.length - 30} more drafts not shown
+            </div>
+          )}
+        </div>
+      </div>
+    )}
+
+    <div class="section">
+      <h2 style="display:flex;align-items:center;gap:0.5rem">
+        <span style="font-size:1.2rem">📊</span> Page Type Distribution
+      </h2>
+      <p class="desc">
+        Content pages in the keyword ledger by type. {contentPages.length} total across {typeDistribution.size} types.
+      </p>
+      <div style="display:flex;flex-wrap:wrap;gap:0.5rem">
+        {[...typeDistribution.entries()].sort((a, b) => b[1] - a[1]).map(([type, count]) => {
+          const typeClass = type === 'INFO_GUIDE' ? 'type-info' : type === 'BEST_LIST' ? 'type-best' : type === 'EQUIPMENT' ? 'type-equip' : 'type-hub';
+          const publishedOfType = cpPublished.filter(p => p.pageType === type).length;
+          return (
+            <div style="background:#0e1422;border:1px solid #1e293b;border-radius:8px;padding:0.6rem 1rem;text-align:center;min-width:120px">
+              <div style="font-size:1.1rem;font-weight:700;color:#e2e8f0">{count}</div>
+              <div><span class={`type ${typeClass}`} style="font-size:0.6rem">{type.replace(/_/g, ' ')}</span></div>
+              <div style="font-size:0.62rem;color:#475569;margin-top:0.2rem">{publishedOfType}/{count} published</div>
+            </div>
+          );
+        })}
+      </div>
+    </div>
+
+    <div class="trigger-coverage">
+      <h2>Trigger Coverage ({coveredTriggers.size}/{VALID_TRIGGERS.size})</h2>
+      <div class="tc-grid">
+        {[...VALID_TRIGGERS].sort().map(t => {
+          const found = topTriggers.find(x => x.trigger === t);
+          const cls = found ? (found.count >= 3 ? 'covered' : 'thin') : 'missing';
+          return <span class={`tc-tag ${cls}`}>{t.replace(/-/g, ' ')}{found ? ` (${found.count})` : ''}</span>;
+        })}
+      </div>
+    </div>
+
+    <p class="footnote">
+      Pipeline + SEO checks run live against Turso DB. Content checks run from keyword ledger + page-content JSON (build-time data).
+      Three pillars: Pipeline (enrichment), SEO (indexability), Content (keyword ledger + pages). INFO findings hidden.
+    </p>
+  </div>
+</body>
+</html>

@@ -1,0 +1,39 @@
+---
+// /whispering/: whisper styles named in video titles, with counts and the 3 most watched of each playing in place.
+// From the build snapshot (scripts/prebuild-hub-data.mjs whisperStyles), no database read.
+import hub from '../lib/hub-data-all.json';
+
+const { whisperStyles = [], catalogDate } = hub as any;
+const styles = whisperStyles.filter((s: any) => s.top.length >= 3);
+const len = (s: number) => (s >= 3600 ? `${Math.floor(s / 3600)} h ${Math.round((s % 3600) / 60)} min` : `${Math.round(s / 60)} min`);
+---
+{styles.length > 0 && (
+<section class="ws">
+  <h2>Pick a whisper style and press play</h2>
+  <p>{`Whispering videos in our catalog whose English titles name a style (${catalogDate}). A video can name more than one; most titles name none, and titles in other languages are not counted.`}</p>
+  {styles.map((s: any) => (
+    <>
+      <h3>{s.label}: {s.count.toLocaleString('en-US')} videos{s.medianMin ? `, median ${s.medianMin} min` : ''}</h3>
+      <div class="video-grid">
+        {s.top.map((v: any) => (
+          <article class="video-card">
+            <button type="button" class="vplay" data-v={v.id} aria-label={`Play ${v.title}`}>
+              <div class="video-thumb">
+                <img src={`https://i.ytimg.com/vi/${v.id}/mqdefault.jpg`} alt={v.title} loading="lazy" width="320" height="180" />
+                <span class="duration-badge">{len(v.duration_seconds)}</span>
+              </div>
+              <p class="vt">{v.title}</p>
+            </button>
+          </article>
+        ))}
+      </div>
+    </>
+  ))}
+  <script src="/js/vplay.js" defer></script>
+</section>
+)}
+
+<style>
+  .ws { margin: 2rem 0; }
+  .ws h3 { margin-top: 1.25rem; }
+</style>

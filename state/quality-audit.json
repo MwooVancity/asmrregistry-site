@@ -1,0 +1,3815 @@
+{
+  "dupeTips": [],
+  "shortTips": [
+    {
+      "slug": "ocean",
+      "tip": "Use headphones. Ocean ASMR without them is just background noise, not binaural t",
+      "wc": 13
+    },
+    {
+      "slug": "library-asmr",
+      "tip": "Use over-ear headphones to catch subtle paper sounds that earbuds miss",
+      "wc": 11
+    },
+    {
+      "slug": "library-asmr",
+      "tip": "Match your room lighting to the video for better immersion",
+      "wc": 10
+    },
+    {
+      "slug": "library-asmr",
+      "tip": "Try playing library ASMR while reading your own book for enhanced focus",
+      "wc": 12
+    },
+    {
+      "slug": "library-asmr",
+      "tip": "Set a sleep timer so videos do not play all night on your device",
+      "wc": 14
+    },
+    {
+      "slug": "library-asmr",
+      "tip": "Search for specific triggers like book tapping or whispered reading to find your",
+      "wc": 14
+    }
+  ],
+  "offTopicTips": [
+    {
+      "slug": "massage",
+      "tip": "Test whether a video is truly binaural in the first ten seconds. If the sound doesnâ€™t move across "
+    },
+    {
+      "slug": "massage",
+      "tip": "Skip anything under 30 minutes if you're using this for sleep. Short videos break the spell right wh"
+    },
+    {
+      "slug": "massage",
+      "tip": "Turn your phone face-down once you've chosen a video. Watching the screen actively keeps your brain "
+    },
+    {
+      "slug": "eating-sounds",
+      "tip": "For sleep, queue a soft-texture video like noodles or mochi and set a sleep timer: high-crunch video"
+    },
+    {
+      "slug": "eating-sounds",
+      "tip": "Zach Choi and SAS-ASMR are the two biggest names but they're not the same vibe. Zach is slow and del"
+    },
+    {
+      "slug": "eating-sounds",
+      "tip": "The first 30 seconds is your test. If your jaw tightens or you feel irritated by the 30-second mark,"
+    },
+    {
+      "slug": "whispering",
+      "tip": "Use headphones for any video labeled binaural or ear-to-ear -- the spatial audio effect requires sep"
+    },
+    {
+      "slug": "whispering",
+      "tip": "For sleep, skip ear-to-ear formats and choose long-form inaudible or close-up whisper with no strong"
+    },
+    {
+      "slug": "whispering",
+      "tip": "If whisper content consistently irritates rather than relaxes you, try tapping or crinkling instead "
+    },
+    {
+      "slug": "whispering",
+      "tip": "Queue a playlist rather than a single video -- waking to choose a new video resets your arousal leve"
+    },
+    {
+      "slug": "whispering",
+      "tip": "If you fall asleep to it every night but it stops working, take two or three nights off. Your brain "
+    },
+    {
+      "slug": "whispering",
+      "tip": "Turn your phone face down and screen brightness all the way off before you start. Watching the video"
+    },
+    {
+      "slug": "whispering",
+      "tip": "Volume matters a lot. Most people play it too loud. Drop it until you can just barely make out words"
+    },
+    {
+      "slug": "triggers-overview",
+      "tip": "Start with a trigger sampler video (30-60 minutes, multiple trigger types in short segments) instead"
+    },
+    {
+      "slug": "triggers-overview",
+      "tip": "Reset your listening volume every few sessions to where you have to strain slightly to hear the quie"
+    },
+    {
+      "slug": "triggers-overview",
+      "tip": "Use headphones or earbuds for any ASMR content, not phone speakers. Binaural recordings rely on left"
+    },
+    {
+      "slug": "slime",
+      "tip": "Skip compilations entirely. The mic changes every 30 seconds and the levels jump, which kills the se"
+    },
+    {
+      "slug": "personal-attention",
+      "tip": "Watch the creator's eyes in the first thirty seconds. If they stare dead into the lens the whole tim"
+    },
+    {
+      "slug": "personal-attention",
+      "tip": "Pick videos in the 20 to 45 minute range for sleep. Shorter ends before you drift off, longer means "
+    },
+    {
+      "slug": "personal-attention",
+      "tip": "When tingles fade, take two full weeks off instead of hunting for a new video. Habituation resets wi"
+    },
+    {
+      "slug": "personal-attention",
+      "tip": "Play it on a small Bluetooth speaker placed near your pillow instead of headphones if headphones fee"
+    },
+    {
+      "slug": "rain",
+      "tip": "Pick recordings over 8 hours long or use an app with gap-free looping. Waking up at 3am to silence b"
+    },
+    {
+      "slug": "kisses",
+      "tip": "Turn off spatial audio and every EQ preset before you press play. Phone surround processing adds its"
+    },
+    {
+      "slug": "kisses",
+      "tip": "The tingle you're chasing usually hits in the first 5 minutes or not at all with a given video. If y"
+    },
+    {
+      "slug": "sleep",
+      "tip": "Queue one long video before you're tired, then turn autoplay off in settings. A short clip ending at"
+    },
+    {
+      "slug": "sleep",
+      "tip": "If your tingles have faded, take 10 to 14 days completely off. Everyone in the community calls it ti"
+    },
+    {
+      "slug": "sleep",
+      "tip": "If you're lying there still awake at 2am, don't scroll for something new. Pick the most boring video"
+    },
+    {
+      "slug": "sleep",
+      "tip": "Try a video with a consistent background texture, like rain or a fan underneath the ASMR. If the aud"
+    },
+    {
+      "slug": "tapping",
+      "tip": "For sleep onset, choose videos at least 30 minutes long so the audio does not end during the transit"
+    },
+    {
+      "slug": "asmr-games",
+      "tip": "Pull one earbud out during any browser ASMR game. If the sound doesn't change at all it's mono, whic"
+    },
+    {
+      "slug": "asmr-games",
+      "tip": "If a mobile ASMR app charges weekly instead of a one time unlock, skip it. That pricing pattern is t"
+    },
+    {
+      "slug": "asmr-games",
+      "tip": "Play the low stakes mode of whatever you pick. Creative mode, no timer, no score chase. The second a"
+    },
+    {
+      "slug": "asmr-games",
+      "tip": "If gaming ASMR isn't clicking for you, try a cozy game playthrough first instead of a dedicated ASMR"
+    },
+    {
+      "slug": "asmr-games",
+      "tip": "The controller click sounds are doing most of the work here. If you find a creator who uses a mechan"
+    },
+    {
+      "slug": "asmr-games",
+      "tip": "Search 'cozy game ASMR no commentary' on YouTube rather than 'gaming ASMR.' The no-commentary filter"
+    },
+    {
+      "slug": "asmr-games",
+      "tip": "If you fall asleep to gaming ASMR regularly, set a sleep timer on YouTube or use the playlist loop f"
+    },
+    {
+      "slug": "kids",
+      "tip": "Check a channel's recent uploads page and look at the thumbnails, not the video you're on. Thumbnail"
+    },
+    {
+      "slug": "kids",
+      "tip": "Turn off autoplay. It's one toggle and it kills most of the algorithm drift that moves a kid from a "
+    },
+    {
+      "slug": "kids",
+      "tip": "Don't put it on right at lights-out. Start 15 minutes before you want them asleep. Their brain needs"
+    },
+    {
+      "slug": "kids",
+      "tip": "Rotate three or four go-to videos instead of searching for new ones every night. Familiar sounds wor"
+    },
+    {
+      "slug": "unintentional-asmr",
+      "tip": "If your tingles have gone flat, take a full week off before you try new videos. Cycling through crea"
+    },
+    {
+      "slug": "unintentional-asmr",
+      "tip": "Search by trade instead of by the ASMR tag. Watch servicing, whetstone progression, and paper conser"
+    },
+    {
+      "slug": "unintentional-asmr",
+      "tip": "Check museum, university library, and national archive channels. They post hours of unedited conserv"
+    },
+    {
+      "slug": "unintentional-asmr",
+      "tip": "For film and TV scenes, use headphones and find the standalone clip upload rather than the full movi"
+    },
+    {
+      "slug": "unintentional-asmr",
+      "tip": "Old library recordings and archival craft shows hit harder than modern intentional ASMR for a lot of"
+    },
+    {
+      "slug": "unintentional-asmr",
+      "tip": "If you find a creator who works for you, go deep into their old uploads rather than chasing new cont"
+    },
+    {
+      "slug": "unintentional-asmr",
+      "tip": "Watch without the autoplay queue. Autoplay jumps to whatever YouTube thinks is related, and it will "
+    },
+    {
+      "slug": "unintentional-asmr",
+      "tip": "If speech is keeping you too alert, switch to process videos with no talking. Pottery throwing, wood"
+    },
+    {
+      "slug": "ocean",
+      "tip": "Skip to the four minute mark before you commit to a video. The first minute is always the creator's "
+    },
+    {
+      "slug": "ocean",
+      "tip": "Look for recordings made at night or early morning. Daytime beach recordings often have wind, seagul"
+    },
+    {
+      "slug": "scratching",
+      "tip": "When your go-to trigger stops working, drop it completely for two or three weeks instead of hunting "
+    },
+    {
+      "slug": "scratching",
+      "tip": "For sleep, filter to videos over 45 minutes with no intro talking. A creator whispering goodnight at"
+    },
+    {
+      "slug": "scratching",
+      "tip": "If it's not working after 10 minutes, you're probably tense. Don't force it. Put your phone face-dow"
+    },
+    {
+      "slug": "sand",
+      "tip": "Look for creators who cut with a cheese wire instead of a knife. The stroke lasts three or four seco"
+    },
+    {
+      "slug": "sand",
+      "tip": "Use cutting videos when you're anxious and awake, use pouring or sifting videos when you're trying t"
+    },
+    {
+      "slug": "cooking",
+      "tip": "Record the audio separately from the video and sync it later. Camera mics are terrible and you'll sp"
+    },
+    {
+      "slug": "cooking",
+      "tip": "If your tingles have stopped, take a full two week break from all ASMR before you assume you're immu"
+    },
+    {
+      "slug": "cooking",
+      "tip": "Turn the fridge off before you record. That low hum sits under everything you capture and you will n"
+    },
+    {
+      "slug": "cooking",
+      "tip": "Test crunching videos at low volume first if you're unsure of your own reaction. If it makes you ten"
+    },
+    {
+      "slug": "asmr-podcast",
+      "tip": "Download episodes before bed or before a commute, so a dropped signal never wakes you up with sudden"
+    },
+    {
+      "slug": "asmr-podcast",
+      "tip": "If voices distract you while studying, pick no-talking tapping or ambient rain episodes instead of s"
+    },
+    {
+      "slug": "asmr-podcast",
+      "tip": "Test any binaural episode with real over-ear headphones first. Cheap earbuds flatten the effect into"
+    },
+    {
+      "slug": "asmr-podcast",
+      "tip": "Don't shuffle or skip around. Pick one episode, commit to it, and let it run. The restless skipping "
+    },
+    {
+      "slug": "asmr-podcast",
+      "tip": "Download two or three episodes before bed so you're not fumbling with your phone at midnight when yo"
+    },
+    {
+      "slug": "asmr-podcast",
+      "tip": "If you fall asleep before the episode ends, that's the whole point. Don't rewind it. You won this ro"
+    },
+    {
+      "slug": "painting",
+      "tip": "Search for videos over 30 minutes and skip anything tagged with music. Real-time length is the faste"
+    },
+    {
+      "slug": "painting",
+      "tip": "Bob Ross knife-scrape compilations are the cheat code if youâ€™re new. All the good sounds, none of "
+    },
+    {
+      "slug": "hair-play",
+      "tip": "If you fall asleep every time and never finish a video, that's the goal, not a problem. Queue someth"
+    },
+    {
+      "slug": "hair-play",
+      "tip": "Ask your stylist for a scalp treatment with no conversation during the shampoo. Saying the no-talkin"
+    },
+    {
+      "slug": "hair-play",
+      "tip": "Don't start a new creator's video right when you're trying to sleep. Preview it earlier in the day s"
+    },
+    {
+      "slug": "hair-play",
+      "tip": "Loop a single 20-minute segment instead of queuing new videos. Your brain stops anticipating what co"
+    },
+    {
+      "slug": "soft-speaking",
+      "tip": "Look for creators with naturally warm or resonant voices, that chest-voice quality adds richness you"
+    },
+    {
+      "slug": "soft-speaking",
+      "tip": "Don't pick based on the thumbnail. Listen to the first 90 seconds. If the voice feels like someone s"
+    },
+    {
+      "slug": "soft-speaking",
+      "tip": "Use it as a bridge, not a sleep tool. Put it on when you're still anxious and let it run. Most peopl"
+    },
+    {
+      "slug": "soft-speaking",
+      "tip": "If you're using it for anxiety and not sleep, try a roleplay video where someone explains something "
+    },
+    {
+      "slug": "anxiety",
+      "tip": "Always use headphones. ASMR loses most of its effect through phone speakers. Over-ear headphones are"
+    },
+    {
+      "slug": "anxiety",
+      "tip": "Use ASMR as a daily wind-down habit, not just in emergencies. The calming effect builds over time wh"
+    },
+    {
+      "slug": "anxiety",
+      "tip": "If you have sound sensitivity, skip eating-sounds ASMR. Rain, tapping, and soft speaking tend to be "
+    },
+    {
+      "slug": "anxiety",
+      "tip": "Don't start with a new creator when you're already anxious. Unfamiliar voices and pacing can feel ja"
+    },
+    {
+      "slug": "anxiety",
+      "tip": "Turn your screen brightness all the way down or flip to audio-only mode. Watching someone's face mov"
+    },
+    {
+      "slug": "anxiety",
+      "tip": "Volume matters more than trigger type. Too quiet and your brain strains to hear. Too loud and your b"
+    },
+    {
+      "slug": "anxiety",
+      "tip": "For a panic moment, skip the 3-hour sleep videos and find a short 10-minute grounding one first. Get"
+    },
+    {
+      "slug": "lofi-asmr",
+      "tip": "Set a 10-minute timer when you try a new video. If you do not feel any shift in your body or thought"
+    },
+    {
+      "slug": "lofi-asmr",
+      "tip": "Phone face down or screen off. Watching the visuals makes your brain treat it like content instead o"
+    },
+    {
+      "slug": "lofi-asmr",
+      "tip": "If you need this for sleep but hate wearing headphones in bed, put your phone on the nightstand at v"
+    },
+    {
+      "slug": "mouth-sounds",
+      "tip": "Use headphones or earbuds rather than speakers for this trigger because the binaural positioning eff"
+    },
+    {
+      "slug": "mouth-sounds",
+      "tip": "If it's your first time and you're skeptical, don't judge it in the first two minutes. The tingle re"
+    },
+    {
+      "slug": "no-talking",
+      "tip": "If you find whispering ASMR relaxing but it keeps you just awake enough to notice, try switching to "
+    },
+    {
+      "slug": "no-talking",
+      "tip": "Playlists beat single videos every time. Queue up 3 or 4 long ones so you're not jerked awake by sil"
+    },
+    {
+      "slug": "no-talking",
+      "tip": "Volume matters more than people think. It should feel like someone is in the same room but not right"
+    },
+    {
+      "slug": "light-patterns",
+      "tip": "Set your screen brightness to 30 to 40 percent before starting. Full brightness in a dark room will "
+    },
+    {
+      "slug": "light-patterns",
+      "tip": "If the audio track has music or drone tones you can consciously hear, mute it entirely. The visual w"
+    },
+    {
+      "slug": "light-patterns",
+      "tip": "Queue 3 or 4 videos in a playlist before you start watching. Nothing kills the trance state faster t"
+    },
+    {
+      "slug": "headache",
+      "tip": "If headphones are adding pressure to your temples or neck, switch to a phone speaker at low volume o"
+    },
+    {
+      "slug": "headache",
+      "tip": "For migraine relief, look for ASMR with no tapping and no crinkling, search for 'ASMR reiki' or 'ASM"
+    },
+    {
+      "slug": "headache",
+      "tip": "ASMR works best as part of a full rest break: close the blinds, drink a glass of water, take medicat"
+    },
+    {
+      "slug": "headache",
+      "tip": "Skip the 10-minute videos tonight. Your nervous system needs at least 20-25 minutes of consistent ca"
+    },
+    {
+      "slug": "headache",
+      "tip": "Don't queue up a playlist. Pick one long video and commit to it. Switching videos every few minutes "
+    },
+    {
+      "slug": "headache",
+      "tip": "Try ASMR without any screen at all. Start a long audio-only session, put your phone face-down or in "
+    },
+    {
+      "slug": "brushing",
+      "tip": "Save the video that worked. Seriously. The one that finally made you tingle or knocked you out at 2a"
+    },
+    {
+      "slug": "brushing",
+      "tip": "Long-handled brushes held close to the mic pick up more handle vibration than bristle sound. Ask you"
+    },
+    {
+      "slug": "nature",
+      "tip": "For sleep, pick one environment and stick with it for the whole night, switching between rain and oc"
+    },
+    {
+      "slug": "nature",
+      "tip": "Morning birdsong recordings, specifically dawn chorus, where you hear multiple species gradually joi"
+    },
+    {
+      "slug": "nature",
+      "tip": "If headphones aren't comfortable for sleep, a speaker placed several feet away with ocean or forest "
+    },
+    {
+      "slug": "nature",
+      "tip": "Don't start with a random YouTube search. Find one video you know works and save it. Having to searc"
+    },
+    {
+      "slug": "nature",
+      "tip": "If you're using it for focus and not sleep, add a tiny amount of fireplace or campfire underneath ra"
+    },
+    {
+      "slug": "nature",
+      "tip": "The creator's mic quality matters way more than the location. A mediocre forest recorded badly will "
+    },
+    {
+      "slug": "nature",
+      "tip": "The gap between ASMR working and not working is usually 5 minutes. If you give up at 2 minutes, you'"
+    },
+    {
+      "slug": "nature",
+      "tip": "Rain on a tent is denser and more enveloping than rain on a window because the recordist is inside t"
+    },
+    {
+      "slug": "nature",
+      "tip": "High-quality field recordings list their equipment and location in the description. A Zoom H5 or H6 "
+    },
+    {
+      "slug": "nature",
+      "tip": "Thunderstorm ASMR works best when the thunder is distant and irregular. Close, regular thunder keeps"
+    },
+    {
+      "slug": "asmr-artists",
+      "tip": "Start with your trigger type, not a creator's subscriber count, a great whispering specialist won't "
+    },
+    {
+      "slug": "asmr-artists",
+      "tip": "Test creators at the 10K-100K level before defaulting to million-subscriber channels, growing creato"
+    },
+    {
+      "slug": "asmr-artists",
+      "tip": "If ASMR isn't working for sleep, try switching from ambient or nature sounds to personal attention r"
+    },
+    {
+      "slug": "asmr-artists",
+      "tip": "Use TikTok ASMR for trigger discovery rather than relaxation, short-form content is good for figurin"
+    },
+    {
+      "slug": "asmr-artists",
+      "tip": "Check whether your favorite creators post on Spotify, audio-only ASMR removes screen glow entirely a"
+    },
+    {
+      "slug": "asmr-artists",
+      "tip": "Follow creators across platforms before committing, many post different content on Patreon or TikTok"
+    },
+    {
+      "slug": "asmr-artists",
+      "tip": "If you're trying to sleep and it's not working, the artist matters more than the trigger. Find someo"
+    },
+    {
+      "slug": "asmr-artists",
+      "tip": "Don't start with the most popular creators. Their style is often optimized for clicks, not calm. Dig"
+    },
+    {
+      "slug": "asmr-artists",
+      "tip": "For anxiety spirals, pick a roleplay video where the artist is doing something for you specifically."
+    },
+    {
+      "slug": "asmr-artists",
+      "tip": "If you've never gotten tingles, don't chase them. Plenty of people use ASMR purely for relaxation an"
+    },
+    {
+      "slug": "what-does-asmr-stand-for",
+      "tip": "If you're new to ASMR, start with whispering videos before tapping or scratching. Voices tend to wor"
+    },
+    {
+      "slug": "what-does-asmr-stand-for",
+      "tip": "Use headphones. ASMR is recorded to sound like it's right next to your ear, and that effect complete"
+    },
+    {
+      "slug": "what-does-asmr-stand-for",
+      "tip": "The tingling sensation often fades with repeated exposure to the same video. This is called ASMR imm"
+    },
+    {
+      "slug": "what-does-asmr-stand-for",
+      "tip": "The four letters expand to autonomous sensory meridian response. The name sounds clinical but it jus"
+    },
+    {
+      "slug": "what-does-asmr-stand-for",
+      "tip": "Don't get hung up on whether you feel the tingle. A lot of people use ASMR purely for anxiety relief"
+    },
+    {
+      "slug": "what-does-asmr-stand-for",
+      "tip": "Falling asleep partway through is proof the video did its job. Missing the ending is the entire purp"
+    },
+    {
+      "slug": "what-does-asmr-stand-for",
+      "tip": "Nightly listeners should favor channels with dependable upload rhythms. Channels that ship weekly ke"
+    },
+    {
+      "slug": "what-does-asmr-stand-for",
+      "tip": "Volume is personal. Most people set ASMR too loud at first. The voice should sound roomy and natural"
+    },
+    {
+      "slug": "best-asmr-videos",
+      "tip": "Watch with over-ear headphones at least once before deciding ASMR doesn't work for you, speakers cut"
+    },
+    {
+      "slug": "best-asmr-videos",
+      "tip": "If a creator's voice style isn't clicking, switch creators before switching trigger types, the same "
+    },
+    {
+      "slug": "best-asmr-videos",
+      "tip": "Rotate your playlist every couple of weeks so the sounds stay novel and your brain doesn't tune them"
+    },
+    {
+      "slug": "best-asmr-videos",
+      "tip": "If you've tried ASMR twice and felt nothing, you probably haven't found your trigger yet. Some peopl"
+    },
+    {
+      "slug": "best-asmr-videos",
+      "tip": "Volume sweet spot is quieter than you think. Most people turn it up trying to hear better. That's th"
+    },
+    {
+      "slug": "best-asmr-videos",
+      "tip": "Gibi ASMR for talking triggers, ASMR Glow for gentle roleplay, Latte ASMR for pure sound no voice. T"
+    },
+    {
+      "slug": "what-is-asmr-massage",
+      "tip": "If you're booking an in-person session, tell the therapist you're looking for slow pacing and quiet "
+    },
+    {
+      "slug": "what-is-asmr-massage",
+      "tip": "Dim your screen slightly before a video session to reduce visual stimulation and let the audio trigg"
+    },
+    {
+      "slug": "what-is-asmr-massage",
+      "tip": "The channel matters more than the specific video. If one creator's voice or touch style clicks for y"
+    },
+    {
+      "slug": "how-to-make-asmr-videos",
+      "tip": "Record a 60-second silence test before every session and listen back with headphones so you catch re"
+    },
+    {
+      "slug": "how-to-make-asmr-videos",
+      "tip": "Position your mic 6 to 12 inches from your sound source and never move it mid-take, even a small shi"
+    },
+    {
+      "slug": "how-to-make-asmr-videos",
+      "tip": "Stay hydrated before and during recording to prevent mouth clicks; sip water between takes rather th"
+    },
+    {
+      "slug": "how-to-make-asmr-videos",
+      "tip": "Use a boom arm to mount your mic so desk vibrations from tapping don't travel through the stand and "
+    },
+    {
+      "slug": "how-to-make-asmr-videos",
+      "tip": "The single thing that kills new ASMR channels faster than bad audio is inconsistent volume. Record a"
+    },
+    {
+      "slug": "how-to-make-asmr-videos",
+      "tip": "Your room noise matters more than your mic. Run your AC or fan, wait for it to stop, then hit record"
+    },
+    {
+      "slug": "how-to-make-asmr-videos",
+      "tip": "Listen back to every take wearing the same headphones your audience uses, not studio monitors. Consu"
+    },
+    {
+      "slug": "how-to-make-asmr-videos",
+      "tip": "Watch your analytics for average view duration. ASMR viewers who leave in the first 90 seconds usual"
+    },
+    {
+      "slug": "how-to-make-asmr-videos",
+      "tip": "If your comments say your audio sounds too close or too intimate in a bad way, you are too near the "
+    },
+    {
+      "slug": "how-to-make-asmr-videos",
+      "tip": "Film your first video twice: once at your normal speaking pace and once at 70 percent of that pace. "
+    },
+    {
+      "slug": "is-asmr-good-for-you",
+      "tip": "Use headphones instead of speakers, the spatial and directional quality of ASMR sound is much strong"
+    },
+    {
+      "slug": "is-asmr-good-for-you",
+      "tip": "Start with a single trigger type for a full week before switching; your brain needs repetition to as"
+    },
+    {
+      "slug": "is-asmr-good-for-you",
+      "tip": "Keep the volume low enough that you can still hear ambient room sounds, ASMR works best as a layer, "
+    },
+    {
+      "slug": "is-asmr-good-for-you",
+      "tip": "Try ASMR at the same time each night to build a sleep association; consistency matters more than fin"
+    },
+    {
+      "slug": "is-asmr-good-for-you",
+      "tip": "If whispering doesn't work for you, try non-voice triggers like page-turning, rain, or soft tapping,"
+    },
+    {
+      "slug": "is-asmr-good-for-you",
+      "tip": "Don't start with roleplay videos if you're new. They can feel weird before you're used to ASMR. Star"
+    },
+    {
+      "slug": "is-asmr-good-for-you",
+      "tip": "The 'it's not working for me' problem is almost always a trigger mismatch. Spend one week trying a d"
+    },
+    {
+      "slug": "is-asmr-good-for-you",
+      "tip": "Sleep timer is not optional. Falling asleep mid-video and waking up to a different, louder video at "
+    },
+    {
+      "slug": "is-asmr-good-for-you",
+      "tip": "Track your mood for two weeks with and without ASMR before bed and you will have your own data on wh"
+    },
+    {
+      "slug": "is-asmr-good-for-you",
+      "tip": "ASMR is not a substitute for treatment if you have clinical anxiety or a diagnosed sleep disorder. U"
+    },
+    {
+      "slug": "is-asmr-good-for-you",
+      "tip": "If ASMR relaxes you but you feel slightly self-conscious about enjoying it, that reaction passes. Th"
+    },
+    {
+      "slug": "is-asmr-good-for-you",
+      "tip": "Frequency matters more than duration. Thirty minutes of ASMR three nights in a row builds a stronger"
+    },
+    {
+      "slug": "is-asmr-good-for-you",
+      "tip": "People who get no response from ASMR are not missing something. The tingle response is not universal"
+    },
+    {
+      "slug": "is-asmr-good-for-you",
+      "tip": "If you are using ASMR to wind down from screen time, switch from watching to audio-only within 20 mi"
+    },
+    {
+      "slug": "is-asmr-good-for-you",
+      "tip": "Start with five minutes, not an hour. New ASMR listeners often try too long a session and lose atten"
+    },
+    {
+      "slug": "best-asmr-for-sleep",
+      "tip": "Test new triggers at 7pm, not midnight. When you're already tired and frustrated, your tolerance for"
+    },
+    {
+      "slug": "best-asmr-for-sleep",
+      "tip": "The same video working every night for weeks is fine. Novelty isn't required. Familiarity actually h"
+    },
+    {
+      "slug": "best-asmr-microphone",
+      "tip": "Record 30 seconds of pure silence at the start of every session before you touch anything. That clip"
+    },
+    {
+      "slug": "best-asmr-microphone",
+      "tip": "Lock your gain and never let any app auto-adjust it. Automatic gain control is the number one reason"
+    },
+    {
+      "slug": "best-asmr-microphone",
+      "tip": "If your tapping sounds harsh and clicky, back the mic off by four inches before you touch an EQ. Dis"
+    },
+    {
+      "slug": "best-asmr-microphone",
+      "tip": "Aim your voice past the capsule rather than into it, roughly 30 degrees off-axis. Your plosives and "
+    },
+    {
+      "slug": "best-asmr-microphone",
+      "tip": "Master to around -16 LUFS integrated with a limiter at -1 dBTP. Consistent loudness across your chan"
+    },
+    {
+      "slug": "best-asmr-microphone",
+      "tip": "Test every finished video on cheap earbuds and laptop speakers, not just your good headphones. If a "
+    },
+    {
+      "slug": "best-headphones-for-asmr",
+      "tip": "Before you buy anything, pull up the model on RTINGS or Crinacle and look for a dip between 4kHz and"
+    },
+    {
+      "slug": "best-headphones-for-asmr",
+      "tip": "Turn off every audio enhancement your phone or PC applies. Spatial audio, Dolby, virtual surround, a"
+    },
+    {
+      "slug": "best-headphones-for-asmr",
+      "tip": "Test a new pair with an ear-to-ear whisper video and your eyes closed. If you cannot instantly point"
+    },
+    {
+      "slug": "best-headphones-for-asmr",
+      "tip": "Buy two pairs instead of one expensive one. A decent open-back for evening sessions and a cheap slee"
+    },
+    {
+      "slug": "best-headphones-for-asmr",
+      "tip": "If you are recording rather than listening, use closed-back monitors only. Open cups bleed into a bi"
+    },
+    {
+      "slug": "how-to-make-ai-asmr-videos",
+      "tip": "Generate whisper audio in 30-60 second clips instead of long takes, then splice the best ones togeth"
+    },
+    {
+      "slug": "how-to-make-ai-asmr-videos",
+      "tip": "Set ElevenLabs stability slider to 30-40% for whisper voices so you get natural variation instead of"
+    },
+    {
+      "slug": "how-to-make-ai-asmr-videos",
+      "tip": "Add \"(soft breath)\" and ellipses in your TTS scripts to force natural pauses since the AI won't add "
+    },
+    {
+      "slug": "how-to-make-ai-asmr-videos",
+      "tip": "Run your generated tapping audio through a slight pitch randomizer in your DAW to break up the drum-"
+    },
+    {
+      "slug": "what-is-mommy-asmr",
+      "tip": "Use a sleep timer app so the video stops after you fall asleep instead of autoplaying into unrelated"
+    },
+    {
+      "slug": "what-is-mommy-asmr",
+      "tip": "Try binaural versions with headphones for the most immersive experience, since the close directional"
+    },
+    {
+      "slug": "what-is-mommy-asmr",
+      "tip": "If a specific creator's voice works for you, download the audio for offline playback so buffering or"
+    },
+    {
+      "slug": "what-is-mommy-asmr",
+      "tip": "Start with longer videos of 45 minutes or more, since shorter ones often end before you fall asleep "
+    },
+    {
+      "slug": "how-to-create-asmr-food-content",
+      "tip": "Put headphones on and record one test bite before every single shoot. Two minutes of checking saves "
+    },
+    {
+      "slug": "how-to-create-asmr-food-content",
+      "tip": "Set your gain so normal bites peak around minus 12 dB. You can always raise it in editing, but you c"
+    },
+    {
+      "slug": "how-to-create-asmr-food-content",
+      "tip": "Never rest the mic on the same table as the plate. Cutlery clinks and plate scrapes travel through t"
+    },
+    {
+      "slug": "how-to-create-asmr-food-content",
+      "tip": "Buy foam windscreens before you buy a better mic. Six dollars of foam fixes more plosive problems th"
+    },
+    {
+      "slug": "best-earbuds-for-asmr",
+      "tip": "Turn your volume down to 40% before starting an ASMR video. Triggers are subtle sounds. Cranking vol"
+    },
+    {
+      "slug": "best-earbuds-for-asmr",
+      "tip": "If you have AirPods Pro, go into Settings and turn off spatial audio before watching ASMR. The spati"
+    },
+    {
+      "slug": "best-earbuds-for-asmr",
+      "tip": "Comply foam tips cost $15 and fit most IEMs. If your silicone tips keep falling out or feel loose, f"
+    },
+    {
+      "slug": "asmr-equipment",
+      "tip": "Test your room acoustics by clapping once. Flutter echo or ringing means you need more absorption. A"
+    },
+    {
+      "slug": "asmr-equipment",
+      "tip": "Check microphone self-noise specs before buying. Target 15 dB-A or lower. Higher self-noise means au"
+    },
+    {
+      "slug": "asmr-equipment",
+      "tip": "Position your mic 4-6 inches from your mouth for whispers. Closer pickup reduces room noise in the r"
+    },
+    {
+      "slug": "asmr-equipment",
+      "tip": "Record 10 seconds of silence before every session. This room tone sample improves noise reduction ac"
+    },
+    {
+      "slug": "asmr-equipment",
+      "tip": "Use high-pass filtering at 80 Hz to remove low rumble without affecting voice. This cuts AC hum, tra"
+    },
+    {
+      "slug": "asmr-equipment",
+      "tip": "Monitor through closed-back headphones at moderate volume. High monitoring levels cause ear fatigue "
+    },
+    {
+      "slug": "asmr-equipment",
+      "tip": "Keep a dedicated ASMR prop box. Materials like tissue paper and foil work once then lose their sound"
+    },
+    {
+      "slug": "how-to-start-an-asmr-channel",
+      "tip": "Record your first video in a closet with hanging clothes. The fabric absorbs echo better than expens"
+    },
+    {
+      "slug": "how-to-start-an-asmr-channel",
+      "tip": "Film between 11pm and 6am when traffic stops, neighbors sleep, and HVAC runs less. Your phone mic pi"
+    },
+    {
+      "slug": "how-to-start-an-asmr-channel",
+      "tip": "Unplug your refrigerator while recording. That low hum you stopped noticing shows up clearly in whis"
+    },
+    {
+      "slug": "how-to-start-an-asmr-channel",
+      "tip": "Respond to every single comment for your first year. ASMR viewers form personal connections with cre"
+    },
+    {
+      "slug": "how-to-start-an-asmr-channel",
+      "tip": "Post on Sunday evenings. ASMR viewership peaks when people prepare for the work week and need help w"
+    },
+    {
+      "slug": "how-to-start-an-asmr-channel",
+      "tip": "Don't delete your video because it's not perfect. Three takes with small improvements beats twenty t"
+    },
+    {
+      "slug": "how-to-start-an-asmr-channel",
+      "tip": "Use CapCut's audio normalization set to -6dB peak. This prevents quiet whispers from disappearing an"
+    },
+    {
+      "slug": "how-do-asmr-youtubers-make-money-without-ads",
+      "tip": "Start your Patreon the day you hit 1,000 subscribers, not 5,000. Early supporters shape your communi"
+    },
+    {
+      "slug": "how-do-asmr-youtubers-make-money-without-ads",
+      "tip": "Weave sponsor products into your ASMR content as a trigger rather than reading an ad script. A skinc"
+    },
+    {
+      "slug": "how-do-asmr-youtubers-make-money-without-ads",
+      "tip": "Put Amazon affiliate links for your top three pieces of gear in every single video description. New "
+    },
+    {
+      "slug": "how-do-asmr-youtubers-make-money-without-ads",
+      "tip": "Ko-fi tips tend to spike after emotional or deeply relaxing videos. Post your Ko-fi link in the firs"
+    },
+    {
+      "slug": "bfe-meaning-asmr",
+      "tip": "Use headphones or earbuds, not speakers. BFE relies on spatial audio to feel intimate. Without headp"
+    },
+    {
+      "slug": "bfe-meaning-asmr",
+      "tip": "Close your eyes if watching feels awkward at first. Many regular BFE viewers treat it as audio-only "
+    },
+    {
+      "slug": "bfe-meaning-asmr",
+      "tip": "Give it three full minutes before deciding. The first 60 seconds of any roleplay ASMR feels strange "
+    },
+    {
+      "slug": "bfe-meaning-asmr",
+      "tip": "Sort YouTube search results by view count when starting out. High-view BFE videos got there because "
+    },
+    {
+      "slug": "bfe-meaning-asmr",
+      "tip": "Check comments before committing to a 40-minute video. BFE comments are honest about whether the vid"
+    },
+    {
+      "slug": "bfe-meaning-asmr",
+      "tip": "Once you find a creator whose voice works, watch their whole catalog. Searching every night wastes t"
+    },
+    {
+      "slug": "bfe-meaning-asmr",
+      "tip": "If BFE feels too intense, try comfort ASMR without the boyfriend framing. Same triggers, less rolepl"
+    },
+    {
+      "slug": "brown-noise",
+      "tip": "Start with a 10-hour YouTube video tonight rather than downloading an app. You can optimize later. R"
+    },
+    {
+      "slug": "brown-noise",
+      "tip": "Keep your volume lower than you think you need. You want to barely notice it's there. If you're acti"
+    },
+    {
+      "slug": "brown-noise",
+      "tip": "Give it at least three nights before deciding it doesn't work. Your brain treats any new sound as no"
+    },
+    {
+      "slug": "white-noise",
+      "tip": "Right-click any YouTube video and select Loop before you fall asleep. This prevents the silence at 3"
+    },
+    {
+      "slug": "pink-noise",
+      "tip": "Use a speaker for sleep, not headphones. A small Bluetooth speaker on the nightstand gives you a nat"
+    },
+    {
+      "slug": "misophonia",
+      "tip": "Keep a note on your phone with your top three trigger sounds and share it with your doctor or therap"
+    },
+    {
+      "slug": "misophonia",
+      "tip": "If you eat with people regularly, try one earbud at low volume playing a neutral sound -- you can st"
+    },
+    {
+      "slug": "misophonia",
+      "tip": "Do not start with ASMR content that includes your main trigger sounds. Begin with noise tracks or na"
+    },
+    {
+      "slug": "rain-sounds-for-sleeping",
+      "tip": "Put your speaker on a hard surface like a nightstand rather than a soft one. Fabric absorbs sound an"
+    },
+    {
+      "slug": "asmr-for-studying",
+      "tip": "Keep your volume around 50-60 dB, quiet enough that you could hold a normal conversation over it. If"
+    },
+    {
+      "slug": "asmr-for-studying",
+      "tip": "Don't use a video you've never heard before as your study soundtrack. Pick something familiar so you"
+    },
+    {
+      "slug": "asmr-for-studying",
+      "tip": "If the ASMR stops working after a few weeks of daily use, you've hit habituation. Rotate between 3-5"
+    },
+    {
+      "slug": "asmr-for-studying",
+      "tip": "For ADHD: try audio-only, no visual. Run the ASMR on your phone face-down while you study on your la"
+    },
+    {
+      "slug": "asmr-for-studying",
+      "tip": "Match the trigger to the task. Page-turning for reading, typing sounds for writing, nature or rain f"
+    },
+    {
+      "slug": "ai-asmr-generator",
+      "tip": "Start with myNoise.net before anything else. Pick one environment, adjust the sliders until it sound"
+    },
+    {
+      "slug": "ai-asmr-generator",
+      "tip": "If you try ElevenLabs for whisper audio, keep your script under 500 words and set the stability slid"
+    },
+    {
+      "slug": "ai-asmr-generator",
+      "tip": "Test AI ambient sounds through the same headphones or speaker you use at night. A sound that seems t"
+    },
+    {
+      "slug": "ai-asmr-generator",
+      "tip": "For creators testing content ideas, use AI to generate a rough 30-second version of each concept bef"
+    },
+    {
+      "slug": "ai-asmr-generator",
+      "tip": "If you are starting your own ASMR channel, do not try to compete with AI on ambient sound. Focus on "
+    },
+    {
+      "slug": "crinkling",
+      "tip": "For sleep, pick tissue paper or thin plastic bag videos over foil -- foil has sharper moments that c"
+    },
+    {
+      "slug": "crinkling",
+      "tip": "If a material stops giving you tingles after a few weeks, switch to a multi-material compilation -- "
+    },
+    {
+      "slug": "crinkling",
+      "tip": "Download two or three long favorites to your phone before bed so you're not scrolling through search"
+    },
+    {
+      "slug": "singing-bowls",
+      "tip": "Start the video 20 minutes before you want to be asleep, not when you're already frustrated and cloc"
+    },
+    {
+      "slug": "singing-bowls",
+      "tip": "Put your phone face-down on the nightstand after starting. Every time you check the time, you reset "
+    },
+    {
+      "slug": "singing-bowls",
+      "tip": "Volume should be just above comfortable hearing, not loud enough to feel physical. Too loud keeps yo"
+    },
+    {
+      "slug": "singing-bowls",
+      "tip": "Try counting the strikes silently if your mind won't settle. Giving it a tiny task can paradoxically"
+    },
+    {
+      "slug": "singing-bowls",
+      "tip": "Look for videos labeled 'no talking' or 'pure tones' to avoid creators who add introductions or mid-"
+    },
+    {
+      "slug": "roleplay",
+      "tip": "Save two or three favorites to a playlist before bed so you're not hunting for something when you're"
+    },
+    {
+      "slug": "roleplay",
+      "tip": "Check if the creator uses real tools. A hair stylist with actual scissors, combs, and sprayers in fr"
+    },
+    {
+      "slug": "dental-roleplay",
+      "tip": "Read the comments before committing to a 45-minute video. Other viewers will warn about audio issues"
+    },
+    {
+      "slug": "dental-roleplay",
+      "tip": "Try different creator nationalities if American accents aren't working. British, Australian, and Eas"
+    },
+    {
+      "slug": "spa-roleplay",
+      "tip": "Build a playlist of 5 to 8 videos that work and rotate through them so you never watch the same one "
+    },
+    {
+      "slug": "spa-roleplay",
+      "tip": "Match the video length to your goal: 15 to 20 minutes for daytime anxiety reset, 35 to 50 minutes fo"
+    },
+    {
+      "slug": "spa-roleplay",
+      "tip": "When nothing is working, switch to a completely different trigger type like typing or paper sounds. "
+    },
+    {
+      "slug": "spa-roleplay",
+      "tip": "Look for videos with long quiet stretches where the creator stops talking and just makes sounds. Con"
+    },
+    {
+      "slug": "spa-roleplay",
+      "tip": "Check your physical setup before blaming the video. Wrong earbud fit, uncomfortable position, or vol"
+    },
+    {
+      "slug": "haircut-asmr",
+      "tip": "Queue up two or three videos before you try to sleep so autoplay doesn't surprise you with something"
+    },
+    {
+      "slug": "haircut-asmr",
+      "tip": "If scissors alone aren't doing it tonight, look for videos that layer spray bottle sounds on top. Th"
+    },
+    {
+      "slug": "haircut-asmr",
+      "tip": "Check video length before committing. Anything under 20 minutes will probably end before you fall as"
+    },
+    {
+      "slug": "cranial-nerve-exam",
+      "tip": "Sort search results by view count first, then check the comment section for warnings about loud endi"
+    },
+    {
+      "slug": "cranial-nerve-exam",
+      "tip": "If you want the full binaural effect, use over-ear headphones instead of earbuds and turn the volume"
+    },
+    {
+      "slug": "cranial-nerve-exam",
+      "tip": "Start with a creator whose voice style matches your preference before picking by video length, becau"
+    },
+    {
+      "slug": "asmr-for-adhd",
+      "tip": "Use headphones or earbuds. Most ASMR is recorded with binaural microphones that create spatial effec"
+    },
+    {
+      "slug": "asmr-for-adhd",
+      "tip": "Give it 15 full minutes before deciding if a video works. Your brain needs transition time. Checking"
+    },
+    {
+      "slug": "asmr-for-adhd",
+      "tip": "If scripted ASMR feels fake or cringy, try unintentional ASMR. Watch real craftspeople: shoe repair,"
+    },
+    {
+      "slug": "asmr-for-adhd",
+      "tip": "Put your phone face down or in another room. If you're watching ASMR while also scrolling something "
+    },
+    {
+      "slug": "asmr-for-adhd",
+      "tip": "For emotional spirals (replaying something embarrassing, rejection sensitivity), skip personal atten"
+    },
+    {
+      "slug": "asmr-for-adhd",
+      "tip": "Layer brown noise under ASMR if you need more coverage. The noise provides baseline attention captur"
+    },
+    {
+      "slug": "asmr-for-depression",
+      "tip": "Use videos at least 30 minutes long and let them autoplay into the next one, getting jarred awake wh"
+    },
+    {
+      "slug": "asmr-for-depression",
+      "tip": "Save a playlist of three to five creators that work for you so you never have to decide what to watc"
+    },
+    {
+      "slug": "asmr-for-depression",
+      "tip": "If the tingles stopped or never existed, you're not broken, try ambient ASMR with no talking like ra"
+    },
+    {
+      "slug": "asmr-for-depression",
+      "tip": "Put your phone face-down after pressing play so the screen glow doesn't keep you awake, let the audi"
+    },
+    {
+      "slug": "asmr-for-depression",
+      "tip": "If a creator's voice immediately irritates you, move on within 30 seconds, your nervous system knows"
+    },
+    {
+      "slug": "asmr-for-meditation",
+      "tip": "Use headphones, not speakers. The difference is huge, especially for binaural recordings where the s"
+    },
+    {
+      "slug": "asmr-for-meditation",
+      "tip": "Don't try to stay awake for the full video. The goal is deep rest, not finishing. If you drift off a"
+    },
+    {
+      "slug": "asmr-for-meditation",
+      "tip": "Start with a few deep breaths before hitting play. Four counts in, hold, four counts out. It primes "
+    },
+    {
+      "slug": "asmr-for-meditation",
+      "tip": "If you're not feeling the tingles, don't give up after one video. Some people take ten or twenty ses"
+    },
+    {
+      "slug": "asmr-for-meditation",
+      "tip": "Dim your screen or go audio-only in the dark. The visual component helps some people but adds stimul"
+    },
+    {
+      "slug": "asmr-for-meditation",
+      "tip": "Build it into a routine you already have. Pair it with brushing your teeth or getting into bed. Afte"
+    },
+    {
+      "slug": "fireplace-asmr",
+      "tip": "Turn the volume lower than feels right at first. If you're actively listening to each crackle, it's "
+    },
+    {
+      "slug": "fireplace-asmr",
+      "tip": "Use a speaker with actual bass response, not your phone's built-in speakers. The low-frequency thuds"
+    },
+    {
+      "slug": "fireplace-asmr",
+      "tip": "Put your phone face-down after starting playback. The flickering screen light counteracts the relaxa"
+    },
+    {
+      "slug": "fireplace-asmr",
+      "tip": "Give it 20 minutes before deciding it doesn't work. Your brain needs time to accept the new soundsca"
+    },
+    {
+      "slug": "thunderstorm-asmr",
+      "tip": "Start with the volume lower than feels right, then don't touch it for three nights. Your brain will "
+    },
+    {
+      "slug": "thunderstorm-asmr",
+      "tip": "If you use a phone, cast the audio to a Bluetooth speaker with actual bass response. Phone speakers "
+    },
+    {
+      "slug": "thunderstorm-asmr",
+      "tip": "Find one recording you like and stick with it for at least two weeks. Your brain needs repetition to"
+    },
+    {
+      "slug": "thunderstorm-asmr",
+      "tip": "Loop an 8-10 hour video rather than relying on autoplay. The ad break or next-video transition at 3a"
+    },
+    {
+      "slug": "thunderstorm-asmr",
+      "tip": "If you wake up and the storm is still playing but you can't fall back asleep, the recording might ha"
+    },
+    {
+      "slug": "thunderstorm-asmr",
+      "tip": "Combine with a sleep mask if you're using a screen to play the video. The audio benefit gets cancell"
+    },
+    {
+      "slug": "cat-purring-asmr",
+      "tip": "Commit to 15 minutes minimum with your eyes closed. If you've been trying 3-5 minute sessions and gi"
+    },
+    {
+      "slug": "cat-purring-asmr",
+      "tip": "Put your phone face down or use a device with no notifications. Every time you check your screen, yo"
+    },
+    {
+      "slug": "cat-purring-asmr",
+      "tip": "If your cat died and you're trying to find a recording that sounds like them, search by breed first."
+    },
+    {
+      "slug": "cat-purring-asmr",
+      "tip": "Skip videos with intros where the creator talks. Find recordings that start immediately with the pur"
+    },
+    {
+      "slug": "cat-purring-asmr",
+      "tip": "Set the video length longer than you need. If you pick a 20-minute video and fall asleep in 15, you'"
+    },
+    {
+      "slug": "best-asmr-apps",
+      "tip": "Don't judge any ASMR app by the first video you find. Spend at least 15 minutes exploring different "
+    },
+    {
+      "slug": "best-asmr-apps",
+      "tip": "For sleep use, set your timer to 45-60 minutes. Stopping audio mid-sleep is less disruptive than lea"
+    },
+    {
+      "slug": "best-asmr-apps",
+      "tip": "Use the Tingles free tier for two full weeks before deciding to pay. If you can't find at least thre"
+    },
+    {
+      "slug": "best-asmr-apps",
+      "tip": "Combine Atmosphere's free rain or white noise loop with a Tingles or YouTube video playing quietly i"
+    },
+    {
+      "slug": "best-asmr-apps",
+      "tip": "If you're new to ASMR, start with tapping or rain sounds before trying voice-based content. Non-voic"
+    },
+    {
+      "slug": "best-asmr-apps",
+      "tip": "If you're new and nothing is working, try ASMR Glow or Gibi ASMR on YouTube. They use slow pacing an"
+    },
+    {
+      "slug": "best-asmr-apps",
+      "tip": "Set a sleep timer inside whatever app you use. Looping ASMR all night can actually disrupt your slee"
+    },
+    {
+      "slug": "best-asmr-apps",
+      "tip": "If you're sensitive to sudden sounds, filter for 'no sudden volume changes' or 'gentle ASMR' in your"
+    },
+    {
+      "slug": "anime-asmr",
+      "tip": "Japanese ASMR creators on DLsite often release free sample tracks. Download a few before buying to c"
+    },
+    {
+      "slug": "anime-asmr",
+      "tip": "For sleep purposes, avoid energetic yandere or tsundere character roleplay. The emotional intensity "
+    },
+    {
+      "slug": "anime-asmr",
+      "tip": "Ghibli ambience ASMR is a solid entry point if pure character roleplay feels too weird. You get fami"
+    },
+    {
+      "slug": "anime-asmr",
+      "tip": "Check video runtime before clicking. Anything under 20 minutes will end before you fall asleep, and "
+    },
+    {
+      "slug": "asmr-para-dormir",
+      "tip": "Set a 45-minute sleep timer on YouTube before you start, so the video stops on its own and doesn't d"
+    },
+    {
+      "slug": "asmr-para-dormir",
+      "tip": "If you've been listening daily for weeks and the tingles have faded, take a full week off then switc"
+    },
+    {
+      "slug": "asmr-para-dormir",
+      "tip": "Try flat sleep headphones, which are thin speakers built into a soft headband, instead of earbuds so"
+    },
+    {
+      "slug": "asmr-para-dormir",
+      "tip": "Search \"ASMR espaÃ±ol susurros\" on YouTube to find Spanish-speaking creators, because a familiar acc"
+    },
+    {
+      "slug": "asmr-para-dormir",
+      "tip": "For ADHD nights when your brain won't quit, pick a long keyboard typing ASMR video instead of whispe"
+    },
+    {
+      "slug": "asmr-para-dormir",
+      "tip": "Keep the volume low, around 30-40% on your phone. Loud ASMR can keep you alert and damage your heari"
+    },
+    {
+      "slug": "asmr-para-dormir",
+      "tip": "Tonight, don't chase the tingle. Just pick something with rain, soft tapping, or a calm voice and le"
+    },
+    {
+      "slug": "asmr-para-dormir",
+      "tip": "Play it at about 40% volume. Loud enough to cover your thoughts, quiet enough that you stop actively"
+    },
+    {
+      "slug": "asmr-para-dormir",
+      "tip": "Try roleplay formats over pure sound videos. Something like a soft library scene or a slow Spanish b"
+    },
+    {
+      "slug": "asmr-para-dormir",
+      "tip": "If you wake up at 3am and can't get back down, don't scroll. Go straight back to the same video you "
+    },
+    {
+      "slug": "asmr-para-estudiar",
+      "tip": "No uses auriculares con cancelaciÃ³n de ruido activa si ya tienes ASMR puesto. Es demasiado aislamie"
+    },
+    {
+      "slug": "asmr-para-estudiar",
+      "tip": "Prueba ASMR de teclado mecÃ¡nico la prÃ³xima vez que tengas que escribir un ensayo y no puedas arran"
+    },
+    {
+      "slug": "asmr-para-estudiar",
+      "tip": "Pick a 2-hour rain-on-window video and don't touch it. The urge to find something better is procrast"
+    },
+    {
+      "slug": "asmr-para-estudiar",
+      "tip": "If whispered ASMR makes you want to understand what's being said, switch to a language you don't spe"
+    },
+    {
+      "slug": "asmr-para-estudiar",
+      "tip": "Don't start ASMR when you're already stressed. Put it on 5 minutes before you open your books. Let i"
+    },
+    {
+      "slug": "asmr-para-estudiar",
+      "tip": "Test keyboard typing ASMR if you're writing an essay. The sound of someone else typing steadily is a"
+    },
+    {
+      "slug": "asmr-para-estudiar",
+      "tip": "Save a specific playlist only for studying and never use it for anything else. Over a few weeks your"
+    },
+    {
+      "slug": "asmr-para-ansiedad",
+      "tip": "Usa siempre auriculares, no altavoces. La diferencia en profundidad de relajaciÃ³n es enorme, especi"
+    },
+    {
+      "slug": "asmr-para-ansiedad",
+      "tip": "Crea una lista de reproducciÃ³n de 3 o 4 videos que ya sabes que te funcionan. Buscar el video corre"
+    },
+    {
+      "slug": "asmr-para-ansiedad",
+      "tip": "Si el ASMR en inglÃ©s no te funciona, prueba canales de Argentina, MÃ©xico o EspaÃ±a. El acento fami"
+    },
+    {
+      "slug": "asmr-para-ansiedad",
+      "tip": "Baja el brillo de la pantalla al mÃ­nimo o cierra los ojos completamente. El ASMR funciona mejor cua"
+    },
+    {
+      "slug": "asmr-para-ansiedad",
+      "tip": "If your anxiety is spiking right now, don't start with crinkly or tapping sounds. Go straight to sof"
+    },
+    {
+      "slug": "asmr-para-ansiedad",
+      "tip": "The best ASMR for anxiety has zero jump cuts and no background music. Music competes with the ASMR e"
+    },
+    {
+      "slug": "asmr-para-ansiedad",
+      "tip": "Volume matters more than the trigger. Keep it low, around 30 to 40 percent. Loud ASMR defeats the pu"
+    },
+    {
+      "slug": "asmr-para-ansiedad",
+      "tip": "Try a roleplay video where someone is taking care of you, a doctor visit, a spa, a librarian. It sou"
+    },
+    {
+      "slug": "asmr-para-ansiedad",
+      "tip": "If you fall asleep during ASMR and wake up to silence at 3am with anxiety back, set a sleep timer ne"
+    },
+    {
+      "slug": "humming",
+      "tip": "Set the volume so you can hear clearly but your ear is not working to pick it up. Too loud becomes d"
+    },
+    {
+      "slug": "humming",
+      "tip": "Check video comments for specific mentions of tingles or sleep rather than just view counts. Comment"
+    },
+    {
+      "slug": "fast-aggressive-asmr",
+      "tip": "Start with tapping videos before trying crinkling. Tapping is easier to handle at speed and gives yo"
+    },
+    {
+      "slug": "fast-aggressive-asmr",
+      "tip": "If you feel irritated instead of tingly, lower the volume first before switching videos. Overload is"
+    },
+    {
+      "slug": "fast-aggressive-asmr",
+      "tip": "Use it with eyes closed and headphones in. Watching the video splits your attention and kills the ef"
+    },
+    {
+      "slug": "fast-aggressive-asmr",
+      "tip": "If you're using this for focus, 20 to 40 minute sessions work better than just playing a playlist on"
+    },
+    {
+      "slug": "reading-to-you",
+      "tip": "Set a sleep timer before you press play. On iPhone use the Clock app timer and set it to Stop Playin"
+    },
+    {
+      "slug": "reading-to-you",
+      "tip": "Download a few videos for offline so you never have to search for one while half-asleep. Searching w"
+    },
+    {
+      "slug": "reading-to-you",
+      "tip": "Put your phone face-down or use audio-only mode. Watching the screen keeps your brain in active mode"
+    },
+    {
+      "slug": "reading-to-you",
+      "tip": "If you are not asleep in 20 minutes, turn the volume down slightly instead of switching videos. Your"
+    },
+    {
+      "slug": "reading-to-you",
+      "tip": "Try the same reader three nights in a row before deciding it does not work. Familiarity builds the s"
+    },
+    {
+      "slug": "library-asmr",
+      "tip": "Use over-ear headphones to catch subtle paper sounds that earbuds miss"
+    },
+    {
+      "slug": "library-asmr",
+      "tip": "Match your room lighting to the video for better immersion"
+    },
+    {
+      "slug": "library-asmr",
+      "tip": "Set a sleep timer so videos do not play all night on your device"
+    },
+    {
+      "slug": "library-asmr",
+      "tip": "Search for specific triggers like book tapping or whispered reading to find your favorites"
+    },
+    {
+      "slug": "asmr-for-ptsd",
+      "tip": "Start with rain or nature sounds, no voices, no surprises. Once your nervous system knows what to ex"
+    },
+    {
+      "slug": "asmr-for-ptsd",
+      "tip": "Keep a short \"safe list\" of two or three tested videos you can reach for fast when you're already st"
+    },
+    {
+      "slug": "asmr-for-ptsd",
+      "tip": "Use long-format videos (4+ hours) for sleep. They give your brain something to track on the way down"
+    },
+    {
+      "slug": "asmr-for-ptsd",
+      "tip": "Headphones make a big difference. The immersive listening experience is part of what makes ASMR calm"
+    },
+    {
+      "slug": "asmr-for-ptsd",
+      "tip": "If a video triggers you, stop it and write down what the trigger was. Over time you'll map your pers"
+    },
+    {
+      "slug": "asmr-for-ptsd",
+      "tip": "Start with rain or ocean videos before you try anything with a person in it. Nature sounds have no s"
+    },
+    {
+      "slug": "asmr-for-ptsd",
+      "tip": "Make a short playlist before you're in crisis. When you're already activated, searching YouTube for "
+    },
+    {
+      "slug": "asmr-for-ptsd",
+      "tip": "The creator Gibi ASMR has a dedicated soft-spoken sleep series that's paced really slowly with no su"
+    },
+    {
+      "slug": "asmr-for-ptsd",
+      "tip": "If you wake up at 3am and can't get back to sleep, don't start something new. Go back to the same vi"
+    },
+    {
+      "slug": "asmr-for-ptsd",
+      "tip": "Turn off autoplay. The random next video breaking the silence is one of the worst things that can ha"
+    },
+    {
+      "slug": "asmr-for-tinnitus",
+      "tip": "Put your phone face-down or enable a screen blackout setting since even dim light disrupts sleep. Th"
+    },
+    {
+      "slug": "asmr-for-tinnitus",
+      "tip": "If one type of ASMR stops working after a few weeks, your brain has habituated. Switch to something "
+    },
+    {
+      "slug": "best-asmr-camera",
+      "tip": "Pre-focus manually and tape your focus ring before you start recording. Autofocus motor noise is rea"
+    },
+    {
+      "slug": "best-asmr-camera",
+      "tip": "The flip-out screen is non-negotiable. I know it sounds minor but you will spend 40 minutes adjustin"
+    },
+    {
+      "slug": "best-asmr-camera",
+      "tip": "Don't obsess over 4K if your internet is slow. ASMR viewers are more forgiving of 1080p than of chop"
+    },
+    {
+      "slug": "asmr-audio-interface",
+      "tip": "Record 10 seconds of room tone at the start of every session before you start talking or moving. Use"
+    },
+    {
+      "slug": "asmr-audio-interface",
+      "tip": "Focusrite Scarlett unboxing videos are the most common starting point and for good reason. The red c"
+    },
+    {
+      "slug": "asmr-room-setup",
+      "tip": "Record a 15-second silence sample at the start of every session, it takes 10 seconds and saves your "
+    },
+    {
+      "slug": "asmr-room-setup",
+      "tip": "Wear cotton or linen when you record, polyester rustles on sensitive mics and ruins quiet takes ever"
+    },
+    {
+      "slug": "asmr-room-setup",
+      "tip": "Point your mic about 15 degrees off-axis from your mouth to cut plosive pops without losing warmth i"
+    },
+    {
+      "slug": "asmr-room-setup",
+      "tip": "A $12 strand of warm fairy lights behind your bookshelf makes every ASMR thumbnail look intentional,"
+    },
+    {
+      "slug": "asmr-room-setup",
+      "tip": "Creators who whisper while organizing shelves or arranging desk items are your best bet. The combo o"
+    },
+    {
+      "slug": "asmr-room-setup",
+      "tip": "Don't overthink the volume. Set it so you can barely make out the words, then leave it. Too loud and"
+    },
+    {
+      "slug": "10-hour-asmr",
+      "tip": "Keep your phone on airplane mode with screen face-down to prevent notification lights from waking yo"
+    },
+    {
+      "slug": "10-hour-asmr",
+      "tip": "Save your sleep video to a single-tap playlist so finding it takes under 10 seconds of screen time, "
+    },
+    {
+      "slug": "10-hour-asmr",
+      "tip": "Use the same video for at least a week straight so your brain learns to associate that specific audi"
+    },
+    {
+      "slug": "10-hour-asmr",
+      "tip": "Set volume so you can easily talk over the video while awake, which is around 40-50 decibels and muc"
+    },
+    {
+      "slug": "relax",
+      "tip": "For sleep specifically, queue 3-4 similar ASMR videos to autoplay rather than relying on one. A 20-m"
+    },
+    {
+      "slug": "relax",
+      "tip": "If your go-to ASMR videos have stopped producing a response, rotate to a structurally different trig"
+    },
+    {
+      "slug": "relax",
+      "tip": "Test binaural vs. mono before deciding ASMR doesn't work for you. Play the same video through earbud"
+    },
+    {
+      "slug": "relax",
+      "tip": "Use ASMR for anxiety mid-day only in a reclined position with at least 15 minutes available. A 5-min"
+    },
+    {
+      "slug": "tingles",
+      "tip": "Watch the first two minutes of any new creator's video with headphones and no distractions before co"
+    },
+    {
+      "slug": "sleep-sounds",
+      "tip": "If rain stopped working, switch to fireplace for two full weeks before rotating back. Your brain bui"
+    },
+    {
+      "slug": "sleep-sounds",
+      "tip": "Set volume so you could whisper over it but not hear your own breathing. Too loud keeps you alert, t"
+    },
+    {
+      "slug": "sleep-sounds",
+      "tip": "Create an 8-hour playlist before you get in bed and enable auto-play. Never touch your phone once yo"
+    },
+    {
+      "slug": "sleep-sounds",
+      "tip": "Skip any video with a talking intro, even whispering. Speech activates language processing and pulls"
+    },
+    {
+      "slug": "frisson",
+      "tip": "Good headphones in complete darkness with zero distractions is the minimum viable setup for testing "
+    },
+    {
+      "slug": "sound-therapy-and-asmr",
+      "tip": "Use headphones for any ASMR video recorded with a binaural microphone. The 3D spatial effect only wo"
+    },
+    {
+      "slug": "sound-therapy-and-asmr",
+      "tip": "Use ASMR at the same time every night to build a sleep association. Your brain learns patterns, and "
+    },
+    {
+      "slug": "binaural-beats-guide",
+      "tip": "Start with alpha tracks at 10 Hz before trying delta or theta. Alpha is gentle and easier to sit wit"
+    },
+    {
+      "slug": "binaural-beats-guide",
+      "tip": "Don't start a new track at 11pm when you're already desperate to sleep. Queue it up before you even "
+    },
+    {
+      "slug": "binaural-beats-guide",
+      "tip": "The YouTube algorithm will try to autoplay something loud when your track ends. Set it to a playlist"
+    },
+    {
+      "slug": "binaural-beats-guide",
+      "tip": "If it's not working after 20 minutes, don't chase it. The anxiety of trying to fall asleep is louder"
+    },
+    {
+      "slug": "brown-noise-vs-white-noise",
+      "tip": "Put on a long video, at least 45 minutes, so you're not woken up by silence when it ends. YouTube au"
+    },
+    {
+      "slug": "brown-noise-vs-white-noise",
+      "tip": "If you use earbuds, set a sleep timer so audio stops after 30 minutes. This protects your ears and m"
+    },
+    {
+      "slug": "brown-noise-vs-white-noise",
+      "tip": "Rotate between at least 5 different videos or creators each week. Your brain stops responding to sou"
+    },
+    {
+      "slug": "brown-noise-vs-white-noise",
+      "tip": "Try starting with something slightly engaging like soft tapping, then switch to something more monot"
+    },
+    {
+      "slug": "brown-noise-vs-white-noise",
+      "tip": "If you're new to ASMR and don't feel tingles, don't give up. Try whispering, crinkling, and tapping "
+    },
+    {
+      "slug": "brown-noise-vs-white-noise",
+      "tip": "Watch your volume. Sleep ASMR should be quiet enough that you have to actually listen for it. If it'"
+    },
+    {
+      "slug": "brown-noise-vs-white-noise",
+      "tip": "Binaural ASMR sounds best with headphones but if headphones bother you, check if the creator has a n"
+    },
+    {
+      "slug": "nature-sounds-for-sleep",
+      "tip": "Layer two sources at low volume: a rain video underneath an ASMR creator's soft-speaking video. The "
+    },
+    {
+      "slug": "nature-sounds-for-sleep",
+      "tip": "Start the audio before you get into bed, not after. Use it as a wind-down signal for the last 20 min"
+    },
+    {
+      "slug": "nature-sounds-for-sleep",
+      "tip": "Don't skip the first 10 minutes. That's when your body is deciding whether to settle. Keep your phon"
+    },
+    {
+      "slug": "nature-sounds-for-sleep",
+      "tip": "If one track isn't working after 20 minutes, switch to something lower-pitched. Ocean waves that are"
+    },
+    {
+      "slug": "ambient-sounds",
+      "tip": "Match your sound to your goal: cafÃ© noise for writing, soft rain for reading, slow ocean waves for "
+    },
+    {
+      "slug": "ambient-sounds",
+      "tip": "Try a track at least 8 hours long for sleep. Short loops restart audibly and can snap you awake arou"
+    },
+    {
+      "slug": "ambient-sounds",
+      "tip": "Layer two tracks yourself: open a rain loop and a fireplace loop in separate tabs, then balance the "
+    },
+    {
+      "slug": "ambient-sounds",
+      "tip": "Rain on a tent hits different from rain on a roof. If generic rain isn't working for you, try 'rain "
+    },
+    {
+      "slug": "ambient-sounds",
+      "tip": "If your mind keeps narrating over the sound, try something with just a little more complexity, like "
+    },
+    {
+      "slug": "ambient-sounds",
+      "tip": "The sweet spot volume is where you can hear it clearly lying still but it fades into the background "
+    },
+    {
+      "slug": "ambient-sounds",
+      "tip": "Keep a shortlist of two or three tracks that have worked before. On bad nights you don't want to bro"
+    },
+    {
+      "slug": "asmr-community",
+      "tip": "When you go tingle immune, do not switch creators inside the same style. Jump to a completely differ"
+    },
+    {
+      "slug": "asmr-community",
+      "tip": "Skip videos with intro music or a talking preamble if you use ASMR for sleep. Any volume jump in the"
+    },
+    {
+      "slug": "asmr-community",
+      "tip": "If Western creators feel too chatty, try Korean or Japanese channels. The language barrier removes t"
+    },
+    {
+      "slug": "asmr-community",
+      "tip": "One Patreon subscription to your main creator, usually 3 to 15 dollars a month, beats fighting mid-v"
+    },
+    {
+      "slug": "asmr-microphone",
+      "tip": "Record a 30-second clip of total silence before your first session and play it back loud through hea"
+    },
+    {
+      "slug": "asmr-microphone",
+      "tip": "Hang your mic on a boom arm instead of a desk stand. Desk vibrations from tapping or typing travel s"
+    },
+    {
+      "slug": "asmr-microphone",
+      "tip": "If you are on a tight budget, buy a $10 pop filter before buying a better mic. It removes the harsh "
+    },
+    {
+      "slug": "asmr-microphone",
+      "tip": "Test your room before testing your mic. Clap once loudly and listen for a flutter echo or ringing af"
+    },
+    {
+      "slug": "asmr-microphone",
+      "tip": "For tapping triggers, position the mic slightly above and angled down toward the object rather than "
+    },
+    {
+      "slug": "asmr-microphone",
+      "tip": "The fluffy windscreen mic videos are beginner-friendly because the sound is already softened before "
+    },
+    {
+      "slug": "asmr-microphone",
+      "tip": "Don't pick a 10-minute video for sleep. Your brain will stay semi-alert waiting for it to end. Go fo"
+    },
+    {
+      "slug": "asmr-microphone",
+      "tip": "Wear headphones if you can, but tilt them back slightly so they're not fully sealed against your ear"
+    },
+    {
+      "slug": "asmr-microphone",
+      "tip": "Creator voice matters as much as mic quality. Some people do great with completely silent mic-only c"
+    },
+    {
+      "slug": "asmr-microphone",
+      "tip": "If you've been watching ASMR for a while and it stopped working, take a week off. Your brain adapts."
+    },
+    {
+      "slug": "asmr-gear-tools",
+      "tip": "Record in your closet before spending anything on acoustic panels, hanging clothes absorb reflection"
+    },
+    {
+      "slug": "asmr-gear-tools",
+      "tip": "Test your kitchen and junk drawer before buying any prop kit, glass jars, wooden spoons, aluminum fo"
+    },
+    {
+      "slug": "asmr-gear-tools",
+      "tip": "The XLR mic price tag is only about a third of the actual cost, factor in the audio interface ($100)"
+    },
+    {
+      "slug": "asmr-gear-tools",
+      "tip": "If you're doing eating ASMR, skip the expensive condenser and get a $25 lapel mic placed close to th"
+    },
+    {
+      "slug": "asmr-gear-tools",
+      "tip": "Look for watchmaker or locksmith videos instead of mechanic content. The scale is smaller, the sound"
+    },
+    {
+      "slug": "asmr-gear-tools",
+      "tip": "Don't sleep on measurement tool videos. Someone slowly extending a tape measure, clicking calipers, "
+    },
+    {
+      "slug": "asmr-gear-tools",
+      "tip": "If you're using this for focus rather than sleep, tool cleaning or restoration videos are the move. "
+    },
+    {
+      "slug": "whats-asmr",
+      "tip": "Use headphones, not speakers. ASMR depends on sounds feeling like they are inside your head. Speaker"
+    },
+    {
+      "slug": "whats-asmr",
+      "tip": "Watch in bed when you are already tired. The relaxation response works ten times better when your br"
+    },
+    {
+      "slug": "whats-asmr",
+      "tip": "If a video does not trigger you in three minutes, close it and try another. Your trigger exists but "
+    },
+    {
+      "slug": "whats-asmr",
+      "tip": "Remember your first successful video. That trigger is your most reliable one. Bookmark it and return"
+    },
+    {
+      "slug": "whats-asmr",
+      "tip": "If whispering annoys you, search for no-talking ASMR. Tapping, scratching, and ambient sounds work f"
+    },
+    {
+      "slug": "misophonia-and-asmr",
+      "tip": "Try no-talking ASMR as your entry point into the genre, it cuts mouth-sound risk entirely and still "
+    },
+    {
+      "slug": "misophonia-and-asmr",
+      "tip": "If the same sound relaxes you in videos but irritates you in person, that's the context flip and it'"
+    },
+    {
+      "slug": "misophonia-and-asmr",
+      "tip": "Volume matters more for you than for most people. Keep it low enough that unexpected sounds don't sp"
+    },
+    {
+      "slug": "misophonia-and-asmr",
+      "tip": "Test new ASMR creators on mute first. Scan the thumbnail and title for red flags. If you see food, c"
+    },
+    {
+      "slug": "misophonia-and-asmr",
+      "tip": "If a creator occasionally posts eating sounds between their safe content, mute notifications and onl"
+    },
+    {
+      "slug": "vagus-nerve-and-asmr",
+      "tip": "If you've never felt ASMR, try an ear examination roleplay before you give up. The ear proximity alo"
+    },
+    {
+      "slug": "vagus-nerve-and-asmr",
+      "tip": "Always use headphones, not speakers. Binaural audio needs each channel to reach a separate ear. Spea"
+    },
+    {
+      "slug": "vagus-nerve-and-asmr",
+      "tip": "If the tingling fades after a few minutes, switch to a new creator mid-video. Your brain habituates "
+    },
+    {
+      "slug": "vagus-nerve-and-asmr",
+      "tip": "Try doing a few slow exhales before you start watching. Long exhales directly activate the vagal res"
+    },
+    {
+      "slug": "vagus-nerve-and-asmr",
+      "tip": "If you're too wired to sleep, skip the roleplay videos tonight. Pure sound, no story. Rain on a tent"
+    },
+    {
+      "slug": "vagus-nerve-and-asmr",
+      "tip": "Binaural tingles only work if the creator recorded in true stereo and you're using headphones. Speak"
+    },
+    {
+      "slug": "vagus-nerve-and-asmr",
+      "tip": "If you tried ASMR and felt nothing, you might be a high-anxiety night. Try it again after 20 minutes"
+    },
+    {
+      "slug": "sound-sensitivity",
+      "tip": "Rotate through 8 to 12 different creators and trigger types so you don't burn out any single video, "
+    },
+    {
+      "slug": "sound-sensitivity",
+      "tip": "Take a full week off from all ASMR content a couple of times a year. Your first video back will like"
+    },
+    {
+      "slug": "sound-sensitivity",
+      "tip": "If you only feel tingles in one ear or much more strongly on one side, switch from speakers to headp"
+    },
+    {
+      "slug": "sound-sensitivity",
+      "tip": "Don't start with the most popular ASMR videos. They're made for people who need a lot of stimulation"
+    },
+    {
+      "slug": "sound-sensitivity",
+      "tip": "If you fall asleep to ASMR but wake up when it ends, set your phone's sleep timer to 90 minutes. You"
+    },
+    {
+      "slug": "glass-sounds",
+      "tip": "Don't put the video on and stare at it. Close your eyes within the first two minutes. The visuals ar"
+    },
+    {
+      "slug": "glass-sounds",
+      "tip": "If a video starts with someone explaining what they're about to do, skip ahead 60 to 90 seconds. You"
+    },
+    {
+      "slug": "best-asmr-youtube-channels",
+      "tip": "Put on headphones before writing off ASMR entirely. Most people who say it doesn't work for them hav"
+    },
+    {
+      "slug": "best-asmr-youtube-channels",
+      "tip": "Search for your trigger type first, not a creator name. Try tapping ASMR or page turning ASMR and se"
+    },
+    {
+      "slug": "best-asmr-youtube-channels",
+      "tip": "Check a channel's most recent upload date before building a sleep routine around it. Several well-kn"
+    },
+    {
+      "slug": "best-asmr-youtube-channels",
+      "tip": "If standard whisper videos do nothing for you, try a Korean ASMR channel like Latte ASMR. Less talki"
+    },
+    {
+      "slug": "best-asmr-youtube-channels",
+      "tip": "If you've been watching ASMR for 20 minutes and still feel nothing, switch triggers entirely. Tappin"
+    },
+    {
+      "slug": "best-asmr-youtube-channels",
+      "tip": "Don't sleep on older Gentle Whispering videos from 2012 to 2015. Maria basically invented the modern"
+    },
+    {
+      "slug": "best-asmr-youtube-channels",
+      "tip": "If you want tingles and not just relaxation, look for creators who get close to the microphone and v"
+    },
+    {
+      "slug": "soap-carving",
+      "tip": "If you are watching for sleep, pick a crumbling video over a cutting one because the sound is more c"
+    },
+    {
+      "slug": "soap-carving",
+      "tip": "Don't scroll through a playlist looking for the perfect video. Pick one, commit to it for 10 minutes"
+    },
+    {
+      "slug": "soap-carving",
+      "tip": "If you fall asleep to these and wake up mid-video, turn on autoplay with a similar creator queued. W"
+    },
+    {
+      "slug": "asmr-meaning-slang",
+      "tip": "If you want actual scalp tingles, search 'ASMR intentional triggers' or look for creators using bina"
+    },
+    {
+      "slug": "asmr-meaning-slang",
+      "tip": "Using 'ASMR vibes' or 'ASMR energy' in comments is safer than just 'ASMR' because it signals you're "
+    },
+    {
+      "slug": "asmr-meaning-slang",
+      "tip": "On YouTube, ASMR still mostly means intentional tingle content with expensive microphones and carefu"
+    },
+    {
+      "slug": "best-asmr",
+      "tip": "Put in earbuds before you start your first ASMR video, phone speakers flatten the stereo sound that "
+    },
+    {
+      "slug": "best-asmr",
+      "tip": "If one trigger doesn't work for you, try a completely different category before writing off ASMR ent"
+    },
+    {
+      "slug": "best-asmr",
+      "tip": "Drop your screen brightness to minimum once you're relaxed and ready to sleep, bright screens active"
+    },
+    {
+      "slug": "best-asmr",
+      "tip": "Follow two or three creators instead of just one so you always have fresh videos in the rotation, re"
+    },
+    {
+      "slug": "best-asmr",
+      "tip": "Start with a creator who does only one trigger per video. Bob Ross painting. Someone folding towels."
+    },
+    {
+      "slug": "best-asmr",
+      "tip": "If you're using ASMR for anxiety and nothing's clicking, try rain or static sounds first. They're no"
+    },
+    {
+      "slug": "best-asmr",
+      "tip": "The 10-minute test is real. If a video hasn't done anything for you in 10 minutes, close it. Great A"
+    },
+    {
+      "slug": "best-asmr",
+      "tip": "Volume matters more than people say. Turn it up louder than feels natural. ASMR at low volume sounds"
+    },
+    {
+      "slug": "best-asmr",
+      "tip": "Gibi ASMR for variety, Gentle Whispering if you want classic soft speaking, ASMR Darling if you're t"
+    },
+    {
+      "slug": "best-microphone-for-asmr",
+      "tip": "Position the mic 30 to 45 degrees off-axis from your mouth rather than dead center. This single adju"
+    },
+    {
+      "slug": "best-microphone-for-asmr",
+      "tip": "Record inside a closet full of clothes before buying any acoustic foam. Clothes absorb mid and high "
+    },
+    {
+      "slug": "best-microphone-for-asmr",
+      "tip": "Check the self-noise spec before anything else when comparing mics. Under 16 dBA means clean audio i"
+    },
+    {
+      "slug": "best-microphone-for-asmr",
+      "tip": "For phone filming with better audio, the Rode VideoMicro II with the right adapter is the one-purcha"
+    },
+    {
+      "slug": "asmr-significado",
+      "tip": "Start with a whispering video and headphones for your first try, that combination works for more beg"
+    },
+    {
+      "slug": "asmr-significado",
+      "tip": "If one ASMR type does nothing for you, don't write it off entirely. Try tapping, then rain, then per"
+    },
+    {
+      "slug": "asmr-significado",
+      "tip": "Search YouTube for 'ASMR susurros' or 'ASMR en espaÃ±ol' to find Spanish-language creators. The cont"
+    },
+    {
+      "slug": "asmr-significado",
+      "tip": "Watch at bedtime with your phone face-down so the screen light doesn't interrupt the effect. ASMR wo"
+    },
+    {
+      "slug": "asmr-significado",
+      "tip": "Si llevas 10 minutos viendo un video y no sientes nada, cÃ¡mbialo. No todos los creadores funcionan "
+    },
+    {
+      "slug": "asmr-significado",
+      "tip": "El error mÃ¡s comÃºn es ver ASMR con el telÃ©fono en la mano. Ponlo boca abajo, cierra los ojos, y s"
+    },
+    {
+      "slug": "asmr-significado",
+      "tip": "Para ansiedad en este momento: busca ASMR de mÃ©dico o examen fÃ­sico. Suena raro, pero la atenciÃ³n"
+    },
+    {
+      "slug": "asmr-significado",
+      "tip": "Si eres nuevo en esto, empieza con ASMR de sonidos de naturaleza antes que susurros. El agua, la llu"
+    },
+    {
+      "slug": "asmr-significado",
+      "tip": "La fatiga ASMR es real. Si escuchas el mismo video todas las noches, va a dejar de funcionar. MantÃ©"
+    },
+    {
+      "slug": "asmr-significado",
+      "tip": "Sleep arriving before the outro means the trigger landed. There is nothing to miss, relaxation was t"
+    },
+    {
+      "slug": "asmr-significado",
+      "tip": "Steady publishing matters when ASMR is part of your bedtime routine. Creators with reliable schedule"
+    },
+    {
+      "slug": "what-does-asmr-mean-in-text",
+      "tip": "If you want to find your personal triggers, start with whispering videos and tapping videos separate"
+    },
+    {
+      "slug": "what-does-asmr-mean-in-text",
+      "tip": "Don't give up after one or two videos. It sometimes takes several tries before your brain relaxes en"
+    },
+    {
+      "slug": "what-does-asmr-mean-in-text",
+      "tip": "For sleep use, look for long-format ASMR videos over an hour, since shorter clips often end abruptly"
+    },
+    {
+      "slug": "what-does-asmr-mean-in-text",
+      "tip": "If you feel nothing from ASMR videos but still find them calming, that's a completely normal experie"
+    },
+    {
+      "slug": "asmr-meaning-in-social-media",
+      "tip": "Use headphones your first time watching ASMR. The spatial audio effect is honestly the difference be"
+    },
+    {
+      "slug": "asmr-meaning-in-social-media",
+      "tip": "Start with tapping or rain sounds if you're new to this. Eating sounds are polarizing and not the be"
+    },
+    {
+      "slug": "asmr-meaning-in-social-media",
+      "tip": "If YouTube keeps recommending ASMR to you, watch one video all the way through. The algorithm takes "
+    },
+    {
+      "slug": "asmr-meaning-in-social-media",
+      "tip": "Try watching at night when you're already winding down. ASMR responses are much stronger when your b"
+    },
+    {
+      "slug": "asmr-meaning-in-social-media",
+      "tip": "TikTok ASMR clips are too short to actually relax most people. If you found the content there and wa"
+    },
+    {
+      "slug": "asmr-meaning-in-social-media",
+      "tip": "The sounds that work are different for everyone and there's no logic to it. Some people get tingles "
+    },
+    {
+      "slug": "why-does-asmr-make-you-tingle",
+      "tip": "Try headphones the next time a video feels like it's almost working but not quite. The difference is"
+    },
+    {
+      "slug": "why-does-asmr-make-you-tingle",
+      "tip": "If mouth sounds or eating sounds bother you instead of relaxing you, that's a real sensitivity, not "
+    },
+    {
+      "slug": "why-does-asmr-make-you-tingle",
+      "tip": "You don't have to close your eyes. Watching the hands or the slow visuals is part of why it works. S"
+    },
+    {
+      "slug": "why-does-asmr-make-you-tingle",
+      "tip": "If you're stressed or anxious, ASMR might not hit right away. Give yourself 5 minutes of just lying "
+    },
+    {
+      "slug": "best-kept-secret-asmr",
+      "tip": "Filter YouTube by upload date before searching any trigger word. Videos posted in the last hour have"
+    },
+    {
+      "slug": "best-kept-secret-asmr",
+      "tip": "Check the subscriber count before committing to a new creator. Under 10,000 is genuinely undiscovere"
+    },
+    {
+      "slug": "best-kept-secret-asmr",
+      "tip": "If you have burned out on English ASMR, search in Korean or Japanese. You cannot understand the word"
+    },
+    {
+      "slug": "best-kept-secret-asmr",
+      "tip": "The Self Promotion Sunday thread on r/asmr surfaces new creators months before they hit anyone's rec"
+    },
+    {
+      "slug": "best-kept-secret-asmr",
+      "tip": "When nothing works, take a full week off ASMR entirely. No videos, no podcasts, no background audio."
+    },
+    {
+      "slug": "live-asmr",
+      "tip": "Type short trigger requests in chat like \"tapping please\" rather than long explanations, the streame"
+    },
+    {
+      "slug": "live-asmr",
+      "tip": "Check the stream schedule ahead of time and pick one that starts an hour before you want to sleep. J"
+    },
+    {
+      "slug": "long-asmr",
+      "tip": "Set YouTube playback quality to 480p or lower for overnight video sessions. Higher resolution keeps "
+    },
+    {
+      "slug": "long-asmr",
+      "tip": "If you wake up at 3am and the video has ended, don't restart it from the beginning. The sudden sound"
+    },
+    {
+      "slug": "long-asmr",
+      "tip": "Rain and fan sounds at the volume where you can just barely hear them over your own breathing is the"
+    },
+    {
+      "slug": "cutting",
+      "tip": "Queue up a playlist longer than your expected sleep time. Waking up to silence or random autoplay vi"
+    },
+    {
+      "slug": "asmr-for-anxiety",
+      "tip": "Download 4 or 5 videos to your phone before you need them. Searching for the right video during a pa"
+    },
+    {
+      "slug": "asmr-for-anxiety",
+      "tip": "If whispering makes you tense instead of relaxed, you are not weird. Try soft speaking at normal vol"
+    },
+    {
+      "slug": "asmr-for-anxiety",
+      "tip": "Do not watch the screen. Close your eyes or face away from your phone. The visual stimulation keeps "
+    },
+    {
+      "slug": "asmr-for-focus",
+      "tip": "Keep a shortlist of 3-5 videos that you already know work for you. Don't browse for the perfect vide"
+    },
+    {
+      "slug": "asmr-for-focus",
+      "tip": "Match the trigger to your task: typing sounds for writing, rain for reading, nature sounds for creat"
+    },
+    {
+      "slug": "asmr-for-focus",
+      "tip": "If you have ADHD, try watching the ASMR video in a small corner of your screen instead of using it a"
+    },
+    {
+      "slug": "asmr-for-focus",
+      "tip": "Switch trigger types between work blocks instead of repeating the same video. Going from typing soun"
+    },
+    {
+      "slug": "asmr-for-focus",
+      "tip": "Test no-talking ASMR for one week before deciding it doesn't work for you. Most people start with wh"
+    },
+    {
+      "slug": "asmr-for-focus",
+      "tip": "The 'coffee shop ASMR' category is underrated. It layers soft ambient noise with occasional soft sou"
+    },
+    {
+      "slug": "asmr-for-focus",
+      "tip": "Try library or study-with-me ASMR when you need accountability, not just sound. Watching someone els"
+    },
+    {
+      "slug": "sleep-stories",
+      "tip": "Check the narrator's pace in the first 60 seconds. If they sound even slightly rushed, skip it. The "
+    },
+    {
+      "slug": "sleep-stories",
+      "tip": "Don't use your phone screen. Put the phone face-down, lock it, and just let the audio run. The momen"
+    },
+    {
+      "slug": "sleep-stories",
+      "tip": "The sweet spot is a story set somewhere familiar but slightly boring: a library, a slow train ride, "
+    },
+    {
+      "slug": "hand-sounds",
+      "tip": "Don't shuffle through creators looking for the perfect one tonight. Pick one video, commit to 15 min"
+    },
+    {
+      "slug": "chewing",
+      "tip": "Test food sounds with headphones before recording, what sounds good to the naked ear often sounds fl"
+    },
+    {
+      "slug": "chewing",
+      "tip": "Record in your bedroom closet if your space is reverberant, clothes absorb reflections better than a"
+    },
+    {
+      "slug": "chewing",
+      "tip": "Try honeycomb at least once even if you don't think it'll work, the wax-and-honey texture is one of "
+    },
+    {
+      "slug": "chewing",
+      "tip": "If crunch ASMR feels too sharp or aggressive, start with wet fruit like watermelon or ripe peaches, "
+    },
+    {
+      "slug": "chewing",
+      "tip": "Don't sleep on taffy and mochi for recording, they look boring on camera but create this slow stretc"
+    },
+    {
+      "slug": "chewing",
+      "tip": "If you're a creator, room temperature food records differently than cold food from the fridge, alway"
+    },
+    {
+      "slug": "chewing",
+      "tip": "Keep your audio input gain conservative when recording eating, you can always boost quiet sections i"
+    },
+    {
+      "slug": "chewing",
+      "tip": "If you're new to this, don't start with crunchy foods. Start with honeycomb, mochi, or soft candy vi"
+    },
+    {
+      "slug": "chewing",
+      "tip": "The creator matters more than the food. Same apple, two different ASMRtists, completely different ex"
+    },
+    {
+      "slug": "chewing",
+      "tip": "Turn off autoplay. Nothing kills a sleep session faster than a recommended video with a loud intro o"
+    },
+    {
+      "slug": "chewing",
+      "tip": "Don't fight it if you feel grossed out the first time. That reaction is normal and usually fades aft"
+    },
+    {
+      "slug": "asmr-for-stress",
+      "tip": "Always use headphones, not speakers. The binaural spatial effect that makes ASMR work requires sound"
+    },
+    {
+      "slug": "asmr-for-stress",
+      "tip": "Apply the 90-second rule ruthlessly. If a video does not start calming you within 90 seconds, the cr"
+    },
+    {
+      "slug": "asmr-for-stress",
+      "tip": "Put your phone face-down after starting the video. The point is to stop visual stimulation. If you w"
+    },
+    {
+      "slug": "asmr-for-stress",
+      "tip": "Try at least three completely different trigger types before deciding ASMR does not work for you. Ta"
+    },
+    {
+      "slug": "asmr-for-stress",
+      "tip": "For sleep, start the video before you feel desperate. Use it as a transition ritual when you first g"
+    },
+    {
+      "slug": "asmr-for-stress",
+      "tip": "Search with negative keywords to filter out triggers that bother you. Add 'no mouth sounds' or 'no e"
+    },
+    {
+      "slug": "writing",
+      "tip": "Queue 2-3 videos in a playlist before starting so you never touch YouTube mid-session. Every tab swi"
+    },
+    {
+      "slug": "writing",
+      "tip": "Set volume so the pen scratch is audible but not identifiable letter-by-letter. If you can hear indi"
+    },
+    {
+      "slug": "pouring",
+      "tip": "If sleep is the goal, look for videos that are at least an hour long with no talking at all. Short c"
+    },
+    {
+      "slug": "pouring",
+      "tip": "Tilt the container slowly and deliberately. A fast pour is louder and harsher. A slow controlled til"
+    },
+    {
+      "slug": "pouring",
+      "tip": "Watch your room echo when recording. Hold your phone near the mic and clap once. If you hear a rever"
+    },
+    {
+      "slug": "pouring",
+      "tip": "Sand in a clear glass container gives you both a great sound and something hypnotic to watch visuall"
+    },
+    {
+      "slug": "fabric-sounds",
+      "tip": "If you fall asleep mid-video and wake up to silence, that's the goal working. Don't start another on"
+    },
+    {
+      "slug": "folding",
+      "tip": "If you are literally standing at your laundry pile right now, start with a no-talking video and put "
+    },
+    {
+      "slug": "folding",
+      "tip": "Always pick a video 10-15 minutes longer than you think you need, because running out of video mid-f"
+    },
+    {
+      "slug": "folding",
+      "tip": "Skip any video with background music, visible background noise, or a creator who folds fast. The who"
+    },
+    {
+      "slug": "meditation-asmr",
+      "tip": "If you wake up when a video ends, search for 8-hour or 10-hour versions. Many creators make extended"
+    },
+    {
+      "slug": "meditation-asmr",
+      "tip": "Phone brightness at minimum, screen face down. Any light hitting your closed eyelids keeps your brai"
+    },
+    {
+      "slug": "meditation-asmr",
+      "tip": "Volume lower than you think. If you can hear every detail clearly, it is too loud. The sounds should"
+    },
+    {
+      "slug": "meditation-asmr",
+      "tip": "Create a playlist of 3 to 4 videos that have worked before. When one is not hitting, skip to the nex"
+    },
+    {
+      "slug": "meditation-asmr",
+      "tip": "If whispering feels too intimate or creepy, you are not broken. Start with soft-spoken or no-talking"
+    },
+    {
+      "slug": "asmr-for-sleep",
+      "tip": "Set a 12 minute timer on your first video and do not touch your phone until it goes off. Switching v"
+    },
+    {
+      "slug": "asmr-for-sleep",
+      "tip": "Bookmark the first video that works immediately. At 2 AM next week you will not remember the title, "
+    },
+    {
+      "slug": "asmr-for-sleep",
+      "tip": "Keep volume lower than comfortable. If you can hear it clearly while thinking about something else, "
+    },
+    {
+      "slug": "asmr-for-sleep",
+      "tip": "If you share a bed, try bone conduction headphones. They let you hear audio without earbuds and are "
+    },
+    {
+      "slug": "asmr-for-sleep",
+      "tip": "Avoid compilations. They cut between different creators with different audio levels. You will get jo"
+    },
+    {
+      "slug": "asmr-for-sleep",
+      "tip": "If soft-spoken keeps you too alert, try no-talking videos with pure tapping or brushing sounds. Some"
+    },
+    {
+      "slug": "liquids",
+      "tip": "If whispering ASMR stopped working after a year, liquid sounds use a different brain pathway and oft"
+    },
+    {
+      "slug": "liquids",
+      "tip": "Search for videos over 30 minutes from channels with 100K plus subscribers. Length and subscriber co"
+    },
+    {
+      "slug": "liquids",
+      "tip": "Close your eyes during underwater ASMR if the bubble visuals bother you. The sound works fine withou"
+    },
+    {
+      "slug": "liquids",
+      "tip": "Check the first 15 seconds for room echo. If the liquid sounds distant or you hear ambient hum, clos"
+    },
+    {
+      "slug": "bells",
+      "tip": "Sort YouTube results by view count after searching. High view counts on ASMR videos usually mean the"
+    },
+    {
+      "slug": "bells",
+      "tip": "Set a sleep timer on your phone. Most bell ASMR videos run 1-3 hours, and you don't need your screen"
+    },
+    {
+      "slug": "bells",
+      "tip": "If you find a video that works, immediately check if that creator has a playlist. One good find can "
+    },
+    {
+      "slug": "bells",
+      "tip": "The first bell video you click probably won't be the one. Give each video 2 minutes max, then move o"
+    },
+    {
+      "slug": "autonomous-asmr",
+      "tip": "If you've never felt ASMR, try binaural microphone recordings first because the 3D spatial effect is"
+    },
+    {
+      "slug": "autonomous-asmr",
+      "tip": "Take a 1-2 week complete break when tingles stop working, and don't cheat with 'just one video' or y"
+    },
+    {
+      "slug": "autonomous-asmr",
+      "tip": "Watch in darkness or dim lighting because visual distraction pulls your attention away from the subt"
+    },
+    {
+      "slug": "autonomous-asmr",
+      "tip": "Skip videos where you can hear room echo or background noise since proximity and intimacy are core t"
+    },
+    {
+      "slug": "autonomous-asmr",
+      "tip": "If whispering annoys you instead of relaxing you, you might have mild misophonia for that specific s"
+    },
+    {
+      "slug": "whispering-asmr",
+      "tip": "Skip the first 30 seconds of any whisper video because intros are usually louder and more produced t"
+    },
+    {
+      "slug": "whispering-asmr",
+      "tip": "Turn the volume down until you have to focus slightly to hear it clearly, whisper ASMR loses its int"
+    },
+    {
+      "slug": "whispering-asmr",
+      "tip": "If one creator's whisper feels harsh or wrong, try another before concluding whisper ASMR is not for"
+    },
+    {
+      "slug": "whispering-asmr",
+      "tip": "Use a sleep timer app or pick videos over one hour to avoid YouTube autoplaying something loud when "
+    },
+    {
+      "slug": "whispering-asmr",
+      "tip": "Face your phone screen down after starting the video because looking at the screen keeps your brain "
+    },
+    {
+      "slug": "roleplay-asmr",
+      "tip": "Watch the first 30 seconds with eye contact in mind. If the creator breaks character, looks away rep"
+    },
+    {
+      "slug": "mukbang-asmr",
+      "tip": "If wet mouth sounds disgust you instead of relax you, search for creators who use table-mounted micr"
+    },
+    {
+      "slug": "mukbang-asmr",
+      "tip": "If one food type does nothing for you, try a completely different texture before giving up on the ge"
+    },
+    {
+      "slug": "crafting-asmr",
+      "tip": "Skip to 30 seconds into any new video and listen for room tone. If you hear air conditioner hum or t"
+    },
+    {
+      "slug": "crafting-asmr",
+      "tip": "Set a 25 minute sleep timer before starting. Most people fall asleep in 15 to 25 minutes and waking "
+    },
+    {
+      "slug": "crafting-asmr",
+      "tip": "If you only like no-talking content, add 'no talking binaural' to every search. Whisper and soft-spo"
+    },
+    {
+      "slug": "crafting-asmr",
+      "tip": "Dim your screen below system minimum using a filter app. Normal brightness keeps your brain awake re"
+    },
+    {
+      "slug": "crafting-asmr",
+      "tip": "When paper sounds stop triggering you, switch to clay for two weeks, then fabric, then back to paper"
+    },
+    {
+      "slug": "organizing-asmr",
+      "tip": "Name your sleep playlist something short and obvious like ZZZ or SLEEP NOW. At 2am with low brightne"
+    },
+    {
+      "slug": "organizing-asmr",
+      "tip": "When you add a video to your comfort playlist, remove one. The power is in the limit. Ten videos max"
+    },
+    {
+      "slug": "organizing-asmr",
+      "tip": "Keep a notes file with timestamps for long videos. 'Bookstore roleplay, tapping starts 14:20' saves "
+    },
+    {
+      "slug": "organizing-asmr",
+      "tip": "Audit your saved videos once a month. Watch each for 15 seconds and delete anything that doesn't imm"
+    },
+    {
+      "slug": "organizing-asmr",
+      "tip": "If YouTube autoplay keeps waking you up, switch to a bookmark folder instead of playlists. No algori"
+    },
+    {
+      "slug": "packing-asmr",
+      "tip": "Set a sleep timer on your phone instead of trusting the video to end gracefully. YouTube end cards a"
+    },
+    {
+      "slug": "packing-asmr",
+      "tip": "When a video stops working after repeated watching, you are probably habituated. Switch to a complet"
+    },
+    {
+      "slug": "packing-asmr",
+      "tip": "Side sleeper earbuds exist and they are worth buying if you use ASMR for sleep regularly. Regular ea"
+    },
+    {
+      "slug": "gaming-asmr",
+      "tip": "Check video comments for accidental ASMR testimonials like 'fell asleep to this' or 'so relaxing' si"
+    },
+    {
+      "slug": "gaming-asmr",
+      "tip": "Test new creators during casual evenings first, not when you desperately need sleep, so a bad pick d"
+    },
+    {
+      "slug": "gaming-asmr",
+      "tip": "For sleep use, stick to videos over 30 minutes because your brain needs time to settle and autoplay "
+    },
+    {
+      "slug": "gaming-asmr",
+      "tip": "If you find one reliable creator, check their collaborations and recommended sidebar to find similar"
+    },
+    {
+      "slug": "gaming-asmr",
+      "tip": "Skip any video where the creator yells during boss fights or exciting moments by scrubbing through f"
+    },
+    {
+      "slug": "asmr-for-insomnia",
+      "tip": "Set a 30-minute sleep timer on YouTube so the app closes automatically after you fall asleep instead"
+    },
+    {
+      "slug": "asmr-for-insomnia",
+      "tip": "If you find a video that works, download it. Creators delete videos, channels disappear, and you do "
+    },
+    {
+      "slug": "asmr-for-insomnia",
+      "tip": "The best test of whether a trigger works for you is whether you remember the end of the video. If yo"
+    },
+    {
+      "slug": "asmr-for-insomnia",
+      "tip": "Temperature matters more than sound. If your room is above 70F, ASMR is fighting against biology. Co"
+    },
+    {
+      "slug": "asmr-for-insomnia",
+      "tip": "Avoid the algorithm trap. Do not scroll through recommendations looking for the perfect video. Pick "
+    },
+    {
+      "slug": "asmr-for-pain",
+      "tip": "If three trigger types fail in a row, the problem is video quality. Look for binaural mic setup, no "
+    },
+    {
+      "slug": "cottagecore-asmr",
+      "tip": "Turn your volume down until you have to strain slightly to hear the words. This forces your brain to"
+    },
+    {
+      "slug": "cottagecore-asmr",
+      "tip": "If over-ear headphones are uncomfortable for side sleeping, try a sleep headband with flat speakers "
+    },
+    {
+      "slug": "fantasy-asmr",
+      "tip": "DnD ASMR hits harder if you play tabletop games because the dice and sheet sounds trigger existing p"
+    },
+    {
+      "slug": "medieval-asmr",
+      "tip": "Keep one 8-hour tavern ambience video bookmarked for nights when you can't handle any human interact"
+    },
+    {
+      "slug": "medieval-asmr",
+      "tip": "When you find a creator you love, download your three favorite videos. YouTube channels disappear, v"
+    },
+    {
+      "slug": "medieval-asmr",
+      "tip": "Switch settings every few nights to avoid habituation. Tavern Monday, blacksmith Wednesday, apotheca"
+    },
+    {
+      "slug": "alien-asmr",
+      "tip": "Blue or purple thumbnail lighting usually signals healer or first-contact vibes. Red or green lighti"
+    },
+    {
+      "slug": "goth-asmr",
+      "tip": "Check the first 90 seconds before committing to a 45-minute video because set design quality and aud"
+    },
+    {
+      "slug": "cottagecore-crafts",
+      "tip": "Check the video timeline before committing because real craft sounds happen at irregular intervals a"
+    },
+    {
+      "slug": "cottagecore-crafts",
+      "tip": "Use headphones over speakers for craft ASMR because binaural recordings lose their spatial depth thr"
+    },
+    {
+      "slug": "cottagecore-crafts",
+      "tip": "If a video has background music or lo-fi beats layered over the craft sounds, close it immediately b"
+    },
+    {
+      "slug": "relaxation",
+      "tip": "Search for '3Dio' or 'binaural' alongside your trigger type to find recordings with real left-right "
+    },
+    {
+      "slug": "relaxation",
+      "tip": "If ASMR is losing its effect, switch trigger categories for a week before giving up. Moving from whi"
+    },
+    {
+      "slug": "relaxation",
+      "tip": "For daytime stress relief at work, choose typing or keyboard ASMR with no voice narration. The rhyth"
+    },
+    {
+      "slug": "relaxation",
+      "tip": "After a session, give yourself 5 minutes before jumping into something demanding. Walking to get wat"
+    },
+    {
+      "slug": "asmr-in-korea",
+      "tip": "Test binaural authenticity in the first 30 seconds. If an object moving left to right tracks smoothl"
+    },
+    {
+      "slug": "asmr-in-latin-america",
+      "tip": "Put on headphones and jump to the middle of the video before committing. If the voice moves across y"
+    },
+    {
+      "slug": "asmr-in-latin-america",
+      "tip": "During a quiet pause, listen underneath the whisper. If the room hiss is anywhere near as loud as th"
+    },
+    {
+      "slug": "asmr-in-latin-america",
+      "tip": "If you're fluent in Spanish, skip the talky roleplays and go for no talking or unintelligible whispe"
+    },
+    {
+      "slug": "asmr-in-latin-america",
+      "tip": "Search limpia energetica, tarot, and peluqueria as separate terms rather than browsing one channel. "
+    },
+    {
+      "slug": "asmr-in-japan",
+      "tip": "Sort head spa searches by duration and pick anything over 40 minutes. The short clips are edited for"
+    },
+    {
+      "slug": "asmr-in-japan",
+      "tip": "If a video sounds good but you feel nothing at all, check whether it is mono. Pan your headphones me"
+    },
+    {
+      "slug": "best-asmr-youtuber-rankings",
+      "tip": "Skip to the middle of a video before judging a creator. Intros are edited and loud, and the middle i"
+    },
+    {
+      "slug": "best-asmr-youtuber-rankings",
+      "tip": "Keep three or four channels in rotation instead of binging one. Immunity almost never hits people wh"
+    },
+    {
+      "slug": "best-asmr-youtuber-rankings",
+      "tip": "Turn autoplay off before bed. A gentle 50 minute whisper video followed by an autoplayed loud reacti"
+    },
+    {
+      "slug": "best-asmr-creators",
+      "tip": "Check the uploads tab before subscribing to any ASMR channel. A creator with four million subscriber"
+    },
+    {
+      "slug": "best-asmr-creators",
+      "tip": "Test any new creator with headphones on and eyes closed for the first two minutes. If you hear hiss,"
+    },
+    {
+      "slug": "best-asmr-creators",
+      "tip": "When your favorite creator stops working, do not chase more intense videos. Switch to a completely d"
+    },
+    {
+      "slug": "best-asmr-creators",
+      "tip": "Use TikTok ASMR clips to figure out your triggers before committing to long YouTube videos. Thirty s"
+    },
+    {
+      "slug": "asmr-trends",
+      "tip": "Test any new video with the first 30 seconds in headphones. If there's an intro jingle or a loud hel"
+    },
+    {
+      "slug": "asmr-trends",
+      "tip": "Build a rotation of four or five creators across different trigger families and cycle them weekly. H"
+    },
+    {
+      "slug": "asmr-trends",
+      "tip": "Set your sleep videos so you can barely hear them at your lowest comfortable volume. Loud ASMR keeps"
+    },
+    {
+      "slug": "asmr-trends",
+      "tip": "If you're new and nothing has worked, start with soft speaking or rain in headphones in a dark room,"
+    },
+    {
+      "slug": "asmr-challenges",
+      "tip": "Before starting a try not to tingle challenge, check the thumbnail for a visible ear shaped mic. No "
+    },
+    {
+      "slug": "asmr-challenges",
+      "tip": "Set your volume so the loudest trigger sits just above a whisper. Turning it up feels stronger for a"
+    },
+    {
+      "slug": "asmr-challenges",
+      "tip": "If you're stuck in a dry spell, block your top trigger completely for two weeks instead of hunting f"
+    },
+    {
+      "slug": "asmr-challenges",
+      "tip": "Run a challenge with someone new to ASMR and watch their reaction instead of your own. Their face at"
+    },
+    {
+      "slug": "beeping",
+      "tip": "Count the beeps for ten seconds before committing to a track. Under 12 is sleep territory, over 20 r"
+    },
+    {
+      "slug": "beeping",
+      "tip": "Scrub to the middle and the three quarter mark of any long upload. If it sounds identical with the s"
+    },
+    {
+      "slug": "beeping",
+      "tip": "Use the hospital sub-type for sleep and the checkout scanner sub-type for focus. Scanner beeps have "
+    },
+    {
+      "slug": "asmr-copyright",
+      "tip": "Record your own rain, wind, and room tone beds once with a stereo mic on a single afternoon. You own"
+    },
+    {
+      "slug": "asmr-copyright",
+      "tip": "If a batch of your videos gets claimed overnight, dispute the highest view ones first and do it the "
+    },
+    {
+      "slug": "asmr-copyright",
+      "tip": "Screenshot your license page, invoice, and the channel connection screen in your music subscription "
+    },
+    {
+      "slug": "asmr-lighting-setup",
+      "tip": "Set your camera's white balance manually instead of leaving it on auto. Mixed light sources make aut"
+    },
+    {
+      "slug": "asmr-lighting-setup",
+      "tip": "Buy flicker-free bulbs even if they cost a few dollars more. Cheap LEDs pulse fast enough to show as"
+    },
+    {
+      "slug": "asmr-lighting-setup",
+      "tip": "Aim your lamps at a white wall instead of at your face. The bounce turns a small hard source into a "
+    },
+    {
+      "slug": "asmr-lighting-setup",
+      "tip": "Record a ten second test clip and watch it on your phone before every long session. Phone screens sh"
+    },
+    {
+      "slug": "asmr-research-studies",
+      "tip": "If your tingles faded, stop watching for two full weeks instead of hunting new creators. Total break"
+    },
+    {
+      "slug": "asmr-research-studies",
+      "tip": "Use headphones for any video labeled binaural, since the whole effect depends on left right separati"
+    },
+    {
+      "slug": "asmr-research-studies",
+      "tip": "If you are misophonic as well as ASMR sensitive, start with tapping, brushing, or rain rather than m"
+    },
+    {
+      "slug": "asmr-neuroimaging",
+      "tip": "Keep the volume just above the point where you would strain slightly to hear. Loud playback breaks t"
+    },
+    {
+      "slug": "asmr-neuroimaging",
+      "tip": "Rotate triggers on a schedule instead of waiting until they die. Two weeks on tapping, two weeks on "
+    },
+    {
+      "slug": "asmr-neuroimaging",
+      "tip": "Test whether you are an audio or visual responder before giving up on ASMR entirely. Watch the same "
+    },
+    {
+      "slug": "asmr-neuroimaging",
+      "tip": "Skip mono recordings if you use earbuds. Move your head slightly while listening, and if the sound d"
+    },
+    {
+      "slug": "asmr-editing-guide",
+      "tip": "Do your manual clip gain before any noise reduction or compression. Smoothing loud spikes by hand fi"
+    },
+    {
+      "slug": "asmr-editing-guide",
+      "tip": "Bounce a 30 second test clip processed and unprocessed, then listen on the cheapest earbuds you own."
+    },
+    {
+      "slug": "asmr-editing-guide",
+      "tip": "Never edit ASMR audio tired. Ear fatigue makes you over-process every single time, and you will hear"
+    },
+    {
+      "slug": "asmr-editing-guide",
+      "tip": "Keep a 10 second clip of pure room tone from every recording session and lay it under all your cuts."
+    },
+    {
+      "slug": "asmr-misconceptions",
+      "tip": "If tingles stopped working, don't switch creators, switch trigger families entirely. Go from tapping"
+    },
+    {
+      "slug": "asmr-misconceptions",
+      "tip": "Test whether you actually respond to binaural before buying anything. Put on any earbuds, find a vid"
+    },
+    {
+      "slug": "asmr-misconceptions",
+      "tip": "If you're trying ASMR for the first time, start with a no talking tapping video rather than whisperi"
+    },
+    {
+      "slug": "asmr-misconceptions",
+      "tip": "Set a sleep timer for 45 minutes instead of letting videos autoplay. Autoplay is how you end up with"
+    },
+    {
+      "slug": "bubble-wrap",
+      "tip": "For sleep, pick squeeze-style videos (whole sheet crushed at once) over single-pop videos. The chaot"
+    },
+    {
+      "slug": "fan-sounds",
+      "tip": "If you sleep with fan ASMR, test the loop point before committing for the night. Play the video at 2"
+    },
+    {
+      "slug": "fan-sounds",
+      "tip": "Layer a box fan recording at low volume under whispering ASMR to fill the silence between words. Set"
+    },
+    {
+      "slug": "fan-sounds",
+      "tip": "For winter months when you want fan sound without cold air, play the recording through a small Bluet"
+    },
+    {
+      "slug": "fan-sounds",
+      "tip": "If you've been listening to the same fan recording for weeks and it's stopped working, switch fan ty"
+    },
+    {
+      "slug": "page-turning",
+      "tip": "Keep the volume just above the threshold of hearing, where you have to slightly focus to catch the p"
+    },
+    {
+      "slug": "page-turning",
+      "tip": "For sleep, pick videos over an hour so the sound continues when you briefly surface during the night"
+    },
+    {
+      "slug": "wind-sounds",
+      "tip": "Match your recording length to your use case: 8-hour loops for sleeping through the night without si"
+    },
+    {
+      "slug": "water-sounds",
+      "tip": "For sleep, set YouTube to not autoplay and choose videos at least 30 minutes long. A 10-minute video"
+    },
+    {
+      "slug": "dripping-water",
+      "tip": "For a free DIY setup, let your bathroom faucet drip slowly into a ceramic bowl with the bathroom doo"
+    },
+    {
+      "slug": "ice-sounds",
+      "tip": "If you're new to ice ASMR, start with a nugget ice eating video rather than cube cracking. The wet c"
+    },
+    {
+      "slug": "ice-sounds",
+      "tip": "For DIY ice ASMR at home, fill a thin-walled glass with ice and set your phone mic 3 inches away in "
+    },
+    {
+      "slug": "tinfoil",
+      "tip": "Search YouTube for \"ASMR tin foil binaural no talking\" to filter out low-effort phone recordings and"
+    },
+    {
+      "slug": "tinfoil",
+      "tip": "If slow foil crinkle puts you to sleep too fast and you miss most of the video, try foil wrapping or"
+    },
+    {
+      "slug": "tinfoil",
+      "tip": "Push your earbuds in slightly more than usual for foil ASMR. Loose earbuds leak the high frequencies"
+    },
+    {
+      "slug": "tinfoil",
+      "tip": "Test your foil sensitivity before committing to a long video. Play the first 30 seconds of a fast-cr"
+    },
+    {
+      "slug": "gloves",
+      "tip": "Set your volume to 40-50% before starting a glove ASMR video. Glove snaps have sharp audio peaks tha"
+    },
+    {
+      "slug": "gloves",
+      "tip": "If glove sounds used to give you tingles but stopped working, take a full 2-week break from all glov"
+    },
+    {
+      "slug": "asmr-for-nausea",
+      "tip": "Use one earbud instead of two when you're nauseous. Both ears sealed off increases that closed-in, d"
+    },
+    {
+      "slug": "asmr-for-work",
+      "tip": "Keep a rotation of 5 to 8 tested videos and swap one out every two weeks when habituation kicks in. "
+    },
+    {
+      "slug": "asmr-for-babies",
+      "tip": "Place your phone in a sock or wrap it in a soft cloth before putting it speaker-down near the crib -"
+    },
+    {
+      "slug": "asmr-for-babies",
+      "tip": "Build a rotation playlist of 4 different trigger types (rain, tapping, brushing, crinkling) and swit"
+    },
+    {
+      "slug": "asmr-for-babies",
+      "tip": "Test a new ASMR trigger during a calm, awake moment first, not when your baby is already crying - yo"
+    },
+    {
+      "slug": "asmr-medieval",
+      "tip": "Test any sleep video by jumping to the 75% mark before you commit to it overnight. Plenty of creator"
+    },
+    {
+      "slug": "asmr-for-seniors",
+      "tip": "Bookmark three videos and rotate weekly: one tapping compilation with no talking, one rain or nature"
+    },
+    {
+      "slug": "asmr-for-seniors",
+      "tip": "Test any new ASMR video yourself before playing it for an elderly parent. Listen with earbuds for 30"
+    },
+    {
+      "slug": "asmr-for-seniors",
+      "tip": "If your parent responds well to ASMR but resists the idea of watching videos, switch to audio-only p"
+    },
+    {
+      "slug": "asmr-for-migraines",
+      "tip": "Build your migraine ASMR playlist before you need it. During prodrome (the early warning signs like "
+    },
+    {
+      "slug": "asmr-for-migraines",
+      "tip": "Try the pillow speaker method: phone face-down on the pillow beside your head, volume at 20-30%, scr"
+    },
+    {
+      "slug": "asmr-for-migraines",
+      "tip": "Keep separate playlists for migraine days versus regular ASMR sessions. Your favorite creators proba"
+    },
+    {
+      "slug": "asmr-storytime",
+      "tip": "If you listen to the same comfort video on repeat and it still works every time, that is not a probl"
+    },
+    {
+      "slug": "asmr-and-anxiety-research",
+      "tip": "If tingle fade hits after a few weeks of nightly ASMR, switch trigger types instead of watching more"
+    },
+    {
+      "slug": "asmr-and-anxiety-research",
+      "tip": "Don't wait for a panic attack to try ASMR. It works much better as daily prevention than crisis inte"
+    },
+    {
+      "slug": "why-doesnt-asmr-work-for-me",
+      "tip": "If whispering creeps you out or makes you want to close the tab immediately, do not push through it."
+    },
+    {
+      "slug": "why-doesnt-asmr-work-for-me",
+      "tip": "Test the same binaural ASMR video on phone speakers and then with sealed headphones back to back. If"
+    },
+    {
+      "slug": "why-doesnt-asmr-work-for-me",
+      "tip": "If you have ADHD and pure audio ASMR keeps losing your attention, switch to visual-heavy content lik"
+    },
+    {
+      "slug": "asmr-history",
+      "tip": "If modern ASMR feels too produced and staged to trigger anything, go back to the source: Bob Ross ep"
+    },
+    {
+      "slug": "asmr-history",
+      "tip": "The 2009 to 2012 era of ASMR on YouTube has a rawness that polished modern channels rarely replicate"
+    },
+    {
+      "slug": "asmr-history",
+      "tip": "If you want to understand why some content triggers and some does not, pay attention to proximity. C"
+    },
+    {
+      "slug": "asmr-history",
+      "tip": "Non-English ASMR, especially Korean and Japanese content, developed from a separate creative lineage"
+    }
+  ],
+  "thinFaq": [
+    {
+      "slug": "best-asmr-videos",
+      "q": "What is best asmr videos ASMR?",
+      "wc": 38
+    },
+    {
+      "slug": "best-asmr-videos",
+      "q": "Does best asmr videos ASMR help with sleep?",
+      "wc": 38
+    },
+    {
+      "slug": "best-asmr-videos",
+      "q": "How long should I listen to best asmr videos ASMR?",
+      "wc": 39
+    },
+    {
+      "slug": "best-asmr-videos",
+      "q": "Who does best asmr videos ASMR work best for?",
+      "wc": 35
+    },
+    {
+      "slug": "best-asmr-videos",
+      "q": "What's the difference between good and bad best asmr videos ASMR?",
+      "wc": 39
+    },
+    {
+      "slug": "best-asmr-videos",
+      "q": "Should I use headphones for best asmr videos ASMR?",
+      "wc": 38
+    },
+    {
+      "slug": "what-is-asmr-massage",
+      "q": "What is what is asmr massage ASMR?",
+      "wc": 34
+    },
+    {
+      "slug": "what-is-asmr-massage",
+      "q": "Does what is asmr massage ASMR help with sleep?",
+      "wc": 31
+    },
+    {
+      "slug": "what-is-asmr-massage",
+      "q": "How long should I listen to what is asmr massage ASMR?",
+      "wc": 33
+    },
+    {
+      "slug": "what-is-asmr-massage",
+      "q": "Who does what is asmr massage ASMR work best for?",
+      "wc": 30
+    },
+    {
+      "slug": "what-is-asmr-massage",
+      "q": "What's the difference between good and bad what is asmr massage ASMR?",
+      "wc": 33
+    },
+    {
+      "slug": "what-is-asmr-massage",
+      "q": "Should I use headphones for what is asmr massage ASMR?",
+      "wc": 27
+    },
+    {
+      "slug": "library-asmr",
+      "q": "What sounds are included in library ASMR?",
+      "wc": 35
+    },
+    {
+      "slug": "library-asmr",
+      "q": "What equipment do I need to make library ASMR?",
+      "wc": 39
+    },
+    {
+      "slug": "library-asmr",
+      "q": "Why do library sounds trigger ASMR?",
+      "wc": 33
+    },
+    {
+      "slug": "library-asmr",
+      "q": "How long should library ASMR videos be?",
+      "wc": 36
+    },
+    {
+      "slug": "library-asmr",
+      "q": "What is the difference between library ASMR and study ambience?",
+      "wc": 35
+    }
+  ],
+  "offTopicFaq": [
+    {
+      "slug": "typing",
+      "q": "What is the difference between clicky, tactile, and thocky keyboard sounds?"
+    },
+    {
+      "slug": "kisses",
+      "q": "Why do ASMR kiss videos use binaural or ear-to-ear audio?"
+    },
+    {
+      "slug": "anxiety",
+      "q": "Can ASMR help during a panic attack?"
+    },
+    {
+      "slug": "anxiety",
+      "q": "Why does ASMR make me feel calm?"
+    },
+    {
+      "slug": "anxiety",
+      "q": "Why doesn't ASMR work for me?"
+    },
+    {
+      "slug": "anxiety",
+      "q": "Are there people who can't experience ASMR?"
+    },
+    {
+      "slug": "nature",
+      "q": "Why do rain sounds make people sleepy?"
+    },
+    {
+      "slug": "asmr-artists",
+      "q": "What is an ASMRtist?"
+    },
+    {
+      "slug": "asmr-artists",
+      "q": "Who is the most popular ASMR artist?"
+    },
+    {
+      "slug": "asmr-artists",
+      "q": "What ASMR creator is best for sleep?"
+    },
+    {
+      "slug": "asmr-artists",
+      "q": "Are there male ASMR creators?"
+    },
+    {
+      "slug": "asmr-artists",
+      "q": "Who does the best roleplay ASMR?"
+    },
+    {
+      "slug": "what-does-asmr-stand-for",
+      "q": "Who invented the term ASMR?"
+    },
+    {
+      "slug": "what-does-asmr-stand-for",
+      "q": "Is ASMR scientifically proven?"
+    },
+    {
+      "slug": "what-does-asmr-stand-for",
+      "q": "Is ASMR good for anxiety or sleep?"
+    },
+    {
+      "slug": "best-asmr-for-sleep",
+      "q": "Why doesn't ASMR work for me anymore?"
+    },
+    {
+      "slug": "best-asmr-for-sleep",
+      "q": "Why do some ASMR videos relax me but others annoy me?"
+    },
+    {
+      "slug": "best-asmr-microphone",
+      "q": "Is the Blue Yeti good for ASMR?"
+    },
+    {
+      "slug": "best-headphones-for-asmr",
+      "q": "Can earbuds work for ASMR listening?"
+    },
+    {
+      "slug": "best-headphones-for-asmr",
+      "q": "Can you use a gaming headset for ASMR?"
+    },
+    {
+      "slug": "how-to-make-ai-asmr-videos",
+      "q": "How realistic are AI-generated ASMR sounds?"
+    },
+    {
+      "slug": "how-to-make-ai-asmr-videos",
+      "q": "Which AI tools are best for ASMR video?"
+    },
+    {
+      "slug": "how-to-make-ai-asmr-videos",
+      "q": "Do you have to disclose AI-generated ASMR on YouTube?"
+    },
+    {
+      "slug": "best-earbuds-for-asmr",
+      "q": "Are AirPods good for ASMR?"
+    },
+    {
+      "slug": "asmr-equipment",
+      "q": "What microphone do ASMR creators use?"
+    },
+    {
+      "slug": "asmr-equipment",
+      "q": "Do I need a binaural microphone for ASMR?"
+    },
+    {
+      "slug": "asmr-equipment",
+      "q": "What is the best ASMR microphone for beginners?"
+    },
+    {
+      "slug": "asmr-equipment",
+      "q": "Do you need an audio interface for ASMR?"
+    },
+    {
+      "slug": "asmr-equipment",
+      "q": "What camera do ASMR YouTubers use?"
+    },
+    {
+      "slug": "asmr-equipment",
+      "q": "How do I reduce background noise for ASMR recording?"
+    },
+    {
+      "slug": "asmr-equipment",
+      "q": "Is the Blue Yeti good for ASMR?"
+    },
+    {
+      "slug": "asmr-equipment",
+      "q": "What software do ASMR creators use?"
+    },
+    {
+      "slug": "how-to-start-an-asmr-channel",
+      "q": "How do I record ASMR with just my phone?"
+    },
+    {
+      "slug": "how-to-start-an-asmr-channel",
+      "q": "How long should my first ASMR video be?"
+    },
+    {
+      "slug": "how-do-asmr-youtubers-make-money-without-ads",
+      "q": "What Patreon tiers work best for ASMR creators?"
+    },
+    {
+      "slug": "how-do-asmr-youtubers-make-money-without-ads",
+      "q": "What brands sponsor ASMR channels?"
+    },
+    {
+      "slug": "how-do-asmr-youtubers-make-money-without-ads",
+      "q": "How do ASMR creators use affiliate marketing?"
+    },
+    {
+      "slug": "bfe-meaning-asmr",
+      "q": "What does BFE stand for in ASMR?"
+    },
+    {
+      "slug": "bfe-meaning-asmr",
+      "q": "What is the difference between BFE and GFE ASMR?"
+    },
+    {
+      "slug": "bfe-meaning-asmr",
+      "q": "Is BFE ASMR appropriate for all ages?"
+    },
+    {
+      "slug": "bfe-meaning-asmr",
+      "q": "Who are popular BFE ASMR creators on YouTube?"
+    },
+    {
+      "slug": "bfe-meaning-asmr",
+      "q": "What triggers are usually in a BFE ASMR video?"
+    },
+    {
+      "slug": "bfe-meaning-asmr",
+      "q": "What does roleplay ASMR mean compared to BFE?"
+    },
+    {
+      "slug": "bfe-meaning-asmr",
+      "q": "Why do people watch BFE ASMR?"
+    },
+    {
+      "slug": "asmr-for-studying",
+      "q": "Does ASMR actually help you study or is it just relaxing?"
+    },
+    {
+      "slug": "ai-asmr-generator",
+      "q": "Does AI-generated ASMR actually work for tingles?"
+    },
+    {
+      "slug": "ai-asmr-generator",
+      "q": "Can I use ElevenLabs or Murf to make ASMR content?"
+    },
+    {
+      "slug": "ai-asmr-generator",
+      "q": "Is it ethical to use AI to make ASMR videos?"
+    },
+    {
+      "slug": "ai-asmr-generator",
+      "q": "Will AI replace human ASMR creators?"
+    },
+    {
+      "slug": "positive-affirmations",
+      "q": "When is the best time to listen to affirmation ASMR?"
+    },
+    {
+      "slug": "positive-affirmations",
+      "q": "What's the difference between scripted and improvised affirmation ASMR?"
+    },
+    {
+      "slug": "haircut-asmr",
+      "q": "Why does the sound of scissors cutting hair feel so relaxing?"
+    },
+    {
+      "slug": "asmr-for-depression",
+      "q": "Why do I feel worse after ASMR ends?"
+    },
+    {
+      "slug": "asmr-for-depression",
+      "q": "Is it unhealthy to depend on ASMR to sleep every night?"
+    },
+    {
+      "slug": "asmr-for-meditation",
+      "q": "Does ASMR help with anxiety and sleep?"
+    },
+    {
+      "slug": "asmr-for-meditation",
+      "q": "Is ASMR scientifically proven to reduce stress?"
+    },
+    {
+      "slug": "fireplace-asmr",
+      "q": "Is crackling fire ASMR or white noise?"
+    },
+    {
+      "slug": "thunderstorm-asmr",
+      "q": "Why does thunder sound relaxing to some people but scary to others?"
+    },
+    {
+      "slug": "cat-purring-asmr",
+      "q": "What frequency is a cat's purr and why is it calming?"
+    },
+    {
+      "slug": "cat-purring-asmr",
+      "q": "Why do I feel sleepy when my cat purrs on me?"
+    },
+    {
+      "slug": "best-asmr-apps",
+      "q": "What ASMR app has the most realistic binaural audio?"
+    },
+    {
+      "slug": "asmr-para-ansiedad",
+      "q": "Â¿Por quÃ© algunas personas no sienten nada con el ASMR?"
+    },
+    {
+      "slug": "asmr-for-ptsd",
+      "q": "Is there a specific ASMR trigger that is better for hyperarousal than others?"
+    },
+    {
+      "slug": "asmr-for-ptsd",
+      "q": "How long do I need to listen to ASMR before I see a reduction in nightmares?"
+    },
+    {
+      "slug": "asmr-for-ptsd",
+      "q": "Is binaural ASMR with headphones dangerous for someone with dissociation or depersonalization?"
+    },
+    {
+      "slug": "asmr-room-setup",
+      "q": "What do I put under my mic stand so I don't pick up the vibration of my upstairs neighbor walking ar"
+    },
+    {
+      "slug": "asmr-room-setup",
+      "q": "I want to do tapping triggers. Do I need a wooden desk, or is a marble countertop better for the sou"
+    },
+    {
+      "slug": "asmr-room-setup",
+      "q": "Can I use LED strip lights, or do they cause electrical interference (buzzing) in the microphone?"
+    },
+    {
+      "slug": "10-hour-asmr",
+      "q": "Does ASMR actually help you fall asleep faster?"
+    },
+    {
+      "slug": "relax",
+      "q": "Why do some people not feel ASMR?"
+    },
+    {
+      "slug": "relax",
+      "q": "Can ASMR reduce anxiety?"
+    },
+    {
+      "slug": "sound-therapy-and-asmr",
+      "q": "Do I need to feel tingles for ASMR to work?"
+    },
+    {
+      "slug": "brown-noise-vs-white-noise",
+      "q": "Does ASMR actually help you sleep?"
+    },
+    {
+      "slug": "brown-noise-vs-white-noise",
+      "q": "What type of ASMR is best for sleep?"
+    },
+    {
+      "slug": "brown-noise-vs-white-noise",
+      "q": "Why do some people not feel ASMR?"
+    },
+    {
+      "slug": "brown-noise-vs-white-noise",
+      "q": "Is it OK to listen to ASMR every night?"
+    },
+    {
+      "slug": "brown-noise-vs-white-noise",
+      "q": "Can ASMR replace sleep medication?"
+    },
+    {
+      "slug": "asmr-community",
+      "q": "Why do some people not feel ASMR tingles?"
+    },
+    {
+      "slug": "asmr-community",
+      "q": "What does it mean to be tingle immune?"
+    },
+    {
+      "slug": "asmr-community",
+      "q": "How do I find good ASMR creators as a beginner?"
+    },
+    {
+      "slug": "asmr-gear-tools",
+      "q": "What microphone do ASMR creators actually use?"
+    },
+    {
+      "slug": "asmr-gear-tools",
+      "q": "Do I need a binaural microphone for ASMR or will a regular condenser work?"
+    },
+    {
+      "slug": "asmr-gear-tools",
+      "q": "How do I soundproof a room for ASMR recording without spending a lot?"
+    },
+    {
+      "slug": "asmr-gear-tools",
+      "q": "What's the difference between a shock mount and a pop filter and do I need both?"
+    },
+    {
+      "slug": "asmr-gear-tools",
+      "q": "What software do ASMR YouTubers use to edit audio and remove background noise?"
+    },
+    {
+      "slug": "whats-asmr",
+      "q": "What does ASMR stand for?"
+    },
+    {
+      "slug": "whats-asmr",
+      "q": "Why do some people not feel ASMR?"
+    },
+    {
+      "slug": "whats-asmr",
+      "q": "What triggers ASMR?"
+    },
+    {
+      "slug": "whats-asmr",
+      "q": "Why does ASMR make me sleepy?"
+    },
+    {
+      "slug": "whats-asmr",
+      "q": "Is ASMR good for anxiety?"
+    },
+    {
+      "slug": "vagus-nerve-and-asmr",
+      "q": "What is the Proximity Prediction Hypothesis and how does it explain ASMR tingling?"
+    },
+    {
+      "slug": "vagus-nerve-and-asmr",
+      "q": "How long does it take for ASMR to increase heart rate variability (HRV)?"
+    },
+    {
+      "slug": "best-asmr-youtube-channels",
+      "q": "What ASMR triggers are most effective for anxiety?"
+    },
+    {
+      "slug": "best-asmr-youtube-channels",
+      "q": "Is ASMR scientifically proven to help with relaxation or sleep?"
+    },
+    {
+      "slug": "best-asmr-youtube-channels",
+      "q": "What is the difference between eating ASMR and whispering ASMR?"
+    },
+    {
+      "slug": "asmr-meaning-slang",
+      "q": "Why do people call things ASMR when there's no whispering?"
+    },
+    {
+      "slug": "best-asmr",
+      "q": "Who are the most popular ASMR artists right now?"
+    },
+    {
+      "slug": "best-asmr",
+      "q": "What is the difference between soft-spoken and whispering ASMR?"
+    },
+    {
+      "slug": "asmr-significado",
+      "q": "What does ASMR mean in Spanish?"
+    },
+    {
+      "slug": "asmr-significado",
+      "q": "Why does ASMR cause a tingling sensation in the head?"
+    },
+    {
+      "slug": "asmr-significado",
+      "q": "I feel nothing from ASMR videos. Is that normal?"
+    },
+    {
+      "slug": "asmr-significado",
+      "q": "What's the difference between ASMR and normal relaxation?"
+    },
+    {
+      "slug": "asmr-significado",
+      "q": "Does ASMR have scientifically proven benefits?"
+    },
+    {
+      "slug": "asmr-significado",
+      "q": "What types of ASMR sounds are there?"
+    },
+    {
+      "slug": "asmr-meaning-in-social-media",
+      "q": "Why is ASMR so popular on TikTok and YouTube?"
+    },
+    {
+      "slug": "asmr-meaning-in-social-media",
+      "q": "Is ASMR actually proven to work or is it just a trend?"
+    },
+    {
+      "slug": "best-kept-secret-asmr",
+      "q": "What are the most underrated ASMR channels nobody talks about?"
+    },
+    {
+      "slug": "best-kept-secret-asmr",
+      "q": "How do I find new ASMR channels when YouTube keeps showing me the same ones?"
+    },
+    {
+      "slug": "best-kept-secret-asmr",
+      "q": "Why did ASMR stop working for me?"
+    },
+    {
+      "slug": "best-kept-secret-asmr",
+      "q": "Are there ASMR creators with small followings who are actually good?"
+    },
+    {
+      "slug": "best-kept-secret-asmr",
+      "q": "What ASMR triggers are most people missing out on?"
+    },
+    {
+      "slug": "best-kept-secret-asmr",
+      "q": "Is tingle immunity real and can I fix it?"
+    },
+    {
+      "slug": "long-asmr",
+      "q": "Does ASMR actually help you sleep?"
+    },
+    {
+      "slug": "long-asmr",
+      "q": "Is it bad to listen to ASMR for hours?"
+    },
+    {
+      "slug": "asmr-for-anxiety",
+      "q": "Why do I feel anxious watching ASMR instead of relaxed?"
+    },
+    {
+      "slug": "asmr-for-anxiety",
+      "q": "What should I do when ASMR stops working after using it regularly?"
+    },
+    {
+      "slug": "asmr-for-focus",
+      "q": "What type of ASMR is best for studying and concentration?"
+    },
+    {
+      "slug": "chewing",
+      "q": "How do I record ASMR eating sounds at home?"
+    },
+    {
+      "slug": "liquids",
+      "q": "Does drinking water ASMR actually help with sleep?"
+    },
+    {
+      "slug": "liquids",
+      "q": "What is the difference between liquid pouring ASMR and drinking sounds ASMR?"
+    },
+    {
+      "slug": "liquids",
+      "q": "What microphone do ASMR creators use to record liquid sounds?"
+    },
+    {
+      "slug": "bells",
+      "q": "Do I need headphones for bell ASMR to work?"
+    },
+    {
+      "slug": "autonomous-asmr",
+      "q": "Why do only some people feel ASMR tingles?"
+    },
+    {
+      "slug": "autonomous-asmr",
+      "q": "Is ASMR a real scientific thing?"
+    },
+    {
+      "slug": "autonomous-asmr",
+      "q": "Can you trigger ASMR in yourself on purpose?"
+    },
+    {
+      "slug": "autonomous-asmr",
+      "q": "What is the difference between ASMR and frisson?"
+    },
+    {
+      "slug": "autonomous-asmr",
+      "q": "Why did my ASMR tingles stop working?"
+    },
+    {
+      "slug": "autonomous-asmr",
+      "q": "How do I find my ASMR triggers?"
+    },
+    {
+      "slug": "speaking-asmr",
+      "q": "What is soft-spoken ASMR and how is it different from whispering?"
+    },
+    {
+      "slug": "mukbang-asmr",
+      "q": "What foods make the best ASMR eating sounds?"
+    },
+    {
+      "slug": "crafting-asmr",
+      "q": "What craft makes the best ASMR sounds?"
+    },
+    {
+      "slug": "organizing-asmr",
+      "q": "How do I organize my ASMR playlist so I can find videos faster?"
+    },
+    {
+      "slug": "organizing-asmr",
+      "q": "Should I sort my ASMR by trigger type or by creator?"
+    },
+    {
+      "slug": "organizing-asmr",
+      "q": "How do ASMR creators organize their recording files and sessions?"
+    },
+    {
+      "slug": "organizing-asmr",
+      "q": "How do I build a sleep ASMR routine that actually sticks?"
+    },
+    {
+      "slug": "organizing-asmr",
+      "q": "Why does YouTube autoplay ruin my ASMR sleep playlist?"
+    },
+    {
+      "slug": "gaming-asmr",
+      "q": "What games have the most ASMR-triggering sounds?"
+    },
+    {
+      "slug": "asmr-for-insomnia",
+      "q": "Does ASMR actually help you fall asleep or is it placebo?"
+    },
+    {
+      "slug": "asmr-for-insomnia",
+      "q": "Should I use headphones for ASMR when trying to sleep?"
+    },
+    {
+      "slug": "asmr-for-insomnia",
+      "q": "How long should I listen to ASMR before sleep?"
+    },
+    {
+      "slug": "asmr-for-insomnia",
+      "q": "Why does ASMR sometimes stop working for me?"
+    },
+    {
+      "slug": "asmr-for-insomnia",
+      "q": "Is it bad to fall asleep with ASMR playing all night?"
+    },
+    {
+      "slug": "asmr-for-insomnia",
+      "q": "What if ASMR makes me feel more awake instead of sleepy?"
+    },
+    {
+      "slug": "cottagecore-crafts",
+      "q": "Is there ASMR for sewing and embroidery sounds?"
+    },
+    {
+      "slug": "relaxation",
+      "q": "Can ASMR reduce anxiety and stress during the day, not just at bedtime?"
+    },
+    {
+      "slug": "relaxation",
+      "q": "Is ASMR safe to use every day for stress relief?"
+    },
+    {
+      "slug": "asmr-in-latin-america",
+      "q": "Why does ASMR in Spanish feel stronger than ASMR in my own language?"
+    },
+    {
+      "slug": "asmr-in-latin-america",
+      "q": "Is Brazilian ASMR different from Spanish language ASMR?"
+    },
+    {
+      "slug": "best-asmr-youtuber-rankings",
+      "q": "Why does ASMR stop working after watching the same creator?"
+    },
+    {
+      "slug": "best-asmr-youtuber-rankings",
+      "q": "Is ASMR bad for you or unhealthy long-term?"
+    },
+    {
+      "slug": "best-asmr-creators",
+      "q": "Who is the most popular ASMR creator on YouTube?"
+    },
+    {
+      "slug": "best-asmr-creators",
+      "q": "What type of ASMR gives the most tingles?"
+    },
+    {
+      "slug": "best-asmr-creators",
+      "q": "Who is the number one female ASMR creator?"
+    },
+    {
+      "slug": "best-asmr-creators",
+      "q": "What makes a good ASMR YouTuber?"
+    },
+    {
+      "slug": "asmr-trends",
+      "q": "What ASMR content is trending right now on YouTube and TikTok?"
+    },
+    {
+      "slug": "asmr-trends",
+      "q": "Why is AI generated ASMR suddenly everywhere in 2025 and 2026?"
+    },
+    {
+      "slug": "asmr-trends",
+      "q": "What happened to traditional whispering ASMR, is it dying?"
+    },
+    {
+      "slug": "asmr-trends",
+      "q": "Why does ASMR stop working after a while and what should I try instead?"
+    },
+    {
+      "slug": "asmr-trends",
+      "q": "Is mukbang the same as ASMR, and why is eating content taking over?"
+    },
+    {
+      "slug": "asmr-challenges",
+      "q": "What is the ASMR try not to tingle challenge?"
+    },
+    {
+      "slug": "asmr-challenges",
+      "q": "Why do some people not get tingles from ASMR?"
+    },
+    {
+      "slug": "asmr-challenges",
+      "q": "How do ASMR creators deal with tingle immunity?"
+    },
+    {
+      "slug": "asmr-challenges",
+      "q": "What is a noob vs pro ASMR challenge?"
+    },
+    {
+      "slug": "asmr-challenges",
+      "q": "Can you lose your ASMR sensitivity from watching too much?"
+    },
+    {
+      "slug": "beeping",
+      "q": "Why do repetitive electronic beeps trigger ASMR tingles?"
+    },
+    {
+      "slug": "asmr-copyright",
+      "q": "What happens if my ASMR video gets a Content ID claim?"
+    },
+    {
+      "slug": "asmr-copyright",
+      "q": "Does using royalty free music still get flagged on YouTube?"
+    },
+    {
+      "slug": "asmr-lighting-setup",
+      "q": "Do I need a ring light for ASMR?"
+    },
+    {
+      "slug": "asmr-lighting-setup",
+      "q": "Is a softbox or ring light better for ASMR recording?"
+    },
+    {
+      "slug": "asmr-monetization",
+      "q": "How much do ASMR YouTubers actually make per 1,000 views?"
+    },
+    {
+      "slug": "asmr-monetization",
+      "q": "Is Patreon or YouTube ads better for ASMR creators?"
+    },
+    {
+      "slug": "asmr-monetization",
+      "q": "How long does it take to make money from an ASMR channel?"
+    },
+    {
+      "slug": "asmr-monetization",
+      "q": "Can you make money from ASMR without showing your face?"
+    },
+    {
+      "slug": "asmr-research-studies",
+      "q": "What does ASMR do to your brain?"
+    },
+    {
+      "slug": "asmr-research-studies",
+      "q": "Does ASMR actually work or is it just placebo?"
+    },
+    {
+      "slug": "asmr-research-studies",
+      "q": "Can ASMR help with anxiety and sleep?"
+    },
+    {
+      "slug": "asmr-neuroimaging",
+      "q": "What part of the brain is activated by ASMR?"
+    },
+    {
+      "slug": "asmr-neuroimaging",
+      "q": "Does ASMR show up on brain scans?"
+    },
+    {
+      "slug": "asmr-neuroimaging",
+      "q": "Why do only some people experience ASMR tingles?"
+    },
+    {
+      "slug": "asmr-neuroimaging",
+      "q": "Why did my ASMR tingles stop working?"
+    },
+    {
+      "slug": "asmr-neuroimaging",
+      "q": "Can ASMR actually reduce anxiety, and what does brain imaging show?"
+    },
+    {
+      "slug": "asmr-editing-guide",
+      "q": "How do you remove background noise from ASMR recordings without ruining the sound?"
+    },
+    {
+      "slug": "asmr-editing-guide",
+      "q": "Should ASMR videos have background music or added sound effects?"
+    },
+    {
+      "slug": "asmr-misconceptions",
+      "q": "Is ASMR a sexual thing?"
+    },
+    {
+      "slug": "asmr-misconceptions",
+      "q": "Why do some people not experience ASMR tingles?"
+    },
+    {
+      "slug": "asmr-misconceptions",
+      "q": "Is ASMR scientifically proven?"
+    },
+    {
+      "slug": "asmr-misconceptions",
+      "q": "Can ASMR be harmful or dangerous?"
+    },
+    {
+      "slug": "asmr-misconceptions",
+      "q": "Is ASMR only useful for falling asleep?"
+    },
+    {
+      "slug": "fan-sounds",
+      "q": "What type of fan makes the best ASMR sound?"
+    },
+    {
+      "slug": "ice-sounds",
+      "q": "Is ice eating ASMR related to pica?"
+    },
+    {
+      "slug": "ice-sounds",
+      "q": "What is the difference between ice cracking and ice crunching ASMR?"
+    },
+    {
+      "slug": "tinfoil",
+      "q": "Why does tin foil sound so satisfying in ASMR?"
+    },
+    {
+      "slug": "tinfoil",
+      "q": "Is ASMR tin foil better than plastic bag crinkling?"
+    },
+    {
+      "slug": "tinfoil",
+      "q": "What microphone do ASMRtists use for foil sounds?"
+    },
+    {
+      "slug": "tinfoil",
+      "q": "Does tin foil ASMR help with sleep?"
+    },
+    {
+      "slug": "tinfoil",
+      "q": "Why do some people hate the sound of tin foil?"
+    },
+    {
+      "slug": "gloves",
+      "q": "Why do glove sounds trigger ASMR tingles?"
+    },
+    {
+      "slug": "asmr-for-babies",
+      "q": "How loud should ASMR sounds be for a baby's ears?"
+    },
+    {
+      "slug": "asmr-for-seniors",
+      "q": "Is ASMR safe for people with dementia or Alzheimer's?"
+    },
+    {
+      "slug": "asmr-for-seniors",
+      "q": "How do I get my elderly parent started with ASMR?"
+    },
+    {
+      "slug": "asmr-for-panic-attacks",
+      "q": "Does ASMR actually work for anxiety or is it a placebo?"
+    },
+    {
+      "slug": "asmr-for-panic-attacks",
+      "q": "Why does ASMR make some people more anxious instead of calm?"
+    },
+    {
+      "slug": "asmr-for-migraines",
+      "q": "Can ASMR make a migraine worse?"
+    },
+    {
+      "slug": "asmr-for-migraines",
+      "q": "Should I use headphones for ASMR during a migraine?"
+    },
+    {
+      "slug": "asmr-for-chronic-pain",
+      "q": "Can ASMR help with fibromyalgia?"
+    },
+    {
+      "slug": "asmr-nature-walk",
+      "q": "Why do footstep and leaf crunch sounds trigger ASMR?"
+    },
+    {
+      "slug": "why-doesnt-asmr-work-for-me",
+      "q": "Why do some people feel nothing when watching ASMR videos?"
+    },
+    {
+      "slug": "why-doesnt-asmr-work-for-me",
+      "q": "Is not responding to ASMR a sign that something might be wrong with me mentally or emotionally?"
+    },
+    {
+      "slug": "asmr-history",
+      "q": "When was the term ASMR first coined?"
+    },
+    {
+      "slug": "asmr-history",
+      "q": "What was ASMR called before Jennifer Allen named it?"
+    },
+    {
+      "slug": "asmr-history",
+      "q": "Who is Jennifer Allen and what did she do for ASMR?"
+    },
+    {
+      "slug": "asmr-history",
+      "q": "How did ASMR go from a forum thread to a mainstream phenomenon?"
+    }
+  ],
+  "noContent": []
+}

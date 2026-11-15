@@ -1,0 +1,253 @@
+---
+// /creators/[slug]/: served from src/lib/creators-data.json (scripts/prebuild-creators.mjs). No database at runtime, so a
+// D1 outage cannot touch these pages. Every list is computed from this creator's own videos in our catalog.
+export const prerender = false;
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import ShareCreator from '../../../components/ShareCreator.astro';
+import BreadcrumbNav from '../../../components/BreadcrumbNav.astro';
+import { getRootPages } from '../../../lib/ledger';
+import { getContent } from '../../../lib/page-content';
+import creators from '../../../lib/creators-data.json';
+
+// Trigger slug -> published page URL. Some catalog triggers have no page under their own slug (fire -> fire-crackling).
+const _pub = new Map(getRootPages().filter(p => (getContent(p.slug) as any)?.status === 'published').map(p => [p.slug, p.targetUrl] as [string, string]));
+const _alias: Record<string, string> = { fire: 'fire-crackling', spraying: 'spray-sounds', reading: 'reading-to-you' };
+const triggerUrl = (t: string): string | undefined => _pub.get(t) ?? (_alias[t] ? _pub.get(_alias[t]) : undefined);
+
+const { slug } = Astro.params;
+const c: any = slug ? (creators as any)[slug] : null;
+if (!c) return new Response(null, { status: 404 });
+
+const name = c.name as string;
+const starter = c.signature[0] ?? c.top[0];
+const yt = (id: string) => `https://www.youtube.com/watch?v=${id}`;
+const label = (t: string) => t.replace(/-/g, ' ');
+const lists = [
+  { title: `${name} videos for falling asleep`, note: 'Tagged for sleep, 20 minutes or longer, most watched first.', items: c.sleep },
+  { title: `Short ${name} videos`, note: 'Under 15 minutes, for when you only have a moment.', items: c.short },
+  { title: `${name} videos labelled no talking`, note: 'The title or our tag says no talking; check the first minute.', items: c.noTalking },
+  { title: `Newest ${name} videos in our catalog`, note: 'Latest uploads we have classified.', items: c.newest },
+].filter(l => l.items.length >= 2);
+
+// Long channel names get the short form so the title stays under ~60 characters.
+const title = [`${name}: ASMR Style, Triggers and Where to Start`, `${name}: Triggers and Where to Start`, `${name} ASMR Guide`].find((t) => t.length <= 60) ?? name;
+const topTrig = c.triggers.slice(0, 2).map((t: [string, number]) => label(t[0])).join(' and ');
+const description = `${name} guide: ${c.count} videos classified${topTrig ? `, mostly ${topTrig}` : ''}. Best picks for sleep, short sessions and no talking.`.slice(0, 158);
+Astro.response.headers.set('Cache-Control', 'public, max-age=3600, stale-while-revalidate=86400');
+
+const breadcrumbs = [
+  { name: 'Home', url: '/' },
+  { name: 'Creators', url: '/creators/' },
+  { name, url: `/creators/${slug}/` },
+];
+const SITE = 'https://asmrregistry.com';
+const jsonLd = [
+  { "@type": "Article", "@id": `${SITE}/creators/${slug}/#article`, "headline": title, "description": description, "author": { "@id": `${SITE}/#editorial` }, "publisher": { "@id": `${SITE}/#organization` }, "dateModified": c.updated ? new Date(String(c.updated).replace(" ", "T") + (String(c.updated).includes("Z") ? "" : "Z")).toISOString() : undefined, "mainEntityOfPage": `${SITE}/creators/${slug}/`, "about": { "@id": `${SITE}/creators/${slug}/#creator` } },
+  { "@type": "Person", "@id": `${SITE}/creators/${slug}/#creator`, "name": name, "url": `${SITE}/creators/${slug}/`, "knowsAbout": c.specialties.map((s: string) => `${label(s)} ASMR`), "sameAs": [`https://www.youtube.com/channel/${c.channelId}`] },
+  { "@type": "BreadcrumbList", "itemListElement": breadcrumbs.map((b, i) => ({ "@type": "ListItem", "position": i + 1, "name": b.name, "item": `${SITE}${b.url}` })) },
+];
+---
+<BaseLayout title={title} description={description} canonical={`/creators/${slug}/`} jsonLd={jsonLd}>
+  <BreadcrumbNav items={breadcrumbs} />
+  <h1>{name}</h1>
+
+  {/* Desperate-visitor path: play something now, or go straight to the channel. */}
+  <div class="quick">
+    {starter && (
+      <button class="player" data-id={starter.id} aria-label={`Play ${starter.t}`}>
+        <img src={`https://i.ytimg.com/vi/${starter.id}/hqdefault.jpg`} alt="" width="480" height="360" fetchpriority="high" />
+        <span class="play-btn" aria-hidden="true">▶</span>
+        <span class="player-cap">Start here: {starter.t}</span>
+      </button>
+    )}
+    <a class="channel-btn" href={`https://www.youtube.com/channel/${c.channelId}`} target="_blank" rel="noopener">Open {name} on YouTube ↗</a>
+  </div>
+
+  {(c.bio as string).split(/\n\s*\n/).map(para => <p class="bio">{para}</p>)}
+
+  {c.tags.length > 0 && (
+    <ul class="tag-list">
+      {c.tags.map((t: string) => <li><span class="style-tag">{t}</span></li>)}
+    </ul>
+  )}
+
+  <div class="data-panel">
+    <h2>{name} at a glance</h2>
+    <ul class="tag-list" style="margin-top:0.75rem">
+      {c.triggers.map(([t, n]: [string, number]) => (
+        <li>{triggerUrl(t) ? <a href={triggerUrl(t)}>{label(t)} ({n})</a> : <span>{label(t)} ({n})</span>}</li>
+      ))}
+    </ul>
+    <table class="len-table">
+      <tr><td>Videos in our catalog</td><td>{c.count}</td></tr>
+      <tr><td>Typical length</td><td>{c.medianMin} min</td></tr>
+      {c.lengths.reduce((t: number, [, n]: [string, number]) => t + n, 0) < c.count && (
+        <tr><td>Videos with a known length</td><td>{c.lengths.reduce((t: number, [, n]: [string, number]) => t + n, 0)}</td></tr>
+      )}
+      {c.lengths.map(([l, n]: [string, number]) => <tr><td>{l}</td><td>{n}</td></tr>)}
+      {c.noTalkingCount > 0 && <tr><td>Labelled no talking (title or tag)</td><td>{c.noTalkingCount}</td></tr>}
+      {c.firstYear && <tr><td>Uploads covered</td><td>{c.firstYear}{c.lastYear !== c.firstYear ? ` to ${c.lastYear}` : ''}</td></tr>}
+    </table>
+  </div>
+
+  {c.lastUpload && c.perYear?.length > 0 && (
+    <div class="data-panel">
+      <h2>Is {name} still uploading?</h2>
+      <p>{c.channelLatest && Date.now() - Date.parse(c.checked) < 30 * 864e5
+        ? ((Date.parse(c.checked) - Date.parse(c.channelLatest)) / 864e5 <= 60
+          ? `Yes. ${name}'s latest YouTube upload was on ${c.channelLatest} (checked ${c.checked}).`
+          : `${name}'s latest YouTube upload was on ${c.channelLatest}, more than two months before we last checked (${c.checked}). That can be a break; we do not know the reason.`)
+        : `The latest ${name} upload in our catalog is from ${c.lastUpload}. Our catalog can miss newer videos, so check the channel before assuming a break.`}</p>
+      <table class="len-table">
+        {c.perYear.map(([y, n]: [string, number]) => <tr><td>Uploads from {y} in our catalog</td><td>{n}</td></tr>)}
+      </table>
+    </div>
+  )}
+
+  {lists.length > 0 && (
+    <div class="pick-grid">
+      {lists.map(l => (
+        <section class="pick-list">
+          <h2>{l.title}</h2>
+          <p>{l.note}</p>
+          <ol>
+            {l.items.map((v: any) => <li><a href={yt(v.id)} target="_blank" rel="noopener">{v.t}</a> <span>{v.m} min{v.d ? `, ${v.d}` : ''}</span></li>)}
+          </ol>
+        </section>
+      ))}
+    </div>
+  )}
+
+  {(c.styles || []).length >= 2 && (
+    <section>
+      <h2>One video for each of their styles</h2>
+      {/* template-lint-ok: explains how the per-style picks are chosen; identical on every creator page by design */}
+      <p class="note">Their most watched video in each of the triggers they make most, so you can try their range before committing. Tags come from titles, not listening.</p>
+      <div class="video-grid">
+        {c.styles.map((v: any) => (
+          <article class="video-card">
+            <a href={yt(v.id)} target="_blank" rel="noopener">
+              <div class="video-thumb"><img src={`https://i.ytimg.com/vi/${v.id}/mqdefault.jpg`} alt={v.t} loading="lazy" width="320" height="180" /></div>
+              <h3>{v.t}</h3>
+            </a>
+            <p class="video-meta">If you like {v.trigger.replace(/-/g, ' ')} · {v.m} min · {v.n} of their videos in our catalog</p>
+          </article>
+        ))}
+      </div>
+    </section>
+  )}
+
+  {c.signature.length > 0 && (
+    <section>
+      <h2>Start here: signature videos</h2>
+      <div class="video-grid">
+        {c.signature.map((v: any) => (
+          <article class="video-card">
+            <a href={yt(v.id)} target="_blank" rel="noopener">
+              <div class="video-thumb"><img src={`https://i.ytimg.com/vi/${v.id}/mqdefault.jpg`} alt={v.t} loading="lazy" width="320" height="180" /></div>
+              <h3>{v.t}</h3>
+            </a>
+          </article>
+        ))}
+      </div>
+    </section>
+  )}
+
+  <section>
+    <h2>Most watched</h2>
+    <div class="video-grid">
+      {c.top.map((v: any) => (
+        <article class="video-card">
+          <a href={yt(v.id)} target="_blank" rel="noopener">
+            <div class="video-thumb"><img src={`https://i.ytimg.com/vi/${v.id}/mqdefault.jpg`} alt={v.t} loading="lazy" width="320" height="180" /></div>
+            <h3>{v.t}</h3>
+          </a>
+          <p class="meta">{v.m} min · {v.v.toLocaleString()} views</p>
+        </article>
+      ))}
+    </div>
+  </section>
+
+  <ShareCreator slug={slug} name={name} />
+
+  {c.similar.length > 0 && (
+    <section class="cross-section">
+      <h2>Creators like {name}</h2>
+      {/* template-lint-ok: explains how matches are made; same on every creator page by design */}
+      <p class="note">Matched on what their videos are tagged with in our catalog (from titles), not on how they sound.</p>
+      <ul class="similar-list">
+        {c.similar.map((s: any) => <li><a href={`/creators/${s.slug}/`}>{s.name}</a>: {s.why}.</li>)}
+      </ul>
+      {(c.similarQuiet || []).length > 0 && (
+        <>
+          <h3>Like {name}, with few mouth or eating sounds</h3>
+          <ul class="similar-list">
+            {c.similarQuiet.map((s: any) => <li><a href={`/creators/${s.slug}/`}>{s.name}</a>: {s.why}; under 5% of their videos are tagged mouth or eating.</li>)}
+          </ul>
+        </>
+      )}
+      {/* template-lint-ok: one comparison link, same on every creator page by design */}
+      <p class="note">{`Want to weigh ${name} against every channel we cover, by typical length and recent uploads? `}<a href="/best/best-asmr-youtube-channels/">Compare all channels side by side</a>.</p>
+    </section>
+  )}
+
+  <script>
+    // Tap-to-play: load the YouTube player only when asked (keeps the page fast).
+    document.querySelectorAll<HTMLButtonElement>('button.player').forEach(b => b.addEventListener('click', () => {
+      const f = document.createElement('iframe');
+      f.src = `https://www.youtube-nocookie.com/embed/${b.dataset.id}?autoplay=1&rel=0`;
+      f.allow = 'autoplay; encrypted-media; picture-in-picture'; f.allowFullscreen = true; f.title = b.getAttribute('aria-label') || 'Video';
+      f.className = 'player-frame'; b.replaceWith(f);
+    }, { once: true }));
+  </script>
+
+  <section class="cross-section">
+    <h2>Explore ASMR</h2>
+    <div class="related-links">
+      <a href="/creators/" class="related-link">All creators →</a>
+      <a href="/triggers-overview/" class="related-link">All Triggers →</a>
+      <a href="/guides/" class="related-link">ASMR Guides →</a>
+      <a href="/best/" class="related-link">Best Of Lists →</a>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .pick-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.25rem; margin: 1.5rem 0; }
+  .pick-list h2 { font-size: 1.05rem; margin: 0 0 0.25rem; }
+  .pick-list p { font-size: 0.85rem; color: var(--text-3); margin: 0 0 0.5rem; }
+  .pick-list ol { margin: 0; padding-left: 1.25rem; font-size: 0.9rem; line-height: 1.4; }
+  .pick-list li { margin: 0.35rem 0; }
+  .pick-list span { color: var(--text-3); white-space: nowrap; }
+  .len-table { width: 100%; max-width: 420px; border-collapse: collapse; margin-top: 0.75rem; font-size: 0.9rem; }
+  .len-table td { padding: 0.3rem 0.5rem 0.3rem 0; border-bottom: 1px solid var(--border); }
+  .len-table td:last-child { text-align: right; }
+  .quick { display: grid; gap: 0.75rem; margin: 0.5rem 0 1.5rem; max-width: 640px; }
+  .player { position: relative; display: block; width: 100%; aspect-ratio: 16 / 9; padding: 0; border: 0; border-radius: 10px; overflow: hidden; cursor: pointer; background: #000; }
+  .player img { width: 100%; height: 100%; object-fit: cover; display: block; opacity: 0.85; }
+  .play-btn { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 68px; height: 48px; border-radius: 12px; background: #e00; color: #fff; font-size: 1.4rem; display: grid; place-items: center; }
+  .player-cap { position: absolute; left: 0; right: 0; bottom: 0; padding: 0.6rem 0.8rem; background: linear-gradient(transparent, rgba(0,0,0,0.85)); color: #fff; font-size: 0.9rem; text-align: left; }
+  :global(.player-frame) { width: 100%; aspect-ratio: 16 / 9; border: 0; border-radius: 10px; }
+  .channel-btn { display: inline-block; justify-self: start; padding: 0.55rem 1rem; border-radius: 8px; background: var(--accent, #7c3aed); color: #fff; text-decoration: none; font-weight: 600; font-size: 0.95rem; }
+  .bio { font-size: 1.05rem; line-height: 1.7; color: var(--text-1, #fff); margin: 0 0 1rem; }
+  .style-tag {
+    display: inline-block; padding: 0.3rem 0.8rem;
+    background: var(--bg-3, #12121f); color: var(--text-2, #ccc);
+    border: 1px solid var(--border, #2a2a3e); border-radius: 999px; font-size: 0.8rem;
+  }
+  section { margin: 1.75rem 0; }
+  section h2 { font-size: 1.15rem; margin: 0 0 0.75rem; }
+  .cross-section { margin: 2.5rem 0 0; }
+  .related-links { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+  .related-link {
+    padding: 0.5rem 1rem; background: var(--bg-2, #1a1a2e);
+    border: 1px solid var(--border, #2a2a3e); border-radius: 999px;
+    text-decoration: none; color: var(--accent, #7c3aed); font-size: 0.9rem;
+    text-transform: capitalize; transition: background 0.15s;
+  }
+  .related-link:hover { background: var(--bg-3, #12121f); }
+  .note { font-size: 0.85rem; color: var(--text-3, #999); }
+  .similar-list { margin: 0.5rem 0 1rem 1.2rem; line-height: 1.7; }
+  .similar-list li { margin-bottom: 0.35rem; }
+  .video-meta { font-size: 0.82rem; color: var(--text-3, #999); margin: 0.25rem 0 0; text-transform: none; }
+</style>

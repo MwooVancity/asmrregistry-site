@@ -1,0 +1,109 @@
+---
+// Amazon search links for products the page itself discusses (map in src/lib/affiliate.json).
+// ponytail: own SVG icons, not product photos. Amazon only permits its images via the Product
+// Advertising API, which unlocks after 3 qualifying sales; swap icons for API images then.
+import affiliateMap from '../lib/affiliate.json';
+import { amazonSearch } from '../lib/amazon';
+interface Props { slug?: string }
+const { slug } = Astro.props;
+const links: { label: string; q: string }[] = (slug && (affiliateMap as Record<string, { label: string; q: string }[]>)[slug]) || [];
+
+// One line per item: what it does for this kind of listener or creator. No ratings, no prices.
+const WHY: Record<string, string> = {
+  'sleep headphones headband': 'Flat speakers in a soft headband, made for wearing in bed.',
+  'sleep earbuds side sleepers': 'Low-profile buds designed for lying on your side.',
+  'sleep mask headphones bluetooth': 'Thin speakers inside an eye mask, so nothing sits in your ears.',
+  'small bluetooth speaker bedside': 'Plays sound into the room, so nothing presses on your ears.',
+  'white noise machine': 'Plays steady noise by itself, no phone needed overnight.',
+  'closed back headphones': 'Closed cups keep sound in and block some room noise.',
+  'open back headphones': 'Open cups sound more spacious but leak sound to the room.',
+  'over ear headphones wired': 'Wired two-channel sound for binaural recordings, no Bluetooth lag.',
+  'wired earbuds': 'Small, light and no battery to charge.',
+  'USB condenser microphone cardioid': 'Plugs straight into a computer and picks up quiet sounds.',
+  'XLR condenser microphone cardioid': 'Needs an audio interface, with more room to upgrade later.',
+  'USB audio interface 2 channel': 'Powers XLR microphones and adds clean gain for quiet sounds.',
+  'Audio-Technica AT2020': 'Budget XLR condenser, listed at 20 dB SPL self-noise.',
+  'Audio-Technica AT2020USB': 'USB version of the AT2020, no interface needed.',
+  'Audio-Technica AT4040': 'Large-diaphragm XLR condenser from the same maker.',
+  'Rode NT1 5th Generation': 'Low self-noise condenser, listed at about 4 dBA by retailers.',
+  'Sony MDR-7506': 'Closed-back studio headphones for monitoring recordings.',
+  'Beyerdynamic DT 770 Pro': 'Closed-back studio headphones for monitoring recordings.',
+  'Focusrite Scarlett': 'Audio interface line for XLR microphones.',
+  'microphone shock mount': 'Holds the mic on elastic to cut desk bumps and thumps.',
+  'Rode PSA1': 'Boom arm that holds the mic near you, off the desk.',
+  'Elgato Wave Mic Arm': 'Boom arm that holds the mic near you, off the desk.',
+  'binaural microphone': 'Two capsules in ear shapes for left and right sound.',
+  'nylon pop filter microphone': 'Sits in front of the mic to soften breath on whispers.',
+  'vlogging camera': 'Compact camera for filming at desk distance.',
+  'LED video light panel dimmable': 'Dimmable soft light for filming in a dark room.',
+  'lavalier microphone': 'Clip-on mic for close food and voice sounds.',
+  'phone tripod': 'Holds a phone steady for overhead or face-on shots.',
+  'moving blankets': 'Thick blankets that soak up echo when hung near the mic.',
+  'acoustic panels': 'Wall panels that reduce echo in a recording room.',
+  'slime making kit': 'Everything to make your own slime for the sounds.',
+  'kinetic sand': 'Moldable sand for cutting and crushing sounds.',
+  'soap carving kit': 'Soap bars and tools for carving. Cut away from your hands.',
+  'bubble wrap roll': 'A roll for slow, one-bubble-at-a-time popping.',
+  'origami paper': 'Thin, crisp paper for folding sounds.',
+  'whittling kit beginners': 'Wood and knives for carving. Wear a cut-resistant glove.',
+  'fountain pen beginner': 'Smooth nib scratching on paper, for writing sounds.',
+  'tibetan singing bowl set': 'Bowl and striker for long, ringing tones.',
+  'VR headset': 'For watching 180 and 360 degree ASMR videos.',
+};
+
+// Pick an icon by keyword.
+const ICONS: [RegExp, string][] = [
+  [/headphone|earbud|MDR|DT 770/i, 'M4 14v-2a8 8 0 0 1 16 0v2M4 14h3v6H4zM17 14h3v6h-3z'],
+  [/speaker|white noise/i, 'M7 3h10v18H7zM12 7.5h.01M12 15a3 3 0 1 0 0-.01'],
+  [/microphone|AT20|AT40|NT1|Rode|binaural/i, 'M12 3a3 3 0 0 1 3 3v6a3 3 0 0 1-6 0V6a3 3 0 0 1 3-3zM6 11a6 6 0 0 0 12 0M12 17v4M9 21h6'],
+  [/interface|Scarlett/i, 'M3 8h18v8H3zM7 12h.01M11 12h.01M15 12h4'],
+  [/camera|tripod/i, 'M3 7h4l2-2h6l2 2h4v12H3zM12 10a3 3 0 1 0 0 6a3 3 0 1 0 0-6'],
+  [/light/i, 'M12 3v2M5 12H3M21 12h-2M6 6l1.5 1.5M18 6l-1.5 1.5M9 18h6M10 21h4M12 8a4 4 0 0 1 2 7.5V17h-4v-1.5A4 4 0 0 1 12 8'],
+  [/arm|mount|filter/i, 'M5 20h6M8 20V13l8-6M16 7l2-2M16 7a2 2 0 1 0 0 .01'],
+  [/VR/i, 'M3 9h18v7h-6l-3-3-3 3H3z'],
+  [/blanket|panel/i, 'M4 4h16v16H4zM4 9h16M4 14h16'],
+];
+const icon = (q: string) => (ICONS.find(([re]) => re.test(q)) || [null, 'M12 3l2.5 5.5L20 9l-4 4 1 6-5-3-5 3 1-6-4-4 5.5-.5z'])[1];
+---
+{links.length > 0 && (
+  <section class="shop">
+    <h2>Where to buy</h2>
+    <table class="shop-table">
+      <thead><tr><th></th><th>Item</th><th>Why it fits</th><th></th></tr></thead>
+      <tbody>
+        {links.map(l => (
+          <tr>
+            <td class="shop-ico"><svg viewBox="0 0 24 24" width="28" height="28" aria-hidden="true"><path d={icon(l.q)} /></svg></td>
+            <td class="shop-name">{l.label}</td>
+            <td class="shop-why">{WHY[l.q] || ''}</td>
+            <td class="shop-go"><a href={amazonSearch(l.q)} data-amz={l.q} rel="sponsored nofollow noopener" target="_blank">See on Amazon</a></td>
+          </tr>
+        ))}
+      </tbody>
+    </table>
+    {/* template-lint-ok: legally required Amazon Associates disclosure, must be identical everywhere */}
+    <p class="shop-note">As an Amazon Associate, ASMR Registry earns from qualifying purchases. Links open Amazon search results. We have not tested these products.</p>
+  </section>
+)}
+
+<style>
+  .shop { margin: 2rem 0; }
+  .shop h2 { font-size: 1.15rem; margin: 0 0 0.75rem; }
+  .shop-table { width: 100%; border-collapse: collapse; font-size: 0.95rem; }
+  .shop-table th { text-align: left; font-size: 0.8rem; font-weight: 600; color: var(--text-3); padding: 0 0.6rem 0.4rem; border-bottom: 1px solid var(--border, #2a2a3e); }
+  .shop-table td { padding: 0.7rem 0.6rem; border-bottom: 1px solid var(--border, #2a2a3e); vertical-align: middle; }
+  .shop-ico svg { fill: none; stroke: var(--accent, #7c3aed); stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; display: block; }
+  .shop-name { font-weight: 600; color: var(--text-1, inherit); }
+  .shop-why { color: var(--text-2); line-height: 1.45; }
+  .shop-go { white-space: nowrap; text-align: right; }
+  .shop-go a { display: inline-block; padding: 0.4rem 0.8rem; border-radius: 6px; background: var(--accent, #7c3aed); color: #fff; text-decoration: none; font-size: 0.85rem; font-weight: 600; }
+  .shop-go a:hover { opacity: 0.9; }
+  .shop-note { font-size: 0.85rem; color: var(--text-3); margin-top: 0.6rem; }
+  @media (max-width: 600px) {
+    .shop-table thead { display: none; }
+    .shop-table tr { display: grid; grid-template-columns: 36px 1fr; gap: 0.2rem 0.6rem; padding: 0.7rem 0; border-bottom: 1px solid var(--border, #2a2a3e); }
+    .shop-table td { border: 0; padding: 0; }
+    .shop-ico { grid-row: span 3; }
+    .shop-go { text-align: left; margin-top: 0.3rem; }
+  }
+</style>

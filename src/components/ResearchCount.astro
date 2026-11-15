@@ -1,0 +1,37 @@
+---
+// Dated PubMed counts for this page's topic, from tools/fetch-research-counts.mjs.
+import counts from '../lib/research-counts.json';
+
+interface Props { slug: string }
+const r = (counts as any)[Astro.props.slug];
+const link = (term: string) => `https://pubmed.ncbi.nlm.nih.gov/?term=${encodeURIComponent(term)}`;
+---
+{r && (
+  <section class="rc">
+    <h2>How much research exists</h2>
+    {/* Standalone sentences so an answer engine can quote one with its source and date. */}
+    <p>{r.rows.map((x: any) => {
+      const topic = x.label.replace(/, any topic$/, '').replace(/^(?!ASMR)./, (c: string) => c.toLowerCase());
+      return `As of ${r.date}, a PubMed search for "${topic}" returns ${x.count.toLocaleString('en-US')} ${x.count === 1 ? 'paper' : 'papers'}.`;
+    }).join(' ')}</p>
+    <table>
+      <caption>PubMed search results, {r.date}</caption>
+      <thead><tr><th scope="col">Search</th><th scope="col">Papers</th></tr></thead>
+      <tbody>
+        {r.rows.map((x: any) => (
+          <tr><td><a href={link(x.term)} rel="nofollow noopener" target="_blank">{x.label}</a></td><td>{x.count.toLocaleString('en-US')}</td></tr>
+        ))}
+      </tbody>
+    </table>
+    {/* template-lint-ok: standard caveat explaining what a PubMed count means, same on every page by design */}
+    <p class="rc-note">A count of papers that mention both terms in the title or abstract. It shows how well studied a topic is, not that anything works. Click a search to read the papers.</p>
+  </section>
+)}
+
+<style>
+  .rc { margin: 1.5rem 0; }
+  .rc table { width: 100%; border-collapse: collapse; font-size: 0.92rem; }
+  .rc caption { text-align: left; font-size: 0.85rem; color: var(--text-3, #999); padding-bottom: 0.3rem; }
+  .rc th, .rc td { padding: 0.35rem 0.4rem; border-bottom: 1px solid var(--border, #2a2a3e); text-align: left; }
+  .rc-note { font-size: 0.82rem; color: var(--text-3, #999); }
+</style>

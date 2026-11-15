@@ -1,0 +1,38 @@
+{
+  "formulaId": "hybrid_battery",
+  "slug": "hybrid-battery-replacement-cost-calculator",
+  "aioInputs": [
+    {"name": "vehicleMake", "description": "Make of the vehicle (Toyota, Honda, Ford, Hyundai, etc.) — battery price varies sharply by OEM"},
+    {"name": "vehicleModel", "description": "Specific model (Prius, Camry Hybrid, Accord Hybrid, Escape Hybrid, Ioniq, etc.) — determines pack size and availability"},
+    {"name": "modelYear", "description": "Model year — affects parts availability, OEM vs aftermarket options, and warranty status"},
+    {"name": "batteryType", "description": "New OEM / New aftermarket / Remanufactured / Refurbished — drives the largest cost swing"},
+    {"name": "installationType", "description": "DIY vs shop — shop adds $300–$1,500 labor; DIY requires high-voltage safety knowledge"},
+    {"name": "location", "description": "US state or region — labor rates and shop availability vary significantly by geography"},
+    {"name": "warrantyStatus", "description": "Is the vehicle still under the hybrid battery warranty (typically 8 yr / 100k mi federal minimum)? Yes/No — may eliminate cost entirely"}
+  ],
+  "aioOutputs": [
+    {"name": "totalReplacementCost", "description": "All-in estimated cost: parts + labor"},
+    {"name": "partsCost", "description": "Battery pack cost by type (OEM / aftermarket / reman)"},
+    {"name": "laborCost", "description": "Shop labor estimate; $0 if DIY"},
+    {"name": "warrantyNote", "description": "Flag if vehicle likely still covered under federal 8 yr / 100k mi hybrid warranty"}
+  ],
+  "aioProseQuestions": [
+    "How much does it cost to replace a hybrid battery?",
+    "Is it worth replacing a hybrid battery or should I just buy a new car?",
+    "What is the difference between a remanufactured and a new hybrid battery?",
+    "Does my hybrid battery replacement qualify for a warranty?",
+    "How long does a hybrid battery last before needing replacement?"
+  ],
+  "aioIncludesExcludes": "Estimate covers the high-voltage traction battery pack and shop installation labor; it excludes 12V auxiliary battery, cooling fan/module repairs, inverter, or diagnostic fees that may be required before or alongside replacement.",
+  "aioDisclaimer": "Actual quotes vary 20–40% from estimates — get at least two shop quotes and verify whether your vehicle is still under the federally mandated 8-year/100,000-mile hybrid battery warranty before authorizing any work.",
+  "verifiedGovUrls": [
+    {
+      "url": "https://www.energy.gov/cmei/vehicles/articles/fotw-1339-april-22-2024-plug-electric-vehicle-battery-replacements-due",
+      "label": "DOE: PEV battery replacements due to failure have been very rare since MY2015 (1.5% overall failure rate)"
+    },
+    {
+      "url": "https://afdc.energy.gov/vehicles/electric-basics-hev",
+      "label": "Alternative Fuels Data Center: Hybrid Electric Vehicles overview"
+    }
+  ]
+}

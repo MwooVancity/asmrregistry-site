@@ -1,0 +1,13 @@
+User-agent: *
+Disallow: /creator/
+Disallow: /search/
+Disallow: /api/
+Disallow: /go/
+
+# /video/ pages are NOT disallowed on purpose: they carry noindex, and Google must crawl them to see it.
+# Blocking them made Google index ~427 bare video URLs it could not read (GSC, Oct 2026).
+# Pagination pages are noindex,follow — allow crawl for link equity but pages excluded from index
+Allow: /
+
+Sitemap: https://asmrregistry.com/sitemap-pages.xml
+Sitemap: https://asmrregistry.com/sitemap-index.xml

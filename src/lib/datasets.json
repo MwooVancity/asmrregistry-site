@@ -1,0 +1,460 @@
+{
+  "asmr-research-papers": {
+    "kind": "bar",
+    "title": "ASMR research papers published per year",
+    "source": "PubMed (U.S. National Library of Medicine)",
+    "sourceUrl": "https://pubmed.ncbi.nlm.nih.gov/?term=%22autonomous+sensory+meridian+response%22%5BTitle%2FAbstract%5D",
+    "query": "\"autonomous sensory meridian response\"[Title/Abstract]",
+    "fetchedAt": "2026-10-18",
+    "unit": "papers",
+    "points": [
+      {
+        "x": "2010",
+        "y": 0
+      },
+      {
+        "x": "2011",
+        "y": 0
+      },
+      {
+        "x": "2012",
+        "y": 0
+      },
+      {
+        "x": "2013",
+        "y": 1
+      },
+      {
+        "x": "2014",
+        "y": 0
+      },
+      {
+        "x": "2015",
+        "y": 1
+      },
+      {
+        "x": "2016",
+        "y": 1
+      },
+      {
+        "x": "2017",
+        "y": 6
+      },
+      {
+        "x": "2018",
+        "y": 6
+      },
+      {
+        "x": "2019",
+        "y": 8
+      },
+      {
+        "x": "2020",
+        "y": 11
+      },
+      {
+        "x": "2021",
+        "y": 9
+      },
+      {
+        "x": "2022",
+        "y": 18
+      },
+      {
+        "x": "2023",
+        "y": 14
+      },
+      {
+        "x": "2024",
+        "y": 15
+      },
+      {
+        "x": "2025",
+        "y": 15
+      }
+    ]
+  },
+  "asmr-clinical-trials": {
+    "kind": "trials",
+    "title": "Registered ASMR clinical trials",
+    "source": "ClinicalTrials.gov (U.S. National Library of Medicine)",
+    "sourceUrl": "https://clinicaltrials.gov/search?term=%22autonomous%20sensory%20meridian%20response%22",
+    "fetchedAt": "2026-10-18",
+    "unit": "trials",
+    "trials": [
+      {
+        "id": "NCT07651228",
+        "title": "Effect of ASMR and White Noise on Sleep Quality in Patients Undergoing Elective Lower Extremity Surgery",
+        "status": "Not yet recruiting",
+        "start": "2026-09-05"
+      },
+      {
+        "id": "NCT06415513",
+        "title": "The Effect of (ASMR) Videos on Sleep Quality and Stress Levels on Nursing Students",
+        "status": "Completed",
+        "start": "2024-05-11"
+      },
+      {
+        "id": "NCT06597110",
+        "title": "The Effects of Autonomous Sensory Meridian Response (ASMR) on Sleep Quality Improvement in Adolescents",
+        "status": "Completed",
+        "start": "2023-05-05"
+      },
+      {
+        "id": "NCT05266508",
+        "title": "Effects of ASMR on the Default Mode Network",
+        "status": "Completed",
+        "start": "2022-02-15"
+      }
+    ]
+  },
+  "asmr-trigger-videos": {
+    "kind": "hbar",
+    "title": "ASMR videos classified per trigger",
+    "source": "ASMR Registry video database",
+    "sourceUrl": "https://asmrregistry.com/methodology/",
+    "fetchedAt": "2026-10-18",
+    "unit": "videos",
+    "points": [
+      {
+        "x": "Eating sounds",
+        "y": 9855
+      },
+      {
+        "x": "Tapping",
+        "y": 6161
+      },
+      {
+        "x": "Whispering",
+        "y": 3914
+      },
+      {
+        "x": "Hair play",
+        "y": 2900
+      },
+      {
+        "x": "Rain",
+        "y": 2034
+      },
+      {
+        "x": "Massage",
+        "y": 2025
+      },
+      {
+        "x": "Scratching",
+        "y": 1674
+      },
+      {
+        "x": "Mouth sounds",
+        "y": 1492
+      },
+      {
+        "x": "Personal attention",
+        "y": 1053
+      },
+      {
+        "x": "Soft speaking",
+        "y": 798
+      },
+      {
+        "x": "Typing",
+        "y": 794
+      },
+      {
+        "x": "No talking",
+        "y": 579
+      }
+    ]
+  },
+  "catalog-sleep": {
+    "kind": "table",
+    "title": "Sleep ASMR in our catalog: video length by trigger",
+    "columns": [
+      "Trigger",
+      "Videos",
+      "Median length",
+      "Middle half of videos",
+      "Over 1 hour"
+    ],
+    "rows": [
+      [
+        "Whispering",
+        "3,250",
+        "34 min",
+        "23 min to 1.2 h",
+        "33%"
+      ],
+      [
+        "Tapping",
+        "2,912",
+        "42 min",
+        "24 min to 1.6 h",
+        "43%"
+      ],
+      [
+        "Massage",
+        "2,777",
+        "30 min",
+        "21 min to 1 h",
+        "28%"
+      ],
+      [
+        "Scratching",
+        "2,335",
+        "50 min",
+        "25 min to 1.5 h",
+        "47%"
+      ],
+      [
+        "Rain",
+        "2,201",
+        "3 h",
+        "1.3 h to 10 h",
+        "86%"
+      ],
+      [
+        "Personal attention",
+        "2,170",
+        "33 min",
+        "22 min to 1.3 h",
+        "35%"
+      ],
+      [
+        "No talking",
+        "1,992",
+        "1 h",
+        "30 min to 1.4 h",
+        "52%"
+      ],
+      [
+        "Brushing",
+        "1,679",
+        "40 min",
+        "24 min to 1.3 h",
+        "39%"
+      ],
+      [
+        "Hair play",
+        "1,676",
+        "32 min",
+        "23 min to 1.1 h",
+        "31%"
+      ],
+      [
+        "Nature",
+        "1,490",
+        "3 h",
+        "1 h to 10 h",
+        "80%"
+      ],
+      [
+        "Mouth sounds",
+        "1,451",
+        "31 min",
+        "21 min to 1.4 h",
+        "36%"
+      ],
+      [
+        "Binaural",
+        "1,429",
+        "48 min",
+        "29 min to 2.1 h",
+        "45%"
+      ]
+    ],
+    "source": "ASMR Registry video database",
+    "sourceUrl": "https://asmrregistry.com/methodology/",
+    "fetchedAt": "2026-10-18",
+    "unit": "videos",
+    "note": "Counts and lengths describe published videos in our catalog that are classified for sleep and tagged with each trigger. A video can carry more than one trigger, so it can appear in more than one row. These figures do not measure whether any sound helps you sleep."
+  },
+  "catalog-study": {
+    "kind": "table",
+    "title": "Study ASMR in our catalog: video length by trigger",
+    "columns": [
+      "Trigger",
+      "Videos",
+      "Median length",
+      "Middle half of videos",
+      "Over 1 hour"
+    ],
+    "rows": [
+      [
+        "Rain",
+        "974",
+        "3.1 h",
+        "2.5 h to 10 h",
+        "95%"
+      ],
+      [
+        "Nature",
+        "698",
+        "3 h",
+        "2.1 h to 10 h",
+        "93%"
+      ],
+      [
+        "White noise",
+        "539",
+        "3 h",
+        "2.1 h to 10 h",
+        "95%"
+      ],
+      [
+        "No talking",
+        "528",
+        "1 h",
+        "30 min to 1.4 h",
+        "52%"
+      ],
+      [
+        "Scratching",
+        "456",
+        "51 min",
+        "27 min to 1 h",
+        "46%"
+      ],
+      [
+        "Massage",
+        "429",
+        "58 min",
+        "29 min to 2 h",
+        "48%"
+      ],
+      [
+        "Tapping",
+        "413",
+        "54 min",
+        "29 min to 2.7 h",
+        "48%"
+      ],
+      [
+        "Personal attention",
+        "363",
+        "1.5 h",
+        "35 min to 3 h",
+        "63%"
+      ],
+      [
+        "Water sounds",
+        "268",
+        "3 h",
+        "1.1 h to 5 h",
+        "83%"
+      ],
+      [
+        "Whispering",
+        "246",
+        "46 min",
+        "25 min to 1.8 h",
+        "43%"
+      ],
+      [
+        "Fire",
+        "244",
+        "8.1 h",
+        "2 h to 12 h",
+        "89%"
+      ],
+      [
+        "Ocean",
+        "234",
+        "2.4 h",
+        "1.5 h to 4 h",
+        "91%"
+      ]
+    ],
+    "source": "ASMR Registry video database",
+    "sourceUrl": "https://asmrregistry.com/methodology/",
+    "fetchedAt": "2026-10-18",
+    "unit": "videos",
+    "note": "Counts and lengths describe published videos in our catalog that are classified for study and tagged with each trigger. A video can carry more than one trigger, so it can appear in more than one row. These figures do not measure whether any sound helps you study."
+  },
+  "asmr-research-topics": {
+    "kind": "hbar",
+    "title": "ASMR papers in PubMed by topic (title or abstract mentions ASMR and the topic)",
+    "source": "PubMed (U.S. National Library of Medicine)",
+    "sourceUrl": "https://pubmed.ncbi.nlm.nih.gov/?term=%22autonomous+sensory+meridian+response%22%5BTitle%2FAbstract%5D",
+    "fetchedAt": "2026-10-18",
+    "unit": "papers",
+    "points": [
+      {
+        "x": "Relaxation",
+        "y": 53
+      },
+      {
+        "x": "Anxiety",
+        "y": 16
+      },
+      {
+        "x": "Stress",
+        "y": 15
+      },
+      {
+        "x": "Sleep and insomnia",
+        "y": 15
+      },
+      {
+        "x": "Mindfulness and meditation",
+        "y": 11
+      },
+      {
+        "x": "Misophonia",
+        "y": 11
+      },
+      {
+        "x": "Depression",
+        "y": 10
+      },
+      {
+        "x": "Heart rate",
+        "y": 8
+      },
+      {
+        "x": "Pain",
+        "y": 6
+      },
+      {
+        "x": "Blood pressure",
+        "y": 3
+      },
+      {
+        "x": "Dopamine",
+        "y": 1
+      },
+      {
+        "x": "Vagus nerve",
+        "y": 1
+      },
+      {
+        "x": "PTSD or trauma",
+        "y": 1
+      },
+      {
+        "x": "ADHD",
+        "y": 0
+      },
+      {
+        "x": "Migraine or headache",
+        "y": 0
+      },
+      {
+        "x": "Nausea",
+        "y": 0
+      },
+      {
+        "x": "Panic attacks",
+        "y": 0
+      },
+      {
+        "x": "Tinnitus",
+        "y": 0
+      },
+      {
+        "x": "OCD",
+        "y": 0
+      }
+    ],
+    "note": "A paper counts if its title or abstract mentions both ASMR and the topic, so a count is not the same as a study that tests ASMR for that topic. Zero means PubMed returned no matching paper on the retrieval date."
+  }
+}

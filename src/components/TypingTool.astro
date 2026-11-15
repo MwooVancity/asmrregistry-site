@@ -1,0 +1,133 @@
+---
+// In-browser keyboard typing sounds (Web Audio synthesis, no audio files). Serves the
+// "asmr keyboard typing website" searches that land on /typing/ (GSC, Oct 2026).
+---
+<section class="tt" aria-label="Keyboard typing sound player">
+  <div class="tt-head">
+    <strong>Play typing sounds now</strong>
+    <span class="tt-sub">Generated live in your browser. Headphones give a slight left-right spread.</span>
+  </div>
+  <div class="tt-row">
+    <button type="button" class="tt-play" aria-pressed="false">▶ Play</button>
+    <label>Keyboard
+      <select class="tt-style">
+        <option value="thocky">Mechanical, thocky (deep)</option>
+        <option value="clicky">Mechanical, clicky (crisp)</option>
+        <option value="laptop">Laptop (soft)</option>
+        <option value="typewriter">Typewriter</option>
+      </select>
+    </label>
+    <label>Speed <input class="tt-speed" type="range" min="20" max="110" value="55" aria-label="Typing speed" /></label>
+    <label>Volume <input class="tt-vol" type="range" min="0" max="100" value="60" aria-label="Volume" /></label>
+    <label>Timer
+      <select class="tt-timer">
+        <option value="0">Off</option><option value="15">15 min</option><option value="30">30 min</option><option value="60">60 min</option>
+      </select>
+    </label>
+  </div>
+  <textarea class="tt-pad" rows="2" placeholder="Or type here and hear each key."></textarea>
+  <p class="tt-note">Prefer longer recordings? The videos below are real keyboards; this player is synthesized.</p>
+</section>
+
+<script>
+  const root = document.querySelector<HTMLElement>('.tt');
+  if (root) {
+    const playBtn = root.querySelector<HTMLButtonElement>('.tt-play')!;
+    const styleSel = root.querySelector<HTMLSelectElement>('.tt-style')!;
+    const speed = root.querySelector<HTMLInputElement>('.tt-speed')!;
+    const vol = root.querySelector<HTMLInputElement>('.tt-vol')!;
+    const timerSel = root.querySelector<HTMLSelectElement>('.tt-timer')!;
+    const pad = root.querySelector<HTMLTextAreaElement>('.tt-pad')!;
+    let ctx: AudioContext | null = null, master: GainNode, noise: AudioBuffer;
+    let running = false, nextAt = 0, charsInLine = 0, loop = 0, stopTimer = 0;
+
+    const init = () => {
+      if (ctx) return;
+      ctx = new AudioContext();
+      master = ctx.createGain(); master.connect(ctx.destination);
+      noise = ctx.createBuffer(1, ctx.sampleRate * 0.25, ctx.sampleRate);
+      const d = noise.getChannelData(0); for (let i = 0; i < d.length; i++) d[i] = Math.random() * 2 - 1;
+      setVol();
+    };
+    const setVol = () => { if (ctx) master.gain.value = (Number(vol.value) / 100) ** 2 * 0.9; };
+    const rnd = (a: number, b: number) => a + Math.random() * (b - a);
+
+    // One noise burst through a band-pass filter, shaped by a fast envelope.
+    const burst = (t: number, freq: number, q: number, gain: number, decay: number, pan: number) => {
+      const c = ctx!, src = c.createBufferSource(), f = c.createBiquadFilter(), g = c.createGain(), p = c.createStereoPanner();
+      src.buffer = noise; f.type = 'bandpass'; f.frequency.value = freq; f.Q.value = q; p.pan.value = pan;
+      g.gain.setValueAtTime(0.0001, t); g.gain.exponentialRampToValueAtTime(gain, t + 0.002); g.gain.exponentialRampToValueAtTime(0.0001, t + decay);
+      src.connect(f).connect(g).connect(p).connect(master); src.start(t, rnd(0, 0.14)); src.stop(t + decay + 0.02);
+    };
+    const thump = (t: number, freq: number, gain: number, decay: number, pan: number) => {
+      const c = ctx!, o = c.createOscillator(), g = c.createGain(), p = c.createStereoPanner();
+      o.frequency.setValueAtTime(freq, t); o.frequency.exponentialRampToValueAtTime(freq * 0.6, t + decay); p.pan.value = pan;
+      g.gain.setValueAtTime(0.0001, t); g.gain.exponentialRampToValueAtTime(gain, t + 0.003); g.gain.exponentialRampToValueAtTime(0.0001, t + decay);
+      o.connect(g).connect(p).connect(master); o.start(t); o.stop(t + decay + 0.02);
+    };
+    const bell = (t: number) => {
+      const c = ctx!, o = c.createOscillator(), g = c.createGain();
+      o.frequency.value = 1760; g.gain.setValueAtTime(0.0001, t); g.gain.exponentialRampToValueAtTime(0.25, t + 0.005); g.gain.exponentialRampToValueAtTime(0.0001, t + 1.2);
+      o.connect(g).connect(master); o.start(t); o.stop(t + 1.25);
+    };
+
+    const key = (t: number, space = false) => {
+      const s = styleSel.value, pan = rnd(-0.35, 0.35), v = rnd(0.75, 1.1);
+      if (s === 'thocky') { burst(t, rnd(900, 1400) * (space ? 0.7 : 1), 2.5, 0.5 * v, space ? 0.09 : 0.06, pan); thump(t, space ? 110 : rnd(140, 180), 0.35 * v, 0.07, pan); burst(t + rnd(0.06, 0.09), rnd(1200, 1600), 3, 0.12 * v, 0.03, pan); }
+      else if (s === 'clicky') { burst(t, rnd(3500, 4800), 6, 0.45 * v, 0.025, pan); burst(t + 0.008, rnd(2000, 2600), 3, 0.3 * v, space ? 0.07 : 0.045, pan); }
+      else if (s === 'laptop') { burst(t, rnd(1700, 2300), 1.5, 0.22 * v, space ? 0.05 : 0.035, pan); }
+      else { burst(t, rnd(1800, 2400), 2, 0.6 * v, 0.08, pan); thump(t, 90, 0.3 * v, 0.06, pan); }
+    };
+
+    // Natural rhythm: words of 2 to 9 keys, a space, and a longer pause at sentence ends.
+    let wordLeft = 0;
+    const schedule = () => {
+      if (!running || !ctx) return;
+      const cps = Number(speed.value) * 5 / 60; // words per minute -> keys per second
+      while (nextAt < ctx.currentTime + 0.25) {
+        if (wordLeft <= 0) {
+          key(nextAt, true); charsInLine++;
+          wordLeft = Math.round(rnd(2, 9));
+          nextAt += (Math.random() < 0.12 ? rnd(0.6, 1.6) : rnd(0.9, 1.5) / cps);
+          if (styleSel.value === 'typewriter' && charsInLine > 60) { bell(nextAt); nextAt += 0.9; charsInLine = 0; }
+        } else {
+          key(nextAt); wordLeft--; charsInLine++;
+          nextAt += rnd(0.6, 1.4) / cps;
+        }
+      }
+      loop = window.setTimeout(schedule, 80);
+    };
+
+    const stop = () => {
+      running = false; clearTimeout(loop); clearTimeout(stopTimer);
+      playBtn.textContent = '▶ Play'; playBtn.setAttribute('aria-pressed', 'false');
+    };
+    playBtn.addEventListener('click', async () => {
+      init(); await ctx!.resume();
+      if (running) return stop();
+      running = true; nextAt = ctx!.currentTime + 0.05; wordLeft = 0;
+      playBtn.textContent = '❚❚ Pause'; playBtn.setAttribute('aria-pressed', 'true');
+      const mins = Number(timerSel.value); if (mins) stopTimer = window.setTimeout(stop, mins * 60000);
+      schedule();
+    });
+    vol.addEventListener('input', setVol);
+    timerSel.addEventListener('change', () => { clearTimeout(stopTimer); const m = Number(timerSel.value); if (running && m) stopTimer = window.setTimeout(stop, m * 60000); });
+    pad.addEventListener('keydown', async e => {
+      if (e.repeat || e.key.length > 1 && e.key !== ' ' && e.key !== 'Enter' && e.key !== 'Backspace') return;
+      init(); await ctx!.resume(); key(ctx!.currentTime, e.key === ' ' || e.key === 'Enter');
+    });
+  }
+</script>
+
+<style>
+  .tt { border: 1px solid var(--border, #2a2a3e); background: var(--bg-2, #1a1a2e); border-radius: 12px; padding: 1rem; margin: 1rem 0 1.5rem; }
+  .tt-head { display: flex; flex-wrap: wrap; gap: 0.25rem 0.75rem; align-items: baseline; margin-bottom: 0.75rem; }
+  .tt-head strong { font-size: 1.05rem; }
+  .tt-sub, .tt-note { font-size: 0.85rem; color: var(--text-3, #999); }
+  .tt-note { margin: 0.5rem 0 0; }
+  .tt-row { display: flex; flex-wrap: wrap; gap: 0.75rem 1rem; align-items: center; }
+  .tt-row label { display: flex; align-items: center; gap: 0.4rem; font-size: 0.9rem; }
+  .tt-row select, .tt-row input[type="range"] { max-width: 11rem; }
+  .tt-play { padding: 0.55rem 1.1rem; border: 0; border-radius: 8px; background: var(--accent, #7c3aed); color: #fff; font-weight: 600; cursor: pointer; font-size: 0.95rem; }
+  .tt-pad { width: 100%; margin-top: 0.75rem; padding: 0.6rem; border-radius: 8px; border: 1px solid var(--border, #2a2a3e); background: transparent; color: inherit; font: inherit; resize: vertical; box-sizing: border-box; }
+</style>

@@ -1,0 +1,34 @@
+---
+// Trigger hubs for the 10 triggers tracked by year: share of each year's uploads, completed years only, so a reader
+// sees whether the sound is growing or fading. From the build snapshot (trends), no database read.
+import hub from '../lib/hub-data-all.json';
+
+interface Props { trigger: string }
+const { trigger } = Astro.props;
+const { trends = [], catalogDate } = hub as any;
+const yrs = trends.filter((t: any) => t.year < catalogDate.slice(0, 4) && t.triggers?.[trigger] != null);
+const label = trigger.replace(/-/g, ' ');
+const peak = yrs.length ? yrs.reduce((a: any, b: any) => (b.triggers[trigger] > a.triggers[trigger] ? b : a)) : null;
+const last = yrs[yrs.length - 1];
+---
+{yrs.length >= 5 && (
+<section class="trt">
+  <h2>{`Is ${label} ASMR growing or fading?`}</h2>
+  <p>{`Share of each year's uploads in our catalog whose main trigger is ${label} (${catalogDate}). It peaked at ${peak.triggers[trigger]}% in ${peak.year} and was ${last.triggers[trigger]}% in ${last.year}. Early years hold fewer videos (${yrs[0].count.toLocaleString('en-US')} in ${yrs[0].year}).`}</p>
+  <div class="trt-wrap">
+    <table>
+      <thead><tr>{yrs.map((t: any) => <th scope="col">{t.year}</th>)}</tr></thead>
+      <tbody><tr>{yrs.map((t: any) => <td>{t.triggers[trigger]}%</td>)}</tr></tbody>
+    </table>
+  </div>
+  <p class="trt-note">Full year-by-year table and charts: <a href="/guides/asmr-trends/">ASMR trends</a>.</p>
+</section>
+)}
+
+<style>
+  .trt { margin: 2rem 0; }
+  .trt-wrap { overflow-x: auto; }
+  .trt table { border-collapse: collapse; font-size: 0.88rem; }
+  .trt th, .trt td { padding: 0.35rem 0.5rem; border-bottom: 1px solid var(--border); text-align: center; }
+  .trt-note { font-size: 0.88rem; color: var(--text-3, #999); }
+</style>

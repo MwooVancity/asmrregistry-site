@@ -1,0 +1,42 @@
+---
+// /best/best-asmr-videos/: the 3 most watched catalog videos for each of the 8 most common triggers, playing in place,
+// so a reader picks by the sound they like. From the build snapshot (triggerHubs, catalogStats), no database read.
+import hub from '../lib/hub-data-all.json';
+
+const { triggerHubs = {}, catalogStats = [], catalogDate } = hub as any;
+const groups = catalogStats.slice(0, 8).map((s: any) => ({
+  trigger: s.trigger, count: s.count, med: s.medianMin,
+  vids: [...(triggerHubs[s.trigger]?.videos ?? [])].sort((a: any, b: any) => (b.view_count || 0) - (a.view_count || 0)).slice(0, 3),
+})).filter((g: any) => g.vids.length === 3);
+const label = (t: string) => t.charAt(0).toUpperCase() + t.slice(1).replace(/-/g, ' ');
+const len = (s: number) => (s >= 3600 ? `${Math.floor(s / 3600)} h ${Math.round((s % 3600) / 60)} min` : `${Math.round(s / 60)} min`);
+---
+{groups.length > 0 && (
+<section class="tbt">
+  <h2>Most watched, by the sound you like</h2>
+  <p>{`The 3 most viewed videos for each of the ${groups.length} most common triggers in our catalog (${catalogDate}). Triggers are tagged from titles.`}</p>
+  {groups.map((g: any) => (
+    <>
+      <h3><a href={`/${g.trigger}/`}>{label(g.trigger)}</a>{`: ${g.count.toLocaleString('en-US')} videos, typical ${g.med} min`}</h3>
+      <div class="video-grid">
+        {g.vids.map((v: any) => (
+          <article class="video-card">
+            <button type="button" class="vplay" data-v={v.id} aria-label={`Play ${v.title}`}>
+              <div class="video-thumb">
+                <img src={`https://i.ytimg.com/vi/${v.id}/mqdefault.jpg`} alt={v.title} loading="lazy" width="320" height="180" />
+                <span class="duration-badge">{len(v.duration_seconds)}</span>
+              </div>
+              <p class="vt">{v.title}</p>
+            </button>
+          </article>
+        ))}
+      </div>
+    </>
+  ))}
+</section>
+)}
+
+<style>
+  .tbt { margin: 2rem 0; }
+  .tbt h3 { margin-top: 1.25rem; }
+</style>

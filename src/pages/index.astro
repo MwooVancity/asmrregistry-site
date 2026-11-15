@@ -1,0 +1,265 @@
+---
+// src/pages/index.astro
+export const prerender = true;
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { TRIGGER_GROUPS } from '../lib/constants';
+import { hrefFor } from '../lib/page-content';
+import PreferenceFinder from '../components/PreferenceFinder.astro';
+import HUB from '../lib/hub-data-all.json';
+// One tap for the 1 a.m. reader: the top sleep pick (build-filtered: 30+ min, no eating, no Shorts), preferring an hour+.
+const sleepVids = ((HUB as any).intentHubs?.sleep?.videos || []) as any[];
+const tonight = sleepVids.find(v => v.duration_seconds >= 3600) || sleepVids[0];
+
+// Counts come from the build snapshot: this page is prerendered, where the database binding is not available
+// (the old D1 queries silently returned 0, hiding the stats bar and the count title).
+const totalVideos = Number((HUB as any).catalogCount ?? 0);
+const totalChannels = Number((HUB as any).catalogChannels ?? 0);
+const topTriggers: { trigger: string; count: number }[] = ((HUB as any).triggersOverview ?? []).slice(0, 12);
+
+const INTENTS = [
+  { slug: 'sleep', label: 'Sleep', desc: 'Long-form, low-intensity triggers for falling asleep' },
+  { slug: 'asmr-for-focus', label: 'Study & Focus', desc: 'Background sounds that sharpen concentration' },
+  { slug: 'rain', label: 'Relaxation', desc: 'Gentle ambient sounds to decompress after a long day' },
+  { slug: 'anxiety', label: 'Anxiety Relief', desc: 'Calming personal attention and soft voices' },
+  { slug: 'binaural', label: 'Tingles', desc: 'Binaural recordings for maximum ASMR sensation' },
+  { slug: 'headache', label: 'Headache Relief', desc: 'Soft, quiet triggers for pain and tension relief' },
+];
+
+const fmt = (n: number) => n >= 1e9 ? `${(n/1e9).toFixed(1)}B` : n >= 1e6 ? `${(n/1e6).toFixed(n >= 1e7 ? 0 : 1)}M` : n >= 1000 ? `${(n/1000).toFixed(n >= 10000 ? 0 : 1)}K` : String(n);
+
+const jsonLd: any[] = [];
+---
+
+<BaseLayout
+  title={totalVideos > 0
+    ? `ASMR Registry: ${fmt(totalVideos)}+ ASMR Videos by Trigger and Goal`
+    : "ASMR Registry: ASMR Videos by Trigger, Goal and Length"}
+  description="Find ASMR for sleep, study, relaxation, and anxiety. Every video sorted by trigger, listening goal and length."
+  canonical="/"
+  jsonLd={jsonLd}
+  isHomepage={true}
+>
+  <!-- HERO -->
+  <section class="hero">
+    <p class="hero-eyebrow">ASMR videos sorted by trigger, intent and length</p>
+    <h1>Find the right<br><span class="accent">ASMR</span> for tonight</h1>
+    <p class="hero-sub">{`Over ${Math.floor((totalVideos || 40000) / 1000)},000`} videos tagged by trigger, listening goal and format. The finder below picks from the best-fitting few thousand: filter by length, talking and sounds to avoid.</p>
+    <a href="/asmr-videos/" class="btn-primary" style="display:inline-flex;margin-top:1.25rem;padding:0.75rem 1.5rem;background:var(--accent);color:#fff;border-radius:8px;text-decoration:none;font-weight:600">Search videos →</a>
+  </section>
+
+  {tonight && (
+    <p class="home-tonight">Can't sleep right now? <a href={`/video/${tonight.id}/`}>Play {tonight.title}</a> ({Math.round(tonight.duration_seconds / 60)} min, {tonight.channel_name}). Turn off autoplay and set a sleep timer.</p>
+  )}
+
+  <!-- The same finder as intent pages, unlocked: the home page's job is "what should I play" -->
+  <div class="home-finder"><PreferenceFinder heading="What do you want to listen to?" /></div>
+  <p class="home-paths">Or browse: <a href="/sleep/">sleep</a> · <a href="/triggers-overview/">all triggers</a> · <a href="/creators/">creators by style</a> · <a href="/haircut-asmr/">roleplays</a> · <a href="/tools/soundscape/">build your own soundscape</a></p>
+
+  <!-- STATS BAR -->
+  <div class="stats-bar">
+    {totalVideos > 0 && (
+      <div class="stats-bar-item">
+        <span class="n">{fmt(totalVideos)}</span>
+        <span class="u">videos indexed</span>
+      </div>
+    )}
+    {totalChannels > 0 && (
+      <div class="stats-bar-item">
+        <span class="n">{fmt(totalChannels)}</span>
+        <span class="u">ASMR creators</span>
+      </div>
+    )}
+    <div class="stats-bar-item">
+      <span class="n">37</span>
+      <span class="u">trigger types</span>
+    </div>
+    <div class="stats-bar-item">
+      <span class="n">13</span>
+      <span class="u">use-case intents</span>
+    </div>
+  </div>
+
+  <hr class="divider" />
+
+  <!-- ABOUT BLURB -->
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:3rem;align-items:start" class="about-split">
+    <div>
+      <div class="section-label">What is ASMR Registry?</div>
+      <p style="font-size:1rem;line-height:1.75;color:var(--text-2)">
+        ASMR Registry is an independent directory of ASMR videos on YouTube, with written guides on triggers, sleep, and gear. Every video is tagged by its main trigger, listening goal and length, with an estimated intensity, so you can find what you need, not just what is popular.
+      </p>
+      <p style="font-size:1rem;line-height:1.75;color:var(--text-2)">
+        Whether you need 8 hours of rain for sleep, a 15-minute tapping session for focus, or a spa roleplay for anxiety — the search engine finds it.
+      </p>
+      <a href="/about/" class="btn-outline" style="display:inline-flex;margin-top:0.5rem">Learn more →</a>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:0.75rem">
+      <div class="data-panel" style="margin:0">
+        <h2>How we classify videos</h2>
+        <div class="data-stats">
+          <div class="data-stat"><span class="value">AI</span><span class="label">AI-powered classification</span></div>
+          <div class="data-stat"><span class="value">0.7+</span><span class="label">Confidence threshold</span></div>
+          <div class="data-stat"><span class="value">37</span><span class="label">Trigger types classified</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <hr class="divider" />
+
+  <!-- BROWSE BY TRIGGER -->
+  <section>
+    <div class="section-label">Browse by trigger type</div>
+    <p style="font-size:1rem;line-height:1.75;color:var(--text-2);margin:0 0 1rem">
+      ASMR triggers are the specific sounds or visual patterns that produce tingling sensations. Each trigger type affects people differently — tapping works for some, whispering for others. We classify every video by its primary trigger so you can zero in on the sounds that work for you.
+    </p>
+    {topTriggers.length > 0 && (
+      <div class="trigger-grid">
+        {topTriggers.filter(d => hrefFor(d.trigger)).map(d => (
+          <a href={hrefFor(d.trigger)!} class="trigger-card">
+            <span class="trigger-name">{d.trigger.replace(/-/g, ' ')}</span>
+            <span class="trigger-count">{d.count} videos</span>
+          </a>
+        ))}
+      </div>
+    )}
+    <a href="/triggers-overview/" class="btn-outline" style="display:inline-flex;margin-top:1rem">All 37 trigger types →</a>
+  </section>
+
+  <hr class="divider" />
+
+  <!-- BROWSE BY INTENT -->
+  <section>
+    <div class="section-label">Browse by use-case</div>
+    <p style="font-size:1rem;line-height:1.75;color:var(--text-2);margin:0 0 1rem">
+      Not everyone watches ASMR for the same reason. Some need it for sleep, others for focus during study sessions, and some for anxiety relief. We tag every video with its best use-case so you find content matched to your goal — not just what has the most views.
+    </p>
+    <div class="intent-grid">
+      {INTENTS.map(i => (
+        <a href={`/${i.slug}/`} class="intent-card">
+          <span class="intent-name">{i.label}</span>
+          <span class="intent-desc">{i.desc}</span>
+        </a>
+      ))}
+    </div>
+  </section>
+
+  <hr class="divider" />
+
+  <!-- TRIGGER FAMILIES -->
+  <section>
+    <div class="section-label">Trigger families</div>
+    <p style="font-size:1rem;line-height:1.75;color:var(--text-2);margin:0 0 1rem">
+      Triggers cluster into families that share acoustic or tactile properties. If you like tapping, you'll probably respond to scratching and brushing too. These groupings help you discover new triggers based on ones you already enjoy.
+    </p>
+    <div class="families-grid">
+      {Object.entries(TRIGGER_GROUPS).map(([group, triggers]) => (
+        <div class="family-card">
+          <h3 class="family-name">{group}</h3>
+          <div class="family-tags">
+            {triggers.filter(t => hrefFor(t)).slice(0, 5).map(t => (
+              <a href={hrefFor(t)!} class="kw-tag">{t.replace(/-/g, ' ')}</a>
+            ))}
+          </div>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <hr class="divider" />
+
+  <!-- CONTENT SECTIONS -->
+  <section>
+    <div class="section-label">Learn & discover</div>
+    <p style="font-size:1rem;line-height:1.75;color:var(--text-2);margin:0 0 1rem">
+      Go deeper with guides, curated lists, and gear reviews — all backed by classified data.
+    </p>
+    <div class="content-cards">
+      <a href="/guides/" class="content-card">
+        <span class="content-card-title">ASMR Guides</span>
+        <span class="content-card-desc">Guides on triggers and what research does and does not show about ASMR</span>
+      </a>
+      <a href="/best/" class="content-card">
+        <span class="content-card-title">Best Of Lists</span>
+        <span class="content-card-desc">Most watched videos that fit a goal like sleep or anxiety</span>
+      </a>
+      <a href="/gear/" class="content-card">
+        <span class="content-card-title">Gear Guides</span>
+        <span class="content-card-desc">Microphones, headphones, and setups for creators and listeners</span>
+      </a>
+    </div>
+  </section>
+
+  <hr class="divider" />
+
+  <!-- HOW IT WORKS -->
+  <section>
+    <div class="section-label">How classification works</div>
+    <p style="font-size:1rem;line-height:1.75;color:var(--text-2)">
+      Every video in ASMR Registry goes through a multi-step classification pipeline. First, we extract metadata from YouTube including title, description, and channel information. Then an AI classifier identifies the primary trigger, secondary triggers, emotional intents, and intensity level on a 1–5 scale. It reads text only and never hears the audio, so some labels are wrong. Videos it rates below 0.7 confidence are left out. The result is a catalog you can filter by length, talking and trigger, which YouTube's own search cannot do in one step.
+    </p>
+    <a href="/methodology/" class="btn-outline" style="display:inline-flex;margin-top:0.5rem">Read our methodology →</a>
+  </section>
+</BaseLayout>
+
+<style>
+  @media (max-width: 768px) {
+    .about-split { grid-template-columns: 1fr !important; gap: 2rem !important; }
+  }
+
+  .trigger-grid {
+    display: grid; grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); gap: 0.5rem;
+  }
+  .trigger-card {
+    display: flex; flex-direction: column; padding: 0.75rem;
+    background: var(--bg-2, #1a1a2e); border: 1px solid var(--border, #2a2a3e);
+    border-radius: 8px; text-decoration: none; color: inherit; transition: border-color 0.15s;
+  }
+  .trigger-card:hover { border-color: var(--accent, #7c3aed); }
+  .trigger-name { font-weight: 600; text-transform: capitalize; font-size: 0.95rem; }
+  .trigger-count { font-size: 0.8rem; color: var(--text-3, #888); margin-top: 0.25rem; }
+
+  .intent-grid {
+    display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 0.75rem;
+  }
+  .intent-card {
+    display: flex; flex-direction: column; padding: 1rem;
+    background: var(--bg-2, #1a1a2e); border: 1px solid var(--border, #2a2a3e);
+    border-radius: 8px; text-decoration: none; color: inherit; transition: border-color 0.15s;
+  }
+  .intent-card:hover { border-color: var(--accent, #7c3aed); }
+  .intent-name { font-weight: 600; font-size: 1rem; margin-bottom: 0.25rem; }
+  .intent-desc { font-size: 0.85rem; color: var(--text-3, #888); line-height: 1.5; }
+
+  .families-grid {
+    display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 0.75rem;
+  }
+  .family-card {
+    padding: 1rem; background: var(--bg-2, #1a1a2e);
+    border: 1px solid var(--border, #2a2a3e); border-radius: 8px;
+  }
+  .family-name { font-size: 0.95rem; margin: 0 0 0.5rem; }
+  .family-tags { display: flex; flex-wrap: wrap; gap: 0.4rem; }
+  .kw-tag {
+    padding: 0.25rem 0.6rem; background: var(--bg-3, #12121f);
+    border: 1px solid var(--border, #2a2a3e); border-radius: 999px;
+    font-size: 0.78rem; color: var(--text-3, #888); text-decoration: none;
+    text-transform: capitalize; transition: color 0.15s;
+  }
+  .kw-tag:hover { color: var(--accent, #7c3aed); }
+
+  .content-cards {
+    display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 0.75rem;
+  }
+  .content-card {
+    display: flex; flex-direction: column; padding: 1.25rem;
+    background: var(--bg-2, #1a1a2e); border: 1px solid var(--border, #2a2a3e);
+    border-radius: 8px; text-decoration: none; color: inherit; transition: border-color 0.15s;
+  }
+  .content-card:hover { border-color: var(--accent, #7c3aed); }
+  .content-card-title { font-weight: 600; font-size: 1rem; margin-bottom: 0.35rem; }
+  .content-card-desc { font-size: 0.85rem; color: var(--text-3, #888); line-height: 1.5; }
+  .home-tonight { max-width: 960px; margin: 0 auto 1rem; padding: 0.75rem 1rem; font-size: 0.95rem; }
+  .home-finder { max-width: 960px; margin: 0 auto; padding: 0 1rem; }
+  .home-paths { max-width: 960px; margin: 0 auto 1.5rem; padding: 0 1rem; font-size: 0.9rem; color: var(--text-3, #888); }
+</style>

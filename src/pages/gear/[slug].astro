@@ -1,0 +1,116 @@
+---
+export const prerender = false;
+
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import BreadcrumbNav from '../../components/BreadcrumbNav.astro';
+import ContentSections from '../../components/ContentSections.astro';
+import RelatedPages from '../../components/RelatedPages.astro';
+import MicSpecTable from '../../components/MicSpecTable.astro';
+import { getPagesByType } from '../../lib/ledger';
+import { getContent } from '../../lib/page-content';
+
+const { slug } = Astro.params;
+if (!slug) return new Response(null, { status: 404 });
+
+const page = getPagesByType('EQUIPMENT').find(p => p.slug === slug);
+if (!page) return new Response(null, { status: 404 });
+
+const content = getContent(page.slug);
+if ((content as any)?.status === 'redirected' && (content as any).redirectTo) return Astro.redirect((content as any).redirectTo, 301);
+
+Astro.response.headers.set('Cache-Control', 'public, max-age=3600, stale-while-revalidate=86400');
+
+const title = content?.title || `${page.headKeyword.split(' ').map(w => w === 'asmr' ? 'ASMR' : w.charAt(0).toUpperCase() + w.slice(1)).join(' ')} — Buyer's Guide`;
+const desc = content?.metaDescription || `The best ${page.headKeyword}. ${page.totalDemand.toLocaleString()} monthly searches answered with honest recommendations.`;
+const h1 = content?.h1 || page.headKeyword.split(' ').map(w => w === 'asmr' ? 'ASMR' : w.charAt(0).toUpperCase() + w.slice(1)).join(' ');
+
+const SITE = 'https://asmrregistry.com';
+const breadcrumbs = [
+  { name: 'Home', url: '/' },
+  { name: 'Gear', url: '/gear/' },
+  { name: h1, url: page.targetUrl },
+];
+
+const faqItems = content?.faqItems || [];
+const jsonLd: any[] = [
+  {
+    "@type": "Article",
+    "@id": `${SITE}${page.targetUrl}#article`,
+    "headline": title,
+    "description": desc,
+    "url": `${SITE}${page.targetUrl}`,
+  },
+  {
+    "@type": "BreadcrumbList",
+    "itemListElement": breadcrumbs.map((b, i) => ({
+      "@type": "ListItem", "position": i + 1,
+      "name": b.name, "item": `${SITE}${b.url}`,
+    })),
+  },
+];
+
+if (faqItems.length > 0) {
+  jsonLd.push({
+    "@type": "FAQPage",
+    "mainEntity": faqItems.map(f => ({
+      "@type": "Question", "name": f.question,
+      "acceptedAnswer": { "@type": "Answer", "text": f.answer },
+    })),
+  });
+}
+---
+
+<BaseLayout title={title} description={desc} canonical={page.targetUrl} jsonLd={jsonLd} robots={content?.introHtml?.trim() ? undefined : 'noindex,follow'}>
+  <BreadcrumbNav items={breadcrumbs} />
+
+  <h1>{h1}</h1>
+  <p class="byline">By <a href="/about/">ASMR Registry Editorial</a>{content?.lastUpdated ? ` · Updated ${new Date(content.lastUpdated).toLocaleDateString('en-US', {month:'long', year:'numeric'})}` : ''}</p>
+
+  {content?.introHtml ? (
+    <div class="guide-body" set:html={content.introHtml} />
+  ) : (
+    <div class="guide-placeholder">
+      <p>This gear guide is being written and will be published soon.</p>
+      <p><strong>{page.headKeyword}</strong> gets {page.totalDemand.toLocaleString()} monthly searches.</p>
+    </div>
+  )}
+
+  {page.slug === 'asmr-usb-microphone' && <MicSpecTable group="usb" />}
+  {page.slug === 'asmr-xlr-microphone' && <MicSpecTable group="xlr" />}
+
+  {faqItems.length > 0 && (
+    <section class="faq">
+      <h2>FAQ</h2>
+      {faqItems.map(f => (
+        <details>
+          <summary>{f.question}</summary>
+          <p>{f.answer}</p>
+        </details>
+      ))}
+    </section>
+  )}
+
+  <RelatedPages slug={page.slug} exclude={(content?.crossLinks || []).map((l: any) => l.href)} />
+  <ContentSections
+    sections={content?.sections}
+    dataset={(content as any)?.dataset}
+    proTips={content?.proTips}
+    crossLinks={content?.crossLinks}
+    references={content?.references}
+    currentSlug={slug}
+    pageType="GEAR"
+  />
+</BaseLayout>
+
+<style>
+  .guide-body { font-size: 1.05rem; line-height: 1.8; color: var(--text-1); }
+  .guide-body h2 { font-size: 1.25rem; margin: 2rem 0 0.5rem; }
+  .guide-body p { margin: 0 0 1rem; }
+  .guide-placeholder { padding: 2rem; background: var(--bg-2); border-radius: 8px; text-align: center; color: var(--text-3); }
+  section { margin: 2rem 0; }
+  .faq details { border-bottom: 1px solid var(--border); }
+  .faq summary { padding: 0.75rem 0; cursor: pointer; font-weight: 500; color: var(--text-1); list-style: none; }
+  .faq summary::before { content: '+ '; color: var(--accent); font-weight: 700; }
+  .faq details[open] summary::before { content: '− '; }
+  .faq p { padding: 0 0 0.75rem; color: var(--text-2); line-height: 1.6; }
+</style>

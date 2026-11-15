@@ -1,0 +1,29 @@
+---
+import { DATA_DOI } from '../lib/dataset';
+// Charts and the free summary download on /guides/asmr-statistics/, with embed code that credits the source.
+const charts = [
+  ['asmr-videos-by-trigger', 'ASMR videos by main trigger'],
+  ['asmr-length-by-trigger', 'How long ASMR videos run, by trigger'],
+];
+const embed = (id: string, alt: string) => `<a href="https://asmrregistry.com/guides/asmr-statistics/"><img src="https://asmrregistry.com/charts/${id}.svg" alt="${alt} (ASMR Registry)"></a>`;
+---
+<section class="ss">
+  <h2>Charts and data you can use</h2>
+  {/* template-lint-ok: licence note, used on one page */}
+  <p>Free to share and republish with credit to ASMR Registry. The download has our per-trigger summary (video count, median length, share over 30 minutes, share labelled no talking). It contains our own classification only, no YouTube titles or view counts.</p>
+  <p><a href="/data/asmr-trigger-stats.csv" download>Download the summary (CSV)</a>. Archived on Zenodo for citation: <a href={`https://doi.org/${DATA_DOI}`}>doi:{DATA_DOI}</a>.</p>
+  {charts.map(([id, alt]) => (
+    <figure>
+      <img src={`/charts/${id}.svg`} alt={alt} width="720" loading="lazy" class="ss-chart" />
+      <figcaption><label>Embed code<textarea readonly rows="2">{embed(id, alt)}</textarea></label></figcaption>
+    </figure>
+  ))}
+</section>
+
+<style>
+  .ss { margin: 2rem 0; }
+  .ss figure { margin: 1.25rem 0; }
+  .ss-chart { width: 100%; height: auto; border: 1px solid var(--border, #2a2a3e); border-radius: 8px; background: #fff; }
+  .ss label { display: block; font-size: 0.85rem; color: var(--text-3, #999); }
+  .ss textarea { display: block; width: 100%; margin-top: 0.25rem; font: 0.8rem/1.4 monospace; padding: 0.5rem; border-radius: 6px; border: 1px solid var(--border, #2a2a3e); background: transparent; color: inherit; }
+</style>

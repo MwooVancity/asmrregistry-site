@@ -1,0 +1,98 @@
+# build output
+dist/
+# generated types
+.astro/
+
+# dependencies
+node_modules/
+
+# logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+
+# environment variables
+.env
+.env.production
+
+# wrangler
+.wrangler/
+
+# macOS-specific files
+.DS_Store
+
+# jetbrains setting folder
+.idea/
+
+# tooling artifacts
+.superpowers/
+.claude/settings.local.json
+_claude-config-backup/
+
+# command/output dumps (may contain secrets)
+*token-output*
+
+# nested standalone projects (their own git repos)
+fridgecalc/
+muniengine/
+livedatacalc/
+.cascade-backup/
+
+# analysis output
+out/
+
+# Python
+__pycache__/
+*.pyc
+
+# auto-backup local log (not versioned)
+tools/auto-backup.log
+
+# Turso DB backups (local safety net, contains raw data)
+_db-backups/
+public/build-stamp.txt
+
+# build output and local secrets
+dist2/
+.dev.vars
+**/.dev.vars
+
+# generated share assets (scripts/prebuild-share.mjs)
+public/cards/
+public/badges/
+public/charts/
+public/data/
+
+# never in the public repo (2026-11-15)
+secrets-vault.enc
+tools/secrets-vault.ps1
+
+# private or other projects: never in the public repo (2026-11-15)
+/_claude-config-backup
+/velocity-engine
+/calcsite
+/.claude
+/link-admin
+/.vscode
+/research_notes
+/reports
+/docs
+/PLAN.md
+/CLAUDE.md
+/prose-5-pages.json
+/keywords-1562.txt
+/gate-temp.cjs
+/content-v16.json
+/audit-extract.json
+/apply-prose-temp.json
+/apply-prose-temp.cjs
+/_audit_extract.json
+/ponytail
+/caveman
+/mermaid
+/asmr-grind-batch.sh
+/asmr-grind-batch.mjs
+/Users*
+/.mcp.json

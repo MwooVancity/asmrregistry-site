@@ -1,0 +1,93 @@
+{
+  "metaTitle": "Firewood vs Propane Heating Cost Calculator",
+  "metaDescription": "Compare firewood and propane by delivered cost per MMBTU using live EIA propane prices, stove efficiency, and your own cord price. See your break-even.",
+  "heroAnswer": "<p>At $250 per cord, mixed hardwood delivers heat for about $16.67 per MMBTU through a 75% efficient stove, while propane at $2.75 per gallon delivers about $33.39 per MMBTU through a 90% AFUE furnace. Wood costs roughly half as much per unit of usable heat.</p><p>The comparison flips only when propane falls below about $1.37 per gallon at that cord price. This page runs the math against the current EIA residential propane price of [RATE:propane_per_gallon], your cord cost, and your appliance efficiency.</p>",
+  "reference": [
+    {
+      "heading": "Firewood vs Propane: Cost Per MMBTU Comparison",
+      "content": "<table><thead><tr><th>Fuel</th><th>Input price</th><th>BTU content</th><th>Raw $/MMBTU</th><th>Delivered at efficiency</th></tr></thead><tbody><tr><td>Mixed hardwood</td><td>$250 per cord</td><td>20.0 MMBTU per cord</td><td>$12.50</td><td>$16.67 at 75% stove</td></tr><tr><td>Propane</td><td>$2.75 per gallon</td><td>91,500 BTU per gallon (0.0915 MMBTU)</td><td>$30.05</td><td>$33.39 at 90% AFUE</td></tr><tr><td>Natural gas</td><td>$12.72 per MCF</td><td>1.02 MMBTU per MCF</td><td>$12.47</td><td>$15.59 at 80% AFUE</td></tr></tbody></table><p>Propane at $2.75 per gallon costs more than twice as much as wood at $250 per cord once both are corrected for appliance efficiency. The gap is $16.72 per MMBTU delivered, and it grows every time propane rises or cord prices fall.</p><p>The live residential propane price from EIA is currently [RATE:propane_per_gallon], and propane heat content is fixed at [RATE:propane_btu_per_gallon] BTU per gallon. Mixed hardwood runs about [RATE:wood_btu_mixed_hardwood] MMBTU per cord according to <a href=\"https://www.eia.gov/energyexplained/biomass/\">EIA biomass data</a>, which is the number that anchors every wood figure on this page.</p>"
+    },
+    {
+      "heading": "The propane price where firewood stops winning",
+      "content": "<p>Break-even is the propane price that produces the same delivered cost per MMBTU as your wood. The formula is short: break-even propane per gallon equals your wood delivered cost per MMBTU multiplied by 0.0915, then multiplied by your furnace AFUE.</p><p>At $250 per cord through a 75% stove, wood delivers heat at $16.67 per MMBTU. Break-even is $16.67 x 0.0915 x 0.90, or $1.37 per gallon. At $350 per cord, wood delivers at $23.33 per MMBTU and break-even rises to $23.33 x 0.0915 x 0.90, or $1.92 per gallon.</p><p>National residential propane has stayed above $2 per gallon for years, and EIA weekly survey data has not printed a sustained sub-$1.40 average in recent heating seasons. At the current [RATE:propane_per_gallon], both of those break-even points sit well below market, so wood wins on fuel cost in both scenarios.</p>"
+    },
+    {
+      "heading": "What shifts the comparison",
+      "content": "<p>Three inputs move the answer more than cord price does. Efficiency is first: an <a href=\"https://www.epa.gov/burnwise/wood-smoke-and-your-health\">EPA certified stove</a> runs 75% to 80%, while a pre-certification stove often runs 55% to 65%. That 15 point swing changes delivered wood cost by roughly $2 to $3 per MMBTU at typical cord prices. Current modeled stove efficiency here is [RATE:stove_efficiency_pct]%.</p><p>Moisture is second. Wood at 25% moisture content burns 25% to 35% less usable heat into the room than seasoned wood at 15% to 20%, because energy goes into boiling water instead of heating the house. Buying green wood at seasoned prices silently raises your cost per MMBTU by a third.</p><p>Delivery is third. A $75 to $150 delivery charge spread over three or four cords adds $0.20 to $0.50 per MMBTU equivalent, which shifts your propane break-even up by roughly $0.05 to $0.15 per gallon. Furnace efficiency matters on the other side too, at [RATE:furnace_efficiency_afue]% AFUE modeled here.</p>"
+    }
+  ],
+  "diySection": [
+    {
+      "heading": "Worked example: 4 cords versus one propane season",
+      "content": "<p>Start with the wood side. Four cords of mixed hardwood at $250 per cord costs $1,000 and holds 4 x 20.0, or 80 MMBTU gross. A 75% efficient stove delivers 80 x 0.75, or 60 MMBTU into the house. Delivered cost is $1,000 / 60, or $16.67 per MMBTU.</p><p>Now match that heat with propane. Each gallon delivers 0.0915 x 0.90, or 0.08235 MMBTU through a 90% AFUE furnace. Delivering the same 60 MMBTU takes 60 / 0.08235, or 728 gallons. At $2.75 per gallon that is $2,002 for the season.</p><p>Wood saves $1,002 in this example, roughly half the propane bill. Swap in your own cord price and the current [RATE:propane_per_gallon] to see your own spread.</p>"
+    },
+    {
+      "heading": "Folding delivery cost into the wood side",
+      "content": "<p>Delivery is real money and belongs in the cord price before any comparison. A $75 delivery charge on a four cord load adds $75 / 4, or $18.75 per cord. Effective cord cost becomes $250 + $18.75, or $268.75.</p><p>Rerun the two lines. Raw cost is $268.75 / 20, or $13.44 per MMBTU. Delivered through a 75% stove that is $13.44 / 0.75, or $17.92 per MMBTU.</p><p>Break-even moves with it: $17.92 x 0.0915 x 0.90 equals $1.48 per gallon, up from $1.37. Delivery raised the bar by 11 cents per gallon of propane, which is meaningful bookkeeping but nowhere near enough to change the verdict at today's prices.</p>"
+    },
+    {
+      "heading": "When propane actually wins",
+      "content": "<p>Propane wins on fuel cost only in narrow cases: very high cord prices paired with a poor efficiency stove, or a region where propane runs unusually cheap while hardwood is trucked in. At $400 per cord through a 60% stove, wood delivers at $33.33 per MMBTU and break-even climbs to $2.74 per gallon, which is competitive with market propane.</p><p>Propane also wins on everything that is not a dollar per MMBTU. It is on demand and thermostatically controlled, with no stacking, splitting, hauling, or twice daily loading. A wood season is 10 to 20 hours of physical work per cord before the first fire.</p><p>Shoulder season favors propane too. Heating for one or two hours on a 50 degree evening costs a few gallons, while a wood stove needs 30 to 45 minutes to reach steady output and then overheats the room. Many households run propane in October and May and wood through the deep cold.</p>"
+    }
+  ],
+  "faq": [
+    {
+      "heading": "Is firewood cheaper than propane for heating?",
+      "shortAnswer": "Usually yes. At $250 per cord through a 75% stove, wood delivers heat at $16.67 per MMBTU versus $33.39 for propane at $2.75 per gallon. Propane would need to fall to about $1.37 per gallon to match.",
+      "content": "At typical U.S. prices firewood delivers usable heat for roughly half the cost of propane. The comparison at $250 per cord and $2.75 per gallon is $16.67 per MMBTU for wood against $33.39 for propane, both after efficiency.<br><br>The exception is high cord prices combined with an old low efficiency stove. At $400 per cord through a 60% stove, wood costs $33.33 per MMBTU and the advantage disappears. Check the current [RATE:propane_per_gallon] against your local cord price before deciding."
+    },
+    {
+      "heading": "How does the cost of heating with wood compare to propane?",
+      "shortAnswer": "Convert both to dollars per delivered MMBTU. Divide cord price by 20 MMBTU then by stove efficiency. Divide propane price by 0.0915 then by furnace AFUE. Compare the two results directly.",
+      "content": "Unit prices are not comparable because a cord and a gallon carry wildly different amounts of heat. Convert both to dollars per million BTU delivered into the living space.<br><br>Wood: cord price / 20.0 MMBTU / stove efficiency. Propane: gallon price / 0.0915 MMBTU / furnace AFUE.<br><br>At $250 per cord and 75% efficiency that is $16.67. At $2.75 per gallon and 90% AFUE that is $33.39. Wood is 50% cheaper per unit of heat that actually reaches you."
+    },
+    {
+      "heading": "What is the cost per MMBTU of firewood vs propane?",
+      "shortAnswer": "Mixed hardwood at $250 per cord is $12.50 per MMBTU raw and $16.67 delivered at 75% stove efficiency. Propane at $2.75 per gallon is $30.05 raw and $33.39 delivered at 90% AFUE.",
+      "content": "Raw cost ignores the appliance. A cord at $250 holding 20.0 MMBTU is $12.50 per MMBTU. Propane at $2.75 per gallon holding 0.0915 MMBTU is $30.05 per MMBTU.<br><br>Delivered cost divides by efficiency, which is the number that matters for your bill. Wood at 75% becomes $16.67 and propane at 90% becomes $33.39.<br><br>For reference, natural gas at $12.72 per MCF is $12.47 raw and $15.59 delivered at 80% AFUE, which is why gas beats both where a line exists."
+    },
+    {
+      "heading": "How many cords of wood equals how much propane?",
+      "shortAnswer": "One cord of mixed hardwood at 75% stove efficiency delivers 15 MMBTU, which equals about 182 gallons of propane through a 90% AFUE furnace. Four cords replace roughly 728 gallons.",
+      "content": "One cord holds 20.0 MMBTU and a 75% efficient stove delivers 15 MMBTU of that into the house.<br><br>Propane delivers 0.0915 x 0.90, or 0.08235 MMBTU per gallon through a 90% AFUE furnace. Matching 15 MMBTU takes 15 / 0.08235, or about 182 gallons.<br><br>Scale it up: four cords replace roughly 728 gallons, and six cords replace roughly 1,093 gallons. Lower your stove efficiency and the gallon equivalent drops in direct proportion."
+    },
+    {
+      "heading": "At what propane price does firewood become cheaper?",
+      "shortAnswer": "Break-even equals wood delivered cost per MMBTU x 0.0915 x furnace AFUE. At $250 per cord it is $1.37 per gallon; at $350 per cord it is $1.92 per gallon. Propane above those prices favors wood.",
+      "content": "Multiply your delivered wood cost per MMBTU by 0.0915 and then by your furnace AFUE. That product is the propane price per gallon at which the two fuels cost the same.<br><br>At $250 per cord through a 75% stove, wood delivers at $16.67 per MMBTU and break-even is $1.37 per gallon. At $350 per cord it is $1.92. Add delivery and the numbers shift upward by roughly a dime.<br><br>National residential propane has not sustained those levels in recent years, and the current rate is [RATE:propane_per_gallon]."
+    },
+    {
+      "heading": "Is a wood stove worth it if you have propane?",
+      "shortAnswer": "On fuel cost, a stove that offsets 60 MMBTU per season saves about $1,000 against propane at $2.75 per gallon. A $3,500 installed stove pays back in roughly three to four heating seasons.",
+      "content": "Run the payback, not just the per MMBTU spread. A stove offsetting 60 MMBTU per season saves about $1,002 against propane at $2.75 per gallon and wood at $250 per cord.<br><br>A certified stove plus chimney typically runs $3,000 to $5,000 installed, so payback lands near three to four seasons at those fuel prices. Faster if propane rises or you cut your own wood, slower if you buy premium seasoned hardwood.<br><br>Weigh the labor honestly. Stacking, loading, and ash removal add real hours, and many households keep propane as backup and shoulder season heat rather than removing it."
+    }
+  ],
+  "callout": [
+    {
+      "heading": "The Bottom Line",
+      "content": "<ul><li>Mixed hardwood at $250 per cord delivers heat for $16.67 per MMBTU through a 75% stove, versus $33.39 for propane at $2.75 per gallon through a 90% AFUE furnace.</li><li>Break-even propane price at $250 per cord is $1.37 per gallon, and $1.92 per gallon at $350 per cord. Current EIA residential propane is [RATE:propane_per_gallon].</li><li>Four cords replace roughly 728 gallons of propane, a $1,000 wood bill against a $2,002 propane bill for the same 60 MMBTU delivered.</li><li>A $75 delivery charge on four cords raises effective cord cost to $268.75 and moves break-even from $1.37 to $1.48 per gallon.</li><li>Stove efficiency swings the answer most: 55% to 65% on an old stove versus 75% to 80% certified changes delivered wood cost by $2 to $3 per MMBTU.</li></ul>"
+    }
+  ],
+  "crossLinks": [
+    {
+      "label": "Wood heating cost calculator",
+      "content": "Price a full wood-heating season by the cord before comparing it to propane gallons.",
+      "href": "/firewood/wood-heating-cost-calculator/"
+    },
+    {
+      "label": "Pellet fuel cost calculator",
+      "content": "Run pellets through the same delivered cost per MMBTU math as cordwood and propane.",
+      "href": "/firewood/pellet-fuel-cost-calculator/"
+    },
+    {
+      "label": "Firewood BTU calculator",
+      "content": "See how species heat content changes your usable MMBTU and your propane break-even.",
+      "href": "/firewood/firewood-btu-calculator/"
+    },
+    {
+      "label": "Oak firewood cost calculator",
+      "content": "Check whether paying up for oak beats mixed hardwood on delivered heat per dollar.",
+      "href": "/firewood/oak-firewood-cost-calculator/"
+    }
+  ]
+}

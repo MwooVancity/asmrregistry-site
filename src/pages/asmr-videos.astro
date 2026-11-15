@@ -1,0 +1,124 @@
+---
+export const prerender = false;
+import BaseLayout from '../layouts/BaseLayout.astro';
+import hub from '../lib/hub-data-all.json';
+import { hrefFor } from '../lib/page-content';
+
+const { catalogStats: stats, catalogDate } = hub as any;
+const total = stats.reduce((n: number, s: any) => n + s.count, 0);
+const label = (t: string) => t.charAt(0).toUpperCase() + t.slice(1).replace(/-/g, ' ');
+
+const title = 'ASMR Videos: Find One by Trigger, Length and No Talking';
+const desc = 'Find ASMR videos by trigger, length, no talking or sleep. Filter the most watched videos from our catalog, across every creator, with no sign-up.';
+const fmt = (n: number) => n.toLocaleString('en-US');
+const dur = (m: number) => (m >= 60 ? `${Math.floor(m / 60)}h ${m % 60}m` : `${m} min`);
+
+const faq = [
+  ['What kind of ASMR video should I start with?', 'Start with whispering or tapping, since they are easy to find and quick to judge. Set the finder to 10 to 30 minutes, give a video several minutes, then try another trigger.'],
+  ['Which ASMR videos are best for sleep?', 'Choose Good for sleep and Over 30 minutes, so the video does not end and wake you. Pick no talking if voices keep you awake. Set a sleep timer if your device has one.'],
+  ['Why does the finder not show every video?', 'It holds the most watched clean videos for each trigger, so it stays fast. Suggestive titles are left out. The table counts the full catalog.'],
+];
+---
+
+<BaseLayout title={title} description={desc} canonical="/asmr-videos/">
+  <article class="fv">
+    <h1>Find an ASMR Video</h1>
+    <p>Pick a trigger and a length to get a video for tonight. No sign-up, and every video plays from YouTube. Results are ranked by views, so the first ones are the most watched.</p>
+
+    <form class="fv-filters" id="fv-form">
+      <label>Title or creator
+        <input type="search" name="q" placeholder="e.g. rain, Gibi" />
+      </label>
+      <label>Trigger
+        <select name="trigger">
+          <option value="">All triggers</option>
+          {stats.map((s: any) => <option value={s.trigger}>{label(s.trigger)}</option>)}
+        </select>
+      </label>
+      <label>Length
+        <select name="len">
+          <option value="">Any length</option>
+          <option value="0-10">Under 10 min</option>
+          <option value="10-30">10 to 30 min</option>
+          <option value="30-60">30 to 60 min</option>
+          <option value="60-99999">Over an hour</option>
+        </select>
+      </label>
+      <label class="fv-check"><input type="checkbox" name="quiet" /> No talking</label>
+      <label class="fv-check"><input type="checkbox" name="sleep" /> Good for sleep</label>
+    </form>
+    <p class="fv-count" id="fv-count" aria-live="polite"></p>
+    <div class="fv-grid" id="fv-grid"></div>
+    <button type="button" class="fv-more" id="fv-more" hidden>Show more</button>
+    <noscript><p>The finder needs JavaScript. Browse by <a href="/triggers-overview/">trigger</a> or <a href="/creators/">creator</a> instead.</p></noscript>
+
+    <h2>What each trigger looks like in our catalog</h2>
+    <p>Counts cover all {fmt(total)} tagged videos in our catalog as of {catalogDate}, for triggers with at least 30 videos. Use this to set your expectations: a trigger with a short typical length is better for a quick break than for falling asleep.</p>
+    <div class="fv-table">
+      <table>
+        <thead><tr><th>Trigger</th><th>Videos</th><th>Typical length</th><th>Over 30 min</th><th>No talking</th></tr></thead>
+        <tbody>
+          {stats.map((s: any) => (
+            <tr>
+              <td>{hrefFor(s.trigger) ? <a href={hrefFor(s.trigger)!}>{label(s.trigger)}</a> : label(s.trigger)}</td>
+              <td>{fmt(s.count)}</td><td>{dur(s.medianMin)}</td><td>{s.over30}%</td><td>{s.noTalking}%</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+    <p class="fv-note">Typical length is the median. No talking counts videos tagged that way or with it in the title, so the true share may be higher. These describe the videos, not how well they work for you.</p>
+
+    <h2>Common questions</h2>
+    {faq.map(([q, a]) => (<><h3>{q}</h3><p>{a}</p></>))}
+    <p>New to this? Read <a href="/guides/what-is-asmr/">what ASMR is</a>, or browse <a href="/creators/">creators by what they make</a>.</p>
+  </article>
+
+  <script is:inline>
+    (function () {
+      var PAGE = 24, rows = null, shown = PAGE, list = [];
+      var form = document.getElementById('fv-form'), grid = document.getElementById('fv-grid');
+      var more = document.getElementById('fv-more'), count = document.getElementById('fv-count');
+      function esc(s) { return String(s).replace(/[&<>"]/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]; }); }
+      function card(r) {
+        return '<a class="fv-card" href="/video/' + esc(r[0]) + '/"><img src="https://i.ytimg.com/vi/' + esc(r[0]) + '/mqdefault.jpg" alt="" loading="lazy" width="320" height="180"><span class="fv-t">' + esc(r[1]) + '</span><span class="fv-m">' + esc(r[2]) + ' · ' + r[4] + ' min</span></a>';
+      }
+      function draw() {
+        grid.innerHTML = list.slice(0, shown).map(card).join('');
+        more.hidden = shown >= list.length;
+        count.textContent = list.length ? list.length.toLocaleString('en-US') + ' videos match' : 'No videos match. Remove a filter.';
+      }
+      function apply() {
+        var f = new FormData(form), t = f.get('trigger'), len = (f.get('len') || '0-99999').split('-');
+        var q = String(f.get('q') || '').trim().toLowerCase();
+        list = rows.filter(function (r) {
+          return (!q || (r[1] + ' ' + r[2]).toLowerCase().indexOf(q) >= 0) && (!t || r[5] === t) && r[4] >= +len[0] && r[4] < +len[1] && (!f.get('quiet') || r[6]) && (!f.get('sleep') || r[7]);
+        });
+        shown = PAGE; draw();
+      }
+      form.addEventListener('change', apply);
+      form.addEventListener('input', function () { if (rows) apply(); });
+      form.addEventListener('submit', function (e) { e.preventDefault(); });
+      more.addEventListener('click', function () { shown += PAGE; draw(); });
+      fetch('/finder-videos.json').then(function (r) { return r.json(); }).then(function (d) { rows = d; apply(); })
+        .catch(function () { count.textContent = 'The finder could not load. Refresh to try again.'; });
+    })();
+  </script>
+</BaseLayout>
+
+<style>
+  .fv { max-width: 960px; margin: 0 auto; padding: 1.5rem 1rem; }
+  .fv-filters { display: flex; flex-wrap: wrap; gap: 0.75rem 1rem; align-items: end; padding: 1rem; border: 1px solid var(--border, #2a2a3e); border-radius: 10px; background: var(--bg-2, #1a1a2e); }
+  .fv-filters label { display: flex; flex-direction: column; gap: 0.25rem; font-size: 0.9rem; }
+  .fv-filters .fv-check { flex-direction: row; align-items: center; gap: 0.4rem; min-height: 44px; }
+  .fv-filters select, .fv-filters input[type="search"] { min-height: 44px; min-width: 10rem; }
+  .fv-count, .fv-note { font-size: 0.85rem; color: var(--text-3, #999); }
+  .fv-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(210px, 1fr)); gap: 1rem; min-height: 300px; }
+  .fv-grid :global(.fv-card) { display: flex; flex-direction: column; gap: 0.3rem; text-decoration: none; color: inherit; }
+  .fv-grid :global(img) { width: 100%; height: auto; border-radius: 8px; }
+  .fv-grid :global(.fv-t) { font-size: 0.92rem; line-height: 1.3; }
+  .fv-grid :global(.fv-m) { font-size: 0.8rem; color: var(--text-3, #999); }
+  .fv-more { display: block; margin: 1.25rem auto; min-height: 44px; padding: 0.55rem 1.4rem; border: 0; border-radius: 8px; background: var(--accent, #7c3aed); color: #fff; cursor: pointer; }
+  .fv-more[hidden] { display: none; }
+  .fv-table { overflow-x: auto; }
+</style>

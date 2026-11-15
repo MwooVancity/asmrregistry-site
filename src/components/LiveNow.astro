@@ -1,0 +1,48 @@
+---
+// /live-asmr/: ASMR streams live on YouTube, from the one-row live_now table the cron worker refreshes every 3 hours.
+// Read through the edge cache (15 min), so D1 sees about one read per data center per 15 minutes, not one per visit.
+// Hidden when the row is over 6 hours old (the cron stopped) or empty.
+import { getDb } from '../lib/db';
+
+let items: { id: string; t: string; c: string }[] = [];
+let at = '';
+try {
+  const key = new Request('https://asmrregistry.com/__cache/live-now');
+  const cache = (globalThis as any).caches?.default;
+  let res: Response | undefined = cache ? await cache.match(key) : undefined;
+  if (!res) {
+    const r = await getDb().execute('SELECT json, fetched_at FROM live_now WHERE id = 1');
+    res = new Response(JSON.stringify(r.rows[0] ?? null), { headers: { 'Cache-Control': 'max-age=900' } });
+    if (cache) await cache.put(key, res.clone());
+  }
+  const row: any = await res.json();
+  if (row && Date.now() - Date.parse(row.fetched_at) < 6 * 3600e3) { items = JSON.parse(row.json); at = row.fetched_at; }
+} catch { items = []; }
+const time = at ? new Date(at).toLocaleString('en-US', { month: 'short', day: 'numeric', hour: 'numeric', minute: '2-digit', timeZone: 'UTC', timeZoneName: 'short' }) : '';
+---
+{items.length >= 3 && (
+<section class="ln">
+  <h2>Live on YouTube now</h2>
+  <p>{`ASMR streams that were live on YouTube when we last checked (${time}; we check every 3 hours, so some may have ended). Press play to watch here. Titles with adult or health-promise wording are left out.`}</p>
+  <div class="video-grid">
+    {items.map((v) => (
+      <article class="video-card">
+        <button type="button" class="vplay" data-v={v.id} aria-label={`Play ${v.t}`}>
+          <div class="video-thumb">
+            <img src={`https://i.ytimg.com/vi/${v.id}/mqdefault.jpg`} alt={v.t} loading="lazy" width="320" height="180" />
+            <span class="duration-badge">LIVE</span>
+          </div>
+          <p class="vt">{v.t}</p>
+          <p class="ln-ch">{v.c}</p>
+        </button>
+      </article>
+    ))}
+  </div>
+  <script src="/js/vplay.js" defer></script>
+</section>
+)}
+
+<style>
+  .ln { margin: 1.5rem 0 2rem; }
+  .ln-ch { font-size: 0.8rem; color: var(--text-3, #999); margin: 0.2rem 0 0; }
+</style>

@@ -1,0 +1,55 @@
+{
+  "slug": "asmr-microphone",
+  "title": "ASMR Microphones — Best Mics for Recording Triggers & Whispers",
+  "h1": "ASMR Microphones",
+  "introHtml": "<p>The ASMR microphone market spans from $20 USB budget options to $800+ binaural rigs, and the right choice depends on your content type, recording environment, and whether you're listening or creating. <strong>2,400 monthly searches</strong> hit this category across \"asmr microphone,\" \"best mic for asmr,\" and \"asmr recording setup\" — split roughly 60/40 between creators shopping for recording gear and viewers curious about what their favorite creators use.</p>\n\n<h2>Microphone Types for ASMR</h2>\n<p><strong>USB condenser microphones</strong> ($30–150) plug directly into a computer and include a built-in preamp. Best for: beginners, solo creators, whisper/soft-speaking content. Models: Rode NT-USB Mini, Audio-Technica AT2020 USB+, Blue Yeti (if bought under $80). <strong>XLR condenser microphones</strong> ($80–400+) require a separate audio interface but offer lower noise floors and better gain control. Best for: intermediate/advanced creators, very quiet triggers, professional audio quality. Models: Rode NT1, Audio-Technica AT2035, Neumann TLM 102. <strong>Binaural microphones</strong> ($150–800) record in 3D spatial audio using ear-shaped housings or matched stereo pairs. Best for: ear-to-ear content, spatial trigger work, immersive ASMR.</p>\n\n<h2>Key Specifications</h2>\n<p>The four specs that matter for ASMR: <strong>Self-noise</strong> (measured in dB-A — lower is better; under 12 dB-A is excellent for ASMR, above 16 dB-A produces audible hiss during quiet passages). <strong>Polar pattern</strong> (cardioid captures sound from the front only, reducing room reflections; omnidirectional captures all directions, better for ambient content). <strong>Frequency response</strong> (flat response reproduces triggers accurately; presence peaks around 5–10kHz brighten sibilance and lip sounds). <strong>Maximum SPL</strong> (less critical for ASMR than music recording since ASMR sources are quiet by nature).</p>\n\n<h2>For Listeners</h2>\n<p>If you're a viewer, the microphone determines what you hear — but <a href=\"/best/best-earbuds-for-asmr/\">your earbuds or headphones</a> determine how you hear it. A creator using a $300 microphone paired with a listener wearing $5 earbuds loses most of the audio detail. Open-back headphones deliver the widest soundstage for binaural content; closed-back headphones and IEMs provide the isolation needed for sleep listening.</p>",
+  "faqItems": [
+    {
+      "question": "What is the best microphone for ASMR beginners?",
+      "answer": "Blue Yeti ($100-130) or Audio-Technica AT2020 USB ($80-100). Both are USB plug-and-play condensers with low self-noise and high sensitivity — the two specs that matter most for ASMR. The Blue Yeti has multiple polar patterns (cardioid, stereo, omnidirectional) which adds versatility. Start here before investing in XLR."
+    },
+    {
+      "question": "What microphone do professional ASMR creators use?",
+      "answer": "The 3Dio Free Space ($400-700) is the most iconic ASMR microphone — its silicone ear housings create true binaural 3D audio. For non-binaural, the Rode NT1 ($230) and Neumann TLM 102 ($700) are popular for their extremely low self-noise. Most top creators use multiple microphones for different trigger types."
+    },
+    {
+      "question": "Do I need a binaural microphone for ASMR?",
+      "answer": "No — binaural adds spatial 3D audio (sounds move around the listener's head) but many successful ASMR creators use standard condenser microphones. Binaural is a stylistic choice, not a quality requirement. If you primarily do whisper or voice content, a good condenser is sufficient. If you do ear-to-ear triggers, binaural is worth the investment."
+    }
+  ],
+  "proTips": [
+    "Self-noise spec matters most for ASMR — look for mics rated under 14dB(A) self-noise for whisper recording",
+    "A pop filter ($10-20) is essential for whisper recording — it eliminates plosive sounds from P/B/T consonants",
+    "Room treatment (foam panels, $30-80) improves sound quality more than upgrading from a $100 mic to a $300 mic",
+    "Start with USB, upgrade to XLR + audio interface only after you've committed to regular content creation"
+  ],
+  "crossLinks": [
+    {
+      "label": "Best microphone for ASMR",
+      "href": "/best/best-microphone-for-asmr/"
+    },
+    {
+      "label": "ASMR equipment guide",
+      "href": "/gear/asmr-equipment/"
+    },
+    {
+      "label": "Best earbuds for ASMR",
+      "href": "/best/best-earbuds-for-asmr/"
+    },
+    {
+      "label": "How to make ASMR videos",
+      "href": "/guides/how-to-make-asmr-videos/"
+    }
+  ],
+  "references": [
+    {
+      "label": "Microphone specifications explained — Audio Engineering Society",
+      "url": "https://www.aes.org/e-lib/"
+    },
+    {
+      "label": "ASMR: autonomous sensory meridian response — Wikipedia",
+      "url": "https://en.wikipedia.org/wiki/ASMR"
+    }
+  ],
+  "metaDescription": "Complete guide to ASMR microphones from USB condensers to 3Dio binaural. 2,400 monthly searches. Recommendations by budget, trigger type, and recording style."
+}

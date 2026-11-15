@@ -1,0 +1,67 @@
+{
+  "formulaId": "brake_disc_cost",
+  "slug": "brake-discs-cost-calculator",
+  "aioInputs": [
+    {
+      "name": "vehicle_make_model_year",
+      "description": "Year, make, and model of the vehicle (e.g. 2019 Toyota Camry). Determines rotor size, part availability, and OEM pricing."
+    },
+    {
+      "name": "axle_selection",
+      "description": "Front axle, rear axle, or both. Front rotors typically cost more due to larger diameter and higher wear rate."
+    },
+    {
+      "name": "quality_tier",
+      "description": "Budget aftermarket, standard aftermarket, OEM equivalent, or OEM dealer part. Rotor prices range from ~$30 to $150+ per rotor depending on tier."
+    },
+    {
+      "name": "include_brake_pads",
+      "description": "Whether to replace pads at the same time. Mechanics typically recommend replacing pads with rotors; combined labor is more efficient."
+    },
+    {
+      "name": "shop_type",
+      "description": "Dealership, national chain (Midas, Meineke, Firestone), or independent shop. Dealer labor rates average $130–$170/hr vs. $80–$110/hr for independents."
+    },
+    {
+      "name": "location_state",
+      "description": "U.S. state or metro area. Labor rates vary significantly: e.g. California averages $120+/hr vs. $75–$90/hr in the Midwest."
+    }
+  ],
+  "aioOutputs": [
+    {
+      "name": "total_estimated_cost",
+      "description": "All-in estimate: parts + labor for the selected axle(s) and scope."
+    },
+    {
+      "name": "parts_cost",
+      "description": "Rotor cost (per rotor × quantity) plus brake pad cost if selected."
+    },
+    {
+      "name": "labor_cost",
+      "description": "Estimated shop labor based on flat-rate hours (~1–1.5 hrs per axle) multiplied by regional labor rate."
+    },
+    {
+      "name": "cost_per_axle_breakdown",
+      "description": "Itemized front vs. rear axle costs when both are selected."
+    }
+  ],
+  "aioProseQuestions": [
+    "How much does it cost to replace brake discs (rotors)?",
+    "Should I replace brake pads and rotors at the same time?",
+    "How long does it take to replace brake rotors?",
+    "Is it cheaper to replace rotors at a dealership or independent shop?",
+    "How often do brake discs need to be replaced?"
+  ],
+  "aioIncludesExcludes": "Estimate covers rotor parts and shop labor for disc replacement on one or both axles; excludes brake fluid flush, caliper replacement, wheel bearing service, or any unrelated repairs discovered during inspection.",
+  "aioDisclaimer": "Estimates based on BLS OES median technician wage (OES 49-3023) and retail parts data. Actual shop quotes may vary by vehicle condition, regional labor market, and shop pricing. Always get at least two written estimates before authorizing repair.",
+  "verifiedGovUrls": [
+    {
+      "url": "https://www.bls.gov/oes/2023/may/oes493023.htm",
+      "label": "BLS OES May 2023 — Automotive Service Technicians and Mechanics (49-3023): median hourly wage $22.58, median annual $46,970. Used for labor cost baseline. Note: HTTP 403 on direct fetch; URL confirmed valid from BLS search results."
+    },
+    {
+      "url": "https://www.bls.gov/ooh/installation-maintenance-and-repair/automotive-service-technicians-and-mechanics.htm",
+      "label": "BLS Occupational Outlook Handbook — Automotive Service Technicians: median pay and employment outlook. Note: HTTP 403 on direct fetch; URL confirmed valid from BLS search results."
+    }
+  ]
+}

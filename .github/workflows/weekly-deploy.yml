@@ -1,0 +1,42 @@
+name: Weekly Deploy
+
+# Rebuilds hub-data-all.json and deploys to Cloudflare Workers weekly.
+# Keeps "top ASMR videos" data fresh even without a code push.
+
+on:
+  schedule:
+    - cron: '0 4 * * 1'   # 04:00 UTC every Monday
+  workflow_dispatch:
+
+env:
+  CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+  CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+  YOUTUBE_API_KEY: ${{ secrets.YOUTUBE_API_KEY }}
+  D1_DATABASE_ID: 4f8937a1-9629-4c8b-a343-9cfe238cc319
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - run: npm ci
+      - name: Prebuild (hub-data-all.json + gates)
+        run: npm run prebuild
+      - name: Refresh chart datasets (PubMed, ClinicalTrials.gov, trigger counts)
+        # fetch-datasets.mjs exits 1 and writes nothing on empty or implausible data
+        run: node tools/fetch-datasets.mjs || echo "dataset refresh failed, keeping committed datasets"
+      - name: Refresh PubMed counts (keeps last file on failure)
+        run: node tools/fetch-research-counts.mjs || echo "research counts failed, keeping committed file"
+      - name: Refresh catalog stats (video length by trigger, one query per intent)
+        # Disabled in CI: up to ~3.6M D1 reads per run, which alone can kill the free daily limit. Run by hand when needed.
+        if: false
+        run: npx tsx tools/fetch-catalog-stats.ts || echo "catalog stats failed, keeping committed datasets"
+      - name: Build
+        # astro directly: npm run build would repeat the prebuild step above and read the videos table twice
+        run: npx astro build
+      - name: Deploy to Cloudflare Workers
+        run: npx wrangler deploy

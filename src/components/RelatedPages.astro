@@ -1,0 +1,25 @@
+---
+// Related pages from the site-wide plan in src/lib/related.ts (shared search words, capped per target so small
+// pages get linked). Skips links already on the page; only published pages at their canonical address.
+import { relatedFor } from '../lib/related';
+import { getContent, hrefFor } from '../lib/page-content';
+import { getPageBySlug } from '../lib/ledger';
+
+interface Props { slug: string; exclude?: string[]; heading?: string }
+const { slug, exclude = [], heading = 'Related' } = Astro.props;
+const related = relatedFor(slug).filter((s) => hrefFor(s) && !exclude.includes(hrefFor(s)!));
+const name = (s: string) => getContent(s)?.h1 || getContent(s)?.title || getPageBySlug(s)?.headKeyword || s;
+---
+{related.length > 0 && (
+  <section class="rp">
+    <h2>{heading}</h2>
+    <ul>
+      {related.map((s) => <li><a href={hrefFor(s)!}>{name(s)}</a></li>)}
+    </ul>
+  </section>
+)}
+
+<style>
+  .rp { margin: 2rem 0; }
+  .rp ul { margin: 0.5rem 0 0 1.2rem; line-height: 1.8; }
+</style>

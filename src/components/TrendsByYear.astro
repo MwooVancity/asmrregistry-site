@@ -1,0 +1,76 @@
+---
+// The catalog by upload year and the removal count, from the build snapshot (scripts/prebuild-hub-data.mjs).
+// Used on /guides/asmr-trends/. Every sentence is computed, so it updates with each build.
+import hub from '../lib/hub-data-all.json';
+import { DATA_DOI } from '../lib/dataset';
+
+const { trends = [], removed = { total: 0, tracked: 0, byTrigger: [] }, catalogDate } = hub as any;
+const thisYear = catalogDate.slice(0, 4);
+const full = trends.filter((t: any) => t.year < thisYear);
+const ok = full.length >= 3;
+const first = full[0], last = full[full.length - 1];
+const peak = (k: (t: any) => number) => full.reduce((a: any, b: any) => (k(b) > k(a) ? b : a), full[0]);
+const eat = peak((t) => t.triggers['eating-sounds']);
+const ko = peak((t) => t.korean);
+const shortest = full.reduce((a: any, b: any) => (b.medianMin < a.medianMin ? b : a), full[0]);
+const fmt = (n: number) => n.toLocaleString('en-US');
+// Ready-to-paste citation; built as plain strings so BibTeX braces never reach the template parser.
+const yr = catalogDate.slice(0, 4);
+const apa = `ASMR Registry. (${yr}). ASMR Registry catalog data: YouTube ASMR videos by trigger and by upload year [Data set]. Zenodo. https://doi.org/${DATA_DOI}`;
+const bib = `@dataset{asmrregistry_${yr},\n  author    = {{ASMR Registry}},\n  title     = {ASMR Registry catalog data: YouTube ASMR videos by trigger and by upload year},\n  year      = {${yr}},\n  publisher = {Zenodo},\n  doi       = {${DATA_DOI}},\n  url       = {https://doi.org/${DATA_DOI}}\n}`;
+const share = removed.tracked ? Math.round(removed.tracked / Math.max(removed.total, 1)) : 0;
+---
+{ok && (
+<section class="tby">
+  <h2>How ASMR videos changed, year by year</h2>
+  <p>In the ASMR Registry catalog ({fmt(trends.reduce((n: number, t: any) => n + t.count, 0))} tagged videos, {catalogDate}), the median video uploaded in {last.year} runs {last.medianMin} minutes, against {shortest.medianMin} minutes in {shortest.year}. Videos over an hour went from {shortest.over60}% of uploads in {shortest.year} to {last.over60}% in {last.year}.</p>
+  <p>Eating sounds peaked at {eat.triggers['eating-sounds']}% of uploads in {eat.year} and were {last.triggers['eating-sounds']}% in {last.year}. Korean-language videos peaked at {ko.korean}% in {ko.year} and were {last.korean}% in {last.year}.</p>
+  <div class="tby-wrap">
+    <table>
+      <caption>ASMR Registry catalog by upload year, {catalogDate}. {thisYear} is the year so far. Tags come from titles and descriptions, not listening.</caption>
+      <thead><tr><th scope="col">Year</th><th scope="col">Videos</th><th scope="col">Median length</th><th scope="col">Over 1 hour</th><th scope="col">Labelled no talking</th><th scope="col">Korean</th><th scope="col">Eating sounds</th><th scope="col">Whispering</th><th scope="col">Tapping</th></tr></thead>
+      <tbody>
+        {trends.map((t: any) => (
+          <tr><td>{t.year}</td><td>{fmt(t.count)}</td><td>{t.medianMin} min</td><td>{t.over60}%</td><td>{t.noTalking}%</td><td>{t.korean}%</td><td>{t.triggers['eating-sounds']}%</td><td>{t.triggers['whispering']}%</td><td>{t.triggers['tapping']}%</td></tr>
+        ))}
+      </tbody>
+    </table>
+  </div>
+  {/* template-lint-ok: caveat for the one trends table */}
+  <p class="tby-note">How to read this: the catalog collects popular, findable ASMR videos, so older years hold only the videos that stayed popular. It shows what is watched and still online, not every upload.</p>
+  {removed.total > 0 && removed.byTrigger.length > 0 && (
+    <>
+      <h3>How often ASMR videos disappear</h3>
+      <p>We recheck every video in the catalog against YouTube on a rolling schedule. So far {fmt(removed.total)} of {fmt(removed.tracked)} tracked videos have been removed or made private, about 1 in {fmt(share)}. The most removed main trigger is {removed.byTrigger[0].trigger.replace(/-/g, ' ')} ({removed.byTrigger[0].n} videos).</p>
+    </>
+  )}
+  {/* template-lint-ok: one download line on the trends page */}
+  <p><a href="/data/asmr-trends-by-year.csv" download>Download the year-by-year table (CSV)</a>, free to use with credit to ASMR Registry. Archived on Zenodo for citation: <a href={`https://doi.org/${DATA_DOI}`}>doi:{DATA_DOI}</a>.</p>
+  {[['asmr-median-length-by-year', 'How long ASMR videos run, by upload year'], ['asmr-eating-sounds-share-by-year', 'Eating-sound ASMR, share of uploads by year']].map(([id, alt]) => (
+    <figure class="tby-fig">
+      <img src={`/charts/${id}.svg`} alt={alt} width="720" loading="lazy" />
+      {/* template-lint-ok: embed code for the two trend charts */}
+      <figcaption><label>Embed this chart (free with the credit link)<textarea readonly rows="2">{`<a href="https://asmrregistry.com/guides/asmr-trends/"><img src="https://asmrregistry.com/charts/${id}.svg" alt="${alt} (ASMR Registry)"></a>`}</textarea></label></figcaption>
+    </figure>
+  ))}
+  <details class="tby-cite">
+    <summary>Cite this data</summary>
+    <p>{apa}</p>
+    <pre>{bib}</pre>
+  </details>
+</section>
+)}
+
+<style>
+  .tby { margin: 2rem 0; }
+  .tby-wrap { overflow-x: auto; }
+  .tby table { width: 100%; border-collapse: collapse; font-size: 0.9rem; }
+  .tby caption { text-align: left; font-size: 0.85rem; color: var(--text-3, #999); padding-bottom: 0.3rem; }
+  .tby th, .tby td { padding: 0.35rem 0.4rem; border-bottom: 1px solid var(--border, #2a2a3e); text-align: left; white-space: nowrap; }
+  .tby-fig img { width: 100%; height: auto; border: 1px solid var(--border, #2a2a3e); border-radius: 8px; background: #fff; }
+  .tby-fig label { display: block; font-size: 0.85rem; color: var(--text-3, #999); }
+  .tby-fig textarea { display: block; width: 100%; margin-top: 0.25rem; font: 0.8rem/1.4 monospace; padding: 0.5rem; border-radius: 6px; border: 1px solid var(--border, #2a2a3e); background: transparent; color: inherit; }
+  .tby-cite summary { cursor: pointer; font-weight: 600; }
+  .tby-cite pre { overflow-x: auto; font-size: 0.8rem; padding: 0.6rem; background: var(--surface-2, rgba(127,127,127,0.1)); }
+  .tby-note { font-size: 0.88rem; color: var(--text-3, #999); }
+</style>

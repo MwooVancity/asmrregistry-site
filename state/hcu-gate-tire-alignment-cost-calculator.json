@@ -1,0 +1,11 @@
+{
+  "hallucinations": [],
+  "calcErrors": [],
+  "schemaErrors": [],
+  "croGaps": [],
+  "crossCluster": [],
+  "eeat": [],
+  "verdict": "NO-PAGE-FOUND",
+  "surgicalFixes": [],
+  "note": "slug tire-alignment-cost-calculator does not exist in the codebase. No src/data/niches/automotive-tires.json file found. No public/formulas/automotive.js file found. The page has not been built yet — nothing to audit."
+}

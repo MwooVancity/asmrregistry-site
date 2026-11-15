@@ -1,0 +1,170 @@
+---
+export const prerender = false;
+
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import BreadcrumbNav from '../../../components/BreadcrumbNav.astro';
+import { getRootPages } from '../../../lib/ledger';
+import { getContent } from '../../../lib/page-content';
+import HUB_DATA from '../../../lib/hub-data-all.json';
+
+const { slug, page: pageParam } = Astro.params;
+if (!slug || !pageParam) return new Response(null, { status: 404 });
+
+const pageNum = parseInt(pageParam, 10);
+if (isNaN(pageNum) || pageNum < 2) return new Response(null, { status: 404 });
+
+const rootPage = getRootPages().find(p => p.slug === slug || p.targetUrl === `/${slug}/`);
+if (!rootPage) return new Response(null, { status: 404 });
+
+const content = getContent(rootPage.slug);
+if (!content || content.status !== 'published') return new Response(null, { status: 404 });
+
+Astro.response.headers.set('Cache-Control', 'public, max-age=3600, stale-while-revalidate=86400');
+
+const ROOT_COUNT = 100; // videos already shown on the hub root page
+const PER_PAGE = 50;
+const offset = ROOT_COUNT + (pageNum - 2) * PER_PAGE;
+
+let videos: any[] = [];
+let totalVideoCount = 0;
+
+const hubData = HUB_DATA as any;
+
+if (rootPage.pageType === 'TRIGGER_HUB' && rootPage.slug !== 'triggers-overview') {
+  const d = hubData.triggerHubs?.[rootPage.slug];
+  const all = d?.videos ?? [];
+  totalVideoCount = d?.totalVideoCount ?? all.length;
+  videos = all.slice(offset, offset + PER_PAGE);
+}
+
+if (rootPage.pageType === 'INTENT_HUB') {
+  const d = hubData.intentHubs?.[rootPage.slug];
+  const all = d?.videos ?? [];
+  totalVideoCount = d?.totalVideoCount ?? all.length;
+  videos = all.slice(offset, offset + PER_PAGE);
+}
+
+if (videos.length === 0) return new Response(null, { status: 404 });
+
+const totalPages = 1 + Math.ceil(Math.max(0, totalVideoCount - ROOT_COUNT) / PER_PAGE);
+if (pageNum > totalPages) return new Response(null, { status: 404 });
+
+const h1Base = content?.h1 || rootPage.headKeyword.split(' ').map(w => w === 'asmr' ? 'ASMR' : w.charAt(0).toUpperCase() + w.slice(1)).join(' ');
+const h1 = `${h1Base} — Page ${pageNum}`;
+const title = `${h1Base} Videos — Page ${pageNum}`;
+const desc = `Page ${pageNum} of ${totalPages}: ${h1Base} videos sorted by popularity.`;
+
+const SITE = 'https://asmrregistry.com';
+const baseUrl = rootPage.targetUrl;
+
+const breadcrumbs = [
+  { name: 'Home', url: '/' },
+  { name: h1Base, url: baseUrl },
+  { name: `Page ${pageNum}`, url: `${baseUrl}page/${pageNum}/` },
+];
+
+const fmt = (n: number) => n >= 1e9 ? `${(n/1e9).toFixed(1)}B` : n >= 1e6 ? `${(n/1e6).toFixed(n >= 1e7 ? 0 : 1)}M` : n >= 1000 ? `${(n/1000).toFixed(n >= 10000 ? 0 : 1)}K` : String(n);
+const durFmt = (s: number) => {
+  if (!s) return '';
+  const m = Math.floor(s / 60);
+  return m >= 60 ? `${Math.floor(m/60)}h ${m%60}m` : `${m} min`;
+};
+
+const jsonLd: any[] = [
+  {
+    "@type": "CollectionPage",
+    "@id": `${SITE}${baseUrl}page/${pageNum}/#page`,
+    "name": title,
+    "description": desc,
+    "url": `${SITE}${baseUrl}page/${pageNum}/`,
+    "isPartOf": { "@id": `${SITE}${baseUrl}#page` },
+    "mainEntity": {
+      "@type": "ItemList",
+      "numberOfItems": Math.min(videos.length, 6),
+      "itemListElement": videos.slice(0, 6).map((v, i) => ({
+        "@type": "ListItem",
+        "position": offset + i + 1,
+        "url": `https://www.youtube.com/watch?v=${v.id}`,
+      })),
+    },
+  },
+  {
+    "@type": "BreadcrumbList",
+    "itemListElement": breadcrumbs.map((b, i) => ({
+      "@type": "ListItem", "position": i + 1,
+      "name": b.name, "item": `${SITE}${b.url}`,
+    })),
+  },
+];
+---
+
+<BaseLayout title={title} description={desc} canonical={`${baseUrl}page/${pageNum}/`} jsonLd={jsonLd} robots="noindex,follow">
+  <BreadcrumbNav items={breadcrumbs} />
+
+  <h1>{h1}</h1>
+  <p class="page-summary">Showing videos {offset + 1}–{offset + videos.length} of {totalVideoCount.toLocaleString()} total.</p>
+
+  <section>
+    <div class="video-grid">
+      {videos.map(v => (
+        <article class="video-card">
+          <a href={`/video/${v.id}/`}>
+            <div class="video-thumb">
+              <img src={`https://i.ytimg.com/vi/${v.id}/maxresdefault.jpg`} onerror="this.onerror=null;this.src=this.src.replace('maxresdefault','hqdefault')"
+                   alt={v.title} loading="lazy" width="320" height="180" />
+              {v.duration_seconds && (
+                <span class="duration-badge">{durFmt(v.duration_seconds)}</span>
+              )}
+            </div>
+            <h3>{v.title}</h3>
+          </a>
+          <p class="meta">
+            {v.view_count ? `${fmt(v.view_count)} views` : ''}
+            {v.intensity ? ` · Intensity: ${v.intensity}/5` : ''}
+          </p>
+        </article>
+      ))}
+    </div>
+  </section>
+
+  <nav class="page-nav" aria-label="Video pages">
+    {pageNum > 2 && (
+      <a href={`${baseUrl}page/${pageNum - 1}/`} class="page-link">← Page {pageNum - 1}</a>
+    )}
+    {pageNum === 2 && (
+      <a href={baseUrl} class="page-link">← Page 1</a>
+    )}
+    {pageNum < totalPages && (
+      <a href={`${baseUrl}page/${pageNum + 1}/`} class="page-link">Page {pageNum + 1} →</a>
+    )}
+  </nav>
+</BaseLayout>
+
+<style>
+  .page-summary { color: var(--text-3, #888); font-size: 0.9rem; margin: 0 0 1.5rem; }
+
+  .video-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: 1rem;
+  }
+  .video-card { background: var(--bg-2, #1a1a2e); border: 1px solid var(--border, #2a2a3e); border-radius: 8px; overflow: hidden; }
+  .video-card a { text-decoration: none; color: inherit; }
+  .video-card h3 { font-size: 0.9rem; padding: 0.5rem 0.75rem 0; margin: 0; line-height: 1.4; }
+  .video-thumb { position: relative; }
+  .video-thumb img { width: 100%; height: auto; display: block; }
+  .duration-badge {
+    position: absolute; bottom: 6px; right: 6px;
+    background: rgba(0,0,0,0.8); color: #fff; padding: 2px 6px;
+    border-radius: 4px; font-size: 0.75rem;
+  }
+  .meta { font-size: 0.8rem; color: var(--text-3, #888); padding: 0.4rem 0.75rem 0.75rem; margin: 0; }
+
+  .page-nav { display: flex; gap: 1rem; margin: 2rem 0; }
+  .page-link {
+    padding: 0.6rem 1.25rem; background: var(--bg-2, #1a1a2e);
+    border: 1px solid var(--accent, #7c3aed); border-radius: 8px;
+    text-decoration: none; color: var(--accent, #7c3aed); font-size: 0.95rem;
+  }
+  .page-link:hover { background: var(--bg-3, #12121f); }
+</style>

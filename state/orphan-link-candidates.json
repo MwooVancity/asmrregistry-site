@@ -1,0 +1,1719 @@
+{
+  "orphans": [
+    {
+      "slug": "kisses",
+      "url": "/kisses/",
+      "label": "kisses"
+    },
+    {
+      "slug": "vr-asmr",
+      "url": "/vr-asmr/",
+      "label": "vr asmr"
+    },
+    {
+      "slug": "asmr-artists",
+      "url": "/creators/",
+      "label": "asmr artists"
+    },
+    {
+      "slug": "what-is-mommy-asmr",
+      "url": "/guides/what-is-mommy-asmr/",
+      "label": "what is mommy asmr"
+    },
+    {
+      "slug": "bfe-meaning-asmr",
+      "url": "/guides/bfe-meaning-asmr/",
+      "label": "bfe meaning asmr"
+    },
+    {
+      "slug": "positive-affirmations",
+      "url": "/positive-affirmations/",
+      "label": "positive affirmations"
+    },
+    {
+      "slug": "haircut-asmr",
+      "url": "/haircut-asmr/",
+      "label": "haircut asmr"
+    },
+    {
+      "slug": "asmr-for-adhd",
+      "url": "/asmr-for-adhd/",
+      "label": "asmr for adhd"
+    },
+    {
+      "slug": "asmr-for-depression",
+      "url": "/asmr-for-depression/",
+      "label": "asmr for depression"
+    },
+    {
+      "slug": "asmr-for-meditation",
+      "url": "/asmr-for-meditation/",
+      "label": "asmr for meditation"
+    },
+    {
+      "slug": "cat-purring-asmr",
+      "url": "/cat-purring-asmr/",
+      "label": "cat purring asmr"
+    },
+    {
+      "slug": "best-asmr-apps",
+      "url": "/best/best-asmr-apps/",
+      "label": "best asmr apps"
+    },
+    {
+      "slug": "male-asmr",
+      "url": "/male-asmr/",
+      "label": "male asmr"
+    },
+    {
+      "slug": "anime-asmr",
+      "url": "/anime-asmr/",
+      "label": "anime asmr"
+    },
+    {
+      "slug": "asmr-para-dormir",
+      "url": "/guides/asmr-para-dormir/",
+      "label": "asmr para dormir"
+    },
+    {
+      "slug": "asmr-para-estudiar",
+      "url": "/guides/asmr-para-estudiar/",
+      "label": "asmr para estudiar"
+    },
+    {
+      "slug": "asmr-para-ansiedad",
+      "url": "/guides/asmr-para-ansiedad/",
+      "label": "asmr para ansiedad"
+    },
+    {
+      "slug": "fast-aggressive-asmr",
+      "url": "/fast-aggressive-asmr/",
+      "label": "fast aggressive asmr"
+    },
+    {
+      "slug": "reading-to-you",
+      "url": "/reading-to-you/",
+      "label": "reading to you"
+    },
+    {
+      "slug": "asmr-for-ptsd",
+      "url": "/asmr-for-ptsd/",
+      "label": "asmr for ptsd"
+    },
+    {
+      "slug": "asmr-for-tinnitus",
+      "url": "/asmr-for-tinnitus/",
+      "label": "asmr for tinnitus"
+    },
+    {
+      "slug": "best-asmr-camera",
+      "url": "/best/best-asmr-camera/",
+      "label": "best asmr camera"
+    },
+    {
+      "slug": "asmr-audio-interface",
+      "url": "/gear/asmr-audio-interface/",
+      "label": "asmr audio interface"
+    },
+    {
+      "slug": "10-hour-asmr",
+      "url": "/10-hour-asmr/",
+      "label": "10 hour asmr"
+    },
+    {
+      "slug": "best-asmr",
+      "url": "/best/best-asmr/",
+      "label": "best asmr"
+    },
+    {
+      "slug": "best-kept-secret-asmr",
+      "url": "/best/best-kept-secret-asmr/",
+      "label": "best kept secret asmr"
+    },
+    {
+      "slug": "what-is-lofi-asmr",
+      "url": "/guides/what-is-lofi-asmr/",
+      "label": "what is lofi asmr"
+    },
+    {
+      "slug": "cutting",
+      "url": "/cutting/",
+      "label": "cutting"
+    },
+    {
+      "slug": "sleep-stories",
+      "url": "/sleep-stories/",
+      "label": "sleep stories"
+    },
+    {
+      "slug": "hand-sounds",
+      "url": "/hand-sounds/",
+      "label": "hand sounds"
+    },
+    {
+      "slug": "writing",
+      "url": "/writing/",
+      "label": "writing"
+    },
+    {
+      "slug": "pouring",
+      "url": "/pouring/",
+      "label": "pouring"
+    },
+    {
+      "slug": "fabric-sounds",
+      "url": "/fabric-sounds/",
+      "label": "fabric sounds"
+    },
+    {
+      "slug": "folding",
+      "url": "/folding/",
+      "label": "folding"
+    },
+    {
+      "slug": "tearing",
+      "url": "/tearing/",
+      "label": "tearing"
+    },
+    {
+      "slug": "liquids",
+      "url": "/liquids/",
+      "label": "liquids"
+    },
+    {
+      "slug": "bells",
+      "url": "/bells/",
+      "label": "bells"
+    },
+    {
+      "slug": "autonomous-asmr",
+      "url": "/autonomous-asmr/",
+      "label": "autonomous asmr"
+    },
+    {
+      "slug": "whispering-asmr",
+      "url": "/whispering-asmr/",
+      "label": "whispering asmr"
+    },
+    {
+      "slug": "speaking-asmr",
+      "url": "/speaking-asmr/",
+      "label": "speaking asmr"
+    },
+    {
+      "slug": "roleplay-asmr",
+      "url": "/roleplay-asmr/",
+      "label": "roleplay asmr"
+    },
+    {
+      "slug": "crafting-asmr",
+      "url": "/crafting-asmr/",
+      "label": "crafting asmr"
+    },
+    {
+      "slug": "cleaning-asmr",
+      "url": "/cleaning-asmr/",
+      "label": "cleaning asmr"
+    },
+    {
+      "slug": "organizing-asmr",
+      "url": "/organizing-asmr/",
+      "label": "organizing asmr"
+    },
+    {
+      "slug": "packing-asmr",
+      "url": "/packing-asmr/",
+      "label": "packing asmr"
+    },
+    {
+      "slug": "gaming-asmr",
+      "url": "/gaming-asmr/",
+      "label": "gaming asmr"
+    },
+    {
+      "slug": "asmr-for-insomnia",
+      "url": "/asmr-for-insomnia/",
+      "label": "asmr for insomnia"
+    },
+    {
+      "slug": "asmr-for-pain",
+      "url": "/asmr-for-pain/",
+      "label": "asmr for pain"
+    },
+    {
+      "slug": "cottagecore-asmr",
+      "url": "/cottagecore-asmr/",
+      "label": "cottagecore asmr"
+    },
+    {
+      "slug": "cyberpunk-asmr",
+      "url": "/cyberpunk-asmr/",
+      "label": "cyberpunk asmr"
+    },
+    {
+      "slug": "fantasy-asmr",
+      "url": "/fantasy-asmr/",
+      "label": "fantasy asmr"
+    },
+    {
+      "slug": "medieval-asmr",
+      "url": "/medieval-asmr/",
+      "label": "medieval asmr"
+    },
+    {
+      "slug": "alien-asmr",
+      "url": "/alien-asmr/",
+      "label": "alien asmr"
+    },
+    {
+      "slug": "goth-asmr",
+      "url": "/goth-asmr/",
+      "label": "goth asmr"
+    },
+    {
+      "slug": "emo-asmr",
+      "url": "/emo-asmr/",
+      "label": "emo asmr"
+    },
+    {
+      "slug": "cottagecore-crafts",
+      "url": "/cottagecore-crafts/",
+      "label": "cottagecore crafts"
+    },
+    {
+      "slug": "asmr-in-korea",
+      "url": "/asmr-in-korea/",
+      "label": "asmr in korea"
+    },
+    {
+      "slug": "asmr-in-latin-america",
+      "url": "/asmr-in-latin-america/",
+      "label": "asmr in latin america"
+    },
+    {
+      "slug": "asmr-in-japan",
+      "url": "/asmr-in-japan/",
+      "label": "asmr in japan"
+    },
+    {
+      "slug": "best-asmr-youtuber-rankings",
+      "url": "/best-asmr-youtuber-rankings/",
+      "label": "best asmr youtuber rankings"
+    },
+    {
+      "slug": "best-asmr-creators",
+      "url": "/best-asmr-creators/",
+      "label": "best asmr creators"
+    },
+    {
+      "slug": "asmr-trends",
+      "url": "/asmr-trends/",
+      "label": "asmr trends"
+    },
+    {
+      "slug": "asmr-challenges",
+      "url": "/asmr-challenges/",
+      "label": "asmr challenges"
+    },
+    {
+      "slug": "beeping",
+      "url": "/beeping/",
+      "label": "beeping"
+    },
+    {
+      "slug": "asmr-copyright",
+      "url": "/asmr-copyright/",
+      "label": "asmr copyright"
+    },
+    {
+      "slug": "asmr-lighting-setup",
+      "url": "/asmr-lighting-setup/",
+      "label": "asmr lighting setup"
+    },
+    {
+      "slug": "asmr-monetization",
+      "url": "/asmr-monetization/",
+      "label": "asmr monetization"
+    },
+    {
+      "slug": "asmr-research-studies",
+      "url": "/asmr-research-studies/",
+      "label": "asmr research studies"
+    },
+    {
+      "slug": "asmr-neuroimaging",
+      "url": "/asmr-neuroimaging/",
+      "label": "asmr neuroimaging"
+    },
+    {
+      "slug": "asmr-editing-guide",
+      "url": "/asmr-editing-guide/",
+      "label": "asmr editing guide"
+    },
+    {
+      "slug": "asmr-misconceptions",
+      "url": "/asmr-misconceptions/",
+      "label": "asmr misconceptions"
+    }
+  ],
+  "donors": [
+    {
+      "slug": "massage",
+      "url": "/massage/",
+      "label": "massage",
+      "existingLinks": [
+        "/hair-play/",
+        "/personal-attention/",
+        "/spa-roleplay/",
+        "/brushing/",
+        "/guides/what-is-asmr-massage/",
+        "/anxiety/",
+        "/sleep/"
+      ]
+    },
+    {
+      "slug": "eating-sounds",
+      "url": "/eating-sounds/",
+      "label": "eating sounds",
+      "existingLinks": [
+        "/cooking/",
+        "/mouth-sounds/",
+        "/mukbang-asmr/",
+        "/chewing/",
+        "/guides/misophonia-and-asmr/",
+        "/guides/misophonia/",
+        "/no-talking/"
+      ]
+    },
+    {
+      "slug": "whispering",
+      "url": "/whispering/",
+      "label": "whispering",
+      "existingLinks": [
+        "/soft-speaking/",
+        "/tapping/",
+        "/binaural/",
+        "/sleep/",
+        "/anxiety/",
+        "/mouth-sounds/",
+        "/personal-attention/",
+        "/humming/"
+      ]
+    },
+    {
+      "slug": "triggers-overview",
+      "url": "/triggers/",
+      "label": "triggers overview",
+      "existingLinks": [
+        "/whispering/",
+        "/tapping/",
+        "/sleep/",
+        "/personal-attention/",
+        "/rain/",
+        "/anxiety/",
+        "/guides/misophonia-and-asmr/"
+      ]
+    },
+    {
+      "slug": "slime",
+      "url": "/slime/",
+      "label": "slime",
+      "existingLinks": [
+        "/soap-carving/",
+        "/guides/misophonia-and-asmr/",
+        "/no-talking/"
+      ]
+    },
+    {
+      "slug": "personal-attention",
+      "url": "/personal-attention/",
+      "label": "personal attention",
+      "existingLinks": [
+        "/hair-play/",
+        "/massage/",
+        "/whispering/",
+        "/soft-speaking/",
+        "/roleplay/",
+        "/sleep/",
+        "/anxiety/"
+      ]
+    },
+    {
+      "slug": "typing",
+      "url": "/typing/",
+      "label": "typing",
+      "existingLinks": [
+        "/tapping/",
+        "/no-talking/",
+        "/guides/asmr-for-studying/",
+        "/best/best-headphones-for-asmr/"
+      ]
+    },
+    {
+      "slug": "rain",
+      "url": "/rain/",
+      "label": "rain",
+      "existingLinks": [
+        "/nature/",
+        "/ocean/",
+        "/thunderstorm-asmr/",
+        "/fireplace-asmr/",
+        "/sleep/",
+        "/guides/rain-sounds-for-sleeping/",
+        "/guides/sleep-sounds/",
+        "/triggers/"
+      ]
+    },
+    {
+      "slug": "sleep",
+      "url": "/sleep/",
+      "label": "sleep",
+      "existingLinks": [
+        "/guides/sleep-sounds/",
+        "/guides/white-noise/",
+        "/guides/brown-noise-for-sleep/",
+        "/rain/",
+        "/best/best-asmr-for-sleep/",
+        "/long-asmr/",
+        "/asmr-for-sleep/",
+        "/fireplace-asmr/"
+      ]
+    },
+    {
+      "slug": "tapping",
+      "url": "/tapping/",
+      "label": "tapping",
+      "existingLinks": [
+        "/scratching/",
+        "/crinkling/",
+        "/glass-sounds/",
+        "/whispering/",
+        "/binaural/",
+        "/guides/why-does-asmr-make-you-tingle/",
+        "/triggers/"
+      ]
+    },
+    {
+      "slug": "asmr-games",
+      "url": "/asmr-games/",
+      "label": "asmr games",
+      "existingLinks": [
+        "/tapping/",
+        "/no-talking/",
+        "/binaural/",
+        "/best/best-headphones-for-asmr/"
+      ]
+    },
+    {
+      "slug": "kids",
+      "url": "/kids/",
+      "label": "kids",
+      "existingLinks": [
+        "/slime/",
+        "/no-talking/",
+        "/sleep/",
+        "/guides/misophonia-and-asmr/",
+        "/guides/whats-asmr/"
+      ]
+    },
+    {
+      "slug": "unintentional-asmr",
+      "url": "/unintentional-asmr/",
+      "label": "unintentional asmr",
+      "existingLinks": [
+        "/whispering/",
+        "/no-talking/",
+        "/painting/"
+      ]
+    },
+    {
+      "slug": "ocean",
+      "url": "/ocean/",
+      "label": "ocean",
+      "existingLinks": [
+        "/rain/",
+        "/nature/",
+        "/binaural/",
+        "/sleep/",
+        "/anxiety/",
+        "/guides/nature-sounds-for-sleep/",
+        "/guides/sleep-sounds/"
+      ]
+    },
+    {
+      "slug": "scratching",
+      "url": "/scratching/",
+      "label": "scratching",
+      "existingLinks": [
+        "/tapping/",
+        "/crinkling/",
+        "/soap-carving/",
+        "/sand/",
+        "/glass-sounds/",
+        "/guides/misophonia-and-asmr/"
+      ]
+    },
+    {
+      "slug": "sand",
+      "url": "/sand/",
+      "label": "sand",
+      "existingLinks": [
+        "/soap-carving/",
+        "/slime/",
+        "/anxiety/",
+        "/guides/misophonia-and-asmr/"
+      ]
+    },
+    {
+      "slug": "cooking",
+      "url": "/cooking/",
+      "label": "cooking",
+      "existingLinks": [
+        "/eating-sounds/",
+        "/guides/misophonia-and-asmr/",
+        "/no-talking/",
+        "/best/best-asmr-microphone/"
+      ]
+    },
+    {
+      "slug": "asmr-podcast",
+      "url": "/asmr-podcast/",
+      "label": "asmr podcast",
+      "existingLinks": [
+        "/whispering/",
+        "/sleep/",
+        "/binaural/",
+        "/no-talking/",
+        "/soft-speaking/",
+        "/rain/",
+        "/long-asmr/",
+        "/guides/asmr-for-studying/",
+        "/best/best-headphones-for-asmr/"
+      ]
+    },
+    {
+      "slug": "painting",
+      "url": "/painting/",
+      "label": "painting",
+      "existingLinks": [
+        "/brushing/",
+        "/tapping/",
+        "/no-talking/",
+        "/guides/how-to-make-asmr-videos/"
+      ]
+    },
+    {
+      "slug": "hair-play",
+      "url": "/hair-play/",
+      "label": "hair play",
+      "existingLinks": [
+        "/massage/",
+        "/personal-attention/",
+        "/brushing/",
+        "/best/best-headphones-for-asmr/"
+      ]
+    },
+    {
+      "slug": "soft-speaking",
+      "url": "/soft-speaking/",
+      "label": "soft speaking",
+      "existingLinks": [
+        "/whispering/",
+        "/sleep/",
+        "/anxiety/",
+        "/personal-attention/",
+        "/guides/asmr-for-studying/",
+        "/long-asmr/",
+        "/asmr-podcast/"
+      ]
+    },
+    {
+      "slug": "anxiety",
+      "url": "/anxiety/",
+      "label": "anxiety",
+      "existingLinks": [
+        "/breathing/",
+        "/personal-attention/",
+        "/rain/",
+        "/asmr-for-stress/",
+        "/guides/vagus-nerve-and-asmr/",
+        "/guides/sound-therapy-and-asmr/",
+        "/guides/how-asmr-affects-the-brain/",
+        "/guides/is-asmr-good-for-you/"
+      ]
+    },
+    {
+      "slug": "lofi-asmr",
+      "url": "/lofi-asmr/",
+      "label": "lofi asmr",
+      "existingLinks": [
+        "/study-with-me-asmr/",
+        "/typing/",
+        "/library-asmr/",
+        "/rain/",
+        "/guides/asmr-for-studying/",
+        "/binaural/",
+        "/guides/brown-noise-vs-white-noise/"
+      ]
+    },
+    {
+      "slug": "mouth-sounds",
+      "url": "/mouth-sounds/",
+      "label": "mouth sounds",
+      "existingLinks": [
+        "/eating-sounds/",
+        "/whispering/",
+        "/personal-attention/",
+        "/breathing/",
+        "/no-talking/",
+        "/sleep/",
+        "/anxiety/",
+        "/guides/misophonia-and-asmr/",
+        "/best/best-headphones-for-asmr/"
+      ]
+    },
+    {
+      "slug": "no-talking",
+      "url": "/no-talking/",
+      "label": "no talking",
+      "existingLinks": [
+        "/tapping/",
+        "/rain/",
+        "/scratching/",
+        "/nature/",
+        "/typing/",
+        "/sleep/",
+        "/long-asmr/",
+        "/guides/sleep-sounds/"
+      ]
+    },
+    {
+      "slug": "breathing",
+      "url": "/breathing/",
+      "label": "breathing",
+      "existingLinks": [
+        "/anxiety/",
+        "/sleep/",
+        "/meditation-asmr/",
+        "/soft-speaking/",
+        "/binaural/",
+        "/guides/vagus-nerve-and-asmr/",
+        "/asmr-for-anxiety/",
+        "/asmr-for-stress/"
+      ]
+    },
+    {
+      "slug": "binaural",
+      "url": "/binaural/",
+      "label": "binaural",
+      "existingLinks": [
+        "/best/best-headphones-for-asmr/",
+        "/best/best-earbuds-for-asmr/",
+        "/guides/binaural-beats-guide/",
+        "/tapping/",
+        "/whispering/",
+        "/sleep/",
+        "/anxiety/",
+        "/nature/"
+      ]
+    },
+    {
+      "slug": "light-patterns",
+      "url": "/light-patterns/",
+      "label": "light patterns",
+      "existingLinks": [
+        "/no-talking/",
+        "/sleep/",
+        "/guides/brown-noise-for-sleep/",
+        "/guides/nature-sounds-for-sleep/"
+      ]
+    },
+    {
+      "slug": "headache",
+      "url": "/headache/",
+      "label": "headache",
+      "existingLinks": [
+        "/anxiety/",
+        "/massage/",
+        "/rain/",
+        "/binaural/",
+        "/soft-speaking/",
+        "/guides/how-asmr-affects-the-brain/"
+      ]
+    },
+    {
+      "slug": "brushing",
+      "url": "/brushing/",
+      "label": "brushing",
+      "existingLinks": [
+        "/hair-play/",
+        "/personal-attention/",
+        "/scratching/",
+        "/anxiety/",
+        "/no-talking/"
+      ]
+    },
+    {
+      "slug": "nature",
+      "url": "/nature/",
+      "label": "nature",
+      "existingLinks": [
+        "/rain/",
+        "/ocean/",
+        "/binaural/",
+        "/no-talking/",
+        "/sleep/",
+        "/anxiety/",
+        "/guides/nature-sounds-for-sleep/",
+        "/guides/ambient-sounds/"
+      ]
+    },
+    {
+      "slug": "what-does-asmr-stand-for",
+      "url": "/guides/what-does-asmr-stand-for/",
+      "label": "what does asmr stand for",
+      "existingLinks": [
+        "/triggers/",
+        "/whispering/",
+        "/tapping/",
+        "/sleep/",
+        "/guides/why-does-asmr-make-you-tingle/",
+        "/guides/how-asmr-affects-the-brain/"
+      ]
+    },
+    {
+      "slug": "best-asmr-videos",
+      "url": "/best/best-asmr-videos/",
+      "label": "best asmr videos",
+      "existingLinks": [
+        "/sleep/",
+        "/tapping/",
+        "/whispering/",
+        "/best/best-asmr-youtube-channels/",
+        "/best/best-headphones-for-asmr/"
+      ]
+    },
+    {
+      "slug": "que-es-asmr",
+      "url": "/guides/que-es-asmr/",
+      "label": "que es asmr",
+      "existingLinks": [
+        "/sleep/",
+        "/anxiety/",
+        "/whispering/",
+        "/rain/",
+        "/tapping/",
+        "/guides/whats-asmr/"
+      ]
+    },
+    {
+      "slug": "what-is-asmr-massage",
+      "url": "/guides/what-is-asmr-massage/",
+      "label": "what is asmr massage",
+      "existingLinks": [
+        "/massage/",
+        "/whispering/",
+        "/hair-play/",
+        "/tapping/",
+        "/sleep/",
+        "/anxiety/",
+        "/guides/whats-asmr/",
+        "/guides/is-asmr-good-for-you/"
+      ]
+    },
+    {
+      "slug": "how-to-make-asmr-videos",
+      "url": "/guides/how-to-make-asmr-videos/",
+      "label": "how to make asmr videos",
+      "existingLinks": [
+        "/best/best-asmr-microphone/",
+        "/guides/how-to-start-an-asmr-channel/",
+        "/tapping/",
+        "/binaural/",
+        "/gear/asmr-equipment/",
+        "/whispering/"
+      ]
+    },
+    {
+      "slug": "is-asmr-good-for-you",
+      "url": "/guides/is-asmr-good-for-you/",
+      "label": "is asmr good for you",
+      "existingLinks": [
+        "/best/best-asmr-for-sleep/",
+        "/guides/how-asmr-affects-the-brain/",
+        "/anxiety/",
+        "/guides/vagus-nerve-and-asmr/",
+        "/guides/rain-sounds-for-sleeping/",
+        "/guides/sound-therapy-and-asmr/",
+        "/guides/misophonia/"
+      ]
+    },
+    {
+      "slug": "best-asmr-for-sleep",
+      "url": "/best/best-asmr-for-sleep/",
+      "label": "best asmr for sleep",
+      "existingLinks": [
+        "/sleep/",
+        "/rain/",
+        "/soft-speaking/",
+        "/whispering/",
+        "/guides/sleep-sounds/",
+        "/personal-attention/",
+        "/anxiety/",
+        "/no-talking/"
+      ]
+    },
+    {
+      "slug": "best-asmr-microphone",
+      "url": "/best/best-asmr-microphone/",
+      "label": "best asmr microphone",
+      "existingLinks": [
+        "/gear/asmr-microphone/",
+        "/best/best-headphones-for-asmr/",
+        "/guides/how-to-make-asmr-videos/",
+        "/binaural/",
+        "/whispering/",
+        "/tapping/"
+      ]
+    },
+    {
+      "slug": "best-headphones-for-asmr",
+      "url": "/best/best-headphones-for-asmr/",
+      "label": "best headphones for asmr",
+      "existingLinks": [
+        "/binaural/",
+        "/best/best-earbuds-for-asmr/",
+        "/best/best-asmr-microphone/",
+        "/gear/asmr-equipment/",
+        "/sleep/"
+      ]
+    },
+    {
+      "slug": "how-to-make-ai-asmr-videos",
+      "url": "/guides/how-to-make-ai-asmr-videos/",
+      "label": "how to make ai asmr videos",
+      "existingLinks": [
+        "/guides/how-to-make-asmr-videos/",
+        "/best/best-asmr-microphone/",
+        "/guides/how-to-start-an-asmr-channel/",
+        "/guides/how-do-asmr-youtubers-make-money-without-ads/",
+        "/gear/asmr-equipment/"
+      ]
+    },
+    {
+      "slug": "how-to-create-asmr-food-content",
+      "url": "/guides/how-to-create-asmr-food-content/",
+      "label": "how to create asmr food content",
+      "existingLinks": [
+        "/eating-sounds/",
+        "/cooking/",
+        "/guides/how-to-make-asmr-videos/",
+        "/guides/how-to-start-an-asmr-channel/",
+        "/best/best-asmr-microphone/",
+        "/guides/how-do-asmr-youtubers-make-money-without-ads/"
+      ]
+    },
+    {
+      "slug": "best-earbuds-for-asmr",
+      "url": "/best/best-earbuds-for-asmr/",
+      "label": "best earbuds for asmr",
+      "existingLinks": [
+        "/binaural/",
+        "/best/best-headphones-for-asmr/",
+        "/best/best-asmr-microphone/",
+        "/whispering/",
+        "/tapping/",
+        "/sleep/"
+      ]
+    },
+    {
+      "slug": "asmr-equipment",
+      "url": "/gear/asmr-equipment/",
+      "label": "asmr equipment",
+      "existingLinks": [
+        "/best/best-asmr-microphone/",
+        "/guides/how-to-make-asmr-videos/",
+        "/binaural/",
+        "/gear/asmr-room-setup/",
+        "/guides/how-to-start-an-asmr-channel/"
+      ]
+    },
+    {
+      "slug": "how-to-start-an-asmr-channel",
+      "url": "/guides/how-to-start-an-asmr-channel/",
+      "label": "how to start an asmr channel",
+      "existingLinks": [
+        "/whispering/",
+        "/tapping/",
+        "/sleep/",
+        "/personal-attention/",
+        "/best/best-asmr-microphone/",
+        "/gear/asmr-equipment/"
+      ]
+    },
+    {
+      "slug": "how-do-asmr-youtubers-make-money-without-ads",
+      "url": "/guides/how-do-asmr-youtubers-make-money-without-ads/",
+      "label": "how do asmr youtubers make money without ads",
+      "existingLinks": [
+        "/guides/how-to-start-an-asmr-channel/",
+        "/guides/how-to-make-asmr-videos/",
+        "/best/best-asmr-microphone/",
+        "/creators/",
+        "/gear/asmr-equipment/"
+      ]
+    },
+    {
+      "slug": "brown-noise",
+      "url": "/guides/brown-noise/",
+      "label": "brown noise",
+      "existingLinks": [
+        "/guides/white-noise/",
+        "/guides/pink-noise/",
+        "/guides/brown-noise-vs-white-noise/",
+        "/guides/brown-noise-for-sleep/",
+        "/guides/sleep-sounds/",
+        "/sleep/",
+        "/anxiety/",
+        "/rain/"
+      ]
+    },
+    {
+      "slug": "white-noise",
+      "url": "/guides/white-noise/",
+      "label": "white noise",
+      "existingLinks": [
+        "/guides/brown-noise/",
+        "/guides/pink-noise/",
+        "/guides/brown-noise-vs-white-noise/",
+        "/guides/sleep-sounds/",
+        "/guides/rain-sounds-for-sleeping/",
+        "/guides/nature-sounds-for-sleep/",
+        "/sleep/",
+        "/anxiety/"
+      ]
+    },
+    {
+      "slug": "pink-noise",
+      "url": "/guides/pink-noise/",
+      "label": "pink noise",
+      "existingLinks": [
+        "/guides/white-noise/",
+        "/guides/brown-noise/",
+        "/guides/brown-noise-vs-white-noise/",
+        "/guides/sleep-sounds/",
+        "/sleep/",
+        "/anxiety/",
+        "/guides/nature-sounds-for-sleep/",
+        "/rain/"
+      ]
+    },
+    {
+      "slug": "misophonia",
+      "url": "/guides/misophonia/",
+      "label": "misophonia",
+      "existingLinks": [
+        "/guides/misophonia-and-asmr/",
+        "/guides/sound-sensitivity/",
+        "/eating-sounds/",
+        "/guides/vagus-nerve-and-asmr/",
+        "/guides/sound-therapy-and-asmr/",
+        "/guides/is-asmr-good-for-you/",
+        "/anxiety/",
+        "/rain/"
+      ]
+    },
+    {
+      "slug": "rain-sounds-for-sleeping",
+      "url": "/guides/rain-sounds-for-sleeping/",
+      "label": "rain sounds for sleeping",
+      "existingLinks": [
+        "/rain/",
+        "/guides/nature-sounds-for-sleep/",
+        "/guides/brown-noise-for-sleep/",
+        "/best/best-asmr-for-sleep/",
+        "/guides/white-noise/",
+        "/guides/brown-noise/",
+        "/guides/pink-noise/",
+        "/guides/is-asmr-good-for-you/"
+      ]
+    },
+    {
+      "slug": "asmr-for-studying",
+      "url": "/guides/asmr-for-studying/",
+      "label": "asmr for studying",
+      "existingLinks": [
+        "/study-with-me-asmr/",
+        "/typing/",
+        "/library-asmr/",
+        "/no-talking/",
+        "/guides/brown-noise/",
+        "/guides/white-noise/",
+        "/guides/binaural-beats-guide/",
+        "/rain/"
+      ]
+    },
+    {
+      "slug": "ai-asmr-generator",
+      "url": "/guides/ai-asmr-generator/",
+      "label": "ai asmr generator",
+      "existingLinks": [
+        "/guides/how-to-make-ai-asmr-videos/",
+        "/guides/how-to-make-asmr-videos/",
+        "/guides/how-to-start-an-asmr-channel/",
+        "/best/best-asmr-microphone/",
+        "/gear/asmr-microphone/",
+        "/guides/how-asmr-affects-the-brain/",
+        "/whispering/"
+      ]
+    },
+    {
+      "slug": "brown-noise-for-sleep",
+      "url": "/guides/brown-noise-for-sleep/",
+      "label": "brown noise for sleep",
+      "existingLinks": [
+        "/guides/brown-noise/",
+        "/guides/brown-noise-vs-white-noise/",
+        "/guides/pink-noise/",
+        "/guides/rain-sounds-for-sleeping/",
+        "/best/best-asmr-for-sleep/",
+        "/guides/is-asmr-good-for-you/",
+        "/guides/ambient-sounds/",
+        "/guides/sound-therapy-and-asmr/"
+      ]
+    },
+    {
+      "slug": "how-asmr-affects-the-brain",
+      "url": "/guides/how-asmr-affects-the-brain/",
+      "label": "how asmr affects the brain",
+      "existingLinks": [
+        "/guides/why-does-asmr-make-you-tingle/",
+        "/guides/frisson/",
+        "/guides/vagus-nerve-and-asmr/",
+        "/guides/sound-therapy-and-asmr/",
+        "/guides/is-asmr-good-for-you/",
+        "/anxiety/",
+        "/whispering/",
+        "/guides/asmr-for-studying/"
+      ]
+    },
+    {
+      "slug": "crinkling",
+      "url": "/crinkling/",
+      "label": "crinkling",
+      "existingLinks": [
+        "/tapping/",
+        "/scratching/",
+        "/brushing/",
+        "/no-talking/",
+        "/best/best-asmr-microphone/",
+        "/triggers/"
+      ]
+    },
+    {
+      "slug": "singing-bowls",
+      "url": "/singing-bowls/",
+      "label": "singing bowls",
+      "existingLinks": [
+        "/sleep/",
+        "/anxiety/",
+        "/guides/binaural-beats-guide/",
+        "/guides/sound-therapy-and-asmr/",
+        "/no-talking/",
+        "/long-asmr/",
+        "/guides/rain-sounds-for-sleeping/"
+      ]
+    },
+    {
+      "slug": "roleplay",
+      "url": "/roleplay/",
+      "label": "roleplay",
+      "existingLinks": [
+        "/personal-attention/",
+        "/doctor-roleplay/",
+        "/spa-roleplay/",
+        "/whispering/",
+        "/soft-speaking/",
+        "/hair-play/",
+        "/guides/is-asmr-good-for-you/"
+      ]
+    },
+    {
+      "slug": "doctor-roleplay",
+      "url": "/doctor-roleplay/",
+      "label": "doctor roleplay",
+      "existingLinks": [
+        "/personal-attention/",
+        "/whispering/",
+        "/anxiety/",
+        "/roleplay/",
+        "/cranial-nerve-exam/",
+        "/dental-roleplay/"
+      ]
+    },
+    {
+      "slug": "dental-roleplay",
+      "url": "/dental-roleplay/",
+      "label": "dental roleplay",
+      "existingLinks": [
+        "/personal-attention/",
+        "/soft-speaking/",
+        "/anxiety/",
+        "/best/best-asmr-for-sleep/"
+      ]
+    },
+    {
+      "slug": "spa-roleplay",
+      "url": "/spa-roleplay/",
+      "label": "spa roleplay",
+      "existingLinks": [
+        "/personal-attention/",
+        "/massage/",
+        "/hair-play/",
+        "/meditation-asmr/",
+        "/whispering/",
+        "/anxiety/"
+      ]
+    },
+    {
+      "slug": "cranial-nerve-exam",
+      "url": "/cranial-nerve-exam/",
+      "label": "cranial nerve exam",
+      "existingLinks": [
+        "/personal-attention/",
+        "/doctor-roleplay/",
+        "/roleplay/",
+        "/dental-roleplay/",
+        "/anxiety/"
+      ]
+    },
+    {
+      "slug": "fireplace-asmr",
+      "url": "/fireplace-asmr/",
+      "label": "fireplace asmr",
+      "existingLinks": [
+        "/rain/",
+        "/guides/brown-noise-for-sleep/",
+        "/sleep/",
+        "/nature/",
+        "/no-talking/",
+        "/long-asmr/"
+      ]
+    },
+    {
+      "slug": "thunderstorm-asmr",
+      "url": "/thunderstorm-asmr/",
+      "label": "thunderstorm asmr",
+      "existingLinks": [
+        "/rain/",
+        "/guides/brown-noise/",
+        "/guides/nature-sounds-for-sleep/",
+        "/sleep/",
+        "/best/best-asmr-for-sleep/",
+        "/anxiety/",
+        "/no-talking/"
+      ]
+    },
+    {
+      "slug": "study-with-me-asmr",
+      "url": "/study-with-me-asmr/",
+      "label": "study with me asmr",
+      "existingLinks": [
+        "/typing/",
+        "/rain/",
+        "/lofi-asmr/",
+        "/asmr-for-focus/",
+        "/guides/asmr-for-studying/",
+        "/library-asmr/",
+        "/no-talking/",
+        "/guides/ambient-sounds/"
+      ]
+    },
+    {
+      "slug": "humming",
+      "url": "/humming/",
+      "label": "humming",
+      "existingLinks": [
+        "/soft-speaking/",
+        "/breathing/",
+        "/mouth-sounds/",
+        "/sleep/",
+        "/anxiety/",
+        "/binaural/",
+        "/personal-attention/"
+      ]
+    },
+    {
+      "slug": "library-asmr",
+      "url": "/library-asmr/",
+      "label": "library asmr",
+      "existingLinks": [
+        "/study-with-me-asmr/",
+        "/whispering/",
+        "/soft-speaking/",
+        "/typing/",
+        "/nature/",
+        "/guides/asmr-for-studying/"
+      ]
+    },
+    {
+      "slug": "asmr-room-setup",
+      "url": "/gear/asmr-room-setup/",
+      "label": "asmr room setup",
+      "existingLinks": [
+        "/gear/asmr-microphone/",
+        "/guides/how-to-do-asmr/",
+        "/binaural/",
+        "/whispering/",
+        "/tapping/",
+        "/gear/asmr-gear-tools/"
+      ]
+    },
+    {
+      "slug": "sleep-sounds",
+      "url": "/guides/sleep-sounds/",
+      "label": "sleep sounds",
+      "existingLinks": [
+        "/sleep/",
+        "/rain/",
+        "/guides/white-noise/",
+        "/guides/brown-noise/",
+        "/guides/brown-noise-vs-white-noise/",
+        "/guides/nature-sounds-for-sleep/",
+        "/guides/binaural-beats-guide/",
+        "/long-asmr/"
+      ]
+    },
+    {
+      "slug": "frisson",
+      "url": "/guides/frisson/",
+      "label": "frisson",
+      "existingLinks": [
+        "/tapping/",
+        "/whispering/",
+        "/guides/how-asmr-affects-the-brain/",
+        "/guides/why-does-asmr-make-you-tingle/",
+        "/guides/sound-sensitivity/",
+        "/binaural/",
+        "/guides/vagus-nerve-and-asmr/"
+      ]
+    },
+    {
+      "slug": "sound-therapy-and-asmr",
+      "url": "/guides/sound-therapy-and-asmr/",
+      "label": "sound therapy and asmr",
+      "existingLinks": [
+        "/binaural/",
+        "/sleep/",
+        "/anxiety/",
+        "/tapping/",
+        "/soft-speaking/",
+        "/guides/white-noise/",
+        "/guides/brown-noise-for-sleep/",
+        "/guides/misophonia-and-asmr/"
+      ]
+    },
+    {
+      "slug": "binaural-beats-guide",
+      "url": "/guides/binaural-beats-guide/",
+      "label": "binaural beats guide",
+      "existingLinks": [
+        "/tapping/",
+        "/whispering/",
+        "/rain/",
+        "/sleep/",
+        "/binaural/",
+        "/guides/sound-therapy-and-asmr/",
+        "/anxiety/",
+        "/nature/"
+      ]
+    },
+    {
+      "slug": "brown-noise-vs-white-noise",
+      "url": "/guides/brown-noise-vs-white-noise/",
+      "label": "brown noise vs white noise",
+      "existingLinks": [
+        "/whispering/",
+        "/rain/",
+        "/tapping/",
+        "/no-talking/",
+        "/binaural/",
+        "/anxiety/",
+        "/sleep/",
+        "/long-asmr/",
+        "/guides/white-noise/",
+        "/guides/brown-noise/",
+        "/guides/nature-sounds-for-sleep/",
+        "/guides/binaural-beats-guide/",
+        "/best/best-asmr-for-sleep/",
+        "/kids/",
+        "/nature/"
+      ]
+    },
+    {
+      "slug": "nature-sounds-for-sleep",
+      "url": "/guides/nature-sounds-for-sleep/",
+      "label": "nature sounds for sleep",
+      "existingLinks": [
+        "/rain/",
+        "/ocean/",
+        "/nature/",
+        "/sleep/",
+        "/long-asmr/",
+        "/no-talking/",
+        "/guides/white-noise/",
+        "/guides/sleep-sounds/",
+        "/binaural/",
+        "/guides/brown-noise-vs-white-noise/"
+      ]
+    },
+    {
+      "slug": "ambient-sounds",
+      "url": "/guides/ambient-sounds/",
+      "label": "ambient sounds",
+      "existingLinks": [
+        "/rain/",
+        "/nature/",
+        "/sleep/",
+        "/anxiety/",
+        "/guides/white-noise/",
+        "/guides/brown-noise-vs-white-noise/",
+        "/binaural/",
+        "/guides/nature-sounds-for-sleep/",
+        "/long-asmr/"
+      ]
+    },
+    {
+      "slug": "asmr-community",
+      "url": "/guides/asmr-community/",
+      "label": "asmr community",
+      "existingLinks": [
+        "/creators/",
+        "/guides/why-does-asmr-make-you-tingle/",
+        "/triggers-overview/",
+        "/binaural/"
+      ]
+    },
+    {
+      "slug": "asmr-microphone",
+      "url": "/gear/asmr-microphone/",
+      "label": "asmr microphone",
+      "existingLinks": [
+        "/binaural/",
+        "/tapping/",
+        "/whispering/",
+        "/best/best-microphone-for-asmr/",
+        "/gear/asmr-gear-tools/",
+        "/guides/how-to-do-asmr/",
+        "/mouth-sounds/"
+      ]
+    },
+    {
+      "slug": "asmr-gear-tools",
+      "url": "/gear/asmr-gear-tools/",
+      "label": "asmr gear tools",
+      "existingLinks": [
+        "/best/best-microphone-for-asmr/",
+        "/gear/asmr-microphone/",
+        "/binaural/",
+        "/tapping/",
+        "/scratching/",
+        "/guides/how-to-do-asmr/"
+      ]
+    },
+    {
+      "slug": "whats-asmr",
+      "url": "/guides/whats-asmr/",
+      "label": "whats asmr",
+      "existingLinks": [
+        "/sleep/",
+        "/triggers/",
+        "/whispering/",
+        "/guides/misophonia-and-asmr/",
+        "/guides/how-asmr-affects-the-brain/",
+        "/best/best-asmr-for-sleep/"
+      ]
+    },
+    {
+      "slug": "misophonia-and-asmr",
+      "url": "/guides/misophonia-and-asmr/",
+      "label": "misophonia and asmr",
+      "existingLinks": [
+        "/eating-sounds/",
+        "/no-talking/",
+        "/rain/",
+        "/whispering/",
+        "/guides/sound-sensitivity/",
+        "/guides/sound-therapy-and-asmr/",
+        "/triggers/"
+      ]
+    },
+    {
+      "slug": "vagus-nerve-and-asmr",
+      "url": "/guides/vagus-nerve-and-asmr/",
+      "label": "vagus nerve and asmr",
+      "existingLinks": [
+        "/guides/why-does-asmr-make-you-tingle/",
+        "/whispering/",
+        "/personal-attention/",
+        "/binaural/",
+        "/anxiety/",
+        "/guides/sound-therapy-and-asmr/",
+        "/guides/frisson/"
+      ]
+    },
+    {
+      "slug": "sound-sensitivity",
+      "url": "/guides/sound-sensitivity/",
+      "label": "sound sensitivity",
+      "existingLinks": [
+        "/guides/misophonia-and-asmr/",
+        "/guides/sound-sensitivity/",
+        "/whispering/",
+        "/no-talking/",
+        "/binaural/",
+        "/anxiety/",
+        "/rain/",
+        "/guides/misophonia/"
+      ]
+    },
+    {
+      "slug": "glass-sounds",
+      "url": "/glass-sounds/",
+      "label": "glass sounds",
+      "existingLinks": [
+        "/tapping/",
+        "/scratching/",
+        "/anxiety/",
+        "/guides/sound-therapy-and-asmr/",
+        "/triggers/"
+      ]
+    },
+    {
+      "slug": "best-asmr-youtube-channels",
+      "url": "/best/best-asmr-youtube-channels/",
+      "label": "best asmr youtube channels",
+      "existingLinks": [
+        "/whispering/",
+        "/sleep/",
+        "/anxiety/",
+        "/binaural/",
+        "/eating-sounds/",
+        "/long-asmr/",
+        "/creators/",
+        "/triggers/"
+      ]
+    },
+    {
+      "slug": "soap-carving",
+      "url": "/soap-carving/",
+      "label": "soap carving",
+      "existingLinks": [
+        "/scratching/",
+        "/tapping/",
+        "/sand/",
+        "/painting/",
+        "/no-talking/",
+        "/gear/asmr-microphone/"
+      ]
+    },
+    {
+      "slug": "asmr-meaning-slang",
+      "url": "/guides/asmr-meaning-slang/",
+      "label": "asmr meaning slang",
+      "existingLinks": [
+        "/guides/what-does-asmr-stand-for/",
+        "/guides/whats-asmr/",
+        "/guides/asmr-meaning-in-social-media/",
+        "/guides/what-does-asmr-mean-in-text/",
+        "/guides/why-does-asmr-make-you-tingle/",
+        "/whispering/"
+      ]
+    },
+    {
+      "slug": "asmr-significado",
+      "url": "/guides/asmr-significado/",
+      "label": "asmr significado",
+      "existingLinks": [
+        "/guides/whats-asmr/",
+        "/guides/why-does-asmr-make-you-tingle/",
+        "/guides/misophonia-and-asmr/",
+        "/triggers/",
+        "/relax/",
+        "/whispering/"
+      ]
+    },
+    {
+      "slug": "what-does-asmr-mean-in-text",
+      "url": "/guides/what-does-asmr-mean-in-text/",
+      "label": "what does asmr mean in text",
+      "existingLinks": [
+        "/guides/whats-asmr/",
+        "/guides/asmr-meaning-slang/",
+        "/guides/why-does-asmr-make-you-tingle/",
+        "/triggers/",
+        "/whispering/",
+        "/relax/"
+      ]
+    },
+    {
+      "slug": "asmr-meaning-in-social-media",
+      "url": "/guides/asmr-meaning-in-social-media/",
+      "label": "asmr meaning in social media",
+      "existingLinks": [
+        "/guides/whats-asmr/",
+        "/guides/asmr-meaning-slang/",
+        "/unintentional-asmr/",
+        "/triggers/",
+        "/best/best-asmr-youtube-channels/",
+        "/sleep/"
+      ]
+    },
+    {
+      "slug": "how-to-do-asmr",
+      "url": "/guides/how-to-do-asmr/",
+      "label": "how to do asmr",
+      "existingLinks": [
+        "/triggers/",
+        "/whispering/",
+        "/tapping/",
+        "/binaural/",
+        "/best/best-microphone-for-asmr/",
+        "/gear/asmr-gear-tools/",
+        "/guides/whats-asmr/",
+        "/hair-play/",
+        "/soft-speaking/"
+      ]
+    },
+    {
+      "slug": "why-does-asmr-make-you-tingle",
+      "url": "/guides/why-does-asmr-make-you-tingle/",
+      "label": "why does asmr make you tingle",
+      "existingLinks": [
+        "/binaural/",
+        "/personal-attention/",
+        "/whispering/",
+        "/tapping/",
+        "/guides/misophonia-and-asmr/",
+        "/guides/frisson/",
+        "/guides/vagus-nerve-and-asmr/",
+        "/no-talking/"
+      ]
+    },
+    {
+      "slug": "live-asmr",
+      "url": "/live-asmr/",
+      "label": "live asmr",
+      "existingLinks": [
+        "/personal-attention/",
+        "/whispering/",
+        "/tapping/",
+        "/lofi-asmr/",
+        "/long-asmr/",
+        "/best/best-asmr-youtube-channels/",
+        "/triggers/"
+      ]
+    },
+    {
+      "slug": "asmr-for-anxiety",
+      "url": "/asmr-for-anxiety/",
+      "label": "asmr for anxiety",
+      "existingLinks": [
+        "/sleep/",
+        "/soft-speaking/",
+        "/guides/brown-noise/",
+        "/personal-attention/",
+        "/guides/nature-sounds-for-sleep/",
+        "/guides/misophonia-and-asmr/",
+        "/best/best-headphones-for-asmr/"
+      ]
+    },
+    {
+      "slug": "asmr-for-focus",
+      "url": "/asmr-for-focus/",
+      "label": "asmr for focus",
+      "existingLinks": [
+        "/no-talking/",
+        "/typing/",
+        "/rain/",
+        "/binaural/",
+        "/lofi-asmr/",
+        "/guides/binaural-beats-guide/",
+        "/long-asmr/",
+        "/nature/",
+        "/anxiety/"
+      ]
+    },
+    {
+      "slug": "chewing",
+      "url": "/chewing/",
+      "label": "chewing",
+      "existingLinks": [
+        "/mouth-sounds/",
+        "/eating-sounds/",
+        "/guides/misophonia-and-asmr/",
+        "/gear/asmr-microphone/",
+        "/cooking/",
+        "/guides/whats-asmr/",
+        "/guides/how-to-make-asmr-videos/",
+        "/guides/sound-sensitivity/"
+      ]
+    },
+    {
+      "slug": "asmr-for-stress",
+      "url": "/asmr-for-stress/",
+      "label": "asmr for stress",
+      "existingLinks": [
+        "/sleep/",
+        "/anxiety/",
+        "/soft-speaking/",
+        "/tapping/",
+        "/no-talking/",
+        "/guides/brown-noise/",
+        "/guides/how-asmr-affects-the-brain/"
+      ]
+    },
+    {
+      "slug": "meditation-asmr",
+      "url": "/meditation-asmr/",
+      "label": "meditation asmr",
+      "existingLinks": [
+        "/rain/",
+        "/sleep/",
+        "/anxiety/",
+        "/soft-speaking/",
+        "/nature/",
+        "/binaural/",
+        "/no-talking/",
+        "/singing-bowls/"
+      ]
+    },
+    {
+      "slug": "asmr-for-sleep",
+      "url": "/asmr-for-sleep/",
+      "label": "asmr for sleep",
+      "existingLinks": [
+        "/whispering/",
+        "/anxiety/",
+        "/long-asmr/",
+        "/no-talking/",
+        "/best/best-asmr-for-sleep/",
+        "/guides/brown-noise-for-sleep/",
+        "/personal-attention/"
+      ]
+    },
+    {
+      "slug": "mukbang-asmr",
+      "url": "/mukbang-asmr/",
+      "label": "mukbang asmr",
+      "existingLinks": [
+        "/eating-sounds/",
+        "/no-talking/",
+        "/mouth-sounds/",
+        "/best/best-headphones-for-asmr/",
+        "/guides/misophonia-and-asmr/",
+        "/guides/how-to-create-asmr-food-content/"
+      ]
+    }
+  ]
+}

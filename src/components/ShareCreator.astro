@@ -1,0 +1,26 @@
+---
+// For the creator: their stat card and a small badge, each with copy-paste code that links back to this page.
+// Brand-name link text only, nothing required in return (link-scheme safe). Images are static files (prebuild-share).
+interface Props { slug: string; name: string }
+const { slug, name } = Astro.props;
+const page = `https://asmrregistry.com/creators/${slug}/`;
+const cardCode = `<a href="${page}"><img src="https://asmrregistry.com/cards/${slug}.svg" alt="${name} on ASMR Registry" width="600" height="315"></a>`;
+const badgeCode = `<a href="${page}"><img src="https://asmrregistry.com/badges/featured.svg" alt="Featured on ASMR Registry" width="220" height="44"></a>`;
+---
+<section class="sc">
+  <h2>Are you {name}? Share your profile</h2>
+  {/* template-lint-ok: same instructions on every creator page by design */}
+  <p>Your stats card and a badge, free to post on your site, Linktree, Patreon or community tab. Copy the code, or save the image.</p>
+  <img src={`/cards/${slug}.svg`} alt={`${name} stats card`} width="600" height="315" loading="lazy" class="sc-card" />
+  <label class="sc-label">Card code<textarea readonly rows="3">{cardCode}</textarea></label>
+  <img src="/badges/featured.svg" alt="Featured on ASMR Registry" width="220" height="44" loading="lazy" />
+  <label class="sc-label">Badge code<textarea readonly rows="2">{badgeCode}</textarea></label>
+</section>
+
+<style>
+  .sc { margin: 2rem 0; padding: 1rem 1.1rem; border: 1px solid var(--border, #2a2a3e); border-radius: 10px; }
+  .sc h2 { margin-top: 0; }
+  .sc-card { width: 100%; max-width: 600px; height: auto; border-radius: 12px; display: block; margin: 0.5rem 0; }
+  .sc-label { display: block; font-size: 0.85rem; color: var(--text-3, #999); margin: 0.5rem 0 1rem; }
+  .sc textarea { display: block; width: 100%; margin-top: 0.25rem; font: 0.8rem/1.4 monospace; padding: 0.5rem; border-radius: 6px; border: 1px solid var(--border, #2a2a3e); background: transparent; color: inherit; resize: vertical; }
+</style>

@@ -1,0 +1,60 @@
+---
+// Paper 3: typical (median) video length by trigger, an early 3-year window against the latest 3 full years.
+// mode "table" on /guides/asmr-trends/; mode "line" on each trigger hub (no line when the trigger is not in the table).
+import hub from '../lib/hub-data-all.json';
+
+interface Props { mode: 'table' | 'line'; trigger?: string }
+const { mode, trigger } = Astro.props;
+const L = (hub as any).lengthChange;
+const rows = (L?.rows ?? []) as any[];
+const win = (w: number[]) => `${w[0]}–${w[1]}`;
+const label = (t: string) => t.charAt(0).toUpperCase() + t.slice(1).replace(/-/g, ' ');
+const sign = (n: number) => (n > 0 ? `+${n}%` : `${n}%`);
+const r = trigger ? rows.find((x) => x.trigger === trigger) : null;
+const rank = r ? 1 + rows.filter((x) => x.changePct > r.changePct).length : 0;
+const longer = rows.filter((x) => x.changePct > 0).length;
+const top = rows[0], bottom = rows[rows.length - 1];
+---
+{mode === 'table' && rows.length >= 5 && (
+<section class="lc">
+  <h2>Which ASMR sounds got longer</h2>
+  <p>{`Typical (median) length of videos uploaded ${win(L.early)} against ${win(L.late)}, by main trigger, in our catalog. ${longer} of ${rows.length} triggers got longer. ${label(top.trigger)} changed most: ${top.earlyMed} minutes to ${top.lateMed} (${sign(top.changePct)}). ${label(bottom.trigger)} went the other way: ${bottom.earlyMed} to ${bottom.lateMed} minutes (${sign(bottom.changePct)}).`}</p>
+  <div class="lc-wrap">
+    <table>
+      <caption>{`Triggers with 30+ timed videos in both windows. The current year is left out because it is not finished. Popular videos still online, not every upload.`}</caption>
+      <thead><tr><th scope="col">Main trigger</th><th scope="col">{`Typical length ${win(L.early)}`}</th><th scope="col">{`Typical length ${win(L.late)}`}</th><th scope="col">Change</th></tr></thead>
+      <tbody>
+        {rows.map((x) => (
+          <tr><td><a href={`/${x.trigger}/`}>{label(x.trigger)}</a></td><td>{`${x.earlyMed} min (${x.earlyN})`}</td><td>{`${x.lateMed} min (${x.lateN})`}</td><td>{sign(x.changePct)}</td></tr>
+        ))}
+      </tbody>
+    </table>
+  </div>
+  <figure class="pc-fig">
+    <img src="/charts/asmr-length-change-by-trigger.svg" alt="Typical ASMR video length by trigger, then and now" width="720" loading="lazy" />
+    {/* template-lint-ok: embed code for this paper chart */}
+    <figcaption><label>Embed this chart (free with the credit link)<textarea readonly rows="2">{`<a href="https://asmrregistry.com/guides/asmr-trends/"><img src="https://asmrregistry.com/charts/asmr-length-change-by-trigger.svg" alt="Typical ASMR video length by trigger, then and now (ASMR Registry)"></a>`}</textarea></label></figcaption>
+  </figure>
+  {/* template-lint-ok: method note for the one length-change table */}
+  <p class="lc-note">Numbers in brackets are how many videos each median comes from. A median is the middle video by length, so a few very long uploads cannot move it much on their own; a big change means the typical upload changed.</p>
+</section>
+)}
+{mode === 'line' && r && (
+  <>
+  {/* template-lint-ok: rank line, every number is this trigger's own */}
+  <p class="lc-line">{`Length over time: the typical ${trigger!.replace(/-/g, ' ')} video in our catalog ran ${r.earlyMed} minutes when uploaded ${win(L.early)} and ${r.lateMed} minutes ${win(L.late)} (${sign(r.changePct)}), rank ${rank} of ${rows.length} triggers for growth. `}<a href="/guides/asmr-trends/">All triggers compared</a>.</p>
+  </>
+)}
+
+<style>
+  .lc { margin: 2rem 0; }
+  .lc-wrap { overflow-x: auto; }
+  .lc table { width: 100%; border-collapse: collapse; font-size: 0.88rem; }
+  .lc caption { text-align: left; font-size: 0.85rem; color: var(--text-3, #999); padding-bottom: 0.3rem; }
+  .lc th, .lc td { text-align: left; padding: 0.35rem 0.5rem; border-bottom: 1px solid var(--border); }
+  .pc-fig img { width: 100%; height: auto; border: 1px solid var(--border, #2a2a3e); border-radius: 8px; background: #fff; }
+  .pc-fig label { display: block; font-size: 0.85rem; color: var(--text-3, #999); }
+  .pc-fig textarea { display: block; width: 100%; margin-top: 0.25rem; font: 0.8rem/1.4 monospace; padding: 0.5rem; border-radius: 6px; border: 1px solid var(--border, #2a2a3e); background: transparent; color: inherit; }
+  .lc-note { font-size: 0.88rem; color: var(--text-3, #999); }
+  .lc-line { font-size: 0.92rem; color: var(--text-2); margin: 0.75rem 0 1.5rem; }
+</style>

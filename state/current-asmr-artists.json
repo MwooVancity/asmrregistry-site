@@ -1,0 +1,55 @@
+{
+  "slug": "asmr-artists",
+  "title": "ASMR Artists — Top Creators, Styles & Where to Start",
+  "h1": "ASMR Artists",
+  "introHtml": "<p>The ASMR creator directory catalogs active ASMR artists across YouTube, Twitch, and TikTok — classified by trigger specialty, content style, subscriber count, and upload frequency. As of 2026, the ASMR category on YouTube alone includes over 500,000 channels, but fewer than 5,000 have crossed the 100K subscriber threshold. This directory focuses on creators who produce consistent, tingle-effective content rather than ranking by subscriber count alone. We track active upload status, typical video length, audio equipment used, and primary trigger specialties for each listed creator.</p>\n\n<h2>How We Classify Creators</h2>\n<p>Each creator in our database is tagged with their primary trigger type (whispering, tapping, personal attention, eating, etc.), secondary triggers they frequently include, average video length, upload frequency, and a tingle effectiveness rating derived from viewer engagement signals. We track whether creators use standard mono/stereo recording, binaural (ear-to-ear), or multi-microphone setups — the recording format affects which trigger types perform best.</p>\n\n<h2>Finding Creators by Trigger Type</h2>\n<p>Rather than browsing an alphabetical list, use our trigger-based navigation. If <a href=\"/whispering/\">whispering</a> is your primary trigger, filter to whisper-focused creators. If you respond best to <a href=\"/tapping/\">tapping</a> or <a href=\"/scratching/\">scratching</a>, those categories surface creators who specialize in object sounds. Viewers who use ASMR for <a href=\"/sleep/\">sleep</a> should filter for creators with long-form content (30+ minutes) and low-intensity ratings.</p>\n\n<h2>Creator Tiers</h2>\n<p>The ASMR creator landscape splits into tiers with distinct characteristics. <strong>Emerging (under 10K subscribers):</strong> experimental content, frequent uploads, high originality, variable audio quality. <strong>Growing (10K–100K):</strong> consistent quality, developing a recognizable style, responsive to viewer feedback. <strong>Established (100K–1M):</strong> professional production, established content formats, predictable quality. <strong>Top-tier (1M+):</strong> studio-grade production, broader content variety, occasional brand partnerships. Total monthly searches for ASMR creator queries: <strong>2,580</strong> across \"asmr artists,\" \"best asmr creators,\" and \"asmr youtubers.\" Our registry updates creator classifications monthly based on upload activity, content style evolution, and viewer engagement metrics to keep the directory current and useful for trigger-seeking listeners.</p>",
+  "faqItems": [
+    {
+      "question": "How many ASMR artists are on YouTube?",
+      "answer": "Tens of thousands of active ASMR channels exist on YouTube, with the top 100 creators collectively holding over 500 million subscribers. The long tail is massive — many effective ASMR creators have under 10,000 subscribers. Channel size doesn't correlate strongly with tingle effectiveness."
+    },
+    {
+      "question": "How do ASMR artists make money?",
+      "answer": "Revenue streams: YouTube ad revenue (CPMs for ASMR range $2-8), Patreon/membership (often the largest income source for mid-tier creators), sponsorships (microphone brands, sleep products), live stream donations (Twitch/YouTube Super Chat), and merchandise. Top creators earn six figures; most mid-tier creators treat it as supplemental income."
+    },
+    {
+      "question": "What equipment do ASMR artists use?",
+      "answer": "Entry-level: Blue Yeti or similar USB condenser ($50-130). Mid-tier: Audio-Technica AT2020 or Rode NT1 ($100-300). Professional: 3Dio Free Space binaural microphone ($400-2,500) or Neumann KU100 dummy head ($8,000+). The microphone choice shapes the creator's sound signature more than any other factor."
+    }
+  ],
+  "proTips": [
+    "Browse creators by trigger specialty — a great tapping artist may not produce the whispering style you prefer",
+    "Smaller creators often produce more intimate, authentic content than large channels with production teams",
+    "Follow creators on multiple platforms — many post different content on YouTube vs TikTok vs Patreon",
+    "Our creator profiles show trigger distribution data so you can match artists to your preferred triggers"
+  ],
+  "crossLinks": [
+    {
+      "label": "Best ASMR YouTube channels",
+      "href": "/best/best-asmr-youtube-channels/"
+    },
+    {
+      "label": "Best kept secret ASMR",
+      "href": "/best/best-kept-secret-asmr/"
+    },
+    {
+      "label": "All ASMR triggers",
+      "href": "/triggers/"
+    },
+    {
+      "label": "Best ASMR videos",
+      "href": "/best/best-asmr-videos/"
+    }
+  ],
+  "references": [
+    {
+      "label": "ASMR: a flow-like mental state — Frontiers in Psychology (2015)",
+      "url": "https://www.frontiersin.org/articles/10.3389/fpsyg.2015.00007/full"
+    },
+    {
+      "label": "ASMR: autonomous sensory meridian response — Wikipedia",
+      "url": "https://en.wikipedia.org/wiki/ASMR"
+    }
+  ],
+  "metaDescription": "Directory of classified ASMR artists by trigger specialty, style, and subscriber count. 2,580 monthly searches. Find your next favorite creator."
+}

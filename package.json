@@ -1,0 +1,40 @@
+{
+  "name": "asmrregistry",
+  "type": "module",
+  "version": "0.0.1",
+  "engines": {
+    "node": ">=22.12.0"
+  },
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "astro": "astro",
+    "setup-db": "tsx scripts/setup-db.ts",
+    "test": "vitest run",
+    "voice-fix": "node tools/voice-lint.mjs --fix src",
+    "cascade:regenerate": "tsx scripts/cascade-rewrite.ts",
+    "cascade:deploy": "npx wrangler deploy",
+    "template-lint": "node tools/template-lint.mjs src/pages src/layouts src/components",
+    "middleware-guard": "node tools/middleware-guard.mjs",
+    "smoke": "node tools/smoke-test.mjs",
+    "smoke:quick": "node tools/smoke-test.mjs --quick",
+    "triage": "node tools/auto-triage.mjs",
+    "triage:dry": "node tools/auto-triage.mjs --dry-run",
+    "triage:cron": "node tools/auto-triage.mjs --cron",
+    "prebuild": "node scripts/penalty-gate.mjs && npm run template-lint && npm run middleware-guard && (node scripts/prebuild-hub-data.mjs || true) && node scripts/prebuild-creators.mjs && node scripts/prebuild-share.mjs && node tools/truth-gate.mjs"
+  },
+  "dependencies": {
+    "@astrojs/cloudflare": "^13.5.5",
+    "astro": "^6.3.8",
+    "dotenv": "^17.4.2"
+  },
+  "devDependencies": {
+    "@astrojs/check": "^0.9.9",
+    "tsx": "^4.22.3",
+    "typescript": "^6.0.3",
+    "vitest": "^4.1.7",
+    "wrangler": "^4.95.0",
+    "xml2js": "^0.6.2"
+  }
+}

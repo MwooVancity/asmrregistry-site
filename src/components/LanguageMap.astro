@@ -1,0 +1,39 @@
+---
+// Paper 5 on /guides/asmr-trends/: share of language-labelled videos in Korean, Japanese and English, by trigger.
+// From the build snapshot (languageMap); top 12 by Korean + Japanese share, 30+ labelled videos each.
+import hub from '../lib/hub-data-all.json';
+
+const { languageMap, catalogDate } = hub as any;
+const rows = (languageMap?.rows ?? []).slice(0, 12) as any[];
+const label = (t: string) => t.charAt(0).toUpperCase() + t.slice(1).replace(/-/g, ' ');
+const top = rows[0];
+const all = (languageMap?.rows ?? []) as any[];
+const over90 = all.filter((r) => r.en > 90).length;
+---
+{rows.length >= 5 && (
+<section class="lm">
+  <h2>Which ASMR sounds come from Korea and Japan</h2>
+  {/* template-lint-ok: one-off lead for the language table, numbers computed */}
+  <p>{`In our catalog (${catalogDate}), ${top.ko}% of ${label(top.trigger).toLowerCase()} videos are in Korean and ${top.en}% in English, so an English speaker looking for ${label(top.trigger).toLowerCase()} has about ${Math.round(top.en / 10)} in 10 to choose from. ${over90} of ${all.length} triggers are over 90% English. Use this to set expectations before you filter by language in the finder.`}</p>
+  <div class="lm-wrap">
+    <table>
+      {/* template-lint-ok: one-off caption for the language table */}
+      <caption>Share of videos with a language label, the 12 triggers with the most Korean and Japanese videos. The label is set by an AI reading titles and descriptions.</caption>
+      <thead><tr><th scope="col">Main trigger</th><th scope="col">Videos labelled</th><th scope="col">Korean</th><th scope="col">Japanese</th><th scope="col">English</th></tr></thead>
+      <tbody>
+        {rows.map((r) => (
+          <tr><td>{label(r.trigger)}</td><td>{r.n.toLocaleString('en-US')}</td><td>{r.ko}%</td><td>{r.ja}%</td><td>{r.en}%</td></tr>
+        ))}
+      </tbody>
+    </table>
+  </div>
+</section>
+)}
+
+<style>
+  .lm { margin: 2rem 0; }
+  .lm-wrap { overflow-x: auto; }
+  .lm table { width: 100%; border-collapse: collapse; font-size: 0.88rem; }
+  .lm caption { text-align: left; font-size: 0.85rem; color: var(--text-3, #999); padding-bottom: 0.3rem; }
+  .lm th, .lm td { text-align: left; padding: 0.35rem 0.5rem; border-bottom: 1px solid var(--border); }
+</style>

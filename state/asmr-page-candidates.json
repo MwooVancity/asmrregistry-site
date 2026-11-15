@@ -1,0 +1,574 @@
+{
+  "generated": "2026-08-15T14:55:15.622Z",
+  "totalCandidates": 55,
+  "byCategory": {
+    "trigger": [
+      {
+        "slug": "folding",
+        "reason": "folding paper, towels, fabric",
+        "category": "trigger"
+      },
+      {
+        "slug": "pouring",
+        "reason": "pouring liquids, grains",
+        "category": "trigger"
+      },
+      {
+        "slug": "writing",
+        "reason": "pen scratching, pencil writing",
+        "category": "trigger"
+      },
+      {
+        "slug": "cutting",
+        "reason": "cutting soap, clay, food",
+        "category": "trigger"
+      },
+      {
+        "slug": "tearing",
+        "reason": "tearing paper, fabric",
+        "category": "trigger"
+      },
+      {
+        "slug": "chewing",
+        "reason": "eating, chewing sounds",
+        "category": "trigger"
+      },
+      {
+        "slug": "hand-sounds",
+        "reason": "hand clapping, finger snaps",
+        "category": "trigger"
+      },
+      {
+        "slug": "fabric-sounds",
+        "reason": "rustling clothing, sheets",
+        "category": "trigger"
+      },
+      {
+        "slug": "liquids",
+        "reason": "water sounds, liquid ASMR",
+        "category": "trigger"
+      },
+      {
+        "slug": "beeping",
+        "reason": "electronic beeps, notifications",
+        "category": "trigger"
+      },
+      {
+        "slug": "bells",
+        "reason": "chiming, bell sounds",
+        "category": "trigger"
+      }
+    ],
+    "format": [
+      {
+        "slug": "autonomous-asmr",
+        "reason": "no talking, no music",
+        "category": "format"
+      },
+      {
+        "slug": "whispering-asmr",
+        "reason": "soft whispered voice",
+        "category": "format"
+      },
+      {
+        "slug": "speaking-asmr",
+        "reason": "normal speaking volume",
+        "category": "format"
+      },
+      {
+        "slug": "sleep-stories",
+        "reason": "bedtime stories and narratives",
+        "category": "format"
+      },
+      {
+        "slug": "meditation-asmr",
+        "reason": "mindfulness and meditation",
+        "category": "format"
+      },
+      {
+        "slug": "gaming-asmr",
+        "reason": "video game playthroughs",
+        "category": "format"
+      },
+      {
+        "slug": "mukbang-asmr",
+        "reason": "eating on camera",
+        "category": "format"
+      },
+      {
+        "slug": "crafting-asmr",
+        "reason": "DIY, crafts, creative videos",
+        "category": "format"
+      },
+      {
+        "slug": "cleaning-asmr",
+        "reason": "satisfying cleaning videos",
+        "category": "format"
+      },
+      {
+        "slug": "organizing-asmr",
+        "reason": "organizing, tidying, storage",
+        "category": "format"
+      },
+      {
+        "slug": "packing-asmr",
+        "reason": "packing boxes, items",
+        "category": "format"
+      }
+    ],
+    "wellness": [
+      {
+        "slug": "asmr-for-focus",
+        "reason": "concentration and focus",
+        "category": "wellness"
+      },
+      {
+        "slug": "asmr-for-stress",
+        "reason": "stress relief and anxiety",
+        "category": "wellness"
+      },
+      {
+        "slug": "asmr-for-panic",
+        "reason": "panic attack help",
+        "category": "wellness"
+      },
+      {
+        "slug": "asmr-for-insomnia",
+        "reason": "sleep disorders",
+        "category": "wellness"
+      },
+      {
+        "slug": "asmr-for-pain",
+        "reason": "pain management",
+        "category": "wellness"
+      },
+      {
+        "slug": "asmr-for-grief",
+        "reason": "emotional support",
+        "category": "wellness"
+      }
+    ],
+    "niche": [
+      {
+        "slug": "cottagecore-asmr",
+        "reason": "cottage, rural, farm aesthetic",
+        "category": "niche"
+      },
+      {
+        "slug": "cyberpunk-asmr",
+        "reason": "sci-fi, futuristic ASMR",
+        "category": "niche"
+      },
+      {
+        "slug": "fantasy-asmr",
+        "reason": "fantasy world scenarios",
+        "category": "niche"
+      },
+      {
+        "slug": "medieval-asmr",
+        "reason": "historical, medieval settings",
+        "category": "niche"
+      },
+      {
+        "slug": "alien-asmr",
+        "reason": "alien/extraterrestrial themes",
+        "category": "niche"
+      },
+      {
+        "slug": "goth-asmr",
+        "reason": "gothic, dark aesthetic",
+        "category": "niche"
+      },
+      {
+        "slug": "emo-asmr",
+        "reason": "emo/goth community content",
+        "category": "niche"
+      },
+      {
+        "slug": "cottagecore-crafts",
+        "reason": "rustic crafting and making",
+        "category": "niche"
+      }
+    ],
+    "meta": [
+      {
+        "slug": "asmr-youtuber-rankings",
+        "reason": "top creators ranked",
+        "category": "meta"
+      },
+      {
+        "slug": "asmr-tier-list",
+        "reason": "subjective rankings by genre",
+        "category": "meta"
+      },
+      {
+        "slug": "asmr-trends",
+        "reason": "trending sounds and styles",
+        "category": "meta"
+      },
+      {
+        "slug": "asmr-challenges",
+        "reason": "community challenges",
+        "category": "meta"
+      },
+      {
+        "slug": "asmr-in-other-languages",
+        "reason": "non-English ASMR content",
+        "category": "meta"
+      },
+      {
+        "slug": "niche-asmr-communities",
+        "reason": "subcultures and fan groups",
+        "category": "meta"
+      }
+    ],
+    "research": [
+      {
+        "slug": "asmr-research-studies",
+        "reason": "academic research on ASMR",
+        "category": "research"
+      },
+      {
+        "slug": "asmr-neuroimaging",
+        "reason": "brain activity during ASMR",
+        "category": "research"
+      },
+      {
+        "slug": "asmr-misconceptions",
+        "reason": "debunking myths",
+        "category": "research"
+      }
+    ],
+    "how-to": [
+      {
+        "slug": "asmr-recording-tips",
+        "reason": "how to record ASMR",
+        "category": "how-to"
+      },
+      {
+        "slug": "asmr-editing-guide",
+        "reason": "post-production for ASMR",
+        "category": "how-to"
+      },
+      {
+        "slug": "asmr-lighting-setup",
+        "reason": "lighting for video ASMR",
+        "category": "how-to"
+      },
+      {
+        "slug": "asmr-monetization",
+        "reason": "making money from ASMR",
+        "category": "how-to"
+      },
+      {
+        "slug": "asmr-copyright",
+        "reason": "copyright and licensing music",
+        "category": "how-to"
+      }
+    ],
+    "geography": [
+      {
+        "slug": "asmr-in-japan",
+        "reason": "Japanese ASMR culture",
+        "category": "geography"
+      },
+      {
+        "slug": "asmr-in-korea",
+        "reason": "Korean ASMR scene",
+        "category": "geography"
+      },
+      {
+        "slug": "asmr-in-india",
+        "reason": "Indian ASMR creators",
+        "category": "geography"
+      },
+      {
+        "slug": "asmr-in-europe",
+        "reason": "European ASMR community",
+        "category": "geography"
+      },
+      {
+        "slug": "asmr-in-latin-america",
+        "reason": "Latin American ASMR",
+        "category": "geography"
+      }
+    ]
+  },
+  "all": [
+    {
+      "slug": "alien-asmr",
+      "reason": "alien/extraterrestrial themes",
+      "category": "niche"
+    },
+    {
+      "slug": "asmr-challenges",
+      "reason": "community challenges",
+      "category": "meta"
+    },
+    {
+      "slug": "asmr-copyright",
+      "reason": "copyright and licensing music",
+      "category": "how-to"
+    },
+    {
+      "slug": "asmr-editing-guide",
+      "reason": "post-production for ASMR",
+      "category": "how-to"
+    },
+    {
+      "slug": "asmr-for-focus",
+      "reason": "concentration and focus",
+      "category": "wellness"
+    },
+    {
+      "slug": "asmr-for-grief",
+      "reason": "emotional support",
+      "category": "wellness"
+    },
+    {
+      "slug": "asmr-for-insomnia",
+      "reason": "sleep disorders",
+      "category": "wellness"
+    },
+    {
+      "slug": "asmr-for-pain",
+      "reason": "pain management",
+      "category": "wellness"
+    },
+    {
+      "slug": "asmr-for-panic",
+      "reason": "panic attack help",
+      "category": "wellness"
+    },
+    {
+      "slug": "asmr-for-stress",
+      "reason": "stress relief and anxiety",
+      "category": "wellness"
+    },
+    {
+      "slug": "asmr-in-europe",
+      "reason": "European ASMR community",
+      "category": "geography"
+    },
+    {
+      "slug": "asmr-in-india",
+      "reason": "Indian ASMR creators",
+      "category": "geography"
+    },
+    {
+      "slug": "asmr-in-japan",
+      "reason": "Japanese ASMR culture",
+      "category": "geography"
+    },
+    {
+      "slug": "asmr-in-korea",
+      "reason": "Korean ASMR scene",
+      "category": "geography"
+    },
+    {
+      "slug": "asmr-in-latin-america",
+      "reason": "Latin American ASMR",
+      "category": "geography"
+    },
+    {
+      "slug": "asmr-in-other-languages",
+      "reason": "non-English ASMR content",
+      "category": "meta"
+    },
+    {
+      "slug": "asmr-lighting-setup",
+      "reason": "lighting for video ASMR",
+      "category": "how-to"
+    },
+    {
+      "slug": "asmr-misconceptions",
+      "reason": "debunking myths",
+      "category": "research"
+    },
+    {
+      "slug": "asmr-monetization",
+      "reason": "making money from ASMR",
+      "category": "how-to"
+    },
+    {
+      "slug": "asmr-neuroimaging",
+      "reason": "brain activity during ASMR",
+      "category": "research"
+    },
+    {
+      "slug": "asmr-recording-tips",
+      "reason": "how to record ASMR",
+      "category": "how-to"
+    },
+    {
+      "slug": "asmr-research-studies",
+      "reason": "academic research on ASMR",
+      "category": "research"
+    },
+    {
+      "slug": "asmr-tier-list",
+      "reason": "subjective rankings by genre",
+      "category": "meta"
+    },
+    {
+      "slug": "asmr-trends",
+      "reason": "trending sounds and styles",
+      "category": "meta"
+    },
+    {
+      "slug": "asmr-youtuber-rankings",
+      "reason": "top creators ranked",
+      "category": "meta"
+    },
+    {
+      "slug": "autonomous-asmr",
+      "reason": "no talking, no music",
+      "category": "format"
+    },
+    {
+      "slug": "beeping",
+      "reason": "electronic beeps, notifications",
+      "category": "trigger"
+    },
+    {
+      "slug": "bells",
+      "reason": "chiming, bell sounds",
+      "category": "trigger"
+    },
+    {
+      "slug": "chewing",
+      "reason": "eating, chewing sounds",
+      "category": "trigger"
+    },
+    {
+      "slug": "cleaning-asmr",
+      "reason": "satisfying cleaning videos",
+      "category": "format"
+    },
+    {
+      "slug": "cottagecore-asmr",
+      "reason": "cottage, rural, farm aesthetic",
+      "category": "niche"
+    },
+    {
+      "slug": "cottagecore-crafts",
+      "reason": "rustic crafting and making",
+      "category": "niche"
+    },
+    {
+      "slug": "crafting-asmr",
+      "reason": "DIY, crafts, creative videos",
+      "category": "format"
+    },
+    {
+      "slug": "cutting",
+      "reason": "cutting soap, clay, food",
+      "category": "trigger"
+    },
+    {
+      "slug": "cyberpunk-asmr",
+      "reason": "sci-fi, futuristic ASMR",
+      "category": "niche"
+    },
+    {
+      "slug": "emo-asmr",
+      "reason": "emo/goth community content",
+      "category": "niche"
+    },
+    {
+      "slug": "fabric-sounds",
+      "reason": "rustling clothing, sheets",
+      "category": "trigger"
+    },
+    {
+      "slug": "fantasy-asmr",
+      "reason": "fantasy world scenarios",
+      "category": "niche"
+    },
+    {
+      "slug": "folding",
+      "reason": "folding paper, towels, fabric",
+      "category": "trigger"
+    },
+    {
+      "slug": "gaming-asmr",
+      "reason": "video game playthroughs",
+      "category": "format"
+    },
+    {
+      "slug": "goth-asmr",
+      "reason": "gothic, dark aesthetic",
+      "category": "niche"
+    },
+    {
+      "slug": "hand-sounds",
+      "reason": "hand clapping, finger snaps",
+      "category": "trigger"
+    },
+    {
+      "slug": "liquids",
+      "reason": "water sounds, liquid ASMR",
+      "category": "trigger"
+    },
+    {
+      "slug": "medieval-asmr",
+      "reason": "historical, medieval settings",
+      "category": "niche"
+    },
+    {
+      "slug": "meditation-asmr",
+      "reason": "mindfulness and meditation",
+      "category": "format"
+    },
+    {
+      "slug": "mukbang-asmr",
+      "reason": "eating on camera",
+      "category": "format"
+    },
+    {
+      "slug": "niche-asmr-communities",
+      "reason": "subcultures and fan groups",
+      "category": "meta"
+    },
+    {
+      "slug": "organizing-asmr",
+      "reason": "organizing, tidying, storage",
+      "category": "format"
+    },
+    {
+      "slug": "packing-asmr",
+      "reason": "packing boxes, items",
+      "category": "format"
+    },
+    {
+      "slug": "pouring",
+      "reason": "pouring liquids, grains",
+      "category": "trigger"
+    },
+    {
+      "slug": "sleep-stories",
+      "reason": "bedtime stories and narratives",
+      "category": "format"
+    },
+    {
+      "slug": "speaking-asmr",
+      "reason": "normal speaking volume",
+      "category": "format"
+    },
+    {
+      "slug": "tearing",
+      "reason": "tearing paper, fabric",
+      "category": "trigger"
+    },
+    {
+      "slug": "whispering-asmr",
+      "reason": "soft whispered voice",
+      "category": "format"
+    },
+    {
+      "slug": "writing",
+      "reason": "pen scratching, pencil writing",
+      "category": "trigger"
+    }
+  ]
+}

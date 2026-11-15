@@ -1,0 +1,11 @@
+name = "asmrregistry"
+compatibility_date = "2024-09-23"
+compatibility_flags = ["nodejs_compat_v2"]
+
+[[d1_databases]]
+binding = "DB"
+database_name = "asmr-registry"
+database_id = "4f8937a1-9629-4c8b-a343-9cfe238cc319"
+
+[triggers]
+crons = ["0 */6 * * *", "0 4 * * *"]

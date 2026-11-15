@@ -1,0 +1,224 @@
+=== EXISTING LEDGER PAGES (122 non-creator) ===
+
+sleep-sounds | GUIDE | 116000/mo | /guides/sleep-sounds/ | published
+white-noise | GUIDE | 98000/mo | /guides/white-noise/ | published
+rain-sounds-for-sleeping | GUIDE | 68000/mo | /guides/rain-sounds-for-sleeping/ | published
+frisson | GUIDE | 55000/mo | /guides/frisson/ | published
+brown-noise | GUIDE | 50000/mo | /guides/brown-noise/ | published
+misophonia | GUIDE | 24000/mo | /guides/misophonia/ | published
+asmr-for-studying | GUIDE | 21000/mo | /guides/asmr-for-studying/ | published
+ai-asmr-generator | GUIDE | 19000/mo | /guides/ai-asmr-generator/ | published
+pink-noise | GUIDE | 18000/mo | /guides/pink-noise/ | published
+sound-therapy-and-asmr | GUIDE | 16000/mo | /guides/sound-therapy-and-asmr/ | published
+binaural-beats-guide | GUIDE | 15000/mo | /guides/binaural-beats-guide/ | published
+brown-noise-for-sleep | GUIDE | 12000/mo | /guides/brown-noise-for-sleep/ | published
+massage | TRIGGER_HUB | 8120/mo | /massage/ | published
+brown-noise-vs-white-noise | GUIDE | 8000/mo | /guides/brown-noise-vs-white-noise/ | published
+how-asmr-affects-the-brain | GUIDE | 6000/mo | /guides/how-asmr-affects-the-brain/ | published
+eating-sounds | TRIGGER_HUB | 4760/mo | /eating-sounds/ | published
+nature-sounds-for-sleep | GUIDE | 3000/mo | /guides/nature-sounds-for-sleep/ | published
+ambient-sounds | GUIDE | 3000/mo | /guides/ambient-sounds/ | published
+asmr-community | GUIDE | 3000/mo | /guides/asmr-community/ | published
+asmr-artists | CREATOR_LIST | 2580/mo | /creators/ | published
+asmr-games | FORMAT_HUB | 2510/mo | /asmr-games/ | published
+whispering | TRIGGER_HUB | 2420/mo | /whispering/ | published
+asmr-microphone | EQUIPMENT | 2400/mo | /gear/asmr-microphone/ | published
+asmr-gear-tools | EQUIPMENT | 2300/mo | /gear/asmr-gear-tools/ | published
+whats-asmr | INFO_GUIDE | 2270/mo | /guides/whats-asmr/ | published
+misophonia-and-asmr | GUIDE | 2000/mo | /guides/misophonia-and-asmr/ | published
+vagus-nerve-and-asmr | GUIDE | 2000/mo | /guides/vagus-nerve-and-asmr/ | published
+sleep | INTENT_HUB | 1940/mo | /sleep/ | published
+slime | TRIGGER_HUB | 1630/mo | /slime/ | published
+triggers-overview | TRIGGER_HUB | 1590/mo | /triggers/ | published
+personal-attention | TRIGGER_HUB | 1440/mo | /personal-attention/ | published
+sound-sensitivity | GUIDE | 1400/mo | /guides/sound-sensitivity/ | published
+glass-sounds | TRIGGER_HUB | 1370/mo | /glass-sounds/ | published
+vr-asmr | FORMAT_HUB | 1170/mo | /vr-asmr/ | published
+kids | INTENT_HUB | 1150/mo | /kids/ | published
+typing | TRIGGER_HUB | 1120/mo | /typing/ | published
+asmr-equipment | EQUIPMENT | 1100/mo | /gear/asmr-equipment/ | published
+best-asmr-youtube-channels | BEST_LIST | 1050/mo | /best/best-asmr-youtube-channels/ | published
+unintentional-asmr | FORMAT_HUB | 1020/mo | /unintentional-asmr/ | published
+rain | TRIGGER_HUB | 980/mo | /rain/ | published
+kisses | TRIGGER_HUB | 920/mo | /kisses/ | published
+best-asmr-videos | BEST_LIST | 900/mo | /best/best-asmr-videos/ | published
+is-asmr-good-for-you | INFO_GUIDE | 780/mo | /guides/is-asmr-good-for-you/ | published
+ocean | TRIGGER_HUB | 750/mo | /ocean/ | published
+soap-carving | TRIGGER_HUB | 680/mo | /soap-carving/ | published
+how-to-make-asmr-videos | INFO_GUIDE | 680/mo | /guides/how-to-make-asmr-videos/ | published
+what-does-asmr-stand-for | INFO_GUIDE | 630/mo | /guides/what-does-asmr-stand-for/ | published
+scratching | TRIGGER_HUB | 590/mo | /scratching/ | published
+asmr-meaning-slang | INFO_GUIDE | 510/mo | /guides/asmr-meaning-slang/ | published
+best-asmr | BEST_LIST | 500/mo | /best/best-asmr/ | published
+best-earbuds-for-asmr | BEST_LIST | 480/mo | /best/best-earbuds-for-asmr/ | published
+best-asmr-for-sleep | BEST_LIST | 450/mo | /best/best-asmr-for-sleep/ | published
+sand | TRIGGER_HUB | 430/mo | /sand/ | published
+best-microphone-for-asmr | BEST_LIST | 420/mo | /best/best-microphone-for-asmr/ | draft
+asmr-significado | INFO_GUIDE | 350/mo | /guides/asmr-significado/ | published
+cooking | TRIGGER_HUB | 310/mo | /cooking/ | published
+que-es-asmr | INFO_GUIDE | 310/mo | /guides/que-es-asmr/ | published
+what-is-asmr-massage | INFO_GUIDE | 310/mo | /guides/what-is-asmr-massage/ | published
+what-does-asmr-mean-in-text | INFO_GUIDE | 300/mo | /guides/what-does-asmr-mean-in-text/ | published
+best-asmr-microphone | BEST_LIST | 300/mo | /best/best-asmr-microphone/ | published
+asmr-meaning-in-social-media | INFO_GUIDE | 250/mo | /guides/asmr-meaning-in-social-media/ | published
+how-to-do-asmr | INFO_GUIDE | 250/mo | /guides/how-to-do-asmr/ | published
+why-does-asmr-make-you-tingle | INFO_GUIDE | 250/mo | /guides/why-does-asmr-make-you-tingle/ | published
+how-to-make-ai-asmr-videos | INFO_GUIDE | 250/mo | /guides/how-to-make-ai-asmr-videos/ | published
+best-headphones-for-asmr | BEST_LIST | 250/mo | /best/best-headphones-for-asmr/ | published
+asmr-podcast | FORMAT_HUB | 250/mo | /asmr-podcast/ | published
+tapping | TRIGGER_HUB | 220/mo | /tapping/ | published
+painting | TRIGGER_HUB | 200/mo | /painting/ | published
+what-is-mommy-asmr | INFO_GUIDE | 200/mo | /guides/what-is-mommy-asmr/ | published
+best-kept-secret-asmr | BEST_LIST | 200/mo | /best/best-kept-secret-asmr/ | published
+live-asmr | FORMAT_HUB | 190/mo | /live-asmr/ | published
+hair-play | TRIGGER_HUB | 180/mo | /hair-play/ | published
+soft-speaking | TRIGGER_HUB | 160/mo | /soft-speaking/ | published
+anxiety | INTENT_HUB | 160/mo | /anxiety/ | published
+how-to-start-an-asmr-channel | INFO_GUIDE | 160/mo | /guides/how-to-start-an-asmr-channel/ | published
+lofi-asmr | FORMAT_HUB | 150/mo | /lofi-asmr/ | published
+mouth-sounds | TRIGGER_HUB | 130/mo | /mouth-sounds/ | published
+no-talking | TRIGGER_HUB | 130/mo | /no-talking/ | published
+breathing | TRIGGER_HUB | 110/mo | /breathing/ | published
+what-is-lofi-asmr | INFO_GUIDE | 100/mo | /guides/what-is-lofi-asmr/ | published
+how-to-create-asmr-food-content | INFO_GUIDE | 100/mo | /guides/how-to-create-asmr-food-content/ | published
+binaural | TRIGGER_HUB | 90/mo | /binaural/ | published
+how-do-asmr-youtubers-make-money-without-ads | INFO_GUIDE | 80/mo | /guides/how-do-asmr-youtubers-make-money-without-ads/ | published
+light-patterns | TRIGGER_HUB | 70/mo | /light-patterns/ | published
+headache | INTENT_HUB | 70/mo | /headache/ | published
+brushing | TRIGGER_HUB | 60/mo | /brushing/ | published
+nature | TRIGGER_HUB | 60/mo | /nature/ | published
+bfe-meaning-asmr | INFO_GUIDE | 60/mo | /guides/bfe-meaning-asmr/ | published
+relax | INTENT_HUB | 50/mo | /relax/ | draft
+long-asmr | FORMAT_HUB | 50/mo | /long-asmr/ | draft
+crinkling | TRIGGER_HUB | 0/mo | /crinkling/ | published
+singing-bowls | TRIGGER_HUB | 0/mo | /singing-bowls/ | published
+humming | TRIGGER_HUB | 0/mo | /humming/ | published
+fireplace-asmr | TRIGGER_HUB | 0/mo | /fireplace-asmr/ | published
+thunderstorm-asmr | TRIGGER_HUB | 0/mo | /thunderstorm-asmr/ | published
+cat-purring-asmr | TRIGGER_HUB | 0/mo | /cat-purring-asmr/ | published
+fast-aggressive-asmr | TRIGGER_HUB | 0/mo | /fast-aggressive-asmr/ | published
+roleplay | FORMAT_HUB | 0/mo | /roleplay/ | published
+doctor-roleplay | FORMAT_HUB | 0/mo | /doctor-roleplay/ | published
+dental-roleplay | FORMAT_HUB | 0/mo | /dental-roleplay/ | published
+spa-roleplay | FORMAT_HUB | 0/mo | /spa-roleplay/ | published
+haircut-asmr | FORMAT_HUB | 0/mo | /haircut-asmr/ | published
+cranial-nerve-exam | FORMAT_HUB | 0/mo | /cranial-nerve-exam/ | published
+male-asmr | FORMAT_HUB | 0/mo | /male-asmr/ | published
+anime-asmr | FORMAT_HUB | 0/mo | /anime-asmr/ | published
+reading-to-you | FORMAT_HUB | 0/mo | /reading-to-you/ | published
+library-asmr | FORMAT_HUB | 0/mo | /library-asmr/ | published
+10-hour-asmr | FORMAT_HUB | 0/mo | /10-hour-asmr/ | published
+study-with-me-asmr | FORMAT_HUB | 0/mo | /study-with-me-asmr/ | published
+asmr-for-adhd | INTENT_HUB | 0/mo | /asmr-for-adhd/ | published
+asmr-for-depression | INTENT_HUB | 0/mo | /asmr-for-depression/ | published
+asmr-for-meditation | INTENT_HUB | 0/mo | /asmr-for-meditation/ | published
+asmr-for-ptsd | INTENT_HUB | 0/mo | /asmr-for-ptsd/ | published
+asmr-for-tinnitus | INTENT_HUB | 0/mo | /asmr-for-tinnitus/ | published
+positive-affirmations | INTENT_HUB | 0/mo | /positive-affirmations/ | published
+asmr-para-dormir | INFO_GUIDE | 0/mo | /guides/asmr-para-dormir/ | published
+asmr-para-estudiar | INFO_GUIDE | 0/mo | /guides/asmr-para-estudiar/ | published
+asmr-para-ansiedad | INFO_GUIDE | 0/mo | /guides/asmr-para-ansiedad/ | published
+best-asmr-apps | BEST_LIST | 0/mo | /best/best-asmr-apps/ | published
+best-asmr-camera | BEST_LIST | 0/mo | /best/best-asmr-camera/ | published
+asmr-audio-interface | EQUIPMENT | 0/mo | /gear/asmr-audio-interface/ | published
+asmr-room-setup | EQUIPMENT | 0/mo | /gear/asmr-room-setup/ | published
+
+=== PROPOSED NEW SLUGS ===
+
+fire-crackling | TRIGGER_HUB | 8100/mo
+fireplace-sounds | TRIGGER_HUB | 5900/mo
+fan-sounds | TRIGGER_HUB | 5400/mo
+page-turning | TRIGGER_HUB | 3200/mo
+water-sounds | TRIGGER_HUB | 9900/mo
+scissors-sounds | TRIGGER_HUB | 4800/mo
+cardboard-sounds | TRIGGER_HUB | 2600/mo
+velcro-sounds | TRIGGER_HUB | 2100/mo
+nail-painting | TRIGGER_HUB | 7200/mo
+fabric-sounds | TRIGGER_HUB | 2800/mo
+wind-sounds | TRIGGER_HUB | 4800/mo
+thunder-sounds | TRIGGER_HUB | 5100/mo
+origami | TRIGGER_HUB | 3100/mo
+wood-sounds | TRIGGER_HUB | 2200/mo
+pouring-sounds | TRIGGER_HUB | 2900/mo
+bubble-wrap | TRIGGER_HUB | 4400/mo
+dripping-water | TRIGGER_HUB | 3300/mo
+whittling | TRIGGER_HUB | 1900/mo
+tinfoil | TRIGGER_HUB | 2400/mo
+cat-purring | TRIGGER_HUB | 6100/mo
+crackling | TRIGGER_HUB | 3800/mo
+plastic-sounds | TRIGGER_HUB | 2000/mo
+spray-sounds | TRIGGER_HUB | 1600/mo
+ice-sounds | TRIGGER_HUB | 2700/mo
+writing-sounds | TRIGGER_HUB | 3500/mo
+layered-sounds | TRIGGER_HUB | 2100/mo
+hand-movements | TRIGGER_HUB | 3700/mo
+gloves | TRIGGER_HUB | 3200/mo
+asmr-for-autism | INTENT_HUB | 5200/mo
+asmr-for-chronic-pain | INTENT_HUB | 2800/mo
+asmr-for-focus | INTENT_HUB | 9400/mo
+asmr-for-panic-attacks | INTENT_HUB | 2600/mo
+asmr-for-insomnia | INTENT_HUB | 7100/mo
+asmr-for-stress | INTENT_HUB | 11000/mo
+asmr-for-babies | INTENT_HUB | 4900/mo
+asmr-for-work | INTENT_HUB | 5700/mo
+asmr-for-concentration | INTENT_HUB | 3900/mo
+asmr-for-migraines | INTENT_HUB | 2200/mo
+asmr-for-men | INTENT_HUB | 3300/mo
+asmr-for-seniors | INTENT_HUB | 2100/mo
+asmr-for-nausea | INTENT_HUB | 1800/mo
+asmr-for-ocd | INTENT_HUB | 1600/mo
+asmr-roleplay | FORMAT_HUB | 18000/mo
+asmr-mukbang | FORMAT_HUB | 8400/mo
+asmr-storytime | FORMAT_HUB | 6200/mo
+asmr-spa | FORMAT_HUB | 5800/mo
+asmr-doctor-roleplay | FORMAT_HUB | 7100/mo
+asmr-hairdresser | FORMAT_HUB | 9200/mo
+asmr-cooking-show | FORMAT_HUB | 4300/mo
+asmr-medieval | FORMAT_HUB | 2900/mo
+asmr-compilation | FORMAT_HUB | 6700/mo
+asmr-shorts | FORMAT_HUB | 4100/mo
+asmr-with-music | FORMAT_HUB | 3600/mo
+asmr-nature-walk | FORMAT_HUB | 3200/mo
+asmr-library | FORMAT_HUB | 5400/mo
+asmr-camping | FORMAT_HUB | 4700/mo
+asmr-rain-on-tent | FORMAT_HUB | 5100/mo
+asmr-coffee-shop | FORMAT_HUB | 8900/mo
+asmr-and-adhd | INFO_GUIDE | 6400/mo
+asmr-and-autism | INFO_GUIDE | 4100/mo
+asmr-for-tinnitus-guide | INFO_GUIDE | 2900/mo
+asmr-and-dopamine | INFO_GUIDE | 3200/mo
+asmr-triggers-list | INFO_GUIDE | 14000/mo
+asmr-vs-white-noise | INFO_GUIDE | 3800/mo
+asmr-and-sleep-science | INFO_GUIDE | 4500/mo
+how-to-find-your-asmr-triggers | INFO_GUIDE | 5200/mo
+asmr-and-anxiety-research | INFO_GUIDE | 3100/mo
+why-doesnt-asmr-work-for-me | INFO_GUIDE | 7800/mo
+asmr-immunity | INFO_GUIDE | 4300/mo
+asmr-history | INFO_GUIDE | 2600/mo
+asmr-and-introverts | INFO_GUIDE | 2100/mo
+asmr-placebo-or-real | INFO_GUIDE | 3600/mo
+types-of-asmr | INFO_GUIDE | 9100/mo
+asmr-and-ptsd | INFO_GUIDE | 2400/mo
+asmr-tingles-not-working | INFO_GUIDE | 5600/mo
+what-is-asmr-roleplay | INFO_GUIDE | 4800/mo
+asmr-and-highly-sensitive-person | INFO_GUIDE | 2800/mo
+best-binaural-microphone | BEST_LIST | 4100/mo
+best-asmr-for-focus | BEST_LIST | 5300/mo
+best-asmr-for-anxiety | BEST_LIST | 6100/mo
+best-asmr-channels-for-sleep | BEST_LIST | 8200/mo
+best-asmr-for-studying | BEST_LIST | 9800/mo
+best-asmr-playlists | BEST_LIST | 4700/mo
+asmr-boom-arm | EQUIPMENT | 2900/mo
+asmr-pop-filter | EQUIPMENT | 3100/mo
+asmr-shock-mount | EQUIPMENT | 2700/mo
+asmr-usb-microphone | EQUIPMENT | 3800/mo
+asmr-xlr-microphone | EQUIPMENT | 2600/mo
+asmr-soundproofing | EQUIPMENT | 3500/mo
+asmr-camera-setup | EQUIPMENT | 2300/mo
+asmr-editing-software | EQUIPMENT | 3900/mo
+asmr-studio-setup | EQUIPMENT | 4600/mo
+
+=== SUMMARY ===
+Proposed: 92
+Already in ledger (skip): 0
+Net new to add: 92

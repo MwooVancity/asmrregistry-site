@@ -1,0 +1,521 @@
+---
+export const prerender = false;
+
+import BaseLayout from '../layouts/BaseLayout.astro';
+import BreadcrumbNav from '../components/BreadcrumbNav.astro';
+import { getRootPages, getPageBySlug, type LedgerPage } from '../lib/ledger';
+import { creatorDemand } from '../lib/related';
+import { getContent, liveHref } from '../lib/page-content';
+import { TRIGGER_GROUPS, RELATED_TRIGGERS, TRIGGER_INTENT_MAP } from '../lib/constants';
+import HUB_DATA from '../lib/hub-data-all.json';
+import DataChart from '../components/DataChart.astro';
+import AffiliateBox from '../components/AffiliateBox.astro';
+import WhisperStyles from '../components/WhisperStyles.astro';
+import LiveNow from '../components/LiveNow.astro';
+import TriggerTrend from '../components/TriggerTrend.astro';
+import ClaimRank from '../components/ClaimRank.astro';
+import LengthChange from '../components/LengthChange.astro';
+import TypingTool from '../components/TypingTool.astro';
+import CatalogFacts from '../components/CatalogFacts.astro';
+import ResearchCount from '../components/ResearchCount.astro';
+import RelatedPages from '../components/RelatedPages.astro';
+import PreferenceFinder from '../components/PreferenceFinder.astro';
+import creatorData from '../lib/creators-data.json';
+
+const { slug } = Astro.params;
+if (!slug) return new Response(null, { status: 404 });
+
+// 301 redirects for consolidated near-duplicate pages
+const SLUG_REDIRECTS: Record<string, string> = {
+  'relaxation': '/relax/',
+  'asmr-for-meditation': '/meditation-asmr/',
+  'whispering-asmr': '/whispering/',
+  'misophonia': '/misophonia-and-asmr/',
+};
+if (SLUG_REDIRECTS[slug as string]) return Astro.redirect(SLUG_REDIRECTS[slug as string], 301);
+
+const page = getRootPages().find(p => p.slug === slug || p.targetUrl === `/${slug}/`);
+if (!page) return new Response(null, { status: 404 });
+
+const content = getContent(page.slug);
+if ((content as any)?.status === 'redirected' && (content as any).redirectTo) return Astro.redirect((content as any).redirectTo, 301);
+// Root-level duplicate of a page whose canonical home is /guides/, /best/ or /gear/
+if ((content as any)?.status === 'published' && page.targetUrl !== `/${slug}/` && /^\/(guides|best|gear)\//.test(page.targetUrl)) return Astro.redirect(page.targetUrl, 301);
+
+// AdSense policy: noindex adult/explicit/harmful content slugs
+const ADSENSE_BLOCKED = new Set(["ahegao-asmr","asmr-adult","asmr-ass","asmr-bj","asmr-cei","asmr-dirty","asmr-erome","asmr-feet","asmr-femdom","asmr-footjob","asmr-hfo","asmr-licking","asmr-pleasure","asmr-pmv","asmr-smut","asmr-topless","ass-asmr","ballbusting-asmr","bj-asmr","bl-asmr","busty-asmr","cuck-asmr","cuckold-asmr","cunnilingus-asmr","dirty-asmr","explicit-asmr","facesitting-asmr","feet-asmr","femboy-asmr","femdom-asmr","fingering-asmr","footjob-asmr","freaky-asmr","gay-asmr","gooner-asmr","gooning-asmr","hfo-asmr","horny-asmr","incest-asmr","intimate-asmr","jav-asmr","lesbian-asmr","ntr-asmr","pawg-asmr","pegging-asmr","rape-asmr","scat-asmr","seductive-asmr","sexiest-asmr","sissy-asmr","smut-asmr","sph-asmr","srp-asmr","threesome-asmr","tits-asmr","titty-asmr","topless-asmr","vore-asmr"]);
+if (ADSENSE_BLOCKED.has(slug)) return new Response(null, { status: 410 });
+
+Astro.response.headers.set('Cache-Control', 'public, max-age=3600, stale-while-revalidate=86400');
+
+// If no published content yet, generate a minimal data-driven page
+const title = content?.title || `${page.headKeyword.replace(/^asmr /i, '').replace(/ asmr$/i, '')} ASMR — Videos, Sounds & Guide`;
+const desc = content?.metaDescription || `Explore ${page.totalDemand.toLocaleString()}+ monthly searches for ${page.headKeyword}. Classified ASMR videos, triggers, and expert guide.`;
+const h1 = content?.h1 || page.headKeyword.split(' ').map(w => w === 'asmr' ? 'ASMR' : w.charAt(0).toUpperCase() + w.slice(1)).join(' ');
+
+// Hub data pre-computed at build time — zero D1 reads at runtime for all hub pages
+let videos: any[] = [];
+let triggerStats: { trigger: string; count: number }[] = [];
+let totalVideoCount = 0;
+
+const hubData = HUB_DATA as any;
+// Byline date: the newer of the prose date and the catalog snapshot, since every hub shows catalog numbers.
+const updatedOn = [content?.lastUpdated?.slice(0, 10), hubData.catalogDate].filter(Boolean).sort().pop();
+
+if (page.pageType === 'TRIGGER_HUB' && page.slug !== 'triggers-overview') {
+  const d = hubData.triggerHubs[page.slug];
+  videos = d?.videos ?? [];
+  totalVideoCount = d?.totalVideoCount ?? videos.length;
+}
+
+if (page.pageType === 'TRIGGER_HUB' && page.slug === 'triggers-overview') {
+  triggerStats = hubData.triggersOverview ?? [];
+  totalVideoCount = triggerStats.reduce((s: number, d: any) => s + d.count, 0);
+}
+
+if (page.pageType === 'INTENT_HUB') {
+  const d = hubData.intentHubs[page.slug];
+  videos = (d?.videos ?? []).slice(0, 24);
+  totalVideoCount = d?.totalVideoCount ?? videos.length;
+  triggerStats = d?.triggerStats ?? [];
+}
+
+// Format pages (goth, medieval, dental roleplay...) have no videos matched to them, and the site-wide top list
+// showed eating and slime videos under unrelated titles. They show no list until a matched one exists.
+// Kids: the intent tag matched "baby" in seafood mukbang titles, so its list stays hidden until channels are checked by hand.
+if (page.slug === 'kids') { videos = []; totalVideoCount = 0; }
+
+
+// Constants name triggers/intents that may have no page of their own; only link to slugs that resolve to a published page.
+const _pub = new Map(getRootPages().filter(p => (getContent(p.slug) as any)?.status === 'published').map(p => [p.slug, p.targetUrl] as [string, string]));
+const _alias: Record<string, string> = { fire: 'fire-crackling', spraying: 'spray-sounds', reading: 'reading-to-you', study: 'study-with-me-asmr', meditation: 'meditation-asmr', depression: 'asmr-for-depression', tinnitus: 'asmr-for-tinnitus', library: 'library-asmr', spa: 'asmr-spa', adhd: 'asmr-for-adhd' };
+const resolveUrl = (s: string): string | undefined => _pub.get(s) ?? (_alias[s] ? _pub.get(_alias[s]) : undefined);
+
+// Creators people search for by name rank first (keyword ledger volume, e.g. "gibi asmr" 6,700), then by how many
+// videos of this trigger they have. Count alone left Gibi with 2 links from other pages.
+const topCreators = Object.entries(creatorData as Record<string, any>)
+  .map(([slug, c]) => ({ slug, name: c.name, n: (c.triggers.find((x: [string, number]) => x[0] === page.slug) || [0, 0])[1] as number, d: creatorDemand(slug) }))
+  .filter(c => c.n >= 5).sort((a, b) => b.d - a.d || b.n - a.n).slice(0, 8);
+
+const relatedTriggers = (page.pageType === 'TRIGGER_HUB' && page.slug !== 'triggers-overview'
+  ? (RELATED_TRIGGERS[page.slug] || [])
+  : []).map(t => ({ t, url: resolveUrl(t) })).filter(x => x.url && x.url !== page.targetUrl).slice(0, 6) as { t: string; url: string }[];
+
+const suggestedIntents = (page.pageType === 'TRIGGER_HUB' && page.slug !== 'triggers-overview'
+  ? (TRIGGER_INTENT_MAP[page.slug] || [])
+  : []).map(i => ({ i, url: resolveUrl(i) })).filter(x => x.url).slice(0, 4) as { i: string; url: string }[];
+
+// Full A-Z directory on the triggers overview so every published sound, format and use-case page is reachable
+const dirLabel = (p: any) => ((getContent(p.slug) as any)?.h1 || p.headKeyword) as string;
+const directory = page.slug === 'triggers-overview'
+  ? ([['Sounds and triggers', 'TRIGGER_HUB'], ['Formats and styles', 'FORMAT_HUB'], ['ASMR for a specific need', 'INTENT_HUB']] as [string, string][])
+      .map(([title, type]) => ({
+        title,
+        items: getRootPages().filter(p => p.pageType === type && p.slug !== 'triggers-overview' && (getContent(p.slug) as any)?.status === 'published')
+          .map(p => ({ url: p.targetUrl, label: dirLabel(p) })).sort((a, b) => a.label.localeCompare(b.label)),
+      })).filter(g => g.items.length)
+  : [];
+
+const triggerGroup = page.pageType === 'TRIGGER_HUB'
+  ? Object.entries(TRIGGER_GROUPS).find(([, triggers]) => triggers.includes(page.slug))?.[0] || ''
+  : '';
+
+const fmt = (n: number) => n >= 1e9 ? `${(n/1e9).toFixed(1)}B` : n >= 1e6 ? `${(n/1e6).toFixed(n >= 1e7 ? 0 : 1)}M` : n >= 1000 ? `${(n/1000).toFixed(n >= 10000 ? 0 : 1)}K` : String(n);
+const durFmt = (s: number) => {
+  if (!s) return '';
+  const m = Math.floor(s / 60);
+  return m >= 60 ? `${Math.floor(m/60)}h ${m%60}m` : `${m} min`;
+};
+
+const SITE = 'https://asmrregistry.com';
+const breadcrumbs = page.pageType === 'TRIGGER_HUB'
+  ? [{ name: 'Home', url: '/' }, { name: 'Triggers', url: '/triggers-overview/' }, { name: h1, url: page.targetUrl }]
+  : page.pageType === 'INTENT_HUB'
+  ? [{ name: 'Home', url: '/' }, { name: h1, url: page.targetUrl }]
+  : [{ name: 'Home', url: '/' }, { name: h1, url: page.targetUrl }];
+
+const faqItems = content?.faqItems || [];
+
+// Noindex hubs with no content AND no videos — pure placeholder, AdSense-unsafe
+// Which preference finder this page gets: intent pages preset the goal, trigger pages lock the trigger.
+const GOAL_BY_SLUG: Record<string, 's' | 'a' | 'f'> = {
+  sleep: 's', 'asmr-for-sleep': 's', 'asmr-for-insomnia': 's', 'sleep-stories': 's',
+  anxiety: 'a', 'asmr-for-anxiety': 'a', 'asmr-for-panic-attacks': 'a', 'asmr-for-stress': 'a', 'asmr-for-ptsd': 'a', 'asmr-for-ocd': 'a',
+  'asmr-for-focus': 'f', 'asmr-for-work': 'f', 'asmr-for-adhd': 'f',
+};
+const triggerLabel = page.slug.replace(/-/g, ' ');
+// Roleplay pages lock the finder to the classifier's scenario tag (same mapping as scripts/lib/catalog-facts.mjs).
+const SCENARIO_BY_SLUG: Record<string, string> = {
+  'haircut-asmr': 'barber-roleplay', 'asmr-spa': 'spa-roleplay', 'spa-roleplay': 'spa-roleplay', 'eye-exam-asmr': 'eye-exam',
+  'makeup-asmr': 'makeup-artist', 'asmr-camping': 'camping', 'asmr-coffee-shop': 'coffee-shop', 'library-asmr': 'library',
+};
+const finderProps = page.pageType === 'INTENT_HUB' && !['kids', 'asmr-for-babies'].includes(page.slug)
+  ? { goal: GOAL_BY_SLUG[page.slug] || 'r', heading: page.slug === 'sleep' ? "Pick tonight's video" : 'Find your video' }
+  : page.pageType === 'TRIGGER_HUB' && hubData.triggerHubs[page.slug]
+    ? { trigger: page.slug, heading: `Find a ${triggerLabel} video` }
+    : SCENARIO_BY_SLUG[page.slug]
+      ? { scenario: SCENARIO_BY_SLUG[page.slug], heading: 'Find your roleplay' }
+      : null;
+
+// Split the intro after its first paragraph when it opens with one (otherwise it all stays after the finder).
+const introHtml = content?.introHtml?.trim() || '';
+const leadEnd = introHtml.startsWith('<p') ? introHtml.indexOf('</p>') + 4 : 0;
+const introLead = leadEnd > 4 ? introHtml.slice(0, leadEnd) : '';
+const introRest = introHtml.slice(introLead.length).trim();
+const robotsTag = (content?.status === 'draft' || (!content?.introHtml && totalVideoCount === 0)) ? 'noindex,follow' : undefined;
+
+const YMYL_SLUGS = new Set(['anxiety', 'sleep', 'ptsd', 'tinnitus', 'headache', 'depression', 'insomnia', 'meditation', 'kids']);
+const isYmyl = YMYL_SLUGS.has(page.slug.replace(/^asmr-for-/, '')) || /^asmr-for-/.test(page.slug) || (content?.faqItems?.some(f => /anxiety|ptsd|tinnitus|sleep disorder|insomnia/i.test(f.question)) ?? false);
+
+const jsonLd: any[] = [
+  {
+    "@type": "CollectionPage",
+    "@id": `${SITE}${page.targetUrl}#page`,
+    "name": title,
+    "description": desc,
+    "url": `${SITE}${page.targetUrl}`,
+    "author": { "@id": `${SITE}/#editorial` },
+    ...(updatedOn ? { "dateModified": updatedOn } : {}),
+    "mainEntity": {
+      "@type": "ItemList",
+      "numberOfItems": Math.min(videos.length, 6),
+      "itemListElement": videos.slice(0, 6).map((v, i) => ({
+        "@type": "ListItem",
+        "position": i + 1,
+        "url": `https://www.youtube.com/watch?v=${v.id}`,
+      })),
+    },
+  },
+  {
+    "@type": "BreadcrumbList",
+    "itemListElement": breadcrumbs.map((b, i) => ({
+      "@type": "ListItem", "position": i + 1,
+      "name": b.name, "item": `${SITE}${b.url}`,
+    })),
+  },
+];
+
+// Article schema — editorial content signal for Google AIO and AI citations
+jsonLd.push({
+  "@type": "Article",
+  "@id": `${SITE}${page.targetUrl}#article`,
+  "headline": title,
+  "description": desc,
+  "author": { "@id": `${SITE}/#editorial` },
+  "publisher": { "@id": `${SITE}/#organization` },
+  ...(updatedOn ? { "dateModified": updatedOn } : {}),
+  "mainEntityOfPage": { "@id": `${SITE}${page.targetUrl}#page` },
+});
+
+if (faqItems.length > 0) {
+  jsonLd.push({
+    "@type": "FAQPage",
+    "mainEntity": faqItems.map(f => ({
+      "@type": "Question",
+      "name": f.question,
+      "acceptedAnswer": { "@type": "Answer", "text": (f as any).shortAnswer || f.answer.replace(/<[^>]+>/g, '') },
+    })),
+  });
+}
+---
+
+<BaseLayout title={title} description={desc} canonical={page.targetUrl} ogType="article" jsonLd={jsonLd} robots={robotsTag}>
+  <BreadcrumbNav items={breadcrumbs} />
+
+  <h1>{h1}</h1>
+  <p class="byline">By <a href="/about/">ASMR Registry Editorial</a>{updatedOn ? ` · Updated ${new Date(updatedOn).toLocaleDateString('en-US', {month:'long', year:'numeric', timeZone:'UTC'})}` : ''}</p>
+
+  {/* The /typing/ searchers want a keyboard-sound player first (GSC: "asmr keyboard typing website"). */}
+  {page.slug === 'typing' && <TypingTool />}
+  {page.slug === 'whispering' && <WhisperStyles />}
+  {page.slug === 'live-asmr' && <LiveNow />}
+  {/* "asmr games" results are lists of game names; here the reader can play two ASMR sound toys on the page. */}
+  {page.slug === 'asmr-games' && (
+    <section class="play-here">
+      <h2>Two ASMR sound toys you can play right here</h2>
+      <p>No download or sign-up. Both make their sounds in your browser; headphones help.</p>
+      <h3>Soundscape mixer: place rain, fire and brown noise around your head</h3>
+      <iframe src="/tools/soundscape/?embed=1" width="100%" height="760" loading="lazy" style="border:0;max-width:720px" title="ASMR Soundscape mixer" allow="autoplay"></iframe>
+      <h3>Keyboard typing sounds</h3>
+      <TypingTool />
+    </section>
+  )}
+
+  {isYmyl && (
+    <div class="ymyl-disclaimer">
+      {/* template-lint-ok: legal disclaimer, identical by design */}
+      <p><strong>Health note:</strong> ASMR is a self-reported relaxation technique, not a medical treatment. If you experience anxiety, sleep disorders, tinnitus, or other health conditions, consult a qualified healthcare provider.</p>
+    </div>
+  )}
+
+  {/* The intro's first paragraph answers the query (what Google and AI answers quote), then the tool, then the rest. */}
+  {introLead && <div class="intro" set:html={introLead} />}
+  {finderProps && <PreferenceFinder {...finderProps} />}
+
+  {content?.introHtml ? (
+    introRest && <div class="intro" set:html={introRest} />
+  ) : (
+    <p class="intro-fallback">
+      {totalVideoCount > 0 && `We've classified ${totalVideoCount} videos by trigger type, duration, and intensity so you can find exactly what you need.`}
+      {totalVideoCount === 0 && ` Videos are being classified and will appear here soon.`}
+    </p>
+  )}
+
+  <CatalogFacts slug={page.slug} hideCreators={page.pageType === 'TRIGGER_HUB' && topCreators.length > 0} />
+  {page.pageType === 'TRIGGER_HUB' && <TriggerTrend trigger={page.slug} />}
+  {page.pageType === 'TRIGGER_HUB' && <ClaimRank trigger={page.slug} />}
+  {page.pageType === 'TRIGGER_HUB' && <LengthChange mode="line" trigger={page.slug} />}
+  <ResearchCount slug={page.slug} />
+
+  {/* Data stats bar */}
+  <div class="stats-bar">
+    {totalVideoCount > 0 && (
+      <div class="stats-bar-item">
+        <span class="n">{fmt(totalVideoCount)}</span>
+        <span class="u">{hubData.triggerHubs?.[page.slug]?.byTitle ? `videos with "${hubData.triggerHubs[page.slug].phrase}" in the title` : 'videos classified'}</span>
+      </div>
+    )}
+  </div>
+
+  {/* Trigger distribution (for intent hubs and triggers-overview) */}
+  {triggerStats.length > 0 && (
+    <section>
+      <h2>{page.pageType === 'TRIGGER_HUB' ? 'All ASMR Triggers' : `Best triggers for ${page.slug}`}</h2>
+      <div class="trigger-grid">
+        {triggerStats.filter(d => resolveUrl(d.trigger)).map(d => (
+          <a href={resolveUrl(d.trigger)} class="trigger-card">
+            <span class="trigger-name">{d.trigger.replace(/-/g, ' ')}</span>
+            <span class="trigger-count">{d.count} videos</span>
+          </a>
+        ))}
+      </div>
+    </section>
+  )}
+
+  {directory.map(g => (
+    <section class="dir-section">
+      <h2>{g.title}</h2>
+      <ul class="dir-list">
+        {g.items.map(it => <li><a href={it.url}>{it.label}</a></li>)}
+      </ul>
+    </section>
+  ))}
+
+  {/* Video grid */}
+  {videos.length > 0 && (
+    <section>
+      <h2>{page.pageType === 'TRIGGER_HUB' ? `Best ${page.slug.replace(/-/g, ' ')} ASMR videos` : 'Top videos'}</h2>
+      <div class="video-grid">
+        {videos.map((v, i) => (
+          <article class="video-card">
+            <button type="button" class="vplay" data-v={v.id} aria-label={`Play ${v.title}`}>
+              <div class="video-thumb">
+                <img src={`https://i.ytimg.com/vi/${v.id}/mqdefault.jpg`}
+                     alt={v.title} loading={i < 4 ? 'eager' : 'lazy'} fetchpriority={i === 0 ? 'high' : undefined} width="320" height="180" />
+                {v.duration_seconds && (
+                  <span class="duration-badge">{durFmt(v.duration_seconds)}</span>
+                )}
+              </div>
+              <p class="vt">{v.title}</p>
+            </button>
+            <p class="meta">
+              {v.view_count ? `${fmt(v.view_count)} views` : ''}
+              {v.intensity ? ` · Intensity: ${v.intensity}/5` : ''}
+            </p>
+          </article>
+        ))}
+      </div>
+      {/* template-lint-ok: one finder link under each video grid */}
+      <p class="vplay-more"><a href="/asmr-videos/">Find more videos by length, talking and sounds to avoid in the finder</a></p>
+      <script src="/js/vplay.js" defer></script>
+    </section>
+  )}
+
+  {page.pageType === 'TRIGGER_HUB' && topCreators.length > 0 && (
+    <section>
+      <h2>Creators who make {page.slug.replace(/-/g, ' ')} ASMR</h2>
+      <div class="related-links">
+        {topCreators.map(c => <a href={`/creators/${c.slug}/`} class="related-link">{c.name} →</a>)}
+      </div>
+    </section>
+  )}
+
+  {/* Related triggers cross-links */}
+  {relatedTriggers.length > 0 && (
+    <section>
+      <h2>Related triggers</h2>
+      <div class="related-links">
+        {relatedTriggers.map(({ t, url }) => (
+          <a href={url} class="related-link">{t.replace(/-/g, ' ')} ASMR →</a>
+        ))}
+      </div>
+    </section>
+  )}
+
+  {/* Same-kind pages that share search topics, so small trigger and format pages get linked from relevant ones. */}
+  {['TRIGGER_HUB', 'FORMAT_HUB', 'INTENT_HUB'].includes(page.pageType) && page.slug !== 'triggers-overview' && (
+    <RelatedPages slug={page.slug} heading="You might also like"
+      exclude={[...relatedTriggers.map(r => r.url), ...((content as any)?.crossLinks || []).map((l: any) => l.href)]} />
+  )}
+
+  {/* Suggested intents */}
+  {suggestedIntents.length > 0 && (
+    <section>
+      <h2>Use {page.slug.replace(/-/g, ' ')} ASMR for</h2>
+      <div class="related-links">
+        {suggestedIntents.map(({ i, url }) => (
+          <a href={url} class="related-link">{i} →</a>
+        ))}
+      </div>
+    </section>
+  )}
+
+  {/* Headphone guide card: internal links to our buying guides (Amazon links live there, with disclosure) */}
+  {(page.pageType === 'TRIGGER_HUB' && page.slug !== 'triggers-overview') || ['sleep', 'relax', 'study', 'focus'].includes(page.slug) ? (
+    <aside class="gear-card">
+      <strong>Listening on headphones?</strong>
+      {/* template-lint-ok: short nav card linking to buying guides */}
+      <span> See what to look for in </span><a href="/best/best-headphones-for-asmr/">ASMR headphones</a><span> and </span><a href="/best/best-earbuds-for-asmr/">earbuds for sleep</a>.
+    </aside>
+  ) : null}
+
+  <AffiliateBox slug={page.slug} />
+
+  {/* FAQ schema */}
+  {faqItems.length > 0 && (
+    <section class="faq">
+      <h2>Frequently asked questions</h2>
+      {faqItems.map(f => (
+        <details>
+          <summary>{f.question}</summary>
+          <p set:html={f.answer} />
+        </details>
+      ))}
+    </section>
+  )}
+
+  {/* Deep-dive sections (new format) */}
+  {content?.sections && content.sections.length > 0 && (
+    <div class="content-sections">
+      {content.sections.map(s => (
+        <section class="content-section">
+          <h2>{s.heading}</h2>
+          <div set:html={s.content} />
+        </section>
+      ))}
+    </div>
+  )}
+
+  {(content as any)?.dataset && <DataChart id={(content as any).dataset} />}
+
+  {/* Pro tips (legacy — migrated to sections on next grind) */}
+  {content?.proTips && content.proTips.length > 0 && !content?.sections?.length && (
+    <section>
+      <ul class="pro-tips">
+        {content.proTips.map(tip => <li set:html={tip} />)}
+      </ul>
+    </section>
+  )}
+
+  {/* Grind cross-links from content JSON */}
+  {content?.crossLinks && content.crossLinks.length > 0 && (
+    <section>
+      <h2>Related guides</h2>
+      <div class="related-links">
+        {content.crossLinks.map(link => (
+          <a href={liveHref(link.href)} class="related-link">{link.label}</a>
+        ))}
+      </div>
+    </section>
+  )}
+
+
+  {/* References / citations */}
+  {content?.references && content.references.length > 0 && (
+    <section class="references">
+      <h2>Sources</h2>
+      <ul>
+        {content.references.map(ref => (
+          <li><a href={ref.url} rel="nofollow noopener" target="_blank">{ref.label}</a></li>
+        ))}
+      </ul>
+    </section>
+  )}
+
+</BaseLayout>
+
+<style>
+  .intro { font-size: 1.05rem; line-height: 1.75; color: var(--text-1); margin: 0 0 1.5rem; }
+  .intro-fallback { font-size: 1.05rem; line-height: 1.75; color: var(--text-2); margin: 0 0 1.5rem; }
+  section { margin: 2rem 0; }
+  section h2 { font-size: 1.15rem; margin: 0 0 0.75rem; }
+
+  .trigger-grid {
+    display: grid; grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); gap: 0.5rem;
+  }
+  .trigger-card {
+    display: flex; flex-direction: column; padding: 0.75rem;
+    background: var(--bg-2, #1a1a2e); border: 1px solid var(--border, #2a2a3e);
+    border-radius: 8px; text-decoration: none; color: inherit;
+    transition: border-color 0.15s;
+  }
+  .trigger-card:hover { border-color: var(--accent, #7c3aed); }
+  .trigger-name { font-weight: 600; text-transform: capitalize; font-size: 0.95rem; }
+  .trigger-count { font-size: 0.8rem; color: var(--text-3, #888); margin-top: 0.25rem; }
+
+  .related-links { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+  .dir-list { list-style: none; padding: 0; margin: 0; columns: 3 220px; column-gap: 1.5rem; }
+  .dir-list li { break-inside: avoid; margin: 0 0 0.45rem; }
+  .dir-list a { color: var(--accent, #7c3aed); text-decoration: none; }
+  .dir-list a:hover { text-decoration: underline; }
+  .related-link {
+    padding: 0.5rem 1rem; background: var(--bg-2, #1a1a2e);
+    border: 1px solid var(--border, #2a2a3e); border-radius: 999px;
+    text-decoration: none; color: var(--accent, #7c3aed); font-size: 0.9rem;
+    text-transform: capitalize; transition: background 0.15s;
+  }
+  .related-link:hover { background: var(--bg-3, #12121f); }
+
+  .duration-badge {
+    position: absolute; bottom: 6px; right: 6px;
+    background: rgba(0,0,0,0.8); color: #fff; padding: 2px 6px;
+    border-radius: 4px; font-size: 0.75rem;
+  }
+  .video-thumb { position: relative; }
+
+  .faq details { border-bottom: 1px solid var(--border, #2a2a3e); }
+  .faq summary {
+    padding: 0.75rem 0; cursor: pointer; font-weight: 500;
+    color: var(--text-1); list-style: none;
+  }
+  .faq summary::before { content: '+ '; color: var(--accent, #7c3aed); font-weight: 700; }
+  .faq details[open] summary::before { content: '− '; }
+  .faq p { padding: 0 0 0.75rem; color: var(--text-2); line-height: 1.6; }
+
+  .pro-tips { padding-left: 1.25rem; }
+  .pro-tips li { margin: 0.5rem 0; color: var(--text-2); line-height: 1.6; }
+
+  .keyword-cloud { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+  .kw-tag {
+    padding: 0.3rem 0.7rem; background: var(--bg-3, #12121f);
+    border: 1px solid var(--border, #2a2a3e); border-radius: 999px;
+    font-size: 0.8rem; color: var(--text-3, #888);
+  }
+  .cross-section { margin: 2.5rem 0 0; }
+  .cross-section h2 { font-size: 1.15rem; margin: 0 0 0.75rem; }
+
+  .pagination { margin: 1.5rem 0; }
+  .page-next {
+    display: inline-block; padding: 0.6rem 1.25rem;
+    background: var(--bg-2, #1a1a2e); border: 1px solid var(--accent, #7c3aed);
+    border-radius: 8px; text-decoration: none; color: var(--accent, #7c3aed);
+    font-size: 0.95rem; transition: background 0.15s;
+  }
+  .page-next:hover { background: var(--bg-3, #12121f); }
+  .gear-card {
+    margin: 1.5rem 0; padding: 0.85rem 1rem; border-radius: 8px;
+    border: 1px solid var(--border, #2a2a3e); background: var(--bg-2, #1a1a2e);
+    font-size: 0.95rem; line-height: 1.5;
+  }
+  .gear-card a { color: var(--accent, #7c3aed); }
+</style>

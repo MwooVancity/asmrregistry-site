@@ -1,0 +1,1344 @@
+{
+  "best-asmr-microphone": [
+    {
+      "label": "Audio-Technica AT2020",
+      "q": "Audio-Technica AT2020"
+    },
+    {
+      "label": "Rode NT1 5th Generation",
+      "q": "Rode NT1 5th Generation"
+    },
+    {
+      "label": "Audio interfaces",
+      "q": "USB audio interface 2 channel"
+    }
+  ],
+  "asmr-equipment": [
+    {
+      "label": "Audio-Technica AT2020",
+      "q": "Audio-Technica AT2020"
+    },
+    {
+      "label": "Audio-Technica AT4040",
+      "q": "Audio-Technica AT4040"
+    },
+    {
+      "label": "Rode NT1",
+      "q": "Rode NT1 5th Generation"
+    },
+    {
+      "label": "Sony MDR-7506 headphones",
+      "q": "Sony MDR-7506"
+    },
+    {
+      "label": "Beyerdynamic DT 770 headphones",
+      "q": "Beyerdynamic DT 770 Pro"
+    }
+  ],
+  "asmr-gear-tools": [
+    {
+      "label": "Audio-Technica AT2020USB",
+      "q": "Audio-Technica AT2020USB"
+    },
+    {
+      "label": "Rode NT1",
+      "q": "Rode NT1 5th Generation"
+    },
+    {
+      "label": "Focusrite Scarlett interfaces",
+      "q": "Focusrite Scarlett"
+    }
+  ],
+  "asmr-shock-mount": [
+    {
+      "label": "Microphone shock mounts",
+      "q": "microphone shock mount"
+    },
+    {
+      "label": "Rode NT1 (comes with a mount)",
+      "q": "Rode NT1 5th Generation"
+    }
+  ],
+  "asmr-boom-arm": [
+    {
+      "label": "Rode PSA1 boom arm",
+      "q": "Rode PSA1"
+    },
+    {
+      "label": "Elgato Wave Mic Arm",
+      "q": "Elgato Wave Mic Arm"
+    }
+  ],
+  "best-headphones-for-asmr": [
+    {
+      "label": "Closed-back headphones",
+      "q": "closed back headphones"
+    },
+    {
+      "label": "Open-back headphones",
+      "q": "open back headphones"
+    }
+  ],
+  "best-earbuds-for-asmr": [
+    {
+      "label": "Wired earbuds",
+      "q": "wired earbuds"
+    },
+    {
+      "label": "Sleep earbuds",
+      "q": "sleep earbuds side sleepers"
+    }
+  ],
+  "best-binaural-microphone": [
+    {
+      "label": "Binaural microphones",
+      "q": "binaural microphone"
+    }
+  ],
+  "asmr-usb-microphone": [
+    {
+      "label": "USB condenser microphones",
+      "q": "USB condenser microphone cardioid"
+    }
+  ],
+  "asmr-xlr-microphone": [
+    {
+      "label": "XLR condenser microphones",
+      "q": "XLR condenser microphone cardioid"
+    },
+    {
+      "label": "Audio interfaces",
+      "q": "USB audio interface 2 channel"
+    }
+  ],
+  "asmr-audio-interface": [
+    {
+      "label": "Audio interfaces",
+      "q": "USB audio interface 2 channel"
+    }
+  ],
+  "asmr-pop-filter": [
+    {
+      "label": "Nylon pop filters",
+      "q": "nylon pop filter microphone"
+    }
+  ],
+  "best-asmr-camera": [
+    {
+      "label": "Vlogging cameras",
+      "q": "vlogging camera"
+    }
+  ],
+  "asmr-lighting-setup": [
+    {
+      "label": "Soft lights and LED panels",
+      "q": "LED video light panel dimmable"
+    }
+  ],
+  "sleep": [
+    {
+      "label": "Headband sleep headphones",
+      "q": "sleep headphones headband"
+    },
+    {
+      "label": "Small Bluetooth speakers for the nightstand",
+      "q": "small bluetooth speaker bedside"
+    }
+  ],
+  "sleep-sounds": [
+    {
+      "label": "Small Bluetooth speakers for the nightstand",
+      "q": "small bluetooth speaker bedside"
+    },
+    {
+      "label": "Headband sleep headphones",
+      "q": "sleep headphones headband"
+    }
+  ],
+  "best-asmr-for-sleep": [
+    {
+      "label": "Headband sleep headphones",
+      "q": "sleep headphones headband"
+    },
+    {
+      "label": "Sleep earbuds for side sleepers",
+      "q": "sleep earbuds side sleepers"
+    }
+  ],
+  "10-hour-asmr": [
+    {
+      "label": "Headband sleep headphones",
+      "q": "sleep headphones headband"
+    },
+    {
+      "label": "Small Bluetooth speakers for the nightstand",
+      "q": "small bluetooth speaker bedside"
+    }
+  ],
+  "sleep-stories": [
+    {
+      "label": "Headband sleep headphones",
+      "q": "sleep headphones headband"
+    },
+    {
+      "label": "Sleep earbuds for side sleepers",
+      "q": "sleep earbuds side sleepers"
+    }
+  ],
+  "rain-sounds-for-sleeping": [
+    {
+      "label": "Small Bluetooth speakers for the nightstand",
+      "q": "small bluetooth speaker bedside"
+    },
+    {
+      "label": "Headband sleep headphones",
+      "q": "sleep headphones headband"
+    }
+  ],
+  "nature-sounds-for-sleep": [
+    {
+      "label": "Small Bluetooth speakers for the nightstand",
+      "q": "small bluetooth speaker bedside"
+    },
+    {
+      "label": "Headband sleep headphones",
+      "q": "sleep headphones headband"
+    }
+  ],
+  "best-asmr-channels-for-sleep": [
+    {
+      "label": "Headband sleep headphones",
+      "q": "sleep headphones headband"
+    },
+    {
+      "label": "Sleep earbuds for side sleepers",
+      "q": "sleep earbuds side sleepers"
+    }
+  ],
+  "white-noise": [
+    {
+      "label": "White noise machines",
+      "q": "white noise machine"
+    },
+    {
+      "label": "Small Bluetooth speakers for the nightstand",
+      "q": "small bluetooth speaker bedside"
+    }
+  ],
+  "pink-noise": [
+    {
+      "label": "White noise machines",
+      "q": "white noise machine"
+    }
+  ],
+  "brown-noise": [
+    {
+      "label": "White noise machines",
+      "q": "white noise machine"
+    }
+  ],
+  "brown-noise-for-sleep": [
+    {
+      "label": "White noise machines",
+      "q": "white noise machine"
+    },
+    {
+      "label": "Small Bluetooth speakers for the nightstand",
+      "q": "small bluetooth speaker bedside"
+    }
+  ],
+  "brown-noise-vs-white-noise": [
+    {
+      "label": "White noise machines",
+      "q": "white noise machine"
+    }
+  ],
+  "fan-sounds": [
+    {
+      "label": "White noise machines",
+      "q": "white noise machine"
+    }
+  ],
+  "asmr-vs-white-noise": [
+    {
+      "label": "White noise machines",
+      "q": "white noise machine"
+    }
+  ],
+  "binaural": [
+    {
+      "label": "Wired over-ear headphones",
+      "q": "over ear headphones wired"
+    },
+    {
+      "label": "Closed-back headphones",
+      "q": "closed back headphones"
+    }
+  ],
+  "binaural-beats-guide": [
+    {
+      "label": "Wired over-ear headphones",
+      "q": "over ear headphones wired"
+    }
+  ],
+  "asmr-for-studying": [
+    {
+      "label": "Closed-back headphones",
+      "q": "closed back headphones"
+    }
+  ],
+  "best-asmr-for-studying": [
+    {
+      "label": "Closed-back headphones",
+      "q": "closed back headphones"
+    }
+  ],
+  "asmr-for-focus": [
+    {
+      "label": "Closed-back headphones",
+      "q": "closed back headphones"
+    }
+  ],
+  "study-with-me-asmr": [
+    {
+      "label": "Closed-back headphones",
+      "q": "closed back headphones"
+    }
+  ],
+  "asmr-for-work": [
+    {
+      "label": "Closed-back headphones",
+      "q": "closed back headphones"
+    }
+  ],
+  "slime": [
+    {
+      "label": "Slime kits",
+      "q": "slime making kit"
+    }
+  ],
+  "sand": [
+    {
+      "label": "Kinetic sand",
+      "q": "kinetic sand"
+    }
+  ],
+  "soap-carving": [
+    {
+      "label": "Soap carving kits",
+      "q": "soap carving kit"
+    }
+  ],
+  "bubble-wrap": [
+    {
+      "label": "Bubble wrap rolls",
+      "q": "bubble wrap roll"
+    }
+  ],
+  "origami": [
+    {
+      "label": "Origami paper",
+      "q": "origami paper"
+    }
+  ],
+  "whittling": [
+    {
+      "label": "Beginner whittling kits",
+      "q": "whittling kit beginners"
+    }
+  ],
+  "writing": [
+    {
+      "label": "Beginner fountain pens",
+      "q": "fountain pen beginner"
+    }
+  ],
+  "singing-bowls": [
+    {
+      "label": "Singing bowls",
+      "q": "tibetan singing bowl set"
+    }
+  ],
+  "vr-asmr": [
+    {
+      "label": "VR headsets",
+      "q": "VR headset"
+    }
+  ],
+  "how-to-make-asmr-videos": [
+    {
+      "label": "USB condenser microphones",
+      "q": "USB condenser microphone cardioid"
+    },
+    {
+      "label": "Closed-back headphones",
+      "q": "closed back headphones"
+    }
+  ],
+  "how-to-start-an-asmr-channel": [
+    {
+      "label": "USB condenser microphones",
+      "q": "USB condenser microphone cardioid"
+    },
+    {
+      "label": "Closed-back headphones",
+      "q": "closed back headphones"
+    }
+  ],
+  "how-to-do-asmr": [
+    {
+      "label": "USB condenser microphones",
+      "q": "USB condenser microphone cardioid"
+    },
+    {
+      "label": "Closed-back headphones",
+      "q": "closed back headphones"
+    }
+  ],
+  "how-to-create-asmr-food-content": [
+    {
+      "label": "USB condenser microphones",
+      "q": "USB condenser microphone cardioid"
+    },
+    {
+      "label": "Lavalier microphones",
+      "q": "lavalier microphone"
+    }
+  ],
+  "asmr-microphone": [
+    {
+      "label": "USB condenser microphones",
+      "q": "USB condenser microphone cardioid"
+    },
+    {
+      "label": "XLR condenser microphones",
+      "q": "XLR condenser microphone cardioid"
+    }
+  ],
+  "asmr-studio-setup": [
+    {
+      "label": "Moving blankets for sound treatment",
+      "q": "moving blankets"
+    },
+    {
+      "label": "Acoustic foam panels",
+      "q": "acoustic panels"
+    }
+  ],
+  "asmr-soundproofing": [
+    {
+      "label": "Moving blankets for sound treatment",
+      "q": "moving blankets"
+    },
+    {
+      "label": "Acoustic panels",
+      "q": "acoustic panels"
+    }
+  ],
+  "asmr-camera-setup": [
+    {
+      "label": "Phone tripods",
+      "q": "phone tripod"
+    },
+    {
+      "label": "Vlogging cameras",
+      "q": "vlogging camera"
+    }
+  ],
+  "massage": [
+    {
+      "label": "Wired over-ear headphones",
+      "q": "over ear headphones wired"
+    },
+    {
+      "label": "Headband sleep headphones",
+      "q": "sleep headphones headband"
+    }
+  ],
+  "eating-sounds": [
+    {
+      "label": "Wired over-ear headphones",
+      "q": "over ear headphones wired"
+    },
+    {
+      "label": "Headband sleep headphones",
+      "q": "sleep headphones headband"
+    },
+    {
+      "label": "Small Bluetooth speakers for the nightstand",
+      "q": "small bluetooth speaker bedside"
+    }
+  ],
+  "whispering": [
+    {
+      "label": "Wired over-ear headphones",
+      "q": "over ear headphones wired"
+    },
+    {
+      "label": "Headband sleep headphones",
+      "q": "sleep headphones headband"
+    }
+  ],
+  "personal-attention": [
+    {
+      "label": "Wired over-ear headphones",
+      "q": "over ear headphones wired"
+    },
+    {
+      "label": "Headband sleep headphones",
+      "q": "sleep headphones headband"
+    },
+    {
+      "label": "Small Bluetooth speakers for the nightstand",
+      "q": "small bluetooth speaker bedside"
+    }
+  ],
+  "typing": [
+    {
+      "label": "Wired over-ear headphones",
+      "q": "over ear headphones wired"
+    },
+    {
+      "label": "Headband sleep headphones",
+      "q": "sleep headphones headband"
+    },
+    {
+      "label": "Small Bluetooth speakers for the nightstand",
+      "q": "small bluetooth speaker bedside"
+    }
+  ],
+  "rain": [
+    {
+      "label": "Wired over-ear headphones",
+      "q": "over ear headphones wired"
+    },
+    {
+      "label": "Headband sleep headphones",
+      "q": "sleep headphones headband"
+    },
+    {
+      "label": "Small Bluetooth speakers for the nightstand",
+      "q": "small bluetooth speaker bedside"
+    }
+  ],
+  "tapping": [
+    {
+      "label": "Wired over-ear headphones",
+      "q": "over ear headphones wired"
+    },
+    {
+      "label": "Headband sleep headphones",
+      "q": "sleep headphones headband"
+    },
+    {
+      "label": "Small Bluetooth speakers for the nightstand",
+      "q": "small bluetooth speaker bedside"
+    }
+  ],
+  "asmr-games": [
+    {
+      "label": "Wired over-ear headphones",
+      "q": "over ear headphones wired"
+    },
+    {
+      "label": "Headband sleep headphones",
+      "q": "sleep headphones headband"
+    },
+    {
+      "label": "Small Bluetooth speakers for the nightstand",
+      "q": "small bluetooth speaker bedside"
+    }
+  ],
+  "unintentional-asmr": [
+    {
+      "label": "Wired over-ear headphones",
+      "q": "over ear headphones wired"
+    },
+    {
+      "label": "Headband sleep headphones",
+      "q": "sleep headphones headband"
+    },
+    {
+      "label": "Small Bluetooth speakers for the nightstand",
+      "q": "small bluetooth speaker bedside"
+    }
+  ],
+  "ocean": [
+    {
+      "label": "Wired over-ear headphones",
+      "q": "over ear headphones wired"
+    },
+    {
+      "label": "Headband sleep headphones",
+      "q": "sleep headphones headband"
+    }
+  ],
+  "scratching": [
+    {
+      "label": "Wired over-ear headphones",
+      "q": "over ear headphones wired"
+    },
+    {
+      "label": "Headband sleep headphones",
+      "q": "sleep headphones headband"
+    }
+  ],
+  "cooking": [
+    {
+      "label": "Wired over-ear headphones",
+      "q": "over ear headphones wired"
+    },
+    {
+      "label": "Headband sleep headphones",
+      "q": "sleep headphones headband"
+    },
+    {
+      "label": "Small Bluetooth speakers for the nightstand",
+      "q": "small bluetooth speaker bedside"
+    }
+  ],
+  "asmr-podcast": [
+    {
+      "label": "Wired over-ear headphones",
+      "q": "over ear headphones wired"
+    },
+    {
+      "label": "Headband sleep headphones",
+      "q": "sleep headphones headband"
+    }
+  ],
+  "hair-play": [
+    {
+      "label": "Wired over-ear headphones",
+      "q": "over ear headphones wired"
+    },
+    {
+      "label": "Headband sleep headphones",
+      "q": "sleep headphones headband"
+    },
+    {
+      "label": "Small Bluetooth speakers for the nightstand",
+      "q": "small bluetooth speaker bedside"
+    }
+  ],
+  "soft-speaking": [
+    {
+      "label": "Wired over-ear headphones",
+      "q": "over ear headphones wired"
+    },
+    {
+      "label": "Headband sleep headphones",
+      "q": "sleep headphones headband"
+    }
+  ],
+  "lofi-asmr": [
+    {
+      "label": "Wired over-ear headphones",
+      "q": "over ear headphones wired"
+    },
+    {
+      "label": "Headband sleep headphones",
+      "q": "sleep headphones headband"
+    },
+    {
+      "label": "Small Bluetooth speakers for the nightstand",
+      "q": "small bluetooth speaker bedside"
+    }
+  ],
+  "mouth-sounds": [
+    {
+      "label": "Wired over-ear headphones",
+      "q": "over ear headphones wired"
+    },
+    {
+      "label": "Headband sleep headphones",
+      "q": "sleep headphones headband"
+    }
+  ],
+  "breathing": [
+    {
+      "label": "Wired over-ear headphones",
+      "q": "over ear headphones wired"
+    },
+    {
+      "label": "Headband sleep headphones",
+      "q": "sleep headphones headband"
+    },
+    {
+      "label": "Small Bluetooth speakers for the nightstand",
+      "q": "small bluetooth speaker bedside"
+    }
+  ],
+  "brushing": [
+    {
+      "label": "Wired over-ear headphones",
+      "q": "over ear headphones wired"
+    },
+    {
+      "label": "Headband sleep headphones",
+      "q": "sleep headphones headband"
+    }
+  ],
+  "nature": [
+    {
+      "label": "Wired over-ear headphones",
+      "q": "over ear headphones wired"
+    },
+    {
+      "label": "Headband sleep headphones",
+      "q": "sleep headphones headband"
+    }
+  ],
+  "best-asmr-videos": [
+    {
+      "label": "Wired over-ear headphones",
+      "q": "over ear headphones wired"
+    },
+    {
+      "label": "Headband sleep headphones",
+      "q": "sleep headphones headband"
+    },
+    {
+      "label": "Small Bluetooth speakers for the nightstand",
+      "q": "small bluetooth speaker bedside"
+    }
+  ],
+  "ai-asmr-generator": [
+    {
+      "label": "Wired over-ear headphones",
+      "q": "over ear headphones wired"
+    },
+    {
+      "label": "Small Bluetooth speakers for the nightstand",
+      "q": "small bluetooth speaker bedside"
+    }
+  ],
+  "crinkling": [
+    {
+      "label": "Wired over-ear headphones",
+      "q": "over ear headphones wired"
+    },
+    {
+      "label": "Headband sleep headphones",
+      "q": "sleep headphones headband"
+    },
+    {
+      "label": "Small Bluetooth speakers for the nightstand",
+      "q": "small bluetooth speaker bedside"
+    }
+  ],
+  "positive-affirmations": [
+    {
+      "label": "Wired over-ear headphones",
+      "q": "over ear headphones wired"
+    },
+    {
+      "label": "Headband sleep headphones",
+      "q": "sleep headphones headband"
+    }
+  ],
+  "fireplace-asmr": [
+    {
+      "label": "Wired over-ear headphones",
+      "q": "over ear headphones wired"
+    },
+    {
+      "label": "Headband sleep headphones",
+      "q": "sleep headphones headband"
+    },
+    {
+      "label": "Small Bluetooth speakers for the nightstand",
+      "q": "small bluetooth speaker bedside"
+    }
+  ],
+  "thunderstorm-asmr": [
+    {
+      "label": "Small Bluetooth speakers for the nightstand",
+      "q": "small bluetooth speaker bedside"
+    }
+  ],
+  "cat-purring-asmr": [
+    {
+      "label": "Wired over-ear headphones",
+      "q": "over ear headphones wired"
+    },
+    {
+      "label": "Headband sleep headphones",
+      "q": "sleep headphones headband"
+    },
+    {
+      "label": "Small Bluetooth speakers for the nightstand",
+      "q": "small bluetooth speaker bedside"
+    }
+  ],
+  "best-asmr-apps": [
+    {
+      "label": "Wired over-ear headphones",
+      "q": "over ear headphones wired"
+    },
+    {
+      "label": "Headband sleep headphones",
+      "q": "sleep headphones headband"
+    },
+    {
+      "label": "Small Bluetooth speakers for the nightstand",
+      "q": "small bluetooth speaker bedside"
+    }
+  ],
+  "male-asmr": [
+    {
+      "label": "Wired over-ear headphones",
+      "q": "over ear headphones wired"
+    },
+    {
+      "label": "Headband sleep headphones",
+      "q": "sleep headphones headband"
+    },
+    {
+      "label": "Small Bluetooth speakers for the nightstand",
+      "q": "small bluetooth speaker bedside"
+    }
+  ],
+  "humming": [
+    {
+      "label": "Wired over-ear headphones",
+      "q": "over ear headphones wired"
+    },
+    {
+      "label": "Headband sleep headphones",
+      "q": "sleep headphones headband"
+    },
+    {
+      "label": "Small Bluetooth speakers for the nightstand",
+      "q": "small bluetooth speaker bedside"
+    }
+  ],
+  "fast-aggressive-asmr": [
+    {
+      "label": "Wired over-ear headphones",
+      "q": "over ear headphones wired"
+    },
+    {
+      "label": "Headband sleep headphones",
+      "q": "sleep headphones headband"
+    }
+  ],
+  "library-asmr": [
+    {
+      "label": "Wired over-ear headphones",
+      "q": "over ear headphones wired"
+    },
+    {
+      "label": "Headband sleep headphones",
+      "q": "sleep headphones headband"
+    }
+  ],
+  "relax": [
+    {
+      "label": "Wired over-ear headphones",
+      "q": "over ear headphones wired"
+    },
+    {
+      "label": "Headband sleep headphones",
+      "q": "sleep headphones headband"
+    },
+    {
+      "label": "Small Bluetooth speakers for the nightstand",
+      "q": "small bluetooth speaker bedside"
+    }
+  ],
+  "glass-sounds": [
+    {
+      "label": "Wired over-ear headphones",
+      "q": "over ear headphones wired"
+    },
+    {
+      "label": "Headband sleep headphones",
+      "q": "sleep headphones headband"
+    }
+  ],
+  "best-asmr": [
+    {
+      "label": "Wired over-ear headphones",
+      "q": "over ear headphones wired"
+    },
+    {
+      "label": "Headband sleep headphones",
+      "q": "sleep headphones headband"
+    }
+  ],
+  "cutting": [
+    {
+      "label": "Wired over-ear headphones",
+      "q": "over ear headphones wired"
+    },
+    {
+      "label": "Headband sleep headphones",
+      "q": "sleep headphones headband"
+    },
+    {
+      "label": "Small Bluetooth speakers for the nightstand",
+      "q": "small bluetooth speaker bedside"
+    }
+  ],
+  "hand-sounds": [
+    {
+      "label": "Wired over-ear headphones",
+      "q": "over ear headphones wired"
+    },
+    {
+      "label": "Headband sleep headphones",
+      "q": "sleep headphones headband"
+    }
+  ],
+  "chewing": [
+    {
+      "label": "Wired over-ear headphones",
+      "q": "over ear headphones wired"
+    }
+  ],
+  "pouring": [
+    {
+      "label": "Wired over-ear headphones",
+      "q": "over ear headphones wired"
+    },
+    {
+      "label": "Headband sleep headphones",
+      "q": "sleep headphones headband"
+    }
+  ],
+  "fabric-sounds": [
+    {
+      "label": "Wired over-ear headphones",
+      "q": "over ear headphones wired"
+    },
+    {
+      "label": "Headband sleep headphones",
+      "q": "sleep headphones headband"
+    }
+  ],
+  "folding": [
+    {
+      "label": "Wired over-ear headphones",
+      "q": "over ear headphones wired"
+    },
+    {
+      "label": "Headband sleep headphones",
+      "q": "sleep headphones headband"
+    },
+    {
+      "label": "Small Bluetooth speakers for the nightstand",
+      "q": "small bluetooth speaker bedside"
+    }
+  ],
+  "tearing": [
+    {
+      "label": "Wired over-ear headphones",
+      "q": "over ear headphones wired"
+    }
+  ],
+  "meditation-asmr": [
+    {
+      "label": "Wired over-ear headphones",
+      "q": "over ear headphones wired"
+    },
+    {
+      "label": "Headband sleep headphones",
+      "q": "sleep headphones headband"
+    }
+  ],
+  "bells": [
+    {
+      "label": "Wired over-ear headphones",
+      "q": "over ear headphones wired"
+    },
+    {
+      "label": "Headband sleep headphones",
+      "q": "sleep headphones headband"
+    },
+    {
+      "label": "Small Bluetooth speakers for the nightstand",
+      "q": "small bluetooth speaker bedside"
+    }
+  ],
+  "autonomous-asmr": [
+    {
+      "label": "Wired over-ear headphones",
+      "q": "over ear headphones wired"
+    },
+    {
+      "label": "Headband sleep headphones",
+      "q": "sleep headphones headband"
+    },
+    {
+      "label": "Small Bluetooth speakers for the nightstand",
+      "q": "small bluetooth speaker bedside"
+    }
+  ],
+  "mukbang-asmr": [
+    {
+      "label": "Wired over-ear headphones",
+      "q": "over ear headphones wired"
+    },
+    {
+      "label": "Headband sleep headphones",
+      "q": "sleep headphones headband"
+    }
+  ],
+  "cleaning-asmr": [
+    {
+      "label": "Wired over-ear headphones",
+      "q": "over ear headphones wired"
+    },
+    {
+      "label": "Headband sleep headphones",
+      "q": "sleep headphones headband"
+    },
+    {
+      "label": "Small Bluetooth speakers for the nightstand",
+      "q": "small bluetooth speaker bedside"
+    }
+  ],
+  "packing-asmr": [
+    {
+      "label": "Wired over-ear headphones",
+      "q": "over ear headphones wired"
+    },
+    {
+      "label": "Headband sleep headphones",
+      "q": "sleep headphones headband"
+    }
+  ],
+  "alien-asmr": [
+    {
+      "label": "Wired over-ear headphones",
+      "q": "over ear headphones wired"
+    },
+    {
+      "label": "Headband sleep headphones",
+      "q": "sleep headphones headband"
+    }
+  ],
+  "cottagecore-crafts": [
+    {
+      "label": "Wired over-ear headphones",
+      "q": "over ear headphones wired"
+    },
+    {
+      "label": "Headband sleep headphones",
+      "q": "sleep headphones headband"
+    }
+  ],
+  "asmr-in-latin-america": [
+    {
+      "label": "Wired over-ear headphones",
+      "q": "over ear headphones wired"
+    }
+  ],
+  "asmr-in-japan": [
+    {
+      "label": "Wired over-ear headphones",
+      "q": "over ear headphones wired"
+    },
+    {
+      "label": "Headband sleep headphones",
+      "q": "sleep headphones headband"
+    },
+    {
+      "label": "Small Bluetooth speakers for the nightstand",
+      "q": "small bluetooth speaker bedside"
+    }
+  ],
+  "asmr-challenges": [
+    {
+      "label": "Wired over-ear headphones",
+      "q": "over ear headphones wired"
+    },
+    {
+      "label": "Headband sleep headphones",
+      "q": "sleep headphones headband"
+    }
+  ],
+  "asmr-editing-guide": [
+    {
+      "label": "Wired over-ear headphones",
+      "q": "over ear headphones wired"
+    }
+  ],
+  "fire-crackling": [
+    {
+      "label": "Wired over-ear headphones",
+      "q": "over ear headphones wired"
+    },
+    {
+      "label": "Headband sleep headphones",
+      "q": "sleep headphones headband"
+    },
+    {
+      "label": "Small Bluetooth speakers for the nightstand",
+      "q": "small bluetooth speaker bedside"
+    }
+  ],
+  "cardboard-sounds": [
+    {
+      "label": "Wired over-ear headphones",
+      "q": "over ear headphones wired"
+    },
+    {
+      "label": "Headband sleep headphones",
+      "q": "sleep headphones headband"
+    }
+  ],
+  "velcro-sounds": [
+    {
+      "label": "Wired over-ear headphones",
+      "q": "over ear headphones wired"
+    },
+    {
+      "label": "Headband sleep headphones",
+      "q": "sleep headphones headband"
+    },
+    {
+      "label": "Small Bluetooth speakers for the nightstand",
+      "q": "small bluetooth speaker bedside"
+    }
+  ],
+  "scissors-sounds": [
+    {
+      "label": "Wired over-ear headphones",
+      "q": "over ear headphones wired"
+    },
+    {
+      "label": "Headband sleep headphones",
+      "q": "sleep headphones headband"
+    }
+  ],
+  "wood-sounds": [
+    {
+      "label": "Wired over-ear headphones",
+      "q": "over ear headphones wired"
+    },
+    {
+      "label": "Headband sleep headphones",
+      "q": "sleep headphones headband"
+    },
+    {
+      "label": "Small Bluetooth speakers for the nightstand",
+      "q": "small bluetooth speaker bedside"
+    }
+  ],
+  "wind-sounds": [
+    {
+      "label": "Wired over-ear headphones",
+      "q": "over ear headphones wired"
+    },
+    {
+      "label": "Headband sleep headphones",
+      "q": "sleep headphones headband"
+    }
+  ],
+  "water-sounds": [
+    {
+      "label": "Wired over-ear headphones",
+      "q": "over ear headphones wired"
+    },
+    {
+      "label": "Headband sleep headphones",
+      "q": "sleep headphones headband"
+    },
+    {
+      "label": "Small Bluetooth speakers for the nightstand",
+      "q": "small bluetooth speaker bedside"
+    }
+  ],
+  "dripping-water": [
+    {
+      "label": "Wired over-ear headphones",
+      "q": "over ear headphones wired"
+    },
+    {
+      "label": "Headband sleep headphones",
+      "q": "sleep headphones headband"
+    }
+  ],
+  "ice-sounds": [
+    {
+      "label": "Wired over-ear headphones",
+      "q": "over ear headphones wired"
+    },
+    {
+      "label": "Headband sleep headphones",
+      "q": "sleep headphones headband"
+    }
+  ],
+  "layered-sounds": [
+    {
+      "label": "Wired over-ear headphones",
+      "q": "over ear headphones wired"
+    },
+    {
+      "label": "Headband sleep headphones",
+      "q": "sleep headphones headband"
+    },
+    {
+      "label": "Small Bluetooth speakers for the nightstand",
+      "q": "small bluetooth speaker bedside"
+    }
+  ],
+  "tinfoil": [
+    {
+      "label": "Wired over-ear headphones",
+      "q": "over ear headphones wired"
+    },
+    {
+      "label": "Headband sleep headphones",
+      "q": "sleep headphones headband"
+    }
+  ],
+  "gloves": [
+    {
+      "label": "Wired over-ear headphones",
+      "q": "over ear headphones wired"
+    },
+    {
+      "label": "Headband sleep headphones",
+      "q": "sleep headphones headband"
+    },
+    {
+      "label": "Small Bluetooth speakers for the nightstand",
+      "q": "small bluetooth speaker bedside"
+    }
+  ],
+  "spray-sounds": [
+    {
+      "label": "Small Bluetooth speakers for the nightstand",
+      "q": "small bluetooth speaker bedside"
+    }
+  ],
+  "plastic-sounds": [
+    {
+      "label": "Small Bluetooth speakers for the nightstand",
+      "q": "small bluetooth speaker bedside"
+    }
+  ],
+  "asmr-cooking-show": [
+    {
+      "label": "Wired over-ear headphones",
+      "q": "over ear headphones wired"
+    },
+    {
+      "label": "Headband sleep headphones",
+      "q": "sleep headphones headband"
+    }
+  ],
+  "asmr-shorts": [
+    {
+      "label": "Wired over-ear headphones",
+      "q": "over ear headphones wired"
+    },
+    {
+      "label": "Headband sleep headphones",
+      "q": "sleep headphones headband"
+    },
+    {
+      "label": "Small Bluetooth speakers for the nightstand",
+      "q": "small bluetooth speaker bedside"
+    }
+  ],
+  "asmr-storytime": [
+    {
+      "label": "Wired over-ear headphones",
+      "q": "over ear headphones wired"
+    },
+    {
+      "label": "Headband sleep headphones",
+      "q": "sleep headphones headband"
+    },
+    {
+      "label": "Small Bluetooth speakers for the nightstand",
+      "q": "small bluetooth speaker bedside"
+    }
+  ],
+  "asmr-with-music": [
+    {
+      "label": "Wired over-ear headphones",
+      "q": "over ear headphones wired"
+    },
+    {
+      "label": "Headband sleep headphones",
+      "q": "sleep headphones headband"
+    },
+    {
+      "label": "Small Bluetooth speakers for the nightstand",
+      "q": "small bluetooth speaker bedside"
+    }
+  ],
+  "asmr-nature-walk": [
+    {
+      "label": "Wired over-ear headphones",
+      "q": "over ear headphones wired"
+    },
+    {
+      "label": "Headband sleep headphones",
+      "q": "sleep headphones headband"
+    },
+    {
+      "label": "Small Bluetooth speakers for the nightstand",
+      "q": "small bluetooth speaker bedside"
+    }
+  ],
+  "asmr-camping": [
+    {
+      "label": "Wired over-ear headphones",
+      "q": "over ear headphones wired"
+    },
+    {
+      "label": "Headband sleep headphones",
+      "q": "sleep headphones headband"
+    }
+  ],
+  "asmr-rain-on-tent": [
+    {
+      "label": "Wired over-ear headphones",
+      "q": "over ear headphones wired"
+    },
+    {
+      "label": "Headband sleep headphones",
+      "q": "sleep headphones headband"
+    }
+  ],
+  "asmr-coffee-shop": [
+    {
+      "label": "Wired over-ear headphones",
+      "q": "over ear headphones wired"
+    },
+    {
+      "label": "Small Bluetooth speakers for the nightstand",
+      "q": "small bluetooth speaker bedside"
+    }
+  ],
+  "best-asmr-playlists": [
+    {
+      "label": "Wired over-ear headphones",
+      "q": "over ear headphones wired"
+    },
+    {
+      "label": "Headband sleep headphones",
+      "q": "sleep headphones headband"
+    }
+  ],
+  "best-sleep-headphones": [
+    {
+      "label": "Sleep earbuds for side sleepers",
+      "q": "sleep earbuds side sleepers"
+    },
+    {
+      "label": "Sleep headphones headband",
+      "q": "sleep headphones headband"
+    },
+    {
+      "label": "Sleep mask with headphones",
+      "q": "sleep mask headphones bluetooth"
+    }
+  ]
+}

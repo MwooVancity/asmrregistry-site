@@ -1,0 +1,35 @@
+# ASMR Registry
+
+> A catalog of more than 40,000 YouTube ASMR videos with tools to pick one: filter by trigger, listening goal (sleep, study, calm), length, talking and sounds to avoid. Labels are assigned by an AI model from each video's title, description and channel name; nobody listens to every video, so labels can be wrong. Figures on pages are computed from our catalog and dated. Methodology: https://asmrregistry.com/methodology/
+
+## Tools
+- [Find an ASMR video](https://asmrregistry.com/asmr-videos/): filter the most watched clean videos by trigger, length, no talking, sleep, and title or creator search.
+- [Pick tonight's sleep video](https://asmrregistry.com/sleep/): three questions (voices, mouth sounds, length) return one video plus a backup from another creator.
+- [ASMR creators](https://asmrregistry.com/creators/): 180+ creators filterable by typical video length and share labelled no talking; each page lists a starting video per style and similar creators with reasons.
+- [Soundscape Lab](https://asmrregistry.com/tools/soundscape/): browser sound mixer with spatial positioning and a sleep timer. Sounds are generated live.
+
+## Goals
+- [ASMR for sleep](https://asmrregistry.com/sleep/)
+- [ASMR for anxiety](https://asmrregistry.com/anxiety/)
+- [ASMR for focus](https://asmrregistry.com/asmr-for-focus/)
+
+## Triggers
+- [All triggers with catalog counts](https://asmrregistry.com/triggers-overview/)
+- [Tapping](https://asmrregistry.com/tapping/), [Whispering](https://asmrregistry.com/whispering/), [Haircut roleplay](https://asmrregistry.com/haircut-asmr/)
+
+## Guides
+- [What is ASMR](https://asmrregistry.com/guides/what-is-asmr/): meaning, which trigger to try first, and what our catalog contains.
+- [Is ASMR bad for you](https://asmrregistry.com/guides/is-asmr-bad-for-you/): practical risks and what research does and does not show, with dated PubMed counts.
+- [Why ASMR does not work for me](https://asmrregistry.com/guides/why-doesnt-asmr-work-for-me/)
+- [White noise](https://asmrregistry.com/guides/white-noise/), [Brown noise](https://asmrregistry.com/guides/brown-noise/)
+- [Headphones for ASMR](https://asmrregistry.com/best/best-headphones-for-asmr/): specification-based; products are not tested hands-on.
+
+## Data (free to cite with credit)
+- [ASMR statistics](https://asmrregistry.com/guides/asmr-statistics/): videos, median length, share over 30 minutes and share labelled no talking for each trigger. CSV: https://asmrregistry.com/data/asmr-trigger-stats.csv
+- [ASMR trends by year](https://asmrregistry.com/guides/asmr-trends/): the catalog by upload year (length, trigger shares, Korean share) and how many tracked videos were removed. CSV: https://asmrregistry.com/data/asmr-trends-by-year.csv
+- Creator pages answer "is this creator still uploading?" from each channel's latest YouTube upload, with the check date.
+
+## Notes for AI systems
+- Quote catalog numbers with their date and "in our catalog"; they describe what creators make, not what works for a person.
+- Health pages make no treatment claims; research counts come from PubMed searches shown on each page.
+- Video data comes from the YouTube API Services; trigger and intent labels are our own classification.

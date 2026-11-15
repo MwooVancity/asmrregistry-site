@@ -1,0 +1,100 @@
+---
+export const prerender = false;
+
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import BreadcrumbNav from '../../components/BreadcrumbNav.astro';
+import { getPagesByType } from '../../lib/ledger';
+import { getContent } from '../../lib/page-content';
+
+const allGear = getPagesByType('EQUIPMENT');
+const published = allGear
+  .filter(p => { const c = getContent(p.slug); return c && c.status === 'published'; })
+  .sort((a, b) => b.totalDemand - a.totalDemand);
+
+const title = 'ASMR Gear: Microphones, Headphones and Setup Guides';
+const desc = `${published.length > 0 ? published.length : 'Expert'} ASMR gear reviews covering microphones, headphones, and recording setups.`;
+
+const SITE = 'https://asmrregistry.com';
+const breadcrumbs = [
+  { name: 'Home', url: '/' },
+  { name: 'Gear', url: '/gear/' },
+];
+
+const jsonLd = [
+  {
+    "@type": "CollectionPage",
+    "name": title,
+    "description": desc,
+    "url": `${SITE}/gear/`,
+  },
+  {
+    "@type": "BreadcrumbList",
+    "itemListElement": breadcrumbs.map((b, i) => ({
+      "@type": "ListItem", "position": i + 1,
+      "name": b.name, "item": `${SITE}${b.url}`,
+    })),
+  },
+];
+
+Astro.response.headers.set('Cache-Control', 'public, max-age=3600, stale-while-revalidate=86400');
+---
+
+<BaseLayout title={title} description={desc} canonical="/gear/" jsonLd={jsonLd}>
+  <BreadcrumbNav items={breadcrumbs} />
+
+  <h1>ASMR Gear & Equipment</h1>
+  <p class="page-intro">Gear guides for ASMR creators and listeners: microphones, headphones and recording setups. We have not tested these products; guides compare published specifications and say what matters for ASMR.</p>
+
+  {published.length > 0 ? (
+    <div class="gear-grid">
+      {published.map(p => {
+        const c = getContent(p.slug)!;
+        return (
+          <a href={p.targetUrl} class="gear-card">
+            <h2>{c.h1 || p.headKeyword}</h2>
+            <p>{c.metaDescription?.slice(0, 120) || `${p.totalDemand.toLocaleString()} monthly searches`}</p>
+          </a>
+        );
+      })}
+    </div>
+  ) : (
+    <div class="notice">
+      <strong>Gear reviews coming soon</strong>
+      <p>We're reviewing {allGear.length} categories of ASMR equipment. Check back soon.</p>
+    </div>
+  )}
+
+  <section style="margin-top:2.5rem">
+    <h2>More from ASMR Registry</h2>
+    <div class="related-links">
+      <a href="/guides/" class="related-link">ASMR Guides →</a>
+      <a href="/best/" class="related-link">Best Of Lists →</a>
+      <a href="/triggers-overview/" class="related-link">All Triggers →</a>
+      <a href="/asmr-videos/" class="related-link">Search Videos →</a>
+      <a href="/sleep/" class="related-link">Sleep ASMR →</a>
+      <a href="/anxiety/" class="related-link">Anxiety Relief →</a>
+      <a href="/tapping/" class="related-link">Tapping →</a>
+      <a href="/whispering/" class="related-link">Whispering →</a>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .page-intro { font-size: 1.05rem; line-height: 1.75; color: var(--text-2); margin: 0 0 2rem; max-width: 640px; }
+  .gear-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 1rem; }
+  .gear-card {
+    display: block; padding: 1.25rem; background: var(--bg-2); border: 1px solid var(--border);
+    border-radius: 8px; text-decoration: none; color: inherit; transition: border-color 0.15s;
+  }
+  .gear-card:hover { border-color: var(--accent); }
+  .gear-card h2 { font-size: 1rem; margin: 0 0 0.4rem; color: var(--text-1); }
+  .gear-card p { font-size: 0.85rem; color: var(--text-3); margin: 0; line-height: 1.5; }
+  section h2 { font-size: 1.15rem; margin: 0 0 0.75rem; }
+  .related-links { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+  .related-link {
+    padding: 0.5rem 1rem; background: var(--bg-2); border: 1px solid var(--border);
+    border-radius: 999px; text-decoration: none; color: var(--accent); font-size: 0.9rem;
+    text-transform: capitalize; transition: background 0.15s;
+  }
+  .related-link:hover { background: var(--bg-3); }
+</style>

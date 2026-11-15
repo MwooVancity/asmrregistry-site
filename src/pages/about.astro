@@ -1,0 +1,46 @@
+---
+export const prerender = false;
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const title = 'About ASMR Registry — Our Editorial Process';
+const desc = 'About ASMR Registry: a free catalog of about 45,000 ASMR videos with tools to find one by trigger, goal and length. How it is built and where data comes from.';
+---
+
+<BaseLayout title={title} description={desc} canonical="/about/">
+  <article class="about-page">
+    <h1>About ASMR Registry</h1>
+
+    <p>ASMR Registry exists to solve one problem: finding the right ASMR content is harder than it should be. YouTube's algorithm optimizes for watch time, not tingle quality. We index and curate ASMR videos by trigger type, intent, format, and intensity so you can find what actually works for you.</p>
+
+    <h2>Our Editorial Process</h2>
+    <p>Guides are written from published research and our own catalog data, for people who use ASMR for sleep, focus and winding down. Where a page makes a factual claim about the body, sleep or health, we cite the published study behind it and link it, and we say plainly when no study has tested something.</p>
+
+    <p>Our content follows a consistent standard:</p>
+    <ul>
+      <li>Health and research claims are sourced to named, linked studies. When the research does not exist, we say so rather than imply it.</li>
+      <li>We do not lab-test gear. Gear pages explain what to look for and name the published specs we could verify; they are buying guides, not hands-on reviews.</li>
+      <li>Some gear pages link to Amazon. As an Amazon Associate, we earn from qualifying purchases, at no extra cost to you. Commissions do not decide what we recommend.</li>
+      <li>We flag when something is subjective. ASMR response varies widely. What works for anxiety may not work for sleep, and we say so.</li>
+      <li>We update pages when the landscape changes, as creators come and go and equipment evolves.</li>
+    </ul>
+
+    <h2>Who writes this</h2>
+    <p>ASMR Registry is an independent, solo-run site. Guides are researched and written under the <strong>ASMR Registry Editorial</strong> byline. Pages are drafted with the help of AI from published studies and our catalog data, then checked against their sources before they go live. We are not clinicians; nothing here is medical advice, and pages on health topics point you to a doctor where that matters.</p>
+
+    <h2>Video Data</h2>
+    <p>The video index on this site pulls from YouTube's public data and is updated automatically. We index view count, duration, trigger type, and intensity rating. Trigger, intent and intensity labels are assigned by an AI model from each video's title and description; nobody listens to every video, so labels can be wrong. <a href="/methodology/">How it works</a>.</p>
+
+    <h2>Contact</h2>
+    <p>For content corrections, creator suggestions, or editorial questions: reach us at the contact form linked in the footer.</p>
+  </article>
+</BaseLayout>
+
+<style>
+  .about-page { max-width: 720px; margin: 0 auto; padding: 2rem 1rem; }
+  .about-page h1 { margin-bottom: 1.5rem; }
+  .about-page h2 { margin: 2rem 0 0.75rem; }
+  .about-page p, .about-page li { line-height: 1.7; color: var(--text-2, #ccc); }
+  .about-page ul { margin: 0.75rem 0 0.75rem 1.5rem; }
+  .about-page li { margin-bottom: 0.5rem; }
+  .about-page strong { color: var(--text-1, #fff); }
+</style>

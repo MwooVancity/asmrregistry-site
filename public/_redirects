@@ -1,0 +1,35 @@
+# www redirect handled via Cloudflare DNS
+
+# Short alias → correct slug
+/study/                   /study-with-me-asmr/      301
+/study                    /study-with-me-asmr/      301
+/lofi/                    /lofi-asmr/               301
+/lofi                     /lofi-asmr/               301
+/triggers/                /triggers-overview/       301
+/triggers                 /triggers-overview/       301
+
+# Broken crosslinks in content JSON → correct URLs
+/asmr-for-sleep/          /sleep/                   301
+/asmr-for-anxiety/        /anxiety/                 301
+/asmr-for-kids/           /kids/                    301
+/asmr-equipment/          /gear/asmr-equipment/     301
+/asmr-equipment           /gear/asmr-equipment/     301
+/asmr-room-setup/         /gear/asmr-room-setup/    301
+/asmr-room-setup          /gear/asmr-room-setup/    301
+
+# Cannibalization — consolidate duplicate-intent pages
+/best/best-microphone-for-asmr/  /best/best-asmr-microphone/  301
+/best/best-microphone-for-asmr   /best/best-asmr-microphone/  301
+
+# Missing pages → closest valid equivalent
+/keyboard-asmr/           /typing/                  301
+/page-turning-asmr/       /writing/                 301
+/whisper-asmr/            /whispering/              301
+/soft-spoken-asmr/        /soft-speaking/           301
+/ambient-asmr/            /nature/                  301
+/reading-asmr/            /study-with-me-asmr/      301
+/study-asmr/              /study-with-me-asmr/      301
+/library-ambience-asmr/   /study-with-me-asmr/      301
+/rain-sounds-asmr/        /rain/                    301
+/focus-productivity-asmr/ /study-with-me-asmr/      301
+/writing-sounds-asmr/     /writing/                 301

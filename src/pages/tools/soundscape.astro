@@ -1,0 +1,1096 @@
+---
+export const prerender = false;
+
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+const title = 'ASMR Soundscape Lab — Free Spatial Sound Mixer';
+const desc = 'Free ASMR sound mixer: place rain, brown noise, fire and more around your head with spatial audio and a sleep timer. Runs in your browser, no sign-up.';
+const SITE = 'https://asmrregistry.com';
+// ?embed=1: bare mixer for other sites to iframe, with a credit link back; noindex so it never competes with this page.
+const embed = Astro.url.searchParams.has('embed');
+const embedCode = `<iframe src="${SITE}/tools/soundscape/?embed=1" width="100%" height="760" style="border:0;max-width:720px" title="ASMR Soundscape Lab" allow="autoplay"></iframe>
+<p><a href="${SITE}/tools/soundscape/">Soundscape by ASMR Registry</a></p>`;
+
+const jsonLd = [
+  {
+    "@type": "SoftwareApplication",
+    "@id": `${SITE}/tools/soundscape/#app`,
+    "name": "ASMR Soundscape Lab",
+    "applicationCategory": "MultimediaApplication",
+    "operatingSystem": "Any (browser-based)",
+    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+    "description": desc,
+    "url": `${SITE}/tools/soundscape/`,
+    "publisher": { "@id": `${SITE}/#organization` },
+  },
+  {
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "Home", "item": SITE },
+      { "@type": "ListItem", "position": 2, "name": "Tools", "item": `${SITE}/tools/` },
+      { "@type": "ListItem", "position": 3, "name": "Soundscape Lab", "item": `${SITE}/tools/soundscape/` },
+    ],
+  },
+  {
+    "@type": "FAQPage",
+    "mainEntity": [
+      { "@type": "Question", "name": "How does the spatial audio work?", "acceptedAnswer": { "@type": "Answer", "text": "The ASMR Soundscape Lab uses the Web Audio API's HRTF (Head-Related Transfer Function) panner to position sounds in 3D space around your head. When you drag a sound source on the circular stage, it updates the spatial position in real time. Wear headphones for the full effect — you'll hear rain to your left, fire crackling behind you, and wind moving around you." }},
+      { "@type": "Question", "name": "Are the sounds real recordings or generated?", "acceptedAnswer": { "@type": "Answer", "text": "Every sound is generated in real time by your browser using procedural audio synthesis. There are no audio files — your device creates brown noise, rain, wind, fire, and all other sounds mathematically. This means the audio never loops audibly and each listening session is slightly different." }},
+      { "@type": "Question", "name": "Is the ASMR Soundscape Lab free?", "acceptedAnswer": { "@type": "Answer", "text": "Yes, completely free with no account required. There are no usage limits and no premium tier. The page shows Amazon product ads beside the tool. The tool runs entirely in your browser." }},
+      { "@type": "Question", "name": "What is the best soundscape for sleep?", "acceptedAnswer": { "@type": "Answer", "text": "Many people start with the Deep Sleep preset: brown noise, gentle rain and a 2 Hz binaural beat. Low, steady noise can cover sudden sounds around you. Research on binaural beats and sleep is small and mixed, so treat the beat as optional and keep the volume low." }},
+    ],
+  },
+];
+---
+
+<BaseLayout title={title} description={desc} canonical="/tools/soundscape/" jsonLd={jsonLd} bare={embed} robots={embed ? 'noindex,follow' : undefined}>
+  {!embed && (
+  <nav class="breadcrumb-row" aria-label="Breadcrumb">
+    <a href="/">Home</a><span class="sep">/</span>
+    <span>Soundscape Lab</span>
+  </nav>
+  )}
+  {embed && <p class="embed-credit"><a href="https://asmrregistry.com/tools/soundscape/" target="_blank" rel="noopener">Soundscape by ASMR Registry</a></p>}
+
+  <div class="tool-wrap">
+    <header class="tool-header">
+      <h1>ASMR Soundscape Lab</h1>
+      <p class="subtitle">Position sounds around your head in 3D space. Every sound generated live — no loops, no files.</p>
+    </header>
+
+    <div class="headphone-hint" id="hp-hint">
+      <span class="hp-icon">🎧</span> Wear headphones for spatial audio
+    </div>
+
+    <div class="scenes" id="scenes">
+      <button class="scene-btn" data-scene="sleep"><span class="scene-icon">🌙</span> Deep Sleep</button>
+      <button class="scene-btn" data-scene="focus"><span class="scene-icon">🎯</span> Focus</button>
+      <button class="scene-btn" data-scene="storm"><span class="scene-icon">⛈️</span> Storm</button>
+      <button class="scene-btn" data-scene="nature"><span class="scene-icon">🌿</span> Nature</button>
+      <button class="scene-btn" data-scene="ocean"><span class="scene-icon">🌊</span> Ocean</button>
+      <button class="scene-btn" data-scene="tingles"><span class="scene-icon">✨</span> Tingles</button>
+    </div>
+
+    <div class="stage-wrap" id="stage-wrap">
+      <svg viewBox="0 0 400 400" class="stage" id="stage" aria-label="Spatial audio positioning stage">
+        <defs>
+          <radialGradient id="stage-bg" cx="50%" cy="50%" r="50%">
+            <stop offset="0%" stop-color="#18181f" />
+            <stop offset="100%" stop-color="#09090d" />
+          </radialGradient>
+        </defs>
+        <circle cx="200" cy="200" r="185" fill="url(#stage-bg)" stroke="rgba(255,255,255,0.06)" stroke-width="1"/>
+        <circle cx="200" cy="200" r="120" fill="none" stroke="rgba(255,255,255,0.03)" stroke-width="0.5" stroke-dasharray="4,4"/>
+        <circle cx="200" cy="200" r="60" fill="none" stroke="rgba(255,255,255,0.03)" stroke-width="0.5" stroke-dasharray="4,4"/>
+        <line x1="200" y1="18" x2="200" y2="382" stroke="rgba(255,255,255,0.03)" stroke-width="0.5"/>
+        <line x1="18" y1="200" x2="382" y2="200" stroke="rgba(255,255,255,0.03)" stroke-width="0.5"/>
+        <g transform="translate(200,200)" class="head-group" opacity="0.25">
+          <ellipse rx="18" ry="22" fill="none" stroke="var(--text-3)" stroke-width="1.5"/>
+          <ellipse cx="-20" cy="0" rx="4" ry="8" fill="none" stroke="var(--text-3)" stroke-width="1"/>
+          <ellipse cx="20" cy="0" rx="4" ry="8" fill="none" stroke="var(--text-3)" stroke-width="1"/>
+        </g>
+        <text x="200" y="12" text-anchor="middle" fill="var(--text-3)" font-size="9" font-family="Inter,sans-serif">FRONT</text>
+        <text x="200" y="396" text-anchor="middle" fill="var(--text-3)" font-size="9" font-family="Inter,sans-serif">BACK</text>
+        <text x="8" y="204" text-anchor="start" fill="var(--text-3)" font-size="9" font-family="Inter,sans-serif">L</text>
+        <text x="392" y="204" text-anchor="end" fill="var(--text-3)" font-size="9" font-family="Inter,sans-serif">R</text>
+        <g id="sound-sources"></g>
+      </svg>
+      <div class="empty-hint" id="empty-hint">Click a sound below to add it to the stage</div>
+    </div>
+
+    <div class="palette" id="palette">
+      <button class="pal-btn" data-sound="brown"><span class="pal-dot" style="background:#8B6914"></span>Brown</button>
+      <button class="pal-btn" data-sound="pink"><span class="pal-dot" style="background:#d4618c"></span>Pink</button>
+      <button class="pal-btn" data-sound="white"><span class="pal-dot" style="background:#c8c8d0"></span>White</button>
+      <button class="pal-btn" data-sound="rain"><span class="pal-dot" style="background:#4169E1"></span>Rain</button>
+      <button class="pal-btn" data-sound="thunder"><span class="pal-dot" style="background:#7B68EE"></span>Thunder</button>
+      <button class="pal-btn" data-sound="wind"><span class="pal-dot" style="background:#87CEEB"></span>Wind</button>
+      <button class="pal-btn" data-sound="fire"><span class="pal-dot" style="background:#E8532E"></span>Fire</button>
+      <button class="pal-btn" data-sound="crickets"><span class="pal-dot" style="background:#32CD32"></span>Crickets</button>
+      <button class="pal-btn" data-sound="ocean"><span class="pal-dot" style="background:#00CED1"></span>Ocean</button>
+      <button class="pal-btn" data-sound="stream"><span class="pal-dot" style="background:#20B2AA"></span>Stream</button>
+      <button class="pal-btn" data-sound="binaural"><span class="pal-dot" style="background:#DDA0DD"></span>Binaural</button>
+      <button class="pal-btn" data-sound="tapping"><span class="pal-dot" style="background:#DAA520"></span>Tapping</button>
+    </div>
+
+    <div class="sel-controls" id="sel-controls" hidden>
+      <div class="sel-header">
+        <span class="sel-dot" id="sel-dot"></span>
+        <span class="sel-name" id="sel-name"></span>
+        <button class="sel-remove" id="sel-remove" title="Remove sound">✕</button>
+      </div>
+      <div class="sel-row">
+        <label class="sel-label">Vol</label>
+        <input type="range" id="sel-vol" min="0" max="100" value="70" class="slider">
+        <span class="sel-val" id="sel-vol-val">70</span>
+      </div>
+      <div class="sel-row binaural-only" id="binaural-row" hidden>
+        <label class="sel-label">Beat Hz</label>
+        <input type="range" id="sel-freq" min="1" max="40" value="10" class="slider">
+        <span class="sel-val" id="sel-freq-val">10 Hz</span>
+      </div>
+    </div>
+
+    <div class="master" id="master">
+      <button class="play-btn" id="play-btn" aria-label="Start audio">
+        <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor"><polygon id="play-icon" points="6,4 20,12 6,20"/></svg>
+      </button>
+      <div class="master-vol-wrap">
+        <span class="mvol-label">Master</span>
+        <input type="range" id="master-vol" min="0" max="100" value="80" class="slider">
+      </div>
+      <button class="toggle-btn" id="meander-btn" title="Meander: sounds slowly drift">〰️ Meander</button>
+      <div class="timer-wrap">
+        <select id="timer-sel" class="timer-sel">
+          <option value="0">No timer</option>
+          <option value="15">15 min</option>
+          <option value="30">30 min</option>
+          <option value="60">1 hour</option>
+          <option value="120">2 hours</option>
+        </select>
+        <span class="timer-display" id="timer-display"></span>
+      </div>
+    </div>
+  </div>
+
+  {!embed && (
+  <section class="embed-offer">
+    <h2>Put this mixer on your site</h2>
+    {/* template-lint-ok: embed instructions, one page */}
+    <p>Free for sleep, meditation and study sites. Copy the code; the credit line links back here.</p>
+    <textarea readonly rows="3" class="embed-code">{embedCode}</textarea>
+  </section>
+  )}
+
+  <section class="seo-content" style={embed ? 'display:none' : undefined}>
+    <h2>How each sound works</h2>
+    <div class="sound-explainers">
+      <div class="explainer">
+        <h3>Brown noise</h3>
+        <p>Brown noise concentrates energy at low frequencies, creating a deep rumble similar to a waterfall or strong wind. Its steady low sound can cover higher-pitched distractions; PubMed lists only 3 papers on brown noise and sleep (November 2026), so evidence for any benefit is thin. The name comes from Brownian motion (random walk), not the color.</p>
+        <a href="/guides/brown-noise/">Brown noise guide →</a>
+      </div>
+      <div class="explainer">
+        <h3>Pink noise</h3>
+        <p>Pink noise balances energy equally across octaves, producing a sound that feels natural and even — like steady rainfall or rustling leaves. A few small lab studies have played pink noise timed to deep sleep and reported better next-day memory in some groups; that is not the same as leaving pink noise on all night.</p>
+        <a href="/guides/pink-noise/">Pink noise guide →</a>
+      </div>
+      <div class="explainer">
+        <h3>White noise</h3>
+        <p>White noise contains equal energy at every frequency, creating a bright, full-spectrum sound. Because it covers every frequency it hides speech and household noise well, which is why many people use it in offices and nurseries.</p>
+        <a href="/guides/white-noise/">White noise guide →</a>
+      </div>
+      <div class="explainer">
+        <h3>Binaural beats</h3>
+        <p>Binaural beats play slightly different frequencies in each ear — your brain perceives the difference as a rhythmic pulse. Beats are named after brain-wave bands (delta 1 to 4 Hz, alpha 8 to 13 Hz, beta 14 to 30 Hz), but studies disagree on whether listening changes your sleep or focus.</p>
+        <a href="/guides/binaural-beats-guide/">Binaural beats guide →</a>
+      </div>
+      <div class="explainer">
+        <h3>Rain & nature sounds</h3>
+        <p>Many people find rain and nature sounds calming and easy to ignore. Some small studies have compared nature sounds with artificial noise; results are early and from short lab sessions.</p>
+        <a href="/guides/rain-sounds-for-sleeping/">Rain sounds guide →</a>
+      </div>
+      <div class="explainer">
+        <h3>Spatial audio & ASMR</h3>
+        <p>With headphones, a sound placed to one side or behind you feels closer and more real than flat stereo. Many ASMR listeners say close, moving sounds work best for them; try moving a sound around your head to see if it does for you.</p>
+        <a href="/guides/how-asmr-affects-the-brain/">How ASMR affects the brain →</a>
+      </div>
+    </div>
+
+    <h2>Frequently asked questions</h2>
+    <div class="faq-list">
+      <details class="faq-item">
+        <summary>How does the spatial audio work?</summary>
+        <p>The Soundscape Lab uses the Web Audio API's HRTF (Head-Related Transfer Function) panner to position sounds in 3D space around your head. When you drag a sound on the circular stage, it updates spatial position in real time. Headphones are required for the full effect — speakers collapse the 3D field into stereo.</p>
+      </details>
+      <details class="faq-item">
+        <summary>Are the sounds real recordings?</summary>
+        <p>No. Every sound is generated procedurally by your browser using mathematical algorithms. Brown noise uses a random-walk integration, rain uses filtered noise with random impulses, and fire uses stochastic crackling bursts. This means audio never loops audibly — each session is unique.</p>
+      </details>
+      <details class="faq-item">
+        <summary>What headphones work best?</summary>
+        <p>Any over-ear or in-ear headphones work for spatial audio. The HRTF processing is built into the browser's audio engine. Higher-quality headphones with good stereo separation will produce a more convincing 3D effect, but even basic earbuds deliver noticeable spatial positioning.</p>
+      </details>
+      <details class="faq-item">
+        <summary>Does the timer stop all audio?</summary>
+        <p>The timer gradually fades all sounds to silence over the final 30 seconds, then stops playback completely. This gradual fade is designed for sleep — an abrupt stop could wake you.</p>
+      </details>
+      <details class="faq-item">
+        <summary>What does Meander mode do?</summary>
+        <p>Meander slowly drifts the volume and spatial position of each active sound, creating organic variation. Instead of static ambient noise, the soundscape breathes — rain shifts subtly to the left, wind grows and recedes, fire crackles from different angles. This prevents auditory habituation where your brain tunes out constant sounds.</p>
+      </details>
+      <details class="faq-item">
+        <summary>Which preset is best for studying?</summary>
+        <p>The Focus preset combines pink noise with stream sounds and beta-frequency binaural beats (16 Hz). Pink noise masks distractions without being intrusive, flowing water provides a natural texture that aids concentration, and beta binaural beats are associated with alert, focused brain states.</p>
+      </details>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .embed-credit { text-align: center; font-size: 0.8rem; margin: 0.25rem 0; }
+  .embed-offer { max-width: 720px; margin: 2rem auto; }
+  .embed-code { width: 100%; font: 0.8rem/1.4 monospace; padding: 0.5rem; border-radius: 6px; border: 1px solid var(--border, #2a2a3e); background: transparent; color: inherit; }
+  .breadcrumb-row {
+    font-size: 0.8rem; color: var(--text-3); margin-bottom: 1.5rem;
+    display: flex; align-items: center; gap: 0.4rem;
+  }
+  .breadcrumb-row a { color: var(--text-3); }
+  .breadcrumb-row a:hover { color: var(--accent-2); }
+  .breadcrumb-row .sep { opacity: 0.4; }
+
+  .tool-wrap {
+    max-width: 680px; margin: 0 auto;
+  }
+  .tool-header { text-align: center; margin-bottom: 1rem; }
+  .tool-header h1 { font-size: clamp(1.5rem, 3.5vw, 2rem); margin-bottom: 0.4rem; }
+  .subtitle { color: var(--text-2); font-size: 0.92rem; margin-bottom: 0; }
+
+  .headphone-hint {
+    text-align: center; font-size: 0.78rem; color: var(--teal);
+    background: var(--teal-dim); border: 1px solid rgba(45,212,191,0.15);
+    border-radius: var(--radius-sm); padding: 0.4rem 1rem; margin-bottom: 1.25rem;
+  }
+  .hp-icon { font-size: 0.9rem; }
+
+  .scenes {
+    display: flex; gap: 0.5rem; flex-wrap: wrap; justify-content: center;
+    margin-bottom: 1.25rem;
+  }
+  /* Tap targets: at least 44px on touch screens (phone check 2026-11-04 found 20 of 22 buttons under 32px). */
+  @media (pointer: coarse) { .scene-btn, .pal-btn, .toggle-btn, .sel-remove, .play-btn { min-height: 44px; } }
+  .scene-btn {
+    background: var(--bg-3); border: 1px solid var(--border);
+    border-radius: 999px; padding: 0.4rem 0.9rem;
+    font-size: 0.78rem; color: var(--text-2); cursor: pointer;
+    transition: all 0.18s; font-family: inherit;
+  }
+  .scene-btn:hover { border-color: var(--accent); color: var(--text-1); }
+  .scene-btn.active { border-color: var(--accent); color: var(--accent-2); background: var(--accent-dim); }
+  .scene-icon { margin-right: 0.2rem; }
+
+  .stage-wrap {
+    position: relative; margin: 0 auto 1rem; max-width: 400px; aspect-ratio: 1;
+  }
+  .stage {
+    width: 100%; height: 100%; display: block;
+    border-radius: 50%; overflow: visible;
+    border: 1px solid var(--border);
+    cursor: default; touch-action: none;
+  }
+  .empty-hint {
+    position: absolute; bottom: 20%; left: 50%; transform: translateX(-50%);
+    font-size: 0.78rem; color: var(--text-3); pointer-events: none;
+    white-space: nowrap;
+  }
+
+  .palette {
+    display: grid; grid-template-columns: repeat(auto-fill, minmax(90px, 1fr));
+    gap: 0.4rem; margin-bottom: 1rem;
+  }
+  .pal-btn {
+    display: flex; align-items: center; gap: 0.35rem;
+    background: var(--bg-3); border: 1px solid var(--border);
+    border-radius: var(--radius-sm); padding: 0.45rem 0.6rem;
+    font-size: 0.75rem; color: var(--text-2); cursor: pointer;
+    transition: all 0.18s; font-family: inherit;
+  }
+  .pal-btn:hover { border-color: var(--border-2); color: var(--text-1); }
+  .pal-btn.active { border-color: var(--accent); color: var(--accent-2); }
+  .pal-dot {
+    width: 10px; height: 10px; border-radius: 50%; flex-shrink: 0;
+  }
+
+  .sel-controls {
+    background: var(--bg-3); border: 1px solid var(--border);
+    border-radius: var(--radius-sm); padding: 0.75rem 1rem; margin-bottom: 1rem;
+  }
+  .sel-header {
+    display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.5rem;
+  }
+  .sel-dot { width: 12px; height: 12px; border-radius: 50%; flex-shrink: 0; }
+  .sel-name { font-size: 0.85rem; font-weight: 600; color: var(--text-1); flex: 1; }
+  .sel-remove {
+    background: none; border: none; color: var(--text-3); cursor: pointer;
+    font-size: 1rem; padding: 0 0.25rem; transition: color 0.18s;
+  }
+  .sel-remove:hover { color: var(--danger); }
+  .sel-row {
+    display: flex; align-items: center; gap: 0.5rem;
+  }
+  .sel-row + .sel-row { margin-top: 0.35rem; }
+  .sel-label { font-size: 0.72rem; color: var(--text-3); width: 40px; flex-shrink: 0; }
+  .sel-val { font-size: 0.72rem; color: var(--text-3); width: 36px; text-align: right; }
+
+  .slider {
+    flex: 1; height: 4px; -webkit-appearance: none; appearance: none;
+    background: var(--bg-4); border-radius: 2px; outline: none;
+  }
+  .slider::-webkit-slider-thumb {
+    -webkit-appearance: none; width: 14px; height: 14px;
+    border-radius: 50%; background: var(--accent); cursor: pointer;
+    border: 2px solid var(--bg); box-shadow: 0 0 6px rgba(124,106,247,0.4);
+  }
+  .slider::-moz-range-thumb {
+    width: 14px; height: 14px; border-radius: 50%;
+    background: var(--accent); cursor: pointer; border: 2px solid var(--bg);
+  }
+
+  .master {
+    display: flex; align-items: center; gap: 0.75rem; flex-wrap: wrap;
+    background: var(--bg-3); border: 1px solid var(--border);
+    border-radius: var(--radius); padding: 0.75rem 1rem; margin-bottom: 3rem;
+  }
+  .play-btn {
+    width: 36px; height: 36px; border-radius: 50%;
+    background: var(--accent); border: none; color: #fff;
+    cursor: pointer; display: flex; align-items: center; justify-content: center;
+    transition: all 0.18s; flex-shrink: 0;
+  }
+  .play-btn:hover { background: var(--accent-2); }
+  .play-btn.playing { background: var(--teal); }
+  .master-vol-wrap {
+    display: flex; align-items: center; gap: 0.4rem; flex: 1; min-width: 120px;
+  }
+  .mvol-label { font-size: 0.7rem; color: var(--text-3); }
+  .toggle-btn {
+    background: var(--bg-4); border: 1px solid var(--border);
+    border-radius: 999px; padding: 0.3rem 0.7rem;
+    font-size: 0.72rem; color: var(--text-3); cursor: pointer;
+    transition: all 0.18s; font-family: inherit;
+  }
+  .toggle-btn:hover { border-color: var(--border-2); color: var(--text-2); }
+  .toggle-btn.active { border-color: var(--teal); color: var(--teal); background: var(--teal-dim); }
+  .timer-wrap { display: flex; align-items: center; gap: 0.4rem; }
+  .timer-sel {
+    background: var(--bg-4); border: 1px solid var(--border);
+    border-radius: var(--radius-sm); padding: 0.3rem 0.5rem;
+    font-size: 0.72rem; color: var(--text-2); font-family: inherit;
+    cursor: pointer;
+  }
+  .timer-sel option { background: var(--bg-3); }
+  .timer-display { font-size: 0.72rem; color: var(--teal); font-variant-numeric: tabular-nums; }
+
+  .seo-content { max-width: 680px; margin: 0 auto; }
+  .seo-content h2 {
+    font-size: 1.2rem; margin: 2.5rem 0 1rem;
+    padding-bottom: 0.5rem; border-bottom: 1px solid var(--border);
+  }
+  .sound-explainers {
+    display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 1rem;
+  }
+  .explainer {
+    background: var(--bg-3); border: 1px solid var(--border);
+    border-radius: var(--radius-sm); padding: 1rem;
+  }
+  .explainer h3 { font-size: 0.92rem; margin: 0 0 0.4rem; color: var(--text-1); }
+  .explainer p { font-size: 0.82rem; color: var(--text-2); margin-bottom: 0.5rem; line-height: 1.55; }
+  .explainer a { font-size: 0.78rem; color: var(--accent-2); }
+
+  .faq-list { display: flex; flex-direction: column; gap: 0.5rem; }
+  .faq-item {
+    background: var(--bg-3); border: 1px solid var(--border);
+    border-radius: var(--radius-sm); overflow: hidden;
+  }
+  .faq-item summary {
+    padding: 0.75rem 1rem; font-size: 0.88rem; font-weight: 500;
+    color: var(--text-1); cursor: pointer; list-style: none;
+  }
+  .faq-item summary::-webkit-details-marker { display: none; }
+  .faq-item summary::before { content: '▸ '; color: var(--accent); }
+  .faq-item[open] summary::before { content: '▾ '; }
+  .faq-item p { padding: 0 1rem 0.75rem; font-size: 0.82rem; color: var(--text-2); line-height: 1.6; }
+
+  @media (max-width: 600px) {
+    .palette { grid-template-columns: repeat(3, 1fr); }
+    .master { gap: 0.5rem; }
+    .master-vol-wrap { min-width: 100px; }
+    .sound-explainers { grid-template-columns: 1fr; }
+  }
+</style>
+
+<script>
+  const CX = 200, CY = 200, R = 175;
+
+  const SOUND_DEFS = {
+    brown:    { name: 'Brown Noise', color: '#8B6914', type: 'noise', noiseType: 'brown' },
+    pink:     { name: 'Pink Noise',  color: '#d4618c', type: 'noise', noiseType: 'pink' },
+    white:    { name: 'White Noise', color: '#c8c8d0', type: 'noise', noiseType: 'white' },
+    rain:     { name: 'Rain',        color: '#4169E1', type: 'rain' },
+    thunder:  { name: 'Thunder',     color: '#7B68EE', type: 'thunder' },
+    wind:     { name: 'Wind',        color: '#87CEEB', type: 'wind' },
+    fire:     { name: 'Fire',        color: '#E8532E', type: 'fire' },
+    crickets: { name: 'Crickets',    color: '#32CD32', type: 'crickets' },
+    ocean:    { name: 'Ocean',       color: '#00CED1', type: 'ocean' },
+    stream:   { name: 'Stream',      color: '#20B2AA', type: 'stream' },
+    binaural: { name: 'Binaural',    color: '#DDA0DD', type: 'binaural' },
+    tapping:  { name: 'Tapping',     color: '#DAA520', type: 'tapping' },
+  };
+
+  const SCENES = {
+    sleep:   { layers: [
+      { sound: 'brown', x: 200, y: 180, vol: 75 },
+      { sound: 'rain',  x: 120, y: 140, vol: 50 },
+      { sound: 'binaural', x: 200, y: 220, vol: 30, freq: 2 },
+    ]},
+    focus:   { layers: [
+      { sound: 'pink',   x: 200, y: 190, vol: 60 },
+      { sound: 'stream', x: 280, y: 160, vol: 40 },
+      { sound: 'binaural', x: 200, y: 210, vol: 25, freq: 16 },
+    ]},
+    storm:   { layers: [
+      { sound: 'rain',    x: 200, y: 100, vol: 80 },
+      { sound: 'thunder', x: 200, y: 300, vol: 55 },
+      { sound: 'wind',    x: 100, y: 200, vol: 45 },
+      { sound: 'fire',    x: 300, y: 250, vol: 35 },
+    ]},
+    nature:  { layers: [
+      { sound: 'crickets', x: 130, y: 130, vol: 55 },
+      { sound: 'stream',   x: 270, y: 130, vol: 50 },
+      { sound: 'wind',     x: 200, y: 300, vol: 30 },
+      { sound: 'fire',     x: 200, y: 200, vol: 25 },
+    ]},
+    ocean:   { layers: [
+      { sound: 'ocean', x: 200, y: 100, vol: 75 },
+      { sound: 'wind',  x: 200, y: 280, vol: 30 },
+      { sound: 'pink',  x: 200, y: 200, vol: 15 },
+    ]},
+    tingles: { layers: [
+      { sound: 'tapping',  x: 200, y: 100, vol: 60 },
+      { sound: 'rain',     x: 200, y: 300, vol: 25 },
+      { sound: 'binaural', x: 200, y: 200, vol: 30, freq: 10 },
+    ]},
+  };
+
+  let ctx = null;
+  let masterGain = null;
+  const active = new Map();
+  let nextId = 0;
+  let playing = false;
+  let selectedId = null;
+  let meandering = false;
+  let meanderRAF = null;
+  let timerInterval = null;
+  let timerEnd = 0;
+  const noiseCache = {};
+
+  let bgAudio = null;
+  // Start the hidden media route; if the browser refuses it, fall back to the direct route so sound never goes silent.
+  function startBg() {
+    if (!bgAudio) return;
+    if ('mediaSession' in navigator) navigator.mediaSession.playbackState = 'playing';
+    bgAudio.play().catch(() => { masterGain.connect(ctx.destination); bgAudio = null; });
+  }
+
+  function ensureCtx() {
+    if (ctx) return;
+    ctx = new (window.AudioContext || window.webkitAudioContext)();
+    masterGain = ctx.createGain();
+    masterGain.gain.value = 0.8;
+    // Keep playing with the screen locked (2026-11-13): phones stop bare Web Audio when locked, but keep a media
+    // element playing. Route the mix through a hidden <audio> on our own page; the embedded copy (?embed=1) and
+    // browsers without stream output keep the direct route. Only one route is ever connected (no doubled sound).
+    const embedded = location.search.includes('embed') || window.self !== window.top;
+    if (!embedded && ctx.createMediaStreamDestination && 'srcObject' in HTMLMediaElement.prototype) {
+      const dest = ctx.createMediaStreamDestination();
+      masterGain.connect(dest);
+      bgAudio = new Audio();
+      bgAudio.srcObject = dest.stream;
+      bgAudio.setAttribute('playsinline', '');
+      if ('mediaSession' in navigator) {
+        navigator.mediaSession.metadata = new MediaMetadata({ title: 'ASMR Soundscape', artist: 'ASMR Registry' });
+        navigator.mediaSession.setActionHandler('play', () => { if (!playing) togglePlay(); });
+        navigator.mediaSession.setActionHandler('pause', () => { if (playing) togglePlay(); });
+      }
+    } else {
+      masterGain.connect(ctx.destination);
+    }
+    ctx.listener.positionX.setValueAtTime(0, 0);
+    ctx.listener.positionY.setValueAtTime(0, 0);
+    ctx.listener.positionZ.setValueAtTime(0, 0);
+    ctx.listener.forwardX.setValueAtTime(0, 0);
+    ctx.listener.forwardY.setValueAtTime(0, 0);
+    ctx.listener.forwardZ.setValueAtTime(-1, 0);
+    ctx.listener.upX.setValueAtTime(0, 0);
+    ctx.listener.upY.setValueAtTime(1, 0);
+    ctx.listener.upZ.setValueAtTime(0, 0);
+  }
+
+  function makeNoiseBuf(type) {
+    if (noiseCache[type]) return noiseCache[type];
+    const len = ctx.sampleRate * 2;
+    const buf = ctx.createBuffer(2, len, ctx.sampleRate);
+    for (let ch = 0; ch < 2; ch++) {
+      const d = buf.getChannelData(ch);
+      let b0=0,b1=0,b2=0,b3=0,b4=0,b5=0,b6=0,last=0;
+      for (let i = 0; i < len; i++) {
+        const w = Math.random() * 2 - 1;
+        if (type === 'white') {
+          d[i] = w * 0.5;
+        } else if (type === 'pink') {
+          b0=.99886*b0+w*.0555179; b1=.99332*b1+w*.0750759;
+          b2=.96900*b2+w*.1538520; b3=.86650*b3+w*.3104856;
+          b4=.55000*b4+w*.5329522; b5=-.7616*b5-w*.0168980;
+          d[i]=(b0+b1+b2+b3+b4+b5+b6+w*.5362)*.11; b6=w*.115926;
+        } else {
+          d[i]=(last+.02*w)/1.02; last=d[i]; d[i]*=3.5;
+        }
+      }
+    }
+    noiseCache[type] = buf;
+    return buf;
+  }
+
+  function createNoiseSource(noiseType) {
+    const src = ctx.createBufferSource();
+    src.buffer = makeNoiseBuf(noiseType);
+    src.loop = true;
+    return { node: src, cleanup: () => { try { src.stop(); } catch {} } };
+  }
+
+  function createRain() {
+    const buf = makeNoiseBuf('pink');
+    const src = ctx.createBufferSource();
+    src.buffer = buf; src.loop = true;
+    const hp = ctx.createBiquadFilter();
+    hp.type = 'highpass'; hp.frequency.value = 800; hp.Q.value = 0.5;
+    const lfo = ctx.createOscillator();
+    lfo.frequency.value = 0.12;
+    const lfoG = ctx.createGain();
+    lfoG.gain.value = 0.15;
+    lfo.connect(lfoG);
+    const merge = ctx.createGain();
+    merge.gain.value = 0.85;
+    lfoG.connect(merge.gain);
+    src.connect(hp).connect(merge);
+    lfo.start();
+    return { node: merge, startAll: () => src.start(), cleanup: () => { try { src.stop(); lfo.stop(); } catch {} } };
+  }
+
+  function createThunder() {
+    const buf = makeNoiseBuf('brown');
+    const src = ctx.createBufferSource();
+    src.buffer = buf; src.loop = true;
+    const lp = ctx.createBiquadFilter();
+    lp.type = 'lowpass'; lp.frequency.value = 120;
+    const ampLfo = ctx.createOscillator();
+    ampLfo.frequency.value = 0.04;
+    const ampG = ctx.createGain();
+    ampG.gain.value = 0.6;
+    ampLfo.connect(ampG);
+    const out = ctx.createGain();
+    out.gain.value = 0.4;
+    ampG.connect(out.gain);
+    src.connect(lp).connect(out);
+    ampLfo.start();
+    return { node: out, startAll: () => src.start(), cleanup: () => { try { src.stop(); ampLfo.stop(); } catch {} } };
+  }
+
+  function createWind() {
+    const buf = makeNoiseBuf('brown');
+    const src = ctx.createBufferSource();
+    src.buffer = buf; src.loop = true;
+    const lp = ctx.createBiquadFilter();
+    lp.type = 'lowpass'; lp.frequency.value = 500;
+    const lfo = ctx.createOscillator();
+    lfo.frequency.value = 0.15;
+    const lfoG = ctx.createGain();
+    lfoG.gain.value = 300;
+    lfo.connect(lfoG);
+    lfoG.connect(lp.frequency);
+    const out = ctx.createGain();
+    out.gain.value = 1;
+    src.connect(lp).connect(out);
+    lfo.start();
+    return { node: out, startAll: () => src.start(), cleanup: () => { try { src.stop(); lfo.stop(); } catch {} } };
+  }
+
+  function createFire() {
+    const buf = makeNoiseBuf('brown');
+    const base = ctx.createBufferSource();
+    base.buffer = buf; base.loop = true;
+    const baseLp = ctx.createBiquadFilter();
+    baseLp.type = 'lowpass'; baseLp.frequency.value = 400;
+    const baseG = ctx.createGain();
+    baseG.gain.value = 0.3;
+    base.connect(baseLp).connect(baseG);
+
+    const out = ctx.createGain();
+    out.gain.value = 1;
+    baseG.connect(out);
+
+    let crackleTimer = null;
+    const wBuf = makeNoiseBuf('white');
+
+    function crackle() {
+      if (!ctx || ctx.state === 'closed') return;
+      const now = ctx.currentTime;
+      const s = ctx.createBufferSource();
+      s.buffer = wBuf;
+      const bp = ctx.createBiquadFilter();
+      bp.type = 'bandpass';
+      bp.frequency.value = 1000 + Math.random() * 3000;
+      bp.Q.value = 5 + Math.random() * 15;
+      const env = ctx.createGain();
+      env.gain.setValueAtTime(0, now);
+      env.gain.linearRampToValueAtTime(0.3 + Math.random() * 0.5, now + 0.003);
+      env.gain.exponentialRampToValueAtTime(0.001, now + 0.02 + Math.random() * 0.04);
+      s.connect(bp).connect(env).connect(out);
+      s.start(now); s.stop(now + 0.08);
+      crackleTimer = setTimeout(crackle, 40 + Math.random() * 200);
+    }
+
+    return {
+      node: out,
+      startAll: () => { base.start(); crackle(); },
+      cleanup: () => {
+        try { base.stop(); } catch {}
+        if (crackleTimer) clearTimeout(crackleTimer);
+      }
+    };
+  }
+
+  function createCrickets() {
+    const out = ctx.createGain();
+    out.gain.value = 0.6;
+    let timer = null;
+
+    function chirp() {
+      if (!ctx || ctx.state === 'closed') return;
+      const now = ctx.currentTime;
+      const freq = 4000 + Math.random() * 2000;
+      const reps = 2 + Math.floor(Math.random() * 4);
+      const dur = 0.04 + Math.random() * 0.02;
+
+      for (let i = 0; i < reps; i++) {
+        const osc = ctx.createOscillator();
+        osc.frequency.value = freq + Math.random() * 200;
+        const env = ctx.createGain();
+        const t = now + i * dur * 2.5;
+        env.gain.setValueAtTime(0, t);
+        env.gain.linearRampToValueAtTime(0.15, t + dur * 0.2);
+        env.gain.linearRampToValueAtTime(0, t + dur);
+        osc.connect(env).connect(out);
+        osc.start(t); osc.stop(t + dur + 0.01);
+      }
+      timer = setTimeout(chirp, 300 + Math.random() * 1500);
+    }
+
+    return {
+      node: out,
+      startAll: chirp,
+      cleanup: () => { if (timer) clearTimeout(timer); }
+    };
+  }
+
+  function createOcean() {
+    const buf = makeNoiseBuf('brown');
+    const src = ctx.createBufferSource();
+    src.buffer = buf; src.loop = true;
+    const lp = ctx.createBiquadFilter();
+    lp.type = 'lowpass'; lp.frequency.value = 400;
+    const lfo = ctx.createOscillator();
+    lfo.frequency.value = 0.08;
+    const lfoG = ctx.createGain();
+    lfoG.gain.value = 0.35;
+    lfo.connect(lfoG);
+    const out = ctx.createGain();
+    out.gain.value = 0.65;
+    lfoG.connect(out.gain);
+    src.connect(lp).connect(out);
+    lfo.start();
+    return { node: out, startAll: () => src.start(), cleanup: () => { try { src.stop(); lfo.stop(); } catch {} } };
+  }
+
+  function createStream() {
+    const buf = makeNoiseBuf('white');
+    const src = ctx.createBufferSource();
+    src.buffer = buf; src.loop = true;
+    const bp = ctx.createBiquadFilter();
+    bp.type = 'bandpass'; bp.frequency.value = 3000; bp.Q.value = 0.8;
+    const lfo = ctx.createOscillator();
+    lfo.frequency.value = 0.2;
+    const lfoG = ctx.createGain();
+    lfoG.gain.value = 500;
+    lfo.connect(lfoG);
+    lfoG.connect(bp.frequency);
+    const out = ctx.createGain();
+    out.gain.value = 0.5;
+    src.connect(bp).connect(out);
+    lfo.start();
+    return { node: out, startAll: () => src.start(), cleanup: () => { try { src.stop(); lfo.stop(); } catch {} } };
+  }
+
+  function createBinaural(freq = 10) {
+    const merger = ctx.createChannelMerger(2);
+    const oscL = ctx.createOscillator();
+    const oscR = ctx.createOscillator();
+    const gainL = ctx.createGain();
+    const gainR = ctx.createGain();
+    oscL.frequency.value = 200;
+    oscR.frequency.value = 200 + freq;
+    gainL.gain.value = 0.3;
+    gainR.gain.value = 0.3;
+    oscL.connect(gainL).connect(merger, 0, 0);
+    oscR.connect(gainR).connect(merger, 0, 1);
+    return {
+      node: merger,
+      startAll: () => { oscL.start(); oscR.start(); },
+      cleanup: () => { try { oscL.stop(); oscR.stop(); } catch {} },
+      setFreq: (f) => { oscR.frequency.setValueAtTime(200 + f, ctx.currentTime); },
+    };
+  }
+
+  function createTapping() {
+    const out = ctx.createGain();
+    out.gain.value = 0.7;
+    let timer = null;
+    const wBuf = makeNoiseBuf('white');
+
+    function tap() {
+      if (!ctx || ctx.state === 'closed') return;
+      const now = ctx.currentTime;
+      const s = ctx.createBufferSource();
+      s.buffer = wBuf;
+      const bp = ctx.createBiquadFilter();
+      bp.type = 'bandpass';
+      bp.frequency.value = 600 + Math.random() * 600;
+      bp.Q.value = 12 + Math.random() * 8;
+      const env = ctx.createGain();
+      env.gain.setValueAtTime(0, now);
+      env.gain.linearRampToValueAtTime(0.7, now + 0.004);
+      env.gain.exponentialRampToValueAtTime(0.001, now + 0.05 + Math.random() * 0.04);
+      s.connect(bp).connect(env).connect(out);
+      s.start(now); s.stop(now + 0.12);
+      timer = setTimeout(tap, 150 + Math.random() * 350);
+    }
+
+    return {
+      node: out,
+      startAll: tap,
+      cleanup: () => { if (timer) clearTimeout(timer); }
+    };
+  }
+
+  function buildSound(soundKey, vol = 0.7, freq = 10) {
+    const def = SOUND_DEFS[soundKey];
+    const gain = ctx.createGain();
+    gain.gain.value = vol;
+
+    const panner = ctx.createPanner();
+    panner.panningModel = 'HRTF';
+    panner.distanceModel = 'inverse';
+    panner.refDistance = 1;
+    panner.maxDistance = 10;
+    panner.rolloffFactor = 1;
+    panner.coneInnerAngle = 360;
+
+    let chain;
+    if (def.type === 'noise') chain = createNoiseSource(def.noiseType);
+    else if (def.type === 'rain') chain = createRain();
+    else if (def.type === 'thunder') chain = createThunder();
+    else if (def.type === 'wind') chain = createWind();
+    else if (def.type === 'fire') chain = createFire();
+    else if (def.type === 'crickets') chain = createCrickets();
+    else if (def.type === 'ocean') chain = createOcean();
+    else if (def.type === 'stream') chain = createStream();
+    else if (def.type === 'binaural') chain = createBinaural(freq);
+    else if (def.type === 'tapping') chain = createTapping();
+
+    chain.node.connect(gain).connect(panner).connect(masterGain);
+    if (chain.startAll) chain.startAll();
+    else chain.node.start?.();
+
+    return { gain, panner, chain, soundKey, freq };
+  }
+
+  function svgToAudio(sx, sy) {
+    return { x: (sx - CX) / 60, z: (sy - CY) / 60 };
+  }
+
+  function setPannerPos(panner, sx, sy) {
+    const a = svgToAudio(sx, sy);
+    panner.positionX.setValueAtTime(a.x, ctx.currentTime);
+    panner.positionY.setValueAtTime(0, ctx.currentTime);
+    panner.positionZ.setValueAtTime(a.z, ctx.currentTime);
+  }
+
+  function addSound(soundKey, sx, sy, vol, freq) {
+    ensureCtx();
+    if (ctx.state === 'suspended') ctx.resume();
+    if (bgAudio && bgAudio.paused) startBg();
+    const id = nextId++;
+    const s = buildSound(soundKey, vol / 100, freq);
+    setPannerPos(s.panner, sx, sy);
+    active.set(id, { ...s, sx, sy, vol });
+    renderSvgSource(id, soundKey, sx, sy);
+    updatePalette();
+    updateEmptyHint();
+    if (!playing) togglePlay();
+    return id;
+  }
+
+  function removeSound(id) {
+    const s = active.get(id);
+    if (!s) return;
+    s.chain.cleanup();
+    s.gain.disconnect();
+    active.delete(id);
+    const el = document.getElementById(`src-${id}`);
+    if (el) el.remove();
+    if (selectedId === id) { selectedId = null; document.getElementById('sel-controls').hidden = true; }
+    updatePalette();
+    updateEmptyHint();
+    if (active.size === 0 && playing) togglePlay();
+  }
+
+  function clearAll() {
+    for (const id of [...active.keys()]) removeSound(id);
+  }
+
+  function renderSvgSource(id, soundKey, sx, sy) {
+    const def = SOUND_DEFS[soundKey];
+    const g = document.createElementNS('http://www.w3.org/2000/svg', 'g');
+    g.id = `src-${id}`;
+    g.setAttribute('transform', `translate(${sx},${sy})`);
+    g.style.cursor = 'grab';
+
+    const glow = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+    glow.setAttribute('r', '22');
+    glow.setAttribute('fill', def.color);
+    glow.setAttribute('opacity', '0.12');
+
+    const circ = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+    circ.setAttribute('r', '14');
+    circ.setAttribute('fill', def.color);
+    circ.setAttribute('opacity', '0.85');
+    circ.setAttribute('stroke', '#fff');
+    circ.setAttribute('stroke-width', '1.5');
+    circ.setAttribute('stroke-opacity', '0.3');
+
+    const txt = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+    txt.setAttribute('text-anchor', 'middle');
+    txt.setAttribute('dy', '0.35em');
+    txt.setAttribute('font-size', '8');
+    txt.setAttribute('font-family', 'Inter,sans-serif');
+    txt.setAttribute('font-weight', '600');
+    txt.setAttribute('fill', '#fff');
+    txt.textContent = def.name.split(' ')[0].slice(0, 5);
+
+    g.append(glow, circ, txt);
+    document.getElementById('sound-sources').appendChild(g);
+
+    g.addEventListener('pointerdown', (e) => {
+      e.preventDefault();
+      selectSound(id);
+      startDrag(e, id);
+    });
+  }
+
+  function selectSound(id) {
+    selectedId = id;
+    const s = active.get(id);
+    if (!s) return;
+    const def = SOUND_DEFS[s.soundKey];
+    const ctrl = document.getElementById('sel-controls');
+    ctrl.hidden = false;
+    document.getElementById('sel-dot').style.background = def.color;
+    document.getElementById('sel-name').textContent = def.name;
+    document.getElementById('sel-vol').value = s.vol;
+    document.getElementById('sel-vol-val').textContent = s.vol;
+    const binRow = document.getElementById('binaural-row');
+    binRow.hidden = s.soundKey !== 'binaural';
+    if (s.soundKey === 'binaural') {
+      document.getElementById('sel-freq').value = s.freq;
+      document.getElementById('sel-freq-val').textContent = s.freq + ' Hz';
+    }
+
+    document.querySelectorAll('#sound-sources g').forEach(g => {
+      g.querySelector('circle:nth-child(2)').setAttribute('stroke-width', g.id === `src-${id}` ? '2.5' : '1.5');
+      g.querySelector('circle:nth-child(2)').setAttribute('stroke-opacity', g.id === `src-${id}` ? '0.8' : '0.3');
+    });
+  }
+
+  let dragId = null;
+  function startDrag(e, id) {
+    dragId = id;
+    const svg = document.getElementById('stage');
+    const onMove = (ev) => {
+      ev.preventDefault();
+      const pt = svgPoint(svg, ev.clientX ?? ev.touches?.[0]?.clientX, ev.clientY ?? ev.touches?.[0]?.clientY);
+      let dx = pt.x - CX, dy = pt.y - CY;
+      const dist = Math.sqrt(dx*dx + dy*dy);
+      if (dist > R) { dx = dx/dist*R; dy = dy/dist*R; }
+      const sx = CX + dx, sy = CY + dy;
+      const g = document.getElementById(`src-${id}`);
+      if (g) g.setAttribute('transform', `translate(${sx},${sy})`);
+      const s = active.get(id);
+      if (s) { s.sx = sx; s.sy = sy; setPannerPos(s.panner, sx, sy); }
+    };
+    const onUp = () => {
+      dragId = null;
+      document.removeEventListener('pointermove', onMove);
+      document.removeEventListener('pointerup', onUp);
+    };
+    document.addEventListener('pointermove', onMove);
+    document.addEventListener('pointerup', onUp);
+  }
+
+  function svgPoint(svg, cx, cy) {
+    const rect = svg.getBoundingClientRect();
+    return { x: (cx - rect.left) / rect.width * 400, y: (cy - rect.top) / rect.height * 400 };
+  }
+
+  function updatePalette() {
+    const activeKeys = new Set();
+    active.forEach(s => activeKeys.add(s.soundKey));
+    document.querySelectorAll('.pal-btn').forEach(btn => {
+      btn.classList.toggle('active', activeKeys.has(btn.dataset.sound));
+    });
+  }
+
+  function updateEmptyHint() {
+    document.getElementById('empty-hint').style.display = active.size === 0 ? '' : 'none';
+  }
+
+  function togglePlay() {
+    if (!ctx) return;
+    playing = !playing;
+    if (playing) {
+      ctx.resume();
+      startBg();
+      document.getElementById('play-icon').setAttribute('points', '6,4 10,4 10,20 6,20 14,4 18,4 18,20 14,20');
+    } else {
+      ctx.suspend();
+      if (bgAudio) bgAudio.pause();
+      if ('mediaSession' in navigator) navigator.mediaSession.playbackState = 'paused';
+      document.getElementById('play-icon').setAttribute('points', '6,4 20,12 6,20');
+    }
+    document.getElementById('play-btn').classList.toggle('playing', playing);
+  }
+
+  function loadScene(name) {
+    clearAll();
+    const scene = SCENES[name];
+    if (!scene) return;
+    scene.layers.forEach(l => addSound(l.sound, l.x, l.y, l.vol, l.freq));
+    document.querySelectorAll('.scene-btn').forEach(b => b.classList.toggle('active', b.dataset.scene === name));
+  }
+
+  function startMeander() {
+    if (meanderRAF) return;
+    const t0 = performance.now();
+    const drift = () => {
+      const t = (performance.now() - t0) / 1000;
+      active.forEach((s, id) => {
+        const dx = Math.sin(t * 0.13 + id * 1.7) * 12;
+        const dy = Math.cos(t * 0.09 + id * 2.3) * 12;
+        const sx = Math.max(CX - R, Math.min(CX + R, s.sx + dx));
+        const sy = Math.max(CY - R, Math.min(CY + R, s.sy + dy));
+        const g = document.getElementById(`src-${id}`);
+        if (g) g.setAttribute('transform', `translate(${sx},${sy})`);
+        setPannerPos(s.panner, sx, sy);
+        const volDrift = 1 + Math.sin(t * 0.07 + id * 3.1) * 0.12;
+        s.gain.gain.setValueAtTime((s.vol / 100) * volDrift, ctx.currentTime);
+      });
+      meanderRAF = requestAnimationFrame(drift);
+    };
+    meanderRAF = requestAnimationFrame(drift);
+  }
+
+  function stopMeander() {
+    if (meanderRAF) { cancelAnimationFrame(meanderRAF); meanderRAF = null; }
+    active.forEach((s, id) => {
+      const g = document.getElementById(`src-${id}`);
+      if (g) g.setAttribute('transform', `translate(${s.sx},${s.sy})`);
+      setPannerPos(s.panner, s.sx, s.sy);
+      s.gain.gain.setValueAtTime(s.vol / 100, ctx.currentTime);
+    });
+  }
+
+  function startTimer(mins) {
+    if (timerInterval) { clearInterval(timerInterval); timerInterval = null; }
+    if (mins <= 0) { timerEnd = 0; document.getElementById('timer-display').textContent = ''; return; }
+    timerEnd = Date.now() + mins * 60000;
+    const fadeStart = 30000;
+    const tick = () => {
+      const left = timerEnd - Date.now();
+      if (left <= 0) {
+        clearInterval(timerInterval); timerInterval = null;
+        if (masterGain) masterGain.gain.setValueAtTime(0, ctx.currentTime);
+        if (playing) togglePlay();
+        document.getElementById('timer-display').textContent = '';
+        document.getElementById('timer-sel').value = '0';
+        masterGain.gain.setValueAtTime(document.getElementById('master-vol').value / 100, ctx.currentTime);
+        return;
+      }
+      if (left < fadeStart && masterGain) {
+        masterGain.gain.setValueAtTime((left / fadeStart) * (document.getElementById('master-vol').value / 100), ctx.currentTime);
+      }
+      const m = Math.floor(left / 60000);
+      const s = Math.floor((left % 60000) / 1000);
+      document.getElementById('timer-display').textContent = `${m}:${String(s).padStart(2, '0')}`;
+    };
+    tick();
+    timerInterval = setInterval(tick, 1000);
+  }
+
+  document.addEventListener('DOMContentLoaded', () => {
+    document.querySelectorAll('.pal-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const key = btn.dataset.sound;
+        const existing = [...active.entries()].find(([, s]) => s.soundKey === key);
+        if (existing) { removeSound(existing[0]); return; }
+        const angle = Math.random() * Math.PI * 2;
+        const dist = 60 + Math.random() * 80;
+        addSound(key, CX + Math.cos(angle) * dist, CY + Math.sin(angle) * dist, 60);
+      });
+    });
+
+    document.querySelectorAll('.scene-btn').forEach(btn => {
+      btn.addEventListener('click', () => loadScene(btn.dataset.scene));
+    });
+
+    document.getElementById('play-btn').addEventListener('click', () => {
+      ensureCtx();
+      if (active.size === 0) { loadScene('sleep'); return; }
+      togglePlay();
+    });
+
+    document.getElementById('sel-vol').addEventListener('input', (e) => {
+      const v = parseInt(e.target.value);
+      document.getElementById('sel-vol-val').textContent = v;
+      if (selectedId !== null) {
+        const s = active.get(selectedId);
+        if (s) { s.vol = v; s.gain.gain.setValueAtTime(v / 100, ctx.currentTime); }
+      }
+    });
+
+    document.getElementById('sel-freq').addEventListener('input', (e) => {
+      const f = parseInt(e.target.value);
+      document.getElementById('sel-freq-val').textContent = f + ' Hz';
+      if (selectedId !== null) {
+        const s = active.get(selectedId);
+        if (s?.chain?.setFreq) { s.freq = f; s.chain.setFreq(f); }
+      }
+    });
+
+    document.getElementById('sel-remove').addEventListener('click', () => {
+      if (selectedId !== null) removeSound(selectedId);
+    });
+
+    document.getElementById('master-vol').addEventListener('input', (e) => {
+      if (masterGain) masterGain.gain.setValueAtTime(e.target.value / 100, ctx.currentTime);
+    });
+
+    document.getElementById('meander-btn').addEventListener('click', () => {
+      meandering = !meandering;
+      document.getElementById('meander-btn').classList.toggle('active', meandering);
+      if (meandering) startMeander(); else stopMeander();
+    });
+
+    document.getElementById('timer-sel').addEventListener('change', (e) => {
+      startTimer(parseInt(e.target.value));
+    });
+  });
+</script>

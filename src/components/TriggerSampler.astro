@@ -1,0 +1,64 @@
+---
+// "Try something different": tick what you usually watch, get one video from each of three sound families you did not
+// tick. With nothing ticked it is a beginner sampler (one per family). Data: /finder-videos.json (build-filtered).
+// Claim limits: no study shows that switching triggers brings tingles back; it is community advice and says so.
+const FAMILIES = [
+  ['nature', 'Rain and nature'], ['tap', 'Tapping and scratching'], ['voice', 'Whispering and soft voice'],
+  ['care', 'Personal attention'], ['mouth', 'Mouth and eating'], ['visual', 'Visual and hands'],
+];
+---
+<section class="ts" aria-labelledby="ts-h">
+  <h2 id="ts-h">Try something different</h2>
+  <p class="ts-note">Tick what you usually watch. You get one video from each of three other sound families. New to ASMR? Leave everything unticked for a starter set. Listeners often say a change or a short break helps when tingles fade; no study has tested that.</p>
+  <form id="ts-form">
+    {FAMILIES.map(([v, l]) => <label><input type="checkbox" name="usual" value={v} /> {l}</label>)}
+  </form>
+  <div id="ts-out" aria-live="polite"><p class="ts-note">Loading...</p></div>
+</section>
+
+<script is:inline>
+  (function () {
+    var form = document.getElementById('ts-form'), out = document.getElementById('ts-out'), rows = null;
+    var FAM = {
+      nature: ['rain', 'nature', 'ocean', 'water-sounds', 'white-noise', 'fire'],
+      tap: ['tapping', 'scratching', 'typing', 'crinkling', 'page-turning', 'writing', 'glass-sounds'],
+      voice: ['whispering', 'soft-speaking', 'positive-affirmations', 'counting', 'reading'],
+      care: ['personal-attention', 'massage', 'hair-play', 'brushing'],
+      mouth: ['mouth-sounds', 'eating-sounds', 'cooking'],
+      visual: ['light-patterns', 'painting', 'slime', 'soap-carving', 'sand', 'folding']
+    };
+    var NAME = { nature: 'Rain and nature', tap: 'Tapping and scratching', voice: 'Whispering and soft voice', care: 'Personal attention', mouth: 'Mouth and eating', visual: 'Visual and hands' };
+    var ORDER = ['tap', 'voice', 'nature', 'care', 'visual', 'mouth']; // mouth last: the family most likely to annoy
+    function esc(s) { return String(s).replace(/[&<>"]/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]; }); }
+    function run() {
+      var usual = new FormData(form).getAll('usual');
+      var fams = ORDER.filter(function (f) { return usual.indexOf(f) < 0; }).slice(0, 3);
+      var seen = {}, cards = [];
+      fams.forEach(function (f) {
+        var ok = rows.filter(function (x) { return FAM[f].indexOf(x[5]) >= 0 && x[4] >= 10 && x[4] <= 60 && !seen[x[2]]; });
+        // Prefer a video whose title names its trigger, so the example plainly is that sound.
+        var named = ok.filter(function (x) { return x[1].toLowerCase().indexOf(x[5].split('-')[0].replace(/s$/, '')) >= 0; });
+        var r = named[0] || ok[0];
+        if (!r) return;
+        seen[r[2]] = 1;
+        cards.push('<a class="ts-card" href="/video/' + esc(r[0]) + '/"><img src="https://i.ytimg.com/vi/' + esc(r[0]) + '/mqdefault.jpg" alt="" loading="lazy" width="320" height="180"><b>' + NAME[f] + '</b><span>' + esc(r[1]) + '</span><small>' + esc(r[2]) + ' · ' + r[4] + ' min · tagged ' + esc(r[5].replace(/-/g, ' ')) + '</small></a>');
+      });
+      out.innerHTML = cards.length ? '<div class="ts-picks">' + cards.join('') + '</div>' : '<p>You have ticked every family. Untick one to get suggestions.</p>';
+    }
+    form.addEventListener('change', function () { if (rows) run(); });
+    fetch('/finder-videos.json').then(function (r) { return r.json(); }).then(function (d) { rows = d; run(); })
+      .catch(function () { out.innerHTML = '<p>Suggestions could not load. Refresh to try again.</p>'; });
+  })();
+</script>
+
+<style>
+  .ts { margin: 1.5rem 0; padding: 1rem 1.1rem; border: 1px solid var(--border, #2a2a3e); border-radius: 10px; background: var(--bg-2, #1a1a2e); }
+  .ts h2 { margin-top: 0; }
+  .ts form { display: flex; flex-wrap: wrap; gap: 0 1rem; }
+  .ts label { display: flex; align-items: center; gap: 0.35rem; min-height: 44px; font-size: 0.92rem; }
+  .ts-note, .ts :global(.ts-note) { font-size: 0.85rem; color: var(--text-3, #999); }
+  .ts :global(.ts-picks) { display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); gap: 1rem; margin-top: 0.75rem; }
+  .ts :global(.ts-card) { display: flex; flex-direction: column; gap: 0.3rem; color: inherit; text-decoration: none; }
+  .ts :global(.ts-card img) { width: 100%; height: auto; border-radius: 8px; }
+  .ts :global(.ts-card small) { font-size: 0.8rem; color: var(--text-3, #999); }
+</style>

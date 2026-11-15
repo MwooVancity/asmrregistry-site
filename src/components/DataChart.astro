@@ -1,0 +1,116 @@
+---
+import datasets from '../lib/datasets.json';
+
+interface Props { id: string }
+const { id } = Astro.props;
+const ds = (datasets as Record<string, any>)[id];
+const kind: string = ds?.kind ?? 'bar';
+const pts: { x: string; y: number }[] = ds?.points ?? [];
+const trials: { id: string; title: string; status: string; start: string }[] = ds?.trials ?? [];
+const cols: string[] = ds?.columns ?? [];
+const rows: string[][] = ds?.rows ?? [];
+const hasData = kind === 'trials' ? trials.length > 0 : kind === 'table' ? rows.length > 0 && cols.length > 0 : pts.length > 1;
+const valid = !!ds && hasData && !!ds.source && !!ds.sourceUrl && !!ds.fetchedAt;
+
+// vertical bars
+const W = 640, H = 260, PL = 36, PB = 28, PT = 16, PR = 8;
+const max = Math.max(1, ...pts.map(p => p.y));
+const bw = (W - PL - PR) / Math.max(1, pts.length);
+const first = pts.find(p => p.y > 0);
+const last = pts[pts.length - 1];
+
+// horizontal bars
+const ROW = 26, LBL = 130, HW = 640, VAL = 56;
+const HH = pts.length * ROW + 8;
+const fmt = (n: number) => n.toLocaleString('en-US');
+---
+
+{valid && (
+  <figure class="data-chart">
+    <figcaption class="dc-title">{ds.title}</figcaption>
+
+    {kind === 'bar' && (
+      <svg viewBox={`0 0 ${W} ${H}`} role="img" aria-label={`${ds.title}, ${pts[0].x} to ${last.x}`}>
+        {[0, 0.5, 1].map(t => (
+          <g>
+            <line x1={PL} x2={W - PR} y1={PT + (H - PT - PB) * (1 - t)} y2={PT + (H - PT - PB) * (1 - t)} class="dc-grid" />
+            <text x={PL - 6} y={PT + (H - PT - PB) * (1 - t) + 4} class="dc-axis" text-anchor="end">{Math.round(max * t)}</text>
+          </g>
+        ))}
+        {pts.map((p, i) => {
+          const h = (H - PT - PB) * (p.y / max);
+          return (
+            <g>
+              <rect x={PL + i * bw + bw * 0.15} y={H - PB - h} width={bw * 0.7} height={Math.max(h, 0)} class="dc-bar"><title>{`${p.x}: ${p.y} ${ds.unit}`}</title></rect>
+              {i % 2 === 0 && <text x={PL + i * bw + bw / 2} y={H - 8} class="dc-axis" text-anchor="middle">{p.x}</text>}
+            </g>
+          );
+        })}
+      </svg>
+    )}
+
+    {kind === 'hbar' && (
+      <svg viewBox={`0 0 ${HW} ${HH}`} role="img" aria-label={`${ds.title}, top ${pts.length}`}>
+        {pts.map((p, i) => {
+          const w = (HW - LBL - VAL) * (p.y / max);
+          return (
+            <g>
+              <text x={LBL - 8} y={i * ROW + 18} class="dc-axis dc-lbl" text-anchor="end">{p.x}</text>
+              <rect x={LBL} y={i * ROW + 5} width={Math.max(w, 1)} height={ROW - 9} rx="3" class="dc-bar"><title>{`${p.x}: ${fmt(p.y)} ${ds.unit}`}</title></rect>
+              <text x={LBL + w + 6} y={i * ROW + 18} class="dc-axis">{fmt(p.y)}</text>
+            </g>
+          );
+        })}
+      </svg>
+    )}
+
+    {kind === 'trials' && (
+      <table class="dc-table">
+        <thead><tr><th>Trial</th><th>Status</th><th>Started</th></tr></thead>
+        <tbody>
+          {trials.map(t => (
+            <tr>
+              <td><a href={`https://clinicaltrials.gov/study/${t.id}`} rel="noopener" target="_blank">{t.title}</a></td>
+              <td>{t.status}</td>
+              <td>{t.start}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    )}
+
+    {kind === 'table' && (
+      <div class="dc-scroll">
+        <table class="dc-table">
+          <thead><tr>{cols.map(c => <th>{c}</th>)}</tr></thead>
+          <tbody>{rows.map(r => <tr>{r.map((cell, i) => <td class={i > 0 ? 'dc-num' : ''}>{cell}</td>)}</tr>)}</tbody>
+        </table>
+      </div>
+    )}
+
+    {ds.note && <p class="dc-note">{ds.note}</p>}
+
+    <figcaption class="dc-source">
+      {kind === 'bar' && first && last && first.x !== last.x ? `${first.y} ${first.y === 1 ? ds.unit.replace(/s$/, '') : ds.unit} in ${first.x}, ${last.y} in ${last.x}. ` : ''}
+      {kind === 'trials' ? `${trials.length} registered ${trials.length === 1 ? 'trial' : 'trials'}. ` : ''}
+      Source: <a href={ds.sourceUrl} rel="noopener" target="_blank">{ds.source}</a>, retrieved {ds.fetchedAt}.
+    </figcaption>
+  </figure>
+)}
+
+<style>
+  .data-chart { margin: 2rem 0; padding: 1rem; border: 1px solid var(--border, #2a2a3e); border-radius: 12px; background: var(--bg-2, #1a1a2e); }
+  .dc-title { font-weight: 600; margin-bottom: 0.5rem; }
+  .data-chart svg { width: 100%; height: auto; display: block; }
+  .dc-bar { fill: var(--accent, #7c3aed); }
+  .dc-grid { stroke: var(--border, #2a2a3e); stroke-width: 1; }
+  .dc-axis { fill: var(--text-2, #9a9ab0); font-size: 11px; }
+  .dc-lbl { fill: var(--text-1, #e5e5f0); }
+  .dc-source { font-size: 0.85rem; color: var(--text-2, #9a9ab0); margin-top: 0.5rem; }
+  .dc-table { width: 100%; border-collapse: collapse; font-size: 0.92rem; }
+  .dc-table th, .dc-table td { text-align: left; padding: 0.5rem 0.6rem; border-bottom: 1px solid var(--border, #2a2a3e); vertical-align: top; }
+  .dc-table th { color: var(--text-2, #9a9ab0); font-weight: 600; font-size: 0.8rem; }
+  .dc-scroll { overflow-x: auto; }
+  .dc-num { white-space: nowrap; font-variant-numeric: tabular-nums; }
+  .dc-note { font-size: 0.85rem; color: var(--text-2, #9a9ab0); margin: 0.6rem 0 0; }
+</style>

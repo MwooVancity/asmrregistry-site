@@ -1,0 +1,79 @@
+---
+export const prerender = false;
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const title = 'Methodology: How ASMR Registry Classifies Videos';
+const desc = 'How ASMR Registry classifies videos with AI from titles and descriptions, what it cannot know, how picks are ranked, and how we check every number.';
+---
+
+<BaseLayout title={title} description={desc} canonical="/methodology/">
+  <article class="methodology-page">
+    <h1>How ASMR Registry Works</h1>
+
+    <p>This page says exactly how the catalog is built, what its labels can and cannot tell you, and how we choose the videos we show. If something here does not match what you see on the site, <a href="/contact/">tell us</a>.</p>
+
+    <h2>How videos are classified</h2>
+    <p>An AI language model reads each video's title, description and channel name from the YouTube Data API. It does not watch or hear the video. From that text it assigns:</p>
+    <ul>
+      <li><strong>Main trigger</strong> (tapping, whispering, rain and so on) plus any other triggers named.</li>
+      <li><strong>Intents</strong>: what the video seems made for, such as sleep, study or relaxation.</li>
+      <li><strong>Intensity</strong> on a 1 to 5 scale, the model's guess at how strong the triggers are. It is an estimate from the text, not a measurement.</li>
+      <li><strong>Format, language, roleplay scenario</strong> and whether it says there is no talking.</li>
+    </ul>
+    <p>The model also rates its own confidence from 0 to 1. Videos below 0.7, or that it judges are not ASMR, are not published. New videos under 5 minutes are skipped (some older entries are shorter; our recommendation rules below leave those out).</p>
+
+    <h2>What the labels cannot tell you</h2>
+    <p>Because nobody listens to each video, labels can be wrong. A title that says "no talking" may still have a spoken intro. Some food videos were tagged as ocean or roleplay because of words in their titles; we now filter food titles out of non-food topics. We cannot detect sudden loud noises, mid-video ads or abrupt endings. Treat our labels as a fast way to narrow your choice, then check the first minute yourself.</p>
+
+    <h2>How picks are ranked</h2>
+    <p>Lists of videos we recommend go through the same rules before ranking:</p>
+    <ul>
+      <li>No videos under 3 minutes or with no known length.</li>
+      <li>No suggestive titles, and no titles that make health claims ("cure", "relief", healing frequencies).</li>
+      <li>Sleep picks must run at least 30 minutes and leave out eating videos.</li>
+      <li>On a trigger page, videos that name the trigger in their title come first.</li>
+    </ul>
+    <p>After those rules, videos are ordered by YouTube view count. Views reflect popularity, not how well a video suits you, which is why the <a href="/sleep/">sleep picker</a> and the <a href="/asmr-videos/">video finder</a> let you filter by length, talking and sounds to avoid first.</p>
+
+    <h2>Numbers on our pages</h2>
+    <ul>
+      <li><strong>"In our catalog" numbers</strong> (video counts, typical length, no-talking share, top creators) are computed from the catalog at build time and dated. They describe what creators make, not what works for you. We show no percentage for fewer than 30 videos and no creator page for fewer than 15.</li>
+      <li><strong>Research counts</strong> come from PubMed searches, shown with the search and the date.</li>
+      <li><strong>Every build is checked</strong>: numbers in creator write-ups must match that creator's data, named studies must be in the page's sources, and research counts must be dated. A build that fails these checks does not go live.</li>
+    </ul>
+
+    <h2>Who writes the pages</h2>
+    <p>Guides and creator write-ups are drafted with AI from our catalog data and named sources, then checked against the rules above. We do not test products hands-on; gear pages say so and use published specifications. We do not claim personal experience we do not have.</p>
+
+    <h2>Data sources</h2>
+    <ul>
+      <li><strong>Videos and creators:</strong> YouTube Data API v3. New videos are added daily; titles and view counts are re-checked against YouTube on a rolling schedule, and a video removed from YouTube leaves our lists.</li>
+      <li><strong>Research:</strong> PubMed (U.S. National Library of Medicine).</li>
+      <li><strong>Product links:</strong> Amazon. As an Amazon Associate we earn from qualifying purchases.</li>
+    </ul>
+
+    <h2 id="corrections">Corrections</h2>
+    <p>Mistakes we found on our own pages and fixed, newest first.</p>
+    <ul>
+      <li><strong>12 Nov 2026:</strong> this page said view counts are taken once, when a video is added. They are re-checked on a rolling schedule.</li>
+      <li><strong>12 Nov 2026:</strong> the ASMR for kids page showed display ads. Child-directed pages now show none.</li>
+      <li><strong>11 Nov 2026:</strong> two creator pages said none of their videos run under ten minutes while their own length table showed one. Fixed, and every build now checks creator text against its table.</li>
+      <li><strong>11 Nov 2026:</strong> trigger pages whose videos we matched by title said "videos classified". They now say "videos with that word in the title".</li>
+      <li><strong>11 Nov 2026:</strong> the anime ASMR page suggested searching for girlfriend and boyfriend roleplays. Those suggestions are gone.</li>
+      <li><strong>10 Nov 2026:</strong> the ocean page listed Bob Ross episodes, short AI quiz clips and gaming videos. Sound pages now list only videos whose title names the sound, and long ambient sounds also need 30+ minutes without music.</li>
+      <li><strong>10 Nov 2026:</strong> "Is ASMR good for you?" gave a PubMed total of 103 while its chart added up to 105 (searches on different days). The page now shows dated counts only.</li>
+      <li><strong>10 Nov 2026:</strong> best-of lists said "not a ranking" above a ranked list, and the sleep list included thunder videos and "99.9% fall asleep" titles. Both fixed.</li>
+      <li><strong>10 Nov 2026:</strong> some pages showed the next day's date to readers in the Americas, and the site said "over 40,000 videos" after the catalog passed 46,000. Dates now follow Pacific time and counts come from the catalog.</li>
+    </ul>
+  </article>
+</BaseLayout>
+
+<style>
+  .methodology-page { max-width: 720px; margin: 0 auto; padding: 2rem 1rem; }
+  .methodology-page h1 { margin-bottom: 1.5rem; }
+  .methodology-page h2 { margin: 2rem 0 0.75rem; }
+  .methodology-page p, .methodology-page li { line-height: 1.7; color: var(--text-2, #ccc); }
+  .methodology-page ul { margin: 0.75rem 0 0.75rem 1.5rem; }
+  .methodology-page li { margin-bottom: 0.5rem; }
+  .methodology-page strong { color: var(--text-1, #fff); }
+</style>

@@ -1,0 +1,57 @@
+{
+  "slug": "asmr-podcast",
+  "title": "ASMR Podcasts — Soft-Spoken Shows, Audio-Only & Sleep Podcasts",
+  "metaDescription": "Classified ASMR podcasts and audio-only content. 250 monthly searches. Sorted by format, trigger style, and sleep effectiveness.",
+  "h1": "ASMR Podcasts",
+  "introHtml": "<p>ASMR podcasts deliver trigger content through audio-only platforms — Spotify, Apple Podcasts, YouTube Music, and dedicated podcast apps. The format removes the visual component of ASMR (hand movements, eye contact, visual props) and focuses entirely on auditory triggers: <a href=\"/whispering/\">whispering</a>, <a href=\"/tapping/\">tapping</a>, <a href=\"/brushing/\">brushing sounds</a>, ambient soundscapes, and soft-spoken narration. <strong>200 monthly searches</strong> target \"asmr podcast,\" \"best asmr podcast,\" and \"asmr podcasts on spotify.\"</p>\n\n<h2>Podcast vs. Video ASMR</h2>\n<p>Audio-only ASMR offers three advantages over video: <strong>portability</strong> (listen while commuting, walking, or doing chores without needing to watch a screen), <strong>sleep optimization</strong> (no screen light disrupting melatonin production before bed), and <strong>data efficiency</strong> (audio files are 1/100th the size of video, allowing offline downloads on limited storage). The trade-off: ASMR podcasts lose visual triggers entirely — <a href=\"/personal-attention/\">personal attention</a> (eye contact, hand movements near the face) and visual satisfaction (<a href=\"/slime/\">slime</a>, <a href=\"/soap-carving/\">soap carving</a>) don't translate to audio. Pure sound triggers (<a href=\"/whispering/\">whispering</a>, <a href=\"/tapping/\">tapping</a>, <a href=\"/rain/\">rain</a>, <a href=\"/typing/\">typing</a>) work equally well or better in audio-only format.</p>\n\n<h2>Finding ASMR Podcasts</h2>\n<p>Spotify and Apple Podcasts both have dedicated ASMR categories. Search \"ASMR\" in any podcast app and filter by recent publication date — many ASMR podcasts launched during 2020–2021 and have since gone inactive. Look for shows with episodes published in the last 3 months. Format types: <strong>trigger compilations</strong> (30–60 minute episodes with varied sounds), <strong>sleep episodes</strong> (long-form ambient soundscapes designed for sleep onset), <strong>whisper journals</strong> (soft-spoken personal reflection), and <strong>ASMR storytelling</strong> (fiction or non-fiction narrated in ASMR style).</p>\n\n<h2>Audio Quality Considerations</h2>\n<p>Podcast audio compression can degrade ASMR quality — the subtle details in trigger sounds (fingertip texture on glass, breath dynamics in whispers) are the first frequencies lost during compression. Look for podcasts that publish at 192kbps or higher bitrate. Spotify's \"very high\" quality setting (320kbps) preserves more trigger detail than the default setting. For <a href=\"/binaural/\">binaural</a> content, verify the podcast is recorded in actual stereo — some shows record in mono and upsample, losing the spatial imaging that makes binaural ASMR immersive. Test with headphones: if sounds don't clearly move between left and right ears during ear-to-ear segments, the recording is mono regardless of the file format.</p>",
+  "faqItems": [
+    {
+      "question": "What are the best ASMR podcasts?",
+      "answer": "Popular dedicated ASMR podcasts include Sleep Whispers, ASMR Sleep Station, and Nothing Much Happens. Many ASMR YouTubers also release audio-only versions of their videos as podcast episodes. The best choice depends on your preferred trigger — whisper-focused, ambient-focused, or story-focused."
+    },
+    {
+      "question": "Are ASMR podcasts better than ASMR videos for sleep?",
+      "answer": "For sleep specifically, yes — podcasts eliminate screen light, which interferes with melatonin production. You also don't need to worry about a sleep timer for the screen. The tradeoff: you lose visual triggers (hand movements, personal attention visual cues), so voice and ambient triggers work best in podcast format."
+    },
+    {
+      "question": "Can I find ASMR podcasts on Spotify?",
+      "answer": "Yes — Spotify, Apple Podcasts, and other platforms all host ASMR podcasts. Search for 'ASMR sleep' or 'whispered podcast' to find them. Many creators cross-post their YouTube audio to podcast platforms."
+    }
+  ],
+  "proTips": [
+    "Use ASMR podcasts instead of videos for sleep — no screen light to disrupt melatonin",
+    "Set a sleep timer in your podcast app (30–60 minutes) to avoid audio playing all night",
+    "Ambient/rain podcasts work best if you're sensitive to voice-based ASMR varying in tone",
+    "Download episodes for offline listening — streaming can cause buffering interruptions that break the ASMR state"
+  ],
+  "lastUpdated": "2026-06-22T00:00:00Z",
+  "status": "published",
+  "crossLinks": [
+    {
+      "label": "Whispering ASMR",
+      "href": "/whispering/"
+    },
+    {
+      "label": "ASMR for sleep",
+      "href": "/sleep/"
+    },
+    {
+      "label": "Binaural ASMR",
+      "href": "/binaural/"
+    },
+    {
+      "label": "No-talking ASMR",
+      "href": "/no-talking/"
+    }
+  ],
+  "references": [
+    {
+      "label": "Audio streaming quality — Spotify support",
+      "url": "https://support.spotify.com/us/article/audio-quality/"
+    },
+    {
+      "label": "ASMR: autonomous sensory meridian response — Wikipedia",
+      "url": "https://en.wikipedia.org/wiki/ASMR"
+    }
+  ]
+}

@@ -1,0 +1,30 @@
+{
+  "formulaId": "engine_repair",
+  "slug": "engine-repair-cost-calculator",
+  "aioInputs": [
+    {"name": "repairType", "description": "Type of engine repair (dropdown: minor repair, head gasket, timing belt/chain, engine rebuild, engine replacement)"},
+    {"name": "engineSize", "description": "Engine displacement or cylinder count (e.g. 4-cyl, V6, V8) — affects parts cost and labor hours"},
+    {"name": "vehicleAge", "description": "Vehicle age in years — affects parts availability and whether rebuild vs replace is cost-effective"},
+    {"name": "laborRate", "description": "Shop labor rate in $/hr — varies by region and shop type; default pre-filled from BLS regional median (~$100–$130/hr)"},
+    {"name": "shopType", "description": "Shop tier (dropdown: dealership, independent shop, DIY) — largest single cost lever"},
+    {"name": "partsTier", "description": "Parts quality (dropdown: OEM, aftermarket, remanufactured) — affects parts cost 20–40%"},
+    {"name": "engineCondition", "description": "For replacement: new crate engine, remanufactured, or used pull — drives parts cost range"}
+  ],
+  "aioOutputs": [
+    {"name": "totalEstimatedCost", "description": "All-in estimated repair cost in dollars (parts + labor)"},
+    {"name": "partsSubtotal", "description": "Parts cost subtotal — so the user can compare shop quotes"},
+    {"name": "laborSubtotal", "description": "Labor cost subtotal based on flat-rate hours × shop rate"},
+    {"name": "laborHours", "description": "Estimated flat-rate hours for this repair type"},
+    {"name": "repairVsReplaceSignal", "description": "Flag when repair cost approaches 50–75% of vehicle value — recommends replacement instead"}
+  ],
+  "aioProseQuestions": [
+    "How much does it cost to repair an engine?",
+    "Is it cheaper to rebuild or replace an engine?",
+    "How much does a head gasket repair cost?",
+    "What is the average labor rate for engine repair?",
+    "How do I know if my engine is worth fixing?"
+  ],
+  "aioIncludesExcludes": "Estimate covers parts and labor for the selected repair type; excludes diagnostic fees, towing, rental car, taxes, and any secondary repairs uncovered during teardown.",
+  "aioDisclaimer": "Actual shop quotes vary by region and vehicle condition — use this estimate as a negotiating baseline, not a final price.",
+  "verifiedGovUrls": []
+}

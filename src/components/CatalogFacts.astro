@@ -1,0 +1,52 @@
+---
+// Unique Data block: what our catalog shows for this page's slice of videos. Data from scripts/lib/catalog-facts.mjs.
+import hub from '../lib/hub-data-all.json';
+
+interface Props { slug: string; hideCreators?: boolean }
+const { slug, hideCreators: hc = false } = Astro.props;
+// Kids page never names creators: top kids-tagged creators include general-audience channels (2026-11-10).
+const hideCreators = hc || slug === 'kids';
+const f = (hub as any).facts?.[slug];
+const date = (hub as any).catalogDate;
+const fmt = (n: number) => n.toLocaleString('en-US');
+const what = f?.label === 'ASMR' ? 'videos' : `${f?.label} videos`;
+const diff = f ? f.medianMin - f.catalogMedian : 0;
+const compare = !f || Math.abs(diff) < 3 ? 'about the same as' : diff > 0 ? 'longer than' : 'shorter than';
+// Quotable on purpose: each sentence names its subject, source and date, so it still makes sense when an AI answer
+// or a reader lifts it out alone. Every number comes from build data, never typed.
+const month = new Date(date + 'T00:00:00Z').toLocaleDateString('en-US', { month: 'long', year: 'numeric', timeZone: 'UTC' });
+const subject = !f ? '' : f.label === 'ASMR' ? 'ASMR videos' : /asmr/i.test(f.label) ? `${f.label} videos` : `${f.label} ASMR videos`;
+const lead = f && [
+  `The ASMR Registry catalog lists ${fmt(f.count)} ${subject} from ${fmt(f.creators)} creators (${month}).`,
+  `The typical (median) ${f.label === 'ASMR' ? 'ASMR video' : `${f.label} video`} in it runs ${f.medianMin} minutes${f.label === 'ASMR' ? '' : `, ${compare} the ${f.catalogMedian}-minute median across all ASMR videos in the catalog`}.`,
+  `${f.noTalking}% of these videos are labelled no talking${f.sleep < 95 ? ` and ${f.sleep}% are tagged for sleep` : ''}, based on titles and AI tags.`,
+].join(' ');
+---
+{f && (
+  <section class="cf">
+    <h2>What our catalog shows</h2>
+    <p>{lead}</p>
+    <table>
+      <caption>Length of {what} in our catalog, {date}</caption>
+      <thead><tr>{f.lengths.map(([k]: [string, number]) => <th scope="col">{k}</th>)}</tr></thead>
+      <tbody><tr>{f.lengths.map(([, v]: [string, number]) => <td>{v}%</td>)}</tr></tbody>
+    </table>
+    {!hideCreators && (
+      <p>Most {what} in our catalog come from:{' '}
+        {f.topCreators.map(([name, n, s]: [string, number, string | null], i: number) => (
+          <>{s ? <a href={`/creators/${s}/`}>{name}</a> : name} ({fmt(n)}){i < f.topCreators.length - 1 ? ', ' : '.'}</>
+        ))}
+      </p>
+    )}
+    <p class="cf-note">Counts describe what creators make, not how well it works for you. Tags are automatic and some videos are mislabelled. Updated {date}.</p>
+  </section>
+)}
+
+<style>
+  .cf { margin: 1.5rem 0; padding: 1rem 1.1rem; border: 1px solid var(--border, #2a2a3e); border-radius: 10px; background: var(--bg-2, #1a1a2e); }
+  .cf h2 { margin-top: 0; }
+  .cf table { width: 100%; border-collapse: collapse; margin: 0.5rem 0; font-size: 0.92rem; }
+  .cf caption { text-align: left; font-size: 0.85rem; color: var(--text-3, #999); padding-bottom: 0.3rem; }
+  .cf th, .cf td { padding: 0.35rem 0.4rem; border-bottom: 1px solid var(--border, #2a2a3e); text-align: left; }
+  .cf-note { font-size: 0.82rem; color: var(--text-3, #999); margin-bottom: 0; }
+</style>

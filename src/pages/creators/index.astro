@@ -1,0 +1,214 @@
+---
+export const prerender = false;
+
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import BreadcrumbNav from '../../components/BreadcrumbNav.astro';
+import ContentSections from '../../components/ContentSections.astro';
+import { getPagesByType } from '../../lib/ledger';
+import { getContent } from '../../lib/page-content';
+import creatorData from '../../lib/creators-data.json';
+
+const page = getPagesByType('CREATOR_LIST')[0];
+if (!page) return new Response(null, { status: 404 });
+
+const content = getContent(page.slug);
+if (!content || content.status !== 'published') return new Response(null, { status: 404 });
+
+Astro.response.headers.set('Cache-Control', 'public, max-age=3600, stale-while-revalidate=86400');
+
+const title = content.title || 'ASMR Artists — Top Creators';
+const desc = content.metaDescription || `${page.totalDemand.toLocaleString()} monthly searches for ASMR artists. Browse creators by style and trigger specialty.`;
+const h1 = content.h1 || 'ASMR Artists';
+
+const creators: any[] = Object.entries(creatorData as Record<string, any>)
+  .map(([slug, c]) => ({ slug, name: c.name, trigger_specialties: JSON.stringify((c.triggers || []).slice(0, 3).map((t: any) => t[0])), style_tags: JSON.stringify(c.tags), editorial_bio: c.bio,
+    count: c.count, medianMin: c.medianMin,
+    mouth: Math.round(100 * ((c.triggers || []).filter((t: any) => t[0] === 'mouth-sounds' || t[0] === 'eating-sounds').reduce((n: number, t: any) => n + t[1], 0)) / c.count), noTalk: c.count >= 30 ? Math.round(100 * c.noTalkingCount / c.count) : null }))
+  .sort((x, y) => x.name.localeCompare(y.name));
+
+const SITE = 'https://asmrregistry.com';
+const breadcrumbs = [
+  { name: 'Home', url: '/' },
+  { name: 'Creators', url: '/creators/' },
+];
+
+const faqItems = content.faqItems || [];
+const jsonLd: any[] = [
+  {
+    "@type": "CollectionPage",
+    "@id": `${SITE}/creators/#collection`,
+    "name": title,
+    "description": desc,
+    "url": `${SITE}/creators/`,
+  },
+  {
+    "@type": "BreadcrumbList",
+    "itemListElement": breadcrumbs.map((b, i) => ({
+      "@type": "ListItem", "position": i + 1,
+      "name": b.name, "item": `${SITE}${b.url}`,
+    })),
+  },
+];
+
+if (faqItems.length > 0) {
+  jsonLd.push({
+    "@type": "FAQPage",
+    "mainEntity": faqItems.map(f => ({
+      "@type": "Question", "name": f.question,
+      "acceptedAnswer": { "@type": "Answer", "text": f.answer },
+    })),
+  });
+}
+---
+
+<BaseLayout title={title} description={desc} canonical="/creators/" jsonLd={jsonLd}>
+  <BreadcrumbNav items={breadcrumbs} />
+
+  <h1>{h1}</h1>
+
+  {content.introHtml ? (
+    <div class="intro" set:html={content.introHtml} />
+  ) : (
+    <p class="intro-fallback">{page.totalDemand.toLocaleString()} people search for ASMR artists every month.</p>
+  )}
+
+  {creators.length > 0 && (
+    <section>
+      <h2>Browse creators</h2>
+      {(() => {
+        // Build unique trigger list across all creators
+        const allTriggers = new Set();
+        creators.forEach(c => {
+          const specs = JSON.parse(c.trigger_specialties || '[]');
+          specs.forEach(s => allTriggers.add(s));
+        });
+        const triggers = [...allTriggers].sort();
+        return triggers.length > 1 ? (
+          <div class="filter-bar" id="filter-bar">
+            <button class="filter-btn active" data-trigger="all">All</button>
+            {triggers.map(t => (
+              <button class="filter-btn" data-trigger={t}>{t.replace(/-/g, ' ')}</button>
+            ))}
+          </div>
+        ) : null;
+      })()}
+      <form class="creator-tools" id="creator-tools">
+        <label>Typical video length
+          <select name="len"><option value="">Any</option><option value="0-20">Under 20 min</option><option value="20-40">20 to 40 min</option><option value="40-999">Over 40 min</option></select>
+        </label>
+        <label class="ct-check"><input type="checkbox" name="nomouth" /> Few mouth or eating sounds (under 5% tagged)</label>
+        <label class="ct-check"><input type="checkbox" name="quiet" /> Many videos labelled no talking (25%+)</label>
+        <label>Sort
+          <select name="sort"><option value="name">A to Z</option><option value="count">Most videos in our catalog</option><option value="len">Longest typical video</option></select>
+        </label>
+      </form>
+      <p class="ct-count" id="ct-count" aria-live="polite"></p>
+      <div class="creator-grid" id="creator-grid">
+        {creators.map(c => {
+          const specs = JSON.parse(c.trigger_specialties || '[]');
+          return (
+            <a href={`/creators/${c.slug}/`} class="creator-card" data-triggers={specs.join(',')} data-name={c.name.toLowerCase()} data-count={c.count} data-len={c.medianMin} data-nt={c.noTalk ?? ''} data-mouth={c.mouth}>
+              <h3>{c.name}</h3>
+              {specs.length > 0 && (
+                <p class="specs">{specs.slice(0, 3).map(s => s.replace(/-/g, ' ')).join(' · ')}</p>
+              )}
+              <p class="ct-facts">{c.count} videos · typically {c.medianMin} min{c.noTalk ? ` · ${c.noTalk}% labelled no talking` : ''}</p>
+            </a>
+          );
+        })}
+      </div>
+    </section>
+  )}
+
+  {faqItems.length > 0 && (
+    <section class="faq">
+      <h2>Frequently asked questions</h2>
+      {faqItems.map(f => (
+        <details>
+          <summary>{f.question}</summary>
+          <p>{f.answer}</p>
+        </details>
+      ))}
+    </section>
+  )}
+
+  <ContentSections
+    proTips={content.proTips}
+    crossLinks={content.crossLinks}
+    references={content.references}
+    currentSlug={page.slug}
+  />
+</BaseLayout>
+
+<style>
+  .intro { font-size: 1.05rem; line-height: 1.75; color: var(--text-1); margin: 0 0 1.5rem; }
+  .intro-fallback { font-size: 1.05rem; color: var(--text-2); }
+  section { margin: 2rem 0; }
+  section h2 { font-size: 1.15rem; margin: 0 0 0.75rem; }
+  .creator-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 0.75rem; }
+  .creator-card {
+    display: block; padding: 1rem; background: var(--bg-2);
+    border: 1px solid var(--border); border-radius: 8px;
+    text-decoration: none; color: inherit; transition: border-color 0.15s;
+  }
+  .creator-card:hover { border-color: var(--accent); }
+  .creator-card h3 { font-size: 1rem; margin: 0 0 0.25rem; }
+  .creator-card .specs { font-size: 0.8rem; color: var(--text-3); margin: 0; text-transform: capitalize; }
+  .filter-bar { display: flex; flex-wrap: wrap; gap: 0.4rem; margin: 0 0 1rem; }
+  .filter-btn { padding: 0.3rem 0.75rem; border: 1px solid var(--border); border-radius: 20px; background: var(--bg-2); color: var(--text-2); font-size: 0.8rem; cursor: pointer; text-transform: capitalize; transition: all 0.15s; }
+  .filter-btn:hover { border-color: var(--accent); color: var(--accent); }
+  .filter-btn.active { background: var(--accent); border-color: var(--accent); color: #fff; }
+  .creator-card[hidden] { display: none; }
+  .creator-tools { display: flex; flex-wrap: wrap; gap: 0.5rem 1.25rem; align-items: end; margin: 0 0 0.75rem; }
+  .creator-tools label { display: flex; flex-direction: column; gap: 0.25rem; font-size: 0.85rem; color: var(--text-2); }
+  .creator-tools select { min-height: 44px; }
+  .creator-tools .ct-check { flex-direction: row; align-items: center; gap: 0.4rem; min-height: 44px; }
+  .ct-count, .creator-card .ct-facts { font-size: 0.8rem; color: var(--text-3); margin: 0.25rem 0 0; }
+  .faq details { border-bottom: 1px solid var(--border); }
+  .faq summary { padding: 0.75rem 0; cursor: pointer; font-weight: 500; color: var(--text-1); list-style: none; }
+  .faq summary::before { content: '+ '; color: var(--accent); font-weight: 700; }
+  .faq details[open] summary::before { content: '− '; }
+  .faq p { padding: 0 0 0.75rem; color: var(--text-2); line-height: 1.6; }
+</style>
+
+<script>
+  // Trigger chips, length, no-talking share and sort all combine. Card data comes from the creator snapshot.
+  const bar = document.getElementById('filter-bar');
+  const grid = document.getElementById('creator-grid');
+  const tools = document.getElementById('creator-tools') as HTMLFormElement | null;
+  const count = document.getElementById('ct-count');
+  let trigger = 'all';
+  function apply() {
+    if (!grid || !tools) return;
+    const f = new FormData(tools);
+    const len = String(f.get('len') || '').split('-').map(Number);
+    const quiet = !!f.get('quiet');
+    const nomouth = !!f.get('nomouth');
+    const sort = String(f.get('sort') || 'name');
+    const cards = [...grid.querySelectorAll<HTMLElement>('.creator-card')];
+    let shown = 0;
+    for (const card of cards) {
+      const d = card.dataset;
+      const ok = (trigger === 'all' || (d.triggers || '').split(',').includes(trigger))
+        && (len.length < 2 || (Number(d.len) >= len[0] && Number(d.len) < len[1]))
+        && (!quiet || (d.nt !== '' && Number(d.nt) >= 25))
+        && (!nomouth || Number(d.mouth) < 5);
+      card.hidden = !ok;
+      if (ok) shown++;
+    }
+    cards.sort((x, y) => sort === 'count' ? Number(y.dataset.count) - Number(x.dataset.count)
+      : sort === 'len' ? Number(y.dataset.len) - Number(x.dataset.len) : (x.dataset.name || '').localeCompare(y.dataset.name || ''));
+    cards.forEach(c => grid.appendChild(c));
+    if (count) count.textContent = shown + ' of ' + cards.length + ' creators';
+  }
+  bar?.addEventListener('click', e => {
+    const btn = (e.target as HTMLElement).closest('.filter-btn') as HTMLButtonElement | null;
+    if (!btn || !bar) return;
+    bar.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    trigger = btn.dataset.trigger || 'all';
+    apply();
+  });
+  tools?.addEventListener('change', apply);
+  apply();
+</script>

@@ -1,0 +1,178 @@
+---
+/**
+ * Shared sections for content pages: proTips, crossLinks, references.
+ * Falls back to hardcoded cross-links when no data-driven links exist.
+ */
+import { getPageBySlug, loadLedger } from '../lib/ledger';
+import contentStore from '../lib/asmr-page-content.json';
+import { liveHref } from '../lib/page-content';
+
+import DataChart from './DataChart.astro';
+import AffiliateBox from './AffiliateBox.astro';
+
+interface Props {
+  sections?: { heading: string; content: string }[];
+  dataset?: string;
+  proTips?: string[];
+  crossLinks?: { label: string; href?: string; slug?: string }[];
+  references?: { label: string; url: string }[];
+  currentSlug?: string;
+  pageType?: string;
+}
+
+const { sections = [], dataset, proTips = [], crossLinks = [], references = [], currentSlug, pageType } = Astro.props;
+
+// Build set of all valid internal hrefs — ledger pages + published content slugs + static nav
+const _ledger = loadLedger();
+const _publishedSlugs = Object.entries(contentStore as Record<string, {status?: string}>)
+  .filter(([, v]) => v.status === 'published')
+  .map(([slug]) => `/${slug}/`);
+const VALID_HREFS = new Set<string>([
+  '/', '/triggers/', '/guides/', '/best/', '/gear/', '/search/', '/blog/', '/videos/', '/creators/', '/author/zoe-harlow/',
+  ..._ledger.pages.map(p => p.targetUrl),
+  ..._publishedSlugs,
+]);
+
+const FALLBACK_BY_TYPE: Record<string, { label: string; href: string }[]> = {
+  TRIGGER_HUB: [
+    { label: 'All Triggers', href: '/triggers-overview/' },
+    { label: 'Sleep ASMR', href: '/sleep/' },
+    { label: 'Study ASMR', href: '/study/' },
+    { label: 'Best Of Lists', href: '/best/' },
+    { label: 'Search Videos', href: '/asmr-videos/' },
+  ],
+  INTENT_HUB: [
+    { label: 'Whispering', href: '/whispering/' },
+    { label: 'Rain Sounds', href: '/rain/' },
+    { label: 'Tapping', href: '/tapping/' },
+    { label: 'Guides', href: '/guides/' },
+    { label: 'Search Videos', href: '/asmr-videos/' },
+  ],
+  INFO_GUIDE: [
+    { label: 'All Guides', href: '/guides/' },
+    { label: 'ASMR for Sleep', href: '/sleep/' },
+    { label: 'Trigger Types', href: '/triggers-overview/' },
+    { label: 'ASMR Gear', href: '/gear/' },
+    { label: 'Search Videos', href: '/asmr-videos/' },
+  ],
+  BEST_LIST: [
+    { label: 'All Best Of Lists', href: '/best/' },
+    { label: 'Sleep ASMR', href: '/sleep/' },
+    { label: 'Gear Guides', href: '/gear/' },
+    { label: 'All Triggers', href: '/triggers-overview/' },
+    { label: 'Search Videos', href: '/asmr-videos/' },
+  ],
+  GEAR: [
+    { label: 'All Gear', href: '/gear/' },
+    { label: 'Best Of Lists', href: '/best/' },
+    { label: 'ASMR Guides', href: '/guides/' },
+    { label: 'Search Videos', href: '/asmr-videos/' },
+  ],
+};
+
+const DEFAULT_FALLBACK = [
+  { label: 'All Triggers', href: '/triggers-overview/' },
+  { label: 'ASMR Guides', href: '/guides/' },
+  { label: 'Best Of Lists', href: '/best/' },
+  { label: 'Gear Guides', href: '/gear/' },
+  { label: 'Search Videos', href: '/asmr-videos/' },
+];
+
+const FALLBACK_LINKS = pageType && FALLBACK_BY_TYPE[pageType] ? FALLBACK_BY_TYPE[pageType] : DEFAULT_FALLBACK;
+
+const normalizedLinks = crossLinks.flatMap(l => {
+  if (l.slug) {
+    const page = getPageBySlug(l.slug);
+    return page ? [{ label: l.label, href: page.targetUrl }] : [];
+  }
+  if (l.href && VALID_HREFS.has(l.href)) return [{ label: l.label, href: l.href }];
+  return []; // drop invalid href — broken link physically cannot render
+});
+// A crossLink to a merged page points at its redirect target (liveHref); duplicates and self-links are dropped.
+const seenHref = new Set<string>();
+const displayLinks = normalizedLinks.length > 0
+  ? normalizedLinks.map(l => ({ ...l, href: liveHref(l.href) }))
+      .filter(l => l.href.replace(/^\/|\/$/g, '') !== currentSlug && !seenHref.has(l.href) && seenHref.add(l.href))
+  : FALLBACK_LINKS;
+
+---
+
+{sections.length > 0 && (
+  <div class="content-sections">
+    {sections.map(s => (
+      <section class="content-section">
+        <h2>{s.heading}</h2>
+        <div class="content-section-body" set:html={s.content} />
+      </section>
+    ))}
+  </div>
+)}
+
+{dataset && <DataChart id={dataset} />}
+
+{proTips.length > 0 && sections.length === 0 && (
+  <section class="pro-tips">
+    <h2>Quick tips</h2>
+    <ul>
+      {proTips.map(tip => (
+        <li>{tip}</li>
+      ))}
+    </ul>
+  </section>
+)}
+
+<AffiliateBox slug={currentSlug} />
+
+<section class="cross-section">
+  <h2>{crossLinks.length > 0 ? 'Related pages' : 'Explore ASMR'}</h2>
+  <div class="related-links">
+    {displayLinks.map(l => (
+      <a href={l.href} class="related-link">{l.label} &rarr;</a>
+    ))}
+  </div>
+</section>
+
+{references.length > 0 && (
+  <section class="references">
+    <h2>Sources</h2>
+    <ul>
+      {references.map(r => (
+        <li>
+          {r.url ? (
+            <a href={r.url} target="_blank" rel="noopener noreferrer">{r.label}</a>
+          ) : (
+            <span>{r.label}</span>
+          )}
+        </li>
+      ))}
+    </ul>
+  </section>
+)}
+
+<style>
+  .content-section { margin: 2rem 0; }
+  .content-section h2 { font-size: 1.25rem; margin: 0 0 0.6rem; }
+  .content-section-body { font-size: 1.05rem; line-height: 1.8; color: var(--text-1); }
+  .content-section-body :global(p) { margin: 0 0 1rem; }
+  .content-section-body :global(ul), .content-section-body :global(ol) { padding-left: 1.25rem; margin: 0 0 1rem; }
+  .content-section-body :global(li) { margin: 0.4rem 0; line-height: 1.6; }
+  .pro-tips { margin: 2rem 0; }
+  .pro-tips h2 { font-size: 1.15rem; margin: 0 0 0.75rem; }
+  .pro-tips ul { padding-left: 1.25rem; margin: 0; }
+  .pro-tips li { margin: 0.4rem 0; line-height: 1.6; color: var(--text-2); }
+  .cross-section { margin: 2.5rem 0 0; }
+  .cross-section h2 { font-size: 1.15rem; margin: 0 0 0.75rem; }
+  .related-links { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+  .related-link {
+    padding: 0.5rem 1rem; background: var(--bg-2); border: 1px solid var(--border);
+    border-radius: 999px; text-decoration: none; color: var(--accent); font-size: 0.9rem;
+    transition: background 0.15s;
+  }
+  .related-link:hover { background: var(--bg-3); }
+  .references { margin: 2rem 0; }
+  .references h2 { font-size: 1.15rem; margin: 0 0 0.75rem; }
+  .references ul { padding-left: 1.25rem; margin: 0; }
+  .references li { margin: 0.3rem 0; line-height: 1.5; font-size: 0.9rem; color: var(--text-3); }
+  .references a { color: var(--accent); text-decoration: none; }
+  .references a:hover { text-decoration: underline; }
+</style>

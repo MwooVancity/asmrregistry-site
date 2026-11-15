@@ -1,0 +1,184 @@
+---
+export const prerender = true;
+import audit from '../../state/site-audit-asmr.json';
+
+const { stats, findings, thinPages } = audit;
+const p0 = findings.filter(f => f.severity === 'P0');
+const p1 = findings.filter(f => f.severity === 'P1');
+const p2 = findings.filter(f => f.severity === 'P2');
+
+// Group P0 by category for summary
+const p0Groups: Record<string, typeof findings> = {};
+for (const f of p0) {
+  (p0Groups[f.category] ??= []).push(f);
+}
+const p1Groups: Record<string, typeof findings> = {};
+for (const f of p1) {
+  (p1Groups[f.category] ??= []).push(f);
+}
+
+const score = Math.round(100 - (stats.p0 * 2 + stats.p1 * 0.5 + stats.p2 * 0.1));
+const health = score >= 85 ? 'GOOD' : score >= 60 ? 'WARN' : 'CRITICAL';
+const healthColor = health === 'GOOD' ? '#22c55e' : health === 'WARN' ? '#f59e0b' : '#ef4444';
+
+const fmt = (n: number) => n.toLocaleString();
+const pct = (n: number) => ((n / stats.total) * 100).toFixed(0) + '%';
+---
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>ASMR Registry — Site Audit</title>
+  <meta name="robots" content="noindex" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: ui-monospace, monospace; background: #0f0f0f; color: #e5e5e5; padding: 24px; font-size: 13px; line-height: 1.5; }
+    h1 { font-size: 20px; font-weight: 700; margin-bottom: 4px; }
+    .meta { color: #888; margin-bottom: 24px; font-size: 11px; }
+    .score { font-size: 48px; font-weight: 800; margin-bottom: 4px; }
+    .health { display: inline-block; padding: 2px 10px; border-radius: 4px; font-size: 12px; font-weight: 700; color: #000; margin-bottom: 20px; }
+    .stats { display: flex; gap: 24px; flex-wrap: wrap; margin-bottom: 28px; }
+    .stat { background: #1a1a1a; border: 1px solid #2a2a2a; border-radius: 6px; padding: 12px 18px; min-width: 120px; }
+    .stat-n { font-size: 28px; font-weight: 800; }
+    .stat-l { font-size: 11px; color: #888; margin-top: 2px; }
+    .p0 { color: #ef4444; } .p1 { color: #f59e0b; } .p2 { color: #60a5fa; } .ok { color: #22c55e; }
+    section { margin-bottom: 32px; }
+    h2 { font-size: 14px; font-weight: 700; border-bottom: 1px solid #2a2a2a; padding-bottom: 6px; margin-bottom: 12px; }
+    .group { margin-bottom: 16px; }
+    .group-header { background: #1a1a1a; padding: 6px 12px; border-radius: 4px 4px 0 0; border: 1px solid #2a2a2a; font-weight: 700; display: flex; justify-content: space-between; }
+    .row { border: 1px solid #1e1e1e; border-top: 0; padding: 5px 12px; display: flex; gap: 12px; align-items: baseline; }
+    .row:hover { background: #1a1a1a; }
+    .slug { color: #a78bfa; min-width: 220px; text-decoration: none; }
+    .slug:hover { text-decoration: underline; }
+    .detail { color: #aaa; flex: 1; }
+    .thin-table { width: 100%; border-collapse: collapse; }
+    .thin-table th { text-align: left; padding: 4px 10px; background: #1a1a1a; border: 1px solid #2a2a2a; color: #888; font-weight: 600; }
+    .thin-table td { padding: 4px 10px; border: 1px solid #1e1e1e; }
+    .thin-table tr:hover td { background: #1a1a1a; }
+    .bar { background: #2a2a2a; height: 6px; border-radius: 3px; flex: 1; overflow: hidden; }
+    .bar-fill { height: 100%; border-radius: 3px; background: #f59e0b; }
+    .updated { font-size: 10px; color: #555; margin-top: 32px; }
+  </style>
+</head>
+<body>
+  <h1>ASMR Registry — Site Audit</h1>
+  <div class="meta">Regenerate: <code>node tools/site-audit.mjs</code> then rebuild. Last run: {new Date(audit.generatedAt).toLocaleString()}</div>
+
+  <div class="score" style={`color:${healthColor}`}>{score}</div>
+  <div class="health" style={`background:${healthColor}`}>{health}</div>
+
+  <div class="stats">
+    <div class="stat">
+      <div class="stat-n">{fmt(stats.total)}</div>
+      <div class="stat-l">Published Pages</div>
+    </div>
+    <div class="stat">
+      <div class="stat-n p0">{fmt(stats.p0)}</div>
+      <div class="stat-l">P0 Blockers</div>
+    </div>
+    <div class="stat">
+      <div class="stat-n p1">{fmt(stats.p1)}</div>
+      <div class="stat-l">P1 Warnings</div>
+    </div>
+    <div class="stat">
+      <div class="stat-n p2">{fmt(stats.p2)}</div>
+      <div class="stat-l">P2 Notes</div>
+    </div>
+    <div class="stat">
+      <div class="stat-n" style="color:#f97316">{fmt(stats.thinPages)}</div>
+      <div class="stat-l">Thin Pages (&lt;2000w)</div>
+    </div>
+    <div class="stat">
+      <div class="stat-n ok">{fmt(stats.notInLedger === 0 ? stats.total - stats.thinPages : 0)}</div>
+      <div class="stat-l">Clean Pages</div>
+    </div>
+  </div>
+
+  {stats.p0 > 0 && (
+    <section>
+      <h2 class="p0">🔴 P0 Blockers — must fix before next grind ({fmt(stats.p0)} findings)</h2>
+      {Object.entries(p0Groups).map(([cat, items]) => (
+        <div class="group">
+          <div class="group-header">
+            <span class="p0">{cat}</span>
+            <span>{items.length} pages ({pct(items.length)})</span>
+          </div>
+          {items.map(f => (
+            <div class="row">
+              <a class="slug" href={`https://asmrregistry.com${f.url}`} target="_blank">{f.slug}</a>
+              <span class="detail">{f.detail}</span>
+            </div>
+          ))}
+        </div>
+      ))}
+    </section>
+  )}
+
+  {stats.p1 > 0 && (
+    <section>
+      <h2 class="p1">🟡 P1 Warnings ({fmt(stats.p1)} findings)</h2>
+      {Object.entries(p1Groups).map(([cat, items]) => (
+        <div class="group">
+          <div class="group-header">
+            <span class="p1">{cat}</span>
+            <span>{items.length} pages</span>
+          </div>
+          {items.map(f => (
+            <div class="row">
+              <a class="slug" href={`https://asmrregistry.com${f.url}`} target="_blank">{f.slug}</a>
+              <span class="detail">{f.detail}</span>
+            </div>
+          ))}
+        </div>
+      ))}
+    </section>
+  )}
+
+  {stats.p2 > 0 && (
+    <section>
+      <h2 class="p2">🔵 P2 Notes ({fmt(stats.p2)} findings)</h2>
+      {p2.map(f => (
+        <div class="row">
+          <a class="slug" href={`https://asmrregistry.com${f.url}`} target="_blank">{f.slug}</a>
+          <span class="detail p2">[{f.category}]</span>
+          <span class="detail">{f.detail}</span>
+        </div>
+      ))}
+    </section>
+  )}
+
+  <section>
+    <h2 style="color:#f97316">Thin Pages — Extend Queue ({thinPages.length} pages, sorted thinnest first)</h2>
+    <table class="thin-table">
+      <thead>
+        <tr>
+          <th>Slug</th>
+          <th>introHtml</th>
+          <th>sections</th>
+          <th>Total</th>
+          <th>Progress to 2000w</th>
+        </tr>
+      </thead>
+      <tbody>
+        {thinPages.map(p => (
+          <tr>
+            <td><a class="slug" href={`https://asmrregistry.com/${p.slug}/`} target="_blank">{p.slug}</a></td>
+            <td class={p.introW < 500 ? 'p0' : p.introW < 1000 ? 'p1' : ''}>{fmt(p.introW)}w</td>
+            <td>{fmt(p.secW)}w</td>
+            <td class="p0">{fmt(p.totalW)}w</td>
+            <td style="min-width:120px">
+              <div style="display:flex;align-items:center;gap:8px">
+                <div class="bar"><div class="bar-fill" style={`width:${Math.min(100,(p.totalW/2000)*100)}%`}></div></div>
+                <span style="color:#888;font-size:11px">{((p.totalW/2000)*100).toFixed(0)}%</span>
+              </div>
+            </td>
+          </tr>
+        ))}
+      </tbody>
+    </table>
+  </section>
+
+  <div class="updated">Generated {new Date(audit.generatedAt).toUTCString()} · {stats.total} pages audited</div>
+</body>
+</html>

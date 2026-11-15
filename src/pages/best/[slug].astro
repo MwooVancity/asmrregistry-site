@@ -1,0 +1,181 @@
+---
+export const prerender = false;
+
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import BreadcrumbNav from '../../components/BreadcrumbNav.astro';
+import ContentSections from '../../components/ContentSections.astro';
+import RelatedPages from '../../components/RelatedPages.astro';
+import CatalogFacts from '../../components/CatalogFacts.astro';
+import SleepHeadphoneTable from '../../components/SleepHeadphoneTable.astro';
+import MicSpecTable from '../../components/MicSpecTable.astro';
+import CreatorTable from '../../components/CreatorTable.astro';
+import TopByTrigger from '../../components/TopByTrigger.astro';
+import { getPagesByType } from '../../lib/ledger';
+import { getContent } from '../../lib/page-content';
+import HUB_DATA from '../../lib/hub-data-all.json';
+import { FOOD } from '../../../scripts/lib/catalog-facts.mjs';
+
+const { slug } = Astro.params;
+if (!slug) return new Response(null, { status: 404 });
+
+const page = getPagesByType('BEST_LIST').find(p => p.slug === slug);
+if (!page) return new Response(null, { status: 404 });
+
+const content = getContent(page.slug);
+if ((content as any)?.status === 'redirected' && (content as any).redirectTo) return Astro.redirect((content as any).redirectTo, 301);
+
+Astro.response.headers.set('Cache-Control', 'public, max-age=3600, stale-while-revalidate=86400');
+
+const title = content?.title || `${page.headKeyword.split(' ').map(w => w === 'asmr' ? 'ASMR' : w.charAt(0).toUpperCase() + w.slice(1)).join(' ')} (${new Date().getFullYear()})`;
+const desc = content?.metaDescription || `Our pick for ${page.headKeyword}. Curated from ${page.totalDemand.toLocaleString()} monthly searches.`;
+const h1 = content?.h1 || page.headKeyword.split(' ').map(w => w === 'asmr' ? 'ASMR' : w.charAt(0).toUpperCase() + w.slice(1)).join(' ');
+
+// Videos come from the build snapshot (no database read per visit), matched to the page's goal. Calm goals
+// (sleep, anxiety, study) leave out eating, slime and other busy sounds the page itself tells readers to skip.
+const kw = page.headKeyword.toLowerCase();
+const hubData = HUB_DATA as any;
+const goal = /sleep/.test(kw) ? 'sleep' : /anxiety/.test(kw) ? 'anxiety' : /stud|focus/.test(kw) ? 'asmr-for-focus' : null;
+const BUSY = (v: any) => FOOD.test(v.title) || /thunder|storm|\d\s?%|white noise/i.test(v.title) || /eating|slime|cooking|fast|aggressive/.test(String(v.primary_trigger)) || /\bslime|\baggressive|\bfast asmr/i.test(v.title);
+let videos: any[] = /microphone|headphone|earbud|gear|camera|apps/.test(kw) ? []
+  : goal ? (hubData.intentHubs?.[goal]?.videos ?? []).filter((v: any) => !BUSY(v)).slice(0, 10)
+  : (hubData.formatHub ?? []).slice(0, 10);
+
+// Byline: newer of the prose date and the catalog date when the page shows catalog videos.
+const updatedOn = [content?.lastUpdated?.slice(0, 10), videos.length ? hubData.catalogDate : null].filter(Boolean).sort().pop();
+const fmt = (n: number) => n >= 1e9 ? `${(n/1e9).toFixed(1)}B` : n >= 1e6 ? `${(n/1e6).toFixed(n >= 1e7 ? 0 : 1)}M` : n >= 1000 ? `${(n/1000).toFixed(n >= 10000 ? 0 : 1)}K` : String(n);
+const durFmt = (s: number) => { if (!s) return ''; const m = Math.floor(s / 60); return m >= 60 ? `${Math.floor(m/60)}h ${m%60}m` : `${m} min`; };
+
+const SITE = 'https://asmrregistry.com';
+const breadcrumbs = [
+  { name: 'Home', url: '/' },
+  { name: 'Best Of', url: '/best/' },
+  { name: h1, url: page.targetUrl },
+];
+
+const faqItems = content?.faqItems || [];
+// Gear pages list no videos, so they get no ItemList (an empty one is invalid structured data).
+const jsonLd: any[] = [
+  ...(videos.length ? [{
+    "@type": "ItemList",
+    "@id": `${SITE}${page.targetUrl}#list`,
+    "name": title,
+    "description": desc,
+    "numberOfItems": Math.min(videos.length, 10),
+    "itemListElement": videos.slice(0, 10).map((v, i) => ({
+      "@type": "ListItem", "position": i + 1, "name": v.title, "url": `https://www.youtube.com/watch?v=${v.id}`,
+    })),
+  }] : []),
+  {
+    "@type": "BreadcrumbList",
+    "itemListElement": breadcrumbs.map((b, i) => ({
+      "@type": "ListItem", "position": i + 1, "name": b.name, "item": `${SITE}${b.url}`,
+    })),
+  },
+];
+
+if (faqItems.length > 0) {
+  jsonLd.push({
+    "@type": "FAQPage",
+    "mainEntity": faqItems.map(f => ({
+      "@type": "Question", "name": f.question,
+      "acceptedAnswer": { "@type": "Answer", "text": f.answer },
+    })),
+  });
+}
+---
+
+<BaseLayout title={title} description={desc} canonical={page.targetUrl} jsonLd={jsonLd} robots={content?.introHtml?.trim() ? undefined : 'noindex,follow'}>
+  <BreadcrumbNav items={breadcrumbs} />
+
+  <h1>{h1}</h1>
+  <p class="byline">By <a href="/about/">ASMR Registry Editorial</a>{updatedOn ? ` · Updated ${new Date(updatedOn).toLocaleDateString('en-US', {month:'long', year:'numeric', timeZone:'UTC'})}` : ''}</p>
+
+  {page.slug === 'best-asmr-youtube-channels' && <CreatorTable />}
+  {videos.length > 0 && (
+    <section>
+      <p class="list-lead">{`The ${videos.length} most watched ${goal === 'sleep' ? 'sleep ' : goal === 'anxiety' ? 'calming ' : ''}ASMR videos in our catalog by YouTube views (${(HUB_DATA as any).catalogDate}). Press play to watch here; the guide below helps you pick.`}</p>
+      <div class="ranked-list">
+        {videos.map((v, i) => (
+          <article class="ranked-item">
+            <span class="rank">#{i + 1}</span>
+            <button type="button" class="ranked-content vplay" data-v={v.id} aria-label={`Play ${v.title}`}>
+              <div class="video-thumb">
+                <img src={`https://i.ytimg.com/vi/${v.id}/mqdefault.jpg`}
+                     alt={v.title} loading="lazy" width="320" height="180" onerror="this.onerror=null;this.src=this.src.replace('maxresdefault','hqdefault')" />
+              </div>
+              <div class="ranked-info">
+                <h3>{v.title}</h3>
+                <p class="meta">
+                  {v.view_count ? `${fmt(v.view_count)} views` : ''}
+                  {v.duration_seconds ? ` · ${durFmt(v.duration_seconds)}` : ''}
+                  {v.primary_trigger ? ` · ${(v.primary_trigger as string).replace(/-/g, ' ')}` : ''}
+                </p>
+              </div>
+            </button>
+          </article>
+        ))}
+      </div>
+      {/* template-lint-ok: one finder link under each ranked list */}
+      <p class="vplay-more"><a href="/asmr-videos/">Filter every video in our catalog by length, talking and sounds in the finder</a></p>
+      <script src="/js/vplay.js" defer></script>
+    </section>
+  )}
+
+  {page.slug === 'best-asmr-videos' && <TopByTrigger />}
+  {content?.introHtml ? (
+    <div class="intro" set:html={content.introHtml} />
+  ) : (
+    <p class="intro-fallback">
+      {page.totalDemand.toLocaleString()} people search for <strong>{page.headKeyword}</strong> every month.
+      Here are our top picks based on classified data.
+    </p>
+  )}
+
+  <CatalogFacts slug={page.slug} />
+  {page.slug === 'best-sleep-headphones' && <SleepHeadphoneTable />}
+  {page.slug === 'best-binaural-microphone' && <MicSpecTable group="binaural" />}
+
+
+  {faqItems.length > 0 && (
+    <section class="faq">
+      <h2>Frequently asked questions</h2>
+      {faqItems.map(f => (
+        <details>
+          <summary>{f.question}</summary>
+          <p>{f.answer}</p>
+        </details>
+      ))}
+    </section>
+  )}
+
+  <RelatedPages slug={page.slug} exclude={(content?.crossLinks || []).map((l: any) => l.href)} />
+  <ContentSections
+    sections={content?.sections}
+    dataset={(content as any)?.dataset}
+    proTips={content?.proTips}
+    crossLinks={content?.crossLinks}
+    references={content?.references}
+    currentSlug={slug}
+    pageType="BEST_LIST"
+  />
+</BaseLayout>
+
+<style>
+  .intro { font-size: 1.05rem; line-height: 1.75; color: var(--text-1); margin: 0 0 1.5rem; }
+  .intro-fallback { font-size: 1.05rem; line-height: 1.75; color: var(--text-2); margin: 0 0 1.5rem; }
+  section { margin: 2rem 0; }
+  .ranked-list { display: flex; flex-direction: column; gap: 1rem; }
+  .ranked-item { display: flex; align-items: center; gap: 1rem; }
+  .rank { font-size: 1.5rem; font-weight: 800; color: var(--accent); min-width: 2.5rem; text-align: center; }
+  .ranked-content { display: flex; gap: 1rem; text-decoration: none; color: inherit; flex: 1; align-items: center; padding: 0.75rem; background: var(--bg-2); border: 1px solid var(--border); border-radius: 8px; transition: border-color 0.15s; }
+  .ranked-content:hover { border-color: var(--accent); }
+  .ranked-content img { border-radius: 6px; flex-shrink: 0; }
+  .ranked-info h3 { font-size: 0.95rem; margin: 0 0 0.25rem; }
+  .ranked-info .meta { font-size: 0.8rem; color: var(--text-3); margin: 0; }
+  .faq details { border-bottom: 1px solid var(--border); }
+  .faq summary { padding: 0.75rem 0; cursor: pointer; font-weight: 500; color: var(--text-1); list-style: none; }
+  .faq summary::before { content: '+ '; color: var(--accent); font-weight: 700; }
+  .faq details[open] summary::before { content: '− '; }
+  .faq p { padding: 0 0 0.75rem; color: var(--text-2); line-height: 1.6; }
+  @media (max-width: 640px) { .ranked-content { flex-direction: column; } .ranked-content img { width: 100%; height: auto; } }
+</style>

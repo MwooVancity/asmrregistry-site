@@ -1,0 +1,38 @@
+---
+// For people making ASMR: triggers with plenty of viewers' choice but few long videos, from the build snapshot.
+// Length only: it is measured, while "no talking" is a title label and undercounts ambient sounds like rain.
+import hub from '../lib/hub-data-all.json';
+import { hrefFor } from '../lib/page-content';
+
+const { catalogStats, catalogDate } = hub as any;
+const rows = catalogStats.filter((s: any) => s.count >= 100).sort((a: any, b: any) => a.over30 - b.over30).slice(0, 8);
+const label = (t: string) => t.charAt(0).toUpperCase() + t.slice(1).replace(/-/g, ' ');
+const fmt = (n: number) => n.toLocaleString('en-US');
+const [a, b] = rows;
+const most = catalogStats.filter((s: any) => s.count >= 100).reduce((x: any, y: any) => (y.over30 > x.over30 ? y : x), rows[0]);
+---
+{rows.length >= 3 && (
+<section class="mg">
+  <h2>Where long ASMR videos are scarce</h2>
+  <p>Our sleep picker only suggests videos of 30 minutes or more. In the ASMR Registry catalog ({catalogDate}), only {a.over30}% of {label(a.trigger).toLowerCase()} videos and {b.over30}% of {label(b.trigger).toLowerCase()} videos run that long, against {most.over30}% of {label(most.trigger).toLowerCase()} videos. A long, steady video in one of these triggers has far less company.</p>
+  <div class="mg-wrap">
+    <table>
+      <caption>Triggers with 100+ videos in our catalog, fewest long videos first. Length is measured; trigger tags come from titles.</caption>
+      <thead><tr><th scope="col">Trigger</th><th scope="col">Videos</th><th scope="col">Median length</th><th scope="col">30 min or longer</th></tr></thead>
+      <tbody>
+        {rows.map((s: any) => (
+          <tr><td>{hrefFor(s.trigger) ? <a href={hrefFor(s.trigger)!}>{label(s.trigger)}</a> : label(s.trigger)}</td><td>{fmt(s.count)}</td><td>{s.medianMin} min</td><td>{s.over30}%</td></tr>
+        ))}
+      </tbody>
+    </table>
+  </div>
+</section>
+)}
+
+<style>
+  .mg { margin: 2rem 0; }
+  .mg-wrap { overflow-x: auto; }
+  .mg table { width: 100%; border-collapse: collapse; font-size: 0.92rem; }
+  .mg caption { text-align: left; font-size: 0.85rem; color: var(--text-3, #999); padding-bottom: 0.3rem; }
+  .mg th, .mg td { padding: 0.35rem 0.4rem; border-bottom: 1px solid var(--border, #2a2a3e); text-align: left; }
+</style>

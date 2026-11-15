@@ -1,0 +1,66 @@
+---
+// /best/best-asmr-youtube-channels/: every creator with a page, filterable by trigger, length and recent uploads.
+// From creators-data.json (build snapshot). "Uploaded recently" uses the YouTube check date, never the build date,
+// and is left blank when that check is over 30 days old (YouTube data rule).
+import creators from '../lib/creators-data.json';
+
+const DAY = 864e5;
+const rows = Object.entries(creators as Record<string, any>).map(([slug, c]) => {
+  const triggers = (typeof c.triggers === 'string' ? JSON.parse(c.triggers) : c.triggers || []).slice(0, 2).map((t: any) => t[0]);
+  const fresh = c.checked && c.channelLatest && Date.parse(c.checked) - Date.parse(c.channelLatest) <= 60 * DAY;
+  const checkOk = c.checked && Date.now() - Date.parse(c.checked) <= 30 * DAY;
+  return { slug, name: c.name, count: c.count, med: c.medianMin, triggers, latest: checkOk ? c.channelLatest : null, active: checkOk && fresh };
+}).sort((a, b) => b.count - a.count);
+const allTriggers = [...new Set(rows.flatMap((r) => r.triggers))].sort();
+const label = (t: string) => t.replace(/-/g, ' ');
+const last = Object.values(creators as Record<string, any>).map((c) => c.checked).filter(Boolean).sort().pop();
+// Month only: checked is a UTC stamp and would read as tomorrow to US readers in the evening.
+const checked = last ? new Date(last.slice(0, 10) + 'T12:00:00Z').toLocaleDateString('en-US', { month: 'long', year: 'numeric', timeZone: 'UTC' }) : 'recently';
+---
+<section class="ct">
+  <h2>{`All ${rows.length} channels with a page here, side by side`}</h2>
+  <p>{`Video counts and lengths are from our catalog; "latest upload" is from YouTube, checked ${checked}. Triggers are the two each channel makes most, tagged from titles.`}</p>
+  <div class="ct-filters">
+    <label>Trigger <select id="ct-trig"><option value="">Any</option>{allTriggers.map((t) => <option value={t}>{label(t)}</option>)}</select></label>
+    <label><input type="checkbox" id="ct-long" /> Typical video 30 min or longer</label>
+    <label><input type="checkbox" id="ct-active" /> Uploaded in the last 60 days</label>
+    <span id="ct-n" aria-live="polite"></span>
+  </div>
+  <div class="ct-wrap">
+    <table>
+      <thead><tr><th scope="col">Channel</th><th scope="col">Videos in our catalog</th><th scope="col">Typical length</th><th scope="col">Makes most</th><th scope="col">Latest upload</th></tr></thead>
+      <tbody>
+        {rows.map((r) => (
+          <tr data-t={r.triggers.join(' ')} data-m={r.med} data-a={r.active ? '1' : ''}>
+            <td><a href={`/creators/${r.slug}/`}>{r.name}</a></td><td>{r.count.toLocaleString('en-US')}</td><td>{r.med} min</td><td>{r.triggers.map(label).join(', ')}</td><td>{r.latest ?? 'not checked'}</td>
+          </tr>
+        ))}
+      </tbody>
+    </table>
+  </div>
+  <script is:inline>
+    (() => {
+      const t = document.getElementById('ct-trig'), l = document.getElementById('ct-long'), a = document.getElementById('ct-active'), n = document.getElementById('ct-n');
+      const rows = [...document.querySelectorAll('.ct tbody tr')];
+      const run = () => {
+        let shown = 0;
+        for (const r of rows) {
+          const ok = (!t.value || r.dataset.t.split(' ').includes(t.value)) && (!l.checked || +r.dataset.m >= 30) && (!a.checked || r.dataset.a === '1');
+          r.hidden = !ok; if (ok) shown++;
+        }
+        n.textContent = shown + ' channels';
+      };
+      [t, l, a].forEach((e) => e.addEventListener('change', run)); run();
+    })();
+  </script>
+</section>
+
+<style>
+  .ct { margin: 1.5rem 0 2rem; }
+  .ct-filters { display: flex; flex-wrap: wrap; gap: 0.75rem 1.25rem; align-items: center; margin: 0.75rem 0; font-size: 0.9rem; }
+  .ct-filters select { margin-left: 0.3rem; }
+  .ct-wrap { overflow-x: auto; max-height: 34rem; overflow-y: auto; }
+  .ct table { width: 100%; border-collapse: collapse; font-size: 0.88rem; }
+  .ct th, .ct td { text-align: left; padding: 0.4rem 0.5rem; border-bottom: 1px solid var(--border); white-space: nowrap; }
+  .ct thead th { position: sticky; top: 0; background: var(--bg, #0f0f17); }
+</style>

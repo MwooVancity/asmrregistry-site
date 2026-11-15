@@ -1,0 +1,804 @@
+---
+// src/layouts/BaseLayout.astro
+import EarphoneBanner from '../components/EarphoneBanner.astro';
+import HUB from '../lib/hub-data-all.json';
+import { footerPicks } from '../lib/related';
+// Footer columns follow search demand (src/lib/related.ts), so site-wide links point at the pages people search for.
+const footTriggers = footerPicks(['TRIGGER_HUB'], 6);
+const footGoals = footerPicks(['INTENT_HUB'], 5);
+const footGuides = footerPicks(['INFO_GUIDE', 'BEST_LIST', 'GUIDE'], 5);
+interface Props {
+  title: string;
+  description: string;
+  canonical: string;
+  ogImage?: string;
+  ogType?: string;
+  robots?: string;
+  jsonLd?: object[];
+  isHomepage?: boolean;
+  /** Embed mode: no top bar, header, menu, ads or footer (used by /tools/soundscape/?embed=1). */
+  bare?: boolean;
+}
+
+const {
+  title, description, canonical,
+  ogImage = '/og-default.png',
+  ogType = 'website',
+  robots = 'index,follow,max-snippet:-1,max-image-preview:large,max-video-preview:-1',
+  jsonLd = [],
+  bare = false,
+  isHomepage = false,
+} = Astro.props;
+
+const siteUrl = 'https://asmrregistry.com';
+const fullCanonical = canonical.startsWith('http') ? canonical : (siteUrl + canonical).replace(/([^/])$/, '$1/');
+const fullOg = ogImage ? (ogImage.startsWith('http') ? ogImage : `${siteUrl}${ogImage}`) : null;
+
+const navIntents: { slug: string; label: string }[] = [];
+
+// ── Consolidated @graph schema — AUTHORITY-PROMPT Rule 6 compliance ──────────
+// One <script type="application/ld+json"> block per page; all nodes merged.
+// Author: ASMR Registry Editorial (editorial team). Article/pillar `author`
+// references point to the editorial Organization @id below; Organization is publisher.
+const siteNodes = [
+  {
+    "@type": "WebSite",
+    "@id": `${siteUrl}/#website`,
+    "name": "ASMR Registry",
+    "url": siteUrl,
+    "description": "A directory of ASMR videos sorted by trigger, listening goal and length.",
+    "publisher": { "@id": `${siteUrl}/#organization` },
+  },
+  {
+    "@type": "Organization",
+    "@id": `${siteUrl}/#organization`,
+    "name": "ASMR Registry",
+    "url": siteUrl,
+    "logo": { "@type": "ImageObject", "url": `${siteUrl}/logo.png` },
+    "description": "ASMR videos sorted by trigger, listening goal and length, with tools to find one for tonight.",
+    "knowsAbout": [
+      "Autonomous sensory meridian response",
+      "ASMR triggers",
+      "ASMR for sleep",
+      "ASMR for anxiety",
+      "ASMR for insomnia",
+      "Binaural audio",
+      "Relaxation techniques",
+    ],
+  },
+  {
+    "@type": "Organization",
+    "@id": `${siteUrl}/#editorial`,
+    "name": "ASMR Registry Editorial",
+    "url": `${siteUrl}/about/`,
+    "parentOrganization": { "@id": `${siteUrl}/#organization` },
+    "description": "The editorial team at ASMR Registry writes the site's ASMR guides from published studies and our own catalog data. Video labels come from titles and descriptions, not listening. Products are not lab-tested.",
+  },
+  {
+    "@type": "DefinedTerm",
+    "@id": `${siteUrl}/#asmr`,
+    "name": "ASMR",
+    "description": "Autonomous sensory meridian response — a tingling sensation triggered by soft sounds.",
+    "sameAs": [
+      "https://en.wikipedia.org/wiki/Autonomous_sensory_meridian_response",
+      "https://www.wikidata.org/wiki/Q4826866",
+    ],
+  },
+];
+// Strip @context from page-level nodes (they share the sitewide @context)
+const pageNodes = (jsonLd as any[]).map((item: any) => {
+  const { "@context": _ctx, ...node } = item;
+  return node;
+});
+const fullGraph = {
+  "@context": "https://schema.org",
+  "@graph": [...siteNodes, ...pageNodes],
+};
+---
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{title}</title>
+  <meta name="description" content={description}>
+  <meta name="robots" content={robots}>
+  <link rel="canonical" href={fullCanonical}>
+
+  <link rel="icon" href="/favicon.ico" sizes="32x32">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preconnect" href="https://i.ytimg.com">
+  <link rel="preconnect" href="https://www.youtube-nocookie.com">
+  <link rel="dns-prefetch" href="https://i.ytimg.com">
+  <!-- Non-blocking font load: media=print trick avoids render-blocking -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@700;800&display=swap" media="print" onload="this.media='all'">
+  <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@700;800&display=swap"></noscript>
+
+  <meta property="og:title" content={title}>
+  <meta property="og:description" content={description}>
+  {fullOg && <meta property="og:image" content={fullOg}>}
+  <meta property="og:url" content={fullCanonical}>
+  <meta property="og:type" content={ogType}>
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content={title}>
+  <meta name="twitter:description" content={description}>
+  {fullOg && <meta name="twitter:image" content={fullOg}>}
+
+  <script type="application/ld+json" set:html={JSON.stringify(fullGraph)} />
+
+  <!-- Google Analytics (GA4) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-67BKSLW1K5"></script>
+  <script is:inline>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-67BKSLW1K5');
+  </script>
+
+  <style is:global>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg:          #ffffff;
+      --bg-2:        #f5f5f7;
+      --bg-3:        #ebebf0;
+      --bg-4:        #e0e0e8;
+      --bg-hover:    #d8d8e2;
+      --text-1:      #0d0d12;
+      --text-2:      #4a4a5e;
+      --text-3:      #7a7a92;
+      --accent:      #7c6af7;
+      --accent-2:    #a898ff;
+      --accent-dim:  rgba(124,106,247,0.12);
+      --accent-glow: rgba(124,106,247,0.22);
+      --teal:        #2dd4bf;
+      --teal-dim:    rgba(45,212,191,0.10);
+      --gold:        #f59e0b;
+      --gold-dim:    rgba(245,158,11,0.10);
+      --green:       #34d399;
+      --danger:      #f87171;
+      --border:      rgba(255,255,255,0.07);
+      --border-2:    rgba(255,255,255,0.12);
+      --radius:      14px;
+      --radius-sm:   9px;
+      --radius-lg:   20px;
+      --max-w:       1120px;
+      --shadow-sm:   0 2px 8px rgba(0,0,0,0.35);
+      --shadow-md:   0 8px 32px rgba(0,0,0,0.45);
+      --shadow-lg:   0 20px 60px rgba(0,0,0,0.55);
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      background: var(--bg);
+      color: var(--text-1);
+      line-height: 1.65;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      min-height: 100vh;
+    }
+
+    a { color: var(--accent-2); text-decoration: none; transition: color 0.18s; }
+    a:hover { color: var(--accent-2); opacity: 0.8; }
+
+    img { display: block; max-width: 100%; }
+
+    /* ═══════════════════════════════════
+       ANNOUNCEMENT BAR
+    ═══════════════════════════════════ */
+    .top-bar {
+      background: var(--accent);
+      padding: 0.45rem 1.5rem;
+      text-align: center;
+      font-size: 0.78rem;
+      font-weight: 500;
+      color: #fff;
+      letter-spacing: 0.01em;
+    }
+    .top-bar a { color: #fff; text-decoration: underline; opacity: 0.85; }
+    .top-bar a:hover { opacity: 1; }
+
+    /* ═══════════════════════════════════
+       HEADER
+    ═══════════════════════════════════ */
+    .site-header {
+      position: sticky; top: 0; z-index: 200;
+      background: rgba(9,9,13,0.92);
+      backdrop-filter: blur(24px) saturate(180%);
+      -webkit-backdrop-filter: blur(24px) saturate(180%);
+      border-bottom: 1px solid var(--border);
+    }
+    .header-inner {
+      max-width: var(--max-w); margin: 0 auto;
+      padding: 0 1.5rem; height: 62px;
+      display: flex; align-items: center; gap: 2rem;
+    }
+    .site-logo {
+      display: flex; align-items: center; gap: 0.6rem;
+      font-size: 1.1rem; font-weight: 700; color: var(--text-1);
+      flex-shrink: 0; letter-spacing: -0.02em;
+    }
+    .site-logo:hover { color: var(--accent-2); opacity: 1; }
+    .logo-mark {
+      width: 30px; height: 30px; border-radius: 8px;
+      background: linear-gradient(135deg, var(--accent) 0%, var(--teal) 100%);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 15px; flex-shrink: 0;
+    }
+    .logo-text { color: #f4f4f8; } /* header is always dark, so the word mark stays light in both themes */
+    .logo-text em { color: var(--accent-2); font-style: normal; }
+
+    .header-nav {
+      display: flex; gap: 0.1rem; flex: 1; overflow-x: auto;
+      scrollbar-width: none;
+    }
+    .header-nav::-webkit-scrollbar { display: none; }
+    .header-nav a {
+      color: var(--text-2); font-size: 0.875rem; font-weight: 500;
+      padding: 0.6rem 0.8rem; border-radius: 999px; white-space: nowrap;
+      transition: all 0.18s;
+    }
+    .header-nav a:hover { color: var(--text-1); background: var(--bg-3); opacity: 1; }
+
+    .header-actions {
+      display: flex; align-items: center; gap: 0.75rem; flex-shrink: 0;
+    }
+    .btn-outline {
+      font-size: 0.8rem; font-weight: 600; padding: 0.45rem 1rem;
+      border: 1px solid var(--border-2); border-radius: 999px;
+      color: var(--text-2); background: transparent;
+      transition: all 0.18s; cursor: pointer; white-space: nowrap;
+    }
+    .btn-outline:hover { border-color: var(--accent); color: var(--accent-2); background: var(--accent-dim); opacity: 1; }
+
+    /* Hamburger */
+    /* Touch screens: the menu button gets a 44px tap area (phone check 2026-11-04 measured 24px). */
+    @media (pointer: coarse) { .hamburger { min-width: 44px; min-height: 44px; } }
+    .hamburger {
+      display: none; flex-direction: column; gap: 5px;
+      background: none; border: none; cursor: pointer; padding: 4px;
+    }
+    .hamburger span {
+      display: block; width: 22px; height: 2px;
+      background: var(--text-2); border-radius: 2px; transition: all 0.25s;
+    }
+    .hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    .hamburger.open span:nth-child(2) { opacity: 0; }
+    .hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+    /* Mobile menu */
+    .header-nav.open {
+      display: flex; position: fixed; inset: 62px 0 0 0; z-index: 199;
+      background: var(--bg); border-top: 1px solid var(--border);
+      overflow-y: auto; flex-direction: column; padding: 1.5rem;
+    }
+    .header-nav.open a {
+      display: block; padding: 1rem 0; font-size: 1.1rem; font-weight: 500;
+      color: var(--text-1); border-bottom: 1px solid var(--border);
+    }
+    .header-nav.open a:last-child { border-bottom: none; }
+
+    /* ═══════════════════════════════════
+       MAIN LAYOUT
+    ═══════════════════════════════════ */
+    .site-main {
+      max-width: var(--max-w); margin: 0 auto;
+      padding: 2.5rem 1.5rem 5rem;
+    }
+
+    /* ═══════════════════════════════════
+       TYPOGRAPHY
+    ═══════════════════════════════════ */
+    h1 {
+      font-size: clamp(1.75rem, 4vw, 2.5rem);
+      font-weight: 700; line-height: 1.2;
+      letter-spacing: -0.025em;
+      margin-bottom: 0.75rem;
+    }
+    h2 {
+      font-size: 1.3rem; font-weight: 600;
+      line-height: 1.3; margin: 2.5rem 0 1rem;
+      color: var(--text-1);
+    }
+    h3 { font-size: 1.05rem; font-weight: 600; line-height: 1.35; margin: 1.5rem 0 0.6rem; }
+    p { color: var(--text-2); margin-bottom: 1rem; }
+
+    .section-label {
+      font-size: 0.72rem; font-weight: 700; letter-spacing: 0.1em;
+      text-transform: uppercase; color: var(--accent-2);
+      display: flex; align-items: center; gap: 0.5rem; margin-bottom: 1rem;
+    }
+    .section-label::after {
+      content: ''; flex: 1; height: 1px; background: var(--border);
+    }
+
+    /* ═══════════════════════════════════
+       CARDS
+    ═══════════════════════════════════ */
+    .card {
+      background: var(--bg-3);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 1.5rem;
+      transition: border-color 0.2s, box-shadow 0.2s, transform 0.2s;
+    }
+    .card:hover {
+      border-color: var(--border-2);
+      box-shadow: var(--shadow-md);
+      transform: translateY(-2px);
+    }
+    .card a { color: inherit; }
+    .card h2, .card h3 { margin-top: 0; }
+
+    /* ═══════════════════════════════════
+       INTENT / CATEGORY GRID
+    ═══════════════════════════════════ */
+    .intent-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      gap: 1rem;
+    }
+    .intent-card {
+      background: var(--bg-3);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 1.5rem 1.5rem 1.25rem;
+      transition: all 0.22s;
+      display: block; color: inherit;
+      position: relative; overflow: hidden;
+    }
+    .intent-card::before {
+      content: ''; position: absolute; inset: 0;
+      background: linear-gradient(135deg, var(--accent-dim) 0%, transparent 60%);
+      opacity: 0; transition: opacity 0.22s;
+    }
+    .intent-card:hover { border-color: var(--accent); transform: translateY(-3px); box-shadow: 0 0 0 1px var(--accent), var(--shadow-md); opacity: 1; }
+    .intent-card:hover::before { opacity: 1; }
+    .intent-card .card-icon { font-size: 1.75rem; margin-bottom: 0.75rem; display: block; }
+    .intent-card h2 { font-size: 1.05rem; margin: 0 0 0.4rem; color: var(--text-1); position: relative; }
+    .intent-card p { font-size: 0.85rem; color: var(--text-3); margin: 0; position: relative; line-height: 1.5; }
+    .intent-card .card-count {
+      position: relative; margin-top: 1rem;
+      font-size: 0.75rem; font-weight: 600; color: var(--accent-2);
+    }
+
+    /* ═══════════════════════════════════
+       VIDEO GRID
+    ═══════════════════════════════════ */
+    .video-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      gap: 1.25rem;
+    }
+    .video-card { border-radius: var(--radius); overflow: hidden; transition: transform 0.2s; }
+    .video-card:hover { transform: translateY(-3px); }
+    .video-card a { display: block; color: inherit; }
+    /* Video cards play in place (public/js/vplay.js) instead of linking to noindex /video/ pages. */
+    .vplay { display: block; width: 100%; padding: 0; border: 0; background: none; font: inherit; color: inherit; text-align: left; cursor: pointer; }
+    .vplay:focus-visible { outline: 2px solid var(--accent-2); outline-offset: 2px; }
+    .vplay-frame { position: relative; aspect-ratio: 16 / 9; width: 100%; }
+    .vplay-frame iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; border-radius: var(--radius); }
+    .vplay-more { margin-top: 1rem; }
+    .video-thumb {
+      aspect-ratio: 16/9; width: 100%;
+      background: var(--bg-3); overflow: hidden;
+      border-radius: var(--radius-sm); position: relative;
+    }
+    .video-thumb img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.3s; }
+    .video-card:hover .video-thumb img { transform: scale(1.04); }
+    .video-thumb .play-btn {
+      position: absolute; inset: 0; display: flex; align-items: center; justify-content: center;
+      opacity: 0; transition: opacity 0.2s;
+    }
+    .video-card:hover .play-btn { opacity: 1; }
+    .play-btn-inner {
+      width: 48px; height: 48px; background: rgba(0,0,0,0.75);
+      border-radius: 50%; display: flex; align-items: center; justify-content: center;
+      border: 2px solid rgba(255,255,255,0.6);
+      backdrop-filter: blur(4px);
+    }
+    .play-btn-inner::after { content: '▶'; font-size: 14px; color: white; margin-left: 2px; }
+    .video-card h3, .video-card .vt {
+      font-size: 0.875rem; font-weight: 500; margin: 0.7rem 0 0.25rem;
+      line-height: 1.4; color: var(--text-1);
+      display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;
+    }
+    .video-card .meta { font-size: 0.78rem; color: var(--text-3); margin: 0; }
+    .video-badge {
+      position: absolute; top: 8px; left: 8px;
+      background: var(--accent); color: white;
+      font-size: 0.68rem; font-weight: 700; letter-spacing: 0.04em;
+      padding: 0.2rem 0.5rem; border-radius: 4px;
+    }
+
+    /* ═══════════════════════════════════
+       TRIGGER GRID
+    ═══════════════════════════════════ */
+    .trigger-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+      gap: 0.625rem;
+    }
+    .trigger-item {
+      display: flex; align-items: center; justify-content: space-between;
+      background: var(--bg-3); border: 1px solid var(--border);
+      border-radius: var(--radius-sm); padding: 0.875rem 1.125rem;
+      transition: all 0.18s; color: var(--text-1);
+    }
+    .trigger-item:hover { border-color: var(--accent); background: var(--bg-4); }
+    .trigger-item .name { font-size: 0.9rem; font-weight: 500; }
+    .trigger-item .count {
+      font-size: 0.75rem; color: var(--text-3);
+      background: var(--bg-4); padding: 0.2rem 0.55rem;
+      border-radius: 999px; font-weight: 500;
+    }
+
+    /* ═══════════════════════════════════
+       STATS / DATA PANEL
+    ═══════════════════════════════════ */
+    .data-panel {
+      background: var(--bg-3);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 1.5rem; margin: 1.5rem 0;
+    }
+    .data-panel > h2 {
+      margin: 0 0 1rem; font-size: 0.75rem;
+      color: var(--text-3); text-transform: uppercase; letter-spacing: 0.08em;
+    }
+    .data-stats { display: flex; flex-wrap: wrap; gap: 2rem; }
+    .data-stat { display: flex; flex-direction: column; gap: 0.2rem; }
+    .data-stat .value {
+      font-size: 1.75rem; font-weight: 700;
+      color: var(--accent-2); line-height: 1;
+      font-variant-numeric: tabular-nums;
+    }
+    .data-stat .label { font-size: 0.78rem; color: var(--text-3); }
+
+    .stats-bar {
+      display: flex; flex-wrap: wrap; gap: 1.5rem 3rem;
+      padding: 1.25rem 1.5rem; margin: 0 0 2.5rem;
+      background: var(--bg-2); border: 1px solid var(--border);
+      border-radius: var(--radius);
+    }
+    .stats-bar-item {
+      display: flex; align-items: baseline; gap: 0.4rem;
+    }
+    .stats-bar-item .n {
+      font-size: 1.25rem; font-weight: 700; color: var(--text-1);
+      font-variant-numeric: tabular-nums;
+    }
+    .stats-bar-item .u { font-size: 0.8rem; color: var(--text-3); }
+
+    /* ═══════════════════════════════════
+       FAQ
+    ═══════════════════════════════════ */
+    .faq { margin: 2rem 0; display: flex; flex-direction: column; gap: 0.5rem; }
+    .faq details {
+      background: var(--bg-3); border: 1px solid var(--border);
+      border-radius: var(--radius-sm); overflow: hidden;
+    }
+    .faq details[open] { border-color: var(--border-2); }
+    .faq summary {
+      padding: 1.1rem 1.25rem; cursor: pointer; font-weight: 500; font-size: 0.95rem;
+      color: var(--text-1); list-style: none;
+      display: flex; align-items: center; justify-content: space-between; gap: 1rem;
+      user-select: none;
+    }
+    .faq summary::after {
+      content: '+'; font-size: 1.2rem; font-weight: 300; color: var(--text-3);
+      flex-shrink: 0; transition: transform 0.2s;
+    }
+    .faq details[open] summary::after { content: '−'; }
+    .faq summary::-webkit-details-marker { display: none; }
+    .faq details p { padding: 0 1.25rem 1.1rem; font-size: 0.9rem; color: var(--text-2); line-height: 1.7; }
+
+    /* ═══════════════════════════════════
+       CROSS-LINKS
+    ═══════════════════════════════════ */
+    .cross-links { margin: 2.5rem 0 0; }
+    .cross-links h3 {
+      font-size: 0.72rem; font-weight: 700; letter-spacing: 0.1em;
+      text-transform: uppercase; color: var(--text-3); margin-bottom: 0.875rem;
+    }
+    .tag-list { display: flex; flex-wrap: wrap; gap: 0.5rem; list-style: none; padding: 0; }
+    .tag-list a {
+      display: inline-block; padding: 0.55rem 0.875rem;
+      background: var(--bg-3); color: var(--text-2);
+      border: 1px solid var(--border); border-radius: 999px;
+      font-size: 0.82rem; font-weight: 500; transition: all 0.18s;
+    }
+    .tag-list a:hover { border-color: var(--accent); color: var(--accent-2); background: var(--accent-dim); opacity: 1; }
+
+    /* ═══════════════════════════════════
+       BREADCRUMBS
+    ═══════════════════════════════════ */
+    .breadcrumbs {
+      display: flex; align-items: center; flex-wrap: wrap; gap: 0.35rem;
+      font-size: 0.8rem; color: var(--text-3);
+      margin-bottom: 1.75rem; list-style: none; padding: 0;
+    }
+    .breadcrumbs li { display: flex; align-items: center; gap: 0.35rem; }
+    .breadcrumbs li + li::before { content: '›'; color: var(--text-3); font-size: 0.9rem; }
+    .breadcrumbs a { color: var(--text-2); transition: color 0.18s; }
+    .breadcrumbs a:hover { color: var(--accent-2); opacity: 1; }
+    .breadcrumbs [aria-current] { color: var(--text-1); }
+
+    /* ═══════════════════════════════════
+       YMYL DISCLAIMER
+    ═══════════════════════════════════ */
+    .ymyl-disclaimer {
+      background: var(--gold-dim);
+      border: 1px solid rgba(245,158,11,0.18);
+      border-radius: var(--radius-sm);
+      padding: 1rem 1.25rem; margin-bottom: 1.75rem;
+      font-size: 0.83rem; display: flex; gap: 0.75rem; align-items: flex-start;
+    }
+    .ymyl-disclaimer::before { content: '⚕️'; flex-shrink: 0; font-size: 1rem; }
+    .ymyl-disclaimer p { color: var(--text-2); margin: 0; line-height: 1.55; }
+    .ymyl-disclaimer strong { color: var(--gold); }
+
+    /* ═══════════════════════════════════
+       AUTHOR BYLINE
+    ═══════════════════════════════════ */
+    .byline {
+      font-size: 0.85rem; color: var(--text-3);
+      margin-bottom: 1rem; line-height: 1.4;
+    }
+    .byline a { color: var(--text-2); text-decoration: underline; text-underline-offset: 2px; }
+    .byline a:hover { color: var(--accent-2); opacity: 1; }
+
+    /* ═══════════════════════════════════
+       EDITORIAL ANGLE (tagline)
+    ═══════════════════════════════════ */
+    .editorial-angle {
+      font-size: 1.1rem; color: var(--text-2); line-height: 1.6;
+      border-left: 3px solid var(--accent);
+      padding: 0.5rem 0 0.5rem 1.25rem;
+      margin-bottom: 2rem;
+    }
+
+    /* ═══════════════════════════════════
+       PROSE
+    ═══════════════════════════════════ */
+    .prose { max-width: 740px; }
+    .prose h2 { margin-top: 2.5rem; border-bottom: 1px solid var(--border); padding-bottom: 0.5rem; }
+    .prose p { font-size: 1rem; line-height: 1.8; color: var(--text-2); }
+    .prose ul, .prose ol { color: var(--text-2); padding-left: 1.5rem; margin-bottom: 1rem; }
+    .prose li { margin-bottom: 0.45rem; line-height: 1.75; }
+    .prose strong { color: var(--text-1); font-weight: 600; }
+
+    /* ═══════════════════════════════════
+       HERO
+    ═══════════════════════════════════ */
+    .hero {
+      padding: 3rem 0 2.5rem;
+    }
+    .hero-eyebrow {
+      font-size: 0.75rem; font-weight: 700; letter-spacing: 0.1em;
+      text-transform: uppercase; color: var(--accent-2);
+      margin-bottom: 1rem;
+    }
+    .hero h1 {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-size: clamp(2.25rem, 5vw, 3.5rem);
+      font-weight: 800; line-height: 1.1;
+      letter-spacing: -0.02em;
+      color: var(--text-1); margin-bottom: 1rem;
+    }
+    .hero h1 .accent { color: var(--accent-2); }
+    .hero-sub {
+      font-size: 1.1rem; color: var(--text-2); max-width: 540px;
+      line-height: 1.65; margin-bottom: 0;
+    }
+
+    /* ═══════════════════════════════════
+       VIDEO PAGE
+    ═══════════════════════════════════ */
+    .video-player { margin: 1.5rem 0; border-radius: var(--radius); overflow: hidden; box-shadow: var(--shadow-md); }
+    .video-player iframe { width: 100%; aspect-ratio: 16/9; border: 0; display: block; }
+    .back-link {
+      display: inline-flex; align-items: center; gap: 0.4rem;
+      color: var(--text-2); font-size: 0.875rem; margin-bottom: 1.25rem;
+      padding: 0.4rem 0.8rem; border: 1px solid var(--border);
+      border-radius: 999px; transition: all 0.18s;
+    }
+    .back-link:hover { border-color: var(--border-2); color: var(--text-1); opacity: 1; }
+    .video-meta {
+      display: flex; flex-wrap: wrap; gap: 0.75rem; align-items: center;
+      font-size: 0.85rem; color: var(--text-3); margin: 0.75rem 0 1.5rem;
+    }
+    .video-meta span {
+      display: flex; align-items: center; gap: 0.3rem;
+      padding: 0.25rem 0.6rem; background: var(--bg-3);
+      border: 1px solid var(--border); border-radius: 999px;
+    }
+
+    /* ═══════════════════════════════════
+       CREATOR PILLS
+    ═══════════════════════════════════ */
+    .top-creators { margin: 1.5rem 0; }
+    .top-creators h3 { font-size: 0.72rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-3); margin-bottom: 0.75rem; }
+    .top-creators ul { list-style: none; padding: 0; display: flex; flex-wrap: wrap; gap: 0.45rem; }
+    .top-creators li {
+      background: var(--bg-3); border: 1px solid var(--border);
+      padding: 0.35rem 0.875rem; border-radius: 999px;
+      font-size: 0.82rem; color: var(--text-2);
+    }
+
+    /* ═══════════════════════════════════
+       DIVIDER
+    ═══════════════════════════════════ */
+    .divider {
+      border: none; border-top: 1px solid var(--border);
+      margin: 2.5rem 0;
+    }
+
+    /* ═══════════════════════════════════
+       NOTICE / EMPTY STATE
+    ═══════════════════════════════════ */
+    .notice {
+      background: var(--bg-3); border: 1px solid var(--border);
+      border-radius: var(--radius); padding: 2rem;
+      text-align: center; color: var(--text-3);
+    }
+    .notice strong { color: var(--text-2); display: block; margin-bottom: 0.5rem; font-size: 1rem; }
+
+    /* ═══════════════════════════════════
+       FOOTER
+    ═══════════════════════════════════ */
+    .site-footer {
+      border-top: 1px solid var(--border);
+      background: var(--bg-2);
+    }
+    .footer-inner {
+      max-width: var(--max-w); margin: 0 auto;
+      padding: 3.5rem 1.5rem 2rem;
+    }
+    .footer-brand { margin-bottom: 3rem; }
+    .footer-brand-logo {
+      display: flex; align-items: center; gap: 0.6rem;
+      font-size: 1.1rem; font-weight: 700; color: var(--text-1); margin-bottom: 0.75rem;
+    }
+    .footer-brand-logo .logo-mark { width: 28px; height: 28px; }
+    .footer-brand p { font-size: 0.875rem; color: var(--text-3); max-width: 320px; margin: 0; }
+    .footer-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+      gap: 2.5rem 2rem; margin-bottom: 3rem;
+    }
+    .footer-col h4 {
+      font-size: 0.7rem; font-weight: 700; text-transform: uppercase;
+      letter-spacing: 0.1em; color: var(--text-3); margin-bottom: 1rem;
+    }
+    .footer-col a {
+      display: block; color: var(--text-2); font-size: 0.875rem;
+      padding: 0.3rem 0; transition: color 0.18s;
+    }
+    .footer-col a:hover { color: var(--text-1); opacity: 1; }
+    .footer-bottom {
+      border-top: 1px solid var(--border); padding-top: 1.5rem;
+      display: flex; align-items: center; justify-content: space-between;
+      flex-wrap: wrap; gap: 0.75rem;
+    }
+    .footer-bottom p { font-size: 0.78rem; color: var(--text-3); }
+    .footer-bottom-links { display: flex; gap: 1.25rem; }
+    .footer-bottom-links a { font-size: 0.78rem; color: var(--text-3); }
+    .footer-bottom-links a:hover { color: var(--text-2); opacity: 1; }
+
+    /* ═══════════════════════════════════
+       RESPONSIVE
+    ═══════════════════════════════════ */
+    @media (max-width: 768px) {
+      .header-nav, .header-actions .btn-outline { display: none; }
+      .hamburger { display: flex; }
+      .hero h1 { font-size: 2rem; }
+      .intent-grid { grid-template-columns: 1fr 1fr; }
+      .video-grid { grid-template-columns: 1fr 1fr; }
+      .trigger-grid { grid-template-columns: 1fr; }
+      .data-stats { gap: 1.25rem; }
+      .stats-bar { gap: 1rem 2rem; }
+      .footer-grid { grid-template-columns: 1fr 1fr; gap: 2rem; }
+      .footer-bottom { flex-direction: column; align-items: flex-start; }
+      .top-bar { display: none; }
+    }
+    @media (max-width: 480px) {
+      .intent-grid { grid-template-columns: 1fr; }
+      .video-grid { grid-template-columns: 1fr; }
+      .site-main { padding: 1.5rem 1rem 4rem; }
+      .header-inner { padding: 0 1rem; }
+      .footer-inner { padding: 2.5rem 1rem 1.5rem; }
+    }
+  </style>
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8997828618122077" crossorigin="anonymous"></script>
+</head>
+<body>
+  {!bare && (<>
+  {/* template-lint-ok: site-wide top bar (chrome, not page body) */}
+  <div class="top-bar">
+    {`Over ${Math.floor((Number((HUB as any).catalogCount) || 40000) / 1000).toLocaleString("en-US")},000 ASMR videos sorted by trigger, goal and length.`} New to ASMR? <a href="/guides/what-is-asmr/">What ASMR is</a>
+  </div>
+
+  <header class="site-header">
+    <div class="header-inner">
+      <a href="/" class="site-logo">
+        <span class="logo-mark">〜</span>
+        <span class="logo-text">ASMR<em>registry</em></span>
+      </a>
+      <nav class="header-nav" aria-label="Main">
+        <a href="/asmr-videos/">Find a video</a>
+        <a href="/sleep/">Sleep</a>
+        <a href="/triggers-overview/">Triggers</a>
+        <a href="/creators/">Creators</a>
+        <a href="/guides/">Guides</a>
+        <a href="/tools/soundscape/">Soundscape</a>
+      </nav>
+      <div class="header-actions">
+        <a href="/methodology/" class="btn-outline">How it works</a>
+        <button class="hamburger" id="hamburger" aria-label="Toggle menu" aria-expanded="false">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  </>)}
+
+  <main class="site-main">
+    <slot />
+    {!bare && <EarphoneBanner />}
+  </main>
+
+  {!bare && (
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <div class="footer-brand-logo">
+          <span class="logo-mark">〜</span>
+          ASMRregistry
+        </div>
+        {/* template-lint-ok: footer brand tagline (site chrome, not page body) */}
+        <p>ASMR videos sorted by trigger, listening goal and length, with tools to find the right one.</p>
+        {/* template-lint-ok: legal disclosure and trademark statement, identical everywhere */}
+        <p>As an Amazon Associate, ASMR Registry earns from qualifying purchases. Amazon and the Amazon logo are trademarks of Amazon.com, Inc. or its affiliates.</p>
+      </div>
+      <div class="footer-grid">
+        <div class="footer-col">
+          <h4>Most searched triggers</h4>
+          {footTriggers.map((l) => <a href={l.href}>{l.label}</a>)}
+          <a href="/triggers-overview/">All triggers</a>
+        </div>
+        <div class="footer-col">
+          <h4>Listening goals</h4>
+          {footGoals.map((l) => <a href={l.href}>{l.label}</a>)}
+        </div>
+        <div class="footer-col">
+          <h4>Guides people search for</h4>
+          {footGuides.map((l) => <a href={l.href}>{l.label}</a>)}
+        </div>
+        <div class="footer-col">
+          <h4>Site</h4>
+          <a href="/best/">Best of</a>
+          <a href="/gear/">Gear</a>
+          <a href="/about/">About</a>
+          <a href="/methodology/">Methodology</a>
+          <a href="/contact/">Contact</a>
+          <a href="/privacy/">Privacy</a>
+          <a href="/terms/">Terms</a>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>© {new Date().getFullYear()} ASMRregistry. Video data from <a href="https://www.youtube.com/t/terms" rel="nofollow noopener" target="_blank">YouTube API Services</a>; trigger and intent labels are our own classification.</p>
+      </div>
+    </div>
+  </footer>
+  )}
+
+  <script src="/js/nav.js" defer></script>
+</body>
+</html>

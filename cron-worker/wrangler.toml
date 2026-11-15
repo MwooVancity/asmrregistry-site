@@ -1,0 +1,19 @@
+name = "asmrregistry-cron"
+main = "src/index.ts"
+compatibility_date = "2025-01-01"
+
+[triggers]
+# Hourly: each tick runs ONE stage (see HOUR_PLAN in index.ts) to stay under the
+# free-tier 50-subrequest/invocation cap. Sunday 03:00 UTC routes to weekly.
+crons = ["0 * * * *"]
+
+[[d1_databases]]
+binding = "DB"
+database_name = "asmr-registry"
+database_id = "4f8937a1-9629-4c8b-a343-9cfe238cc319"
+
+[vars]
+# Set secrets in Cloudflare dashboard or .dev.vars (never commit actual keys)
+# YOUTUBE_API_KEY = ""
+# DEEPSEEK_API_KEY = ""
+# D1 database bound as DB (see [[d1_databases]] above)

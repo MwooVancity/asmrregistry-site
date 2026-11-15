@@ -1,0 +1,7 @@
+{
+  "score": 90,
+  "verdict": "PASS",
+  "issues": [
+    "CTA/next-action (-10): no explicit 'what to do next' directive found in any section"
+  ]
+}

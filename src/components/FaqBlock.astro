@@ -1,0 +1,20 @@
+---
+// FaqBlock.astro
+// Only renders when given explicit, unique FAQ content (e.g. from pillar pages).
+// No more template-generated synonym-swapped FAQs — those trigger
+// Google's "scaled content abuse" / "synonymizing" spam policy.
+interface Props {
+  faqs?: { q: string; a: string }[];
+}
+const { faqs } = Astro.props;
+if (!faqs || faqs.length === 0) return;
+---
+<section class="faq">
+  <h2>Frequently Asked Questions</h2>
+  {faqs.map(f => (
+    <details>
+      <summary>{f.q}</summary>
+      <p>{f.a}</p>
+    </details>
+  ))}
+</section>

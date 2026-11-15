@@ -1,0 +1,22 @@
+/*
+  Strict-Transport-Security: max-age=31536000; includeSubDomains; preload
+  X-Content-Type-Options: nosniff
+  X-Frame-Options: SAMEORIGIN
+  Referrer-Policy: strict-origin-when-cross-origin
+  Permissions-Policy: camera=(), microphone=(), geolocation=()
+  Content-Security-Policy: default-src 'self'; script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://www.google-analytics.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; img-src 'self' https://*.r2.dev https://*.ytimg.com https://www.google-analytics.com data:; frame-src https://www.youtube-nocookie.com; connect-src 'self' https://*.turso.io https://*.r2.dev https://www.google-analytics.com https://analytics.google.com; font-src 'self' https://fonts.gstatic.com; media-src 'self' https://*.r2.dev
+  # unsafe-inline retained for GA4 inline init script only. Nav JS moved to /js/nav.js ('self').
+
+/tools/soundscape/embed/*
+  X-Frame-Options: ALLOWALL
+  Content-Security-Policy: frame-ancestors *
+
+# NOTE: /video/* indexability is governed per-page by the meta robots tag set in
+# src/pages/video/[id].astro (thin/unenriched videos emit noindex,follow). A blanket
+# X-Robots-Tag here would noindex EVERY video page, including substantive ones, and
+# would also block AI crawlers from the product. Indexability is per-page, not blanket.
+
+# Adsterra banner pages (src/components/EarphoneBanner.astro frames them). Their script and its nested ad frame come
+# from Adsterra's rotating domains, so the site-wide CSP is removed here only. Same-origin framing stays allowed.
+/ads/*
+  ! Content-Security-Policy

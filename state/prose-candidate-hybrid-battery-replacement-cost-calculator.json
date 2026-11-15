@@ -1,0 +1,147 @@
+{
+  "intro": "<p>Your check-engine light is on, the dealer says \"hybrid battery,\" and the quote has four digits. Every hybrid battery page online gives you the same $2,000-$8,000 range and leaves you to figure out the rest on your own.</p><p>This page breaks down exactly where that money goes, which battery type matches your situation, and whether the repair makes financial sense on your specific car. Every labor rate traces to <a href=\"https://www.bls.gov/oes/current/oes493023.htm\">BLS wage data for auto technicians</a>, and the regional adjustment uses live federal cost-of-living indexes.</p>",
+  "heroAnswer": "<p>Most hybrid battery replacements run <strong>$1,500 to $6,000 installed</strong>, with the spread driven almost entirely by battery type. A remanufactured pack on a Prius costs $1,500-$3,000 total. A new OEM pack at a dealer lands at $4,000-$8,000+. Adjust the vehicleType dropdown above to see how your specific car shifts those numbers.</p>",
+  "reference": [
+    {
+      "heading": "What a $4,500 Dealer Quote Actually Breaks Down To",
+      "content": "<p>A typical Prius Gen 3 dealer quote around $4,500 includes roughly $3,400 for a new OEM pack, $480-$600 in labor (3-4 hours at $120-$200/hr), and $100-$200 in shop supplies and disposal. The dealer marks up the pack 20-40% over invoice.</p><p>Independent hybrid specialists charge $80-$130/hr and often source remanufactured packs at $1,200-$2,200. Same car, same job, $1,000-$2,000 less.</p><p>Ask any shop for the battery part number before authorizing. Look it up on RockAuto or Toyota Parts Direct to confirm the invoice price. A shop quoting $0 for parts and $4,000 in labor is burying the markup.</p>"
+    },
+    {
+      "heading": "New OEM vs Remanufactured vs Refurbished: What You're Actually Buying",
+      "content": "<p>OEM new means a factory-sealed pack with new cells and a 12-24 month manufacturer warranty. Prius Gen 3: $3,400-$4,500 for the pack alone. Peace of mind, highest price.</p><p>Remanufactured means a shop disassembled an old pack, tested every cell module, replaced the bad ones, balanced the pack, and load-tested it. Reputable shops provide a 12-month warranty. Pack price: $1,200-$2,200. This is the best value tier for most owners.</p><p>Refurbished means cleaned and retested with no cell replacement. Warranty: 3-6 months. Pack price: $500-$1,200. You're buying a used battery someone wiped down.</p><p>The question that separates reman from refurb: \"How many modules did you replace, and what was the pre-test capacity?\" A shop that can't answer didn't do a real reman. Walk away.</p>"
+    },
+    {
+      "heading": "Module Repair: The $200-$800 Option Most Shops Won't Mention",
+      "content": "<p>A P0A80 code means one or more cell blocks dropped below threshold. It does not mean the entire pack is dead. Independent hybrid specialists can test individual modules and replace only the failing ones for $200-$800 total, including labor.</p><p>Module repair works best on Toyota Prius Gen 2 and Gen 3, where individual cell blocks are accessible and aftermarket modules run $30-$60 each. If the diagnostic shows 1-3 failed modules out of 28, a full pack swap is $2,000+ of unnecessary spending.</p><p>Ask the shop to show you a per-module capacity reading before authorizing a full replacement. If all or most modules test below 80% capacity, full swap makes more sense long-term. Otherwise, module repair buys you 3-7 more years at a fraction of the price. If the inverter is also flagging codes, price that separately with the <a href=\"/automotive/engine-repair-cost-calculator/\">engine repair calculator</a>.</p>"
+    },
+    {
+      "heading": "How a Shop Bills $130/hr When the Mechanic Earns $23",
+      "content": "<p>The median auto technician earns [RATE:auto_labor_hourly] per hour. That's base wages before any benefits.</p><table><tr><th>Line item</th><th>Calculation</th><th>Amount</th></tr><tr><td>Base wage</td><td>BLS median hourly</td><td>$22.74/hr</td></tr><tr><td>FICA</td><td>7.65% of wages</td><td>$1.74/hr</td></tr><tr><td>Workers' comp</td><td>~25% of wages</td><td>$5.69/hr</td></tr><tr><td>Unemployment (FUTA+SUTA)</td><td>~4% of wages</td><td>$0.91/hr</td></tr><tr><td>Health benefits</td><td>BLS ECEC allowance</td><td>$3.50/hr</td></tr><tr><td>Loaded wage</td><td>$22.74 x 1.43 burden</td><td>$32.52/hr</td></tr><tr><td>Overhead + profit (21%)</td><td>$32.52 x 1.21</td><td>$39.35/hr</td></tr><tr><td>Shop billing rate</td><td>Loaded wage x 2.5-3.5</td><td>$80-$130/hr</td></tr></table><p>Dealers apply a higher multiplier, landing at $120-$200/hr. On a 3-hour Prius job, that's $360-$600 at a dealer vs $240-$390 at an independent shop. The mechanic's skill is the same; the overhead markup is the difference.</p>"
+    },
+    {
+      "heading": "Repair or Sell: The Break-Even Math",
+      "content": "<p>Spending $4,500 on a battery for a car worth $5,000 is a losing bet. Spending $2,000 on a reman pack for a car worth $7,000 makes financial sense every time.</p><p>The threshold: if the repair quote exceeds 50% of your car's current private-party value on KBB, price out selling the car as-is. CarMax and Carvana buy hybrids with bad batteries, typically $1,000-$3,000 below good-battery value.</p><p>Prius owners get the best deal on this math. A 2012 Prius with 150k miles might be worth $7,000 with a good battery. A $2,000 reman pack restores full value. That same $2,000 on a 2010 Ford Escape Hybrid worth $4,000 is borderline.</p><p>Don't defer once the pack is diagnosed as failed. A failing battery forces the gas engine to compensate, burning 15-30% more fuel and stressing the inverter. A $200 inverter inspection today prevents a $1,500-$3,000 inverter replacement later.</p>"
+    },
+    {
+      "heading": "Replacement Pack Warranties vs the Federal Battery Warranty",
+      "content": "<p>Two separate warranties apply, and confusing them costs money. The federal warranty covers the original factory pack. The replacement warranty covers whatever pack the shop installs.</p><table><tr><th>Battery type</th><th>Typical warranty</th><th>Watch for</th></tr><tr><td>New OEM</td><td>12-24 months</td><td>Some include unlimited miles</td></tr><tr><td>Aftermarket new</td><td>6-24 months</td><td>Get it in writing; verbal doesn't count</td></tr><tr><td>Remanufactured</td><td>12 months; some shops offer 24</td><td>Ask if warranty is transferable if you sell</td></tr><tr><td>Refurbished</td><td>3-6 months, often limited mileage</td><td>30-day warranties exist; avoid them</td></tr></table><p>Standard auto insurance does not cover battery failure. If you have a vehicle service contract (extended warranty), check the covered-components schedule before authorizing payment. Some VSC plans cover hybrid batteries after a $100-$300 deductible.</p>"
+    },
+    {
+      "heading": "How to Read a Quote Line by Line",
+      "content": "<p>Say this to the service advisor: \"Can you break out the battery pack part number, the pack cost before markup, and the labor hours separately?\" A shop that won't itemize is worth walking away from.</p><p>Fair parts markup runs 15-30% over invoice. A Prius Gen 3 OEM pack invoices around $2,800-$3,200 to the dealer; a quote showing $4,500 for the pack alone is 40%+ markup. Call it out.</p><p>Labor hours: a Prius pack swap takes 2-3 hours at a good independent shop, 3-4 hours at a dealer (flat-rate books run generous). An Accord Hybrid takes 4-6 hours due to more complex disassembly. Any quote showing 8+ hours on a Prius is padding.</p><p>Get a second quote from an independent hybrid specialist. On a $3,000-$6,000 job, the diagnostic costs $0-$200 and routinely saves $500-$1,500. That's the highest-return hour you'll spend.</p>"
+    },
+    {
+      "heading": "Labor Rates by Region: Why the Same Job Costs $2,000 More in San Francisco",
+      "content": "<p>BLS wage data for auto technicians ranges from roughly $20/hr in Mississippi to $35/hr in California. Shops multiply that by 3-4x for their billing rate, so the range balloons to $65/hr in rural areas vs $165/hr in coastal metros.</p><p>On a 3-hour Prius battery job, labor alone runs $195-$270 in a rural Midwest shop. The same job in San Francisco: $360-$495. Add the regional parts markup and that $2,000 reman install in Kansas City becomes $3,500 in the Bay Area.</p><p>The calculator adjusts for this using <a href=\"https://www.bea.gov/data/prices-inflation/regional-price-parities-state-and-metro-area\">BEA regional cost index data</a>. Your on-screen estimate already reflects your area. If a local quote comes in more than 15% above the calculator output, get a second opinion.</p>"
+    }
+  ],
+  "hiddenCosts": [
+    {
+      "heading": "Diagnostic Fee: $100-$200 Before They Touch the Battery",
+      "content": "<p>Most shops charge $100-$200 to read hybrid battery codes and run a cell-level diagnostic. Many waive it if you authorize the repair there. Confirm this before booking the appointment. \"Is the diagnostic fee applied to the repair total?\" saves you $150.</p>"
+    },
+    {
+      "heading": "Cooling Fan Replacement: $150-$400 While the Pack Is Out",
+      "content": "<p>Hybrid packs have a dedicated cooling fan. Shops replace it during the swap because it's already exposed. A new fan runs $150-$400. Ask to see the old fan's condition before agreeing. If it spins freely and isn't clogged with dust, skip it.</p>"
+    },
+    {
+      "heading": "12V Auxiliary Battery: $100-$250 and Usually Worth It",
+      "content": "<p>When the main pack fails, the 12V battery absorbs extra load and often dies within months. Replacement runs $100-$250, and you can price that job separately with the <a href=\"/automotive/car-battery-replacement-cost-calculator/\">car battery replacement calculator</a>. Since the shop already has the car, labor is marginal. Replace it now.</p>"
+    }
+  ],
+  "valueEngineering": [
+    {
+      "heading": "Ask About Module Repair Before Authorizing a Full Swap",
+      "content": "<p>If 1-3 modules are bad, module-level repair runs $200-$800 vs $1,500-$4,500 for a full pack. Not every shop offers it. Call independent hybrid specialists specifically and ask: \"Do you do module-level testing and replacement?\" This single question can cut your bill by 60-70%.</p>"
+    },
+    {
+      "heading": "Get the Second Quote From an Independent Hybrid Specialist",
+      "content": "<p>Dealer quotes run 30-50% above independent shops on this job. The diagnostic at the second shop costs $0-$200 and often saves $500-$1,500 on the final bill. Look for ASE L3 (Hybrid/EV) certification. A shop with an L3 tech and lower overhead is the sweet spot.</p>"
+    },
+    {
+      "heading": "Check Your Warranty Before Spending a Dollar",
+      "content": "<p>Federal law requires 8 years/100,000 miles of hybrid battery coverage. CARB states (California plus 13 others) extend that to 10 years/150,000 miles. If your car is under either threshold on both age and mileage, the replacement is free. Call the dealer with your VIN before doing anything else.</p>"
+    }
+  ],
+  "diySection": [
+    {
+      "heading": "DIY Hybrid Battery Swap: Who Should Actually Attempt It",
+      "content": "<p>Hybrid packs operate at 144V-300V DC. Contact without insulation is potentially fatal. This is not a brake job. If you haven't done major engine work, pay the $300-$800 in labor at an independent shop.</p><p>Prius Gen 2 and Gen 3 are the most DIY-friendly hybrids. Large aftermarket supply, extensive YouTube documentation, and the pack sits under the rear cargo area. Budget 3-5 hours, a set of Class 0 insulating gloves ($50-$100), and an OBD2 scanner with hybrid module data ($100-$200 for Techstream-compatible).</p><p>Accord Hybrid, Camry Hybrid, and Escape Hybrid require more complex disassembly with less aftermarket documentation. Budget 6-10 hours. If you haven't worked on that specific model before, this is the wrong job to learn on.</p><p>Save the $300-$800 labor only if you genuinely understand high-voltage safety. The savings aren't worth the risk for anyone who has to Google \"how to discharge a hybrid battery.\"</p>"
+    }
+  ],
+  "faq": [
+    {
+      "heading": "How Much Does Hybrid Battery Replacement Cost on Average?",
+      "shortAnswer": "Total replacement runs $1,500-$6,000 depending on battery type and vehicle. A remanufactured Prius pack costs $1,500-$3,000 installed. A new OEM pack at a dealer runs $4,000-$8,000+.",
+      "content": "Remanufactured packs installed at an independent shop: $1,500-$3,000. Aftermarket new packs: $2,500-$4,500. OEM dealer replacements: $4,000-$8,000+. Labor alone adds $300-$1,500 depending on vehicle complexity and shop type.<br><br>Use the vehicleType dropdown above to see how your specific car shifts those numbers. A Honda Accord Hybrid runs higher labor due to complex disassembly. A Prius Gen 2 is the cheapest to service across every battery type."
+    },
+    {
+      "heading": "Is My Hybrid Battery Still Under the Factory Warranty?",
+      "shortAnswer": "Federal law mandates 8 years/100,000 miles on hybrid traction batteries in all 50 states. CARB states extend to 10 years/150,000 miles. Call your dealer with the VIN to verify.",
+      "content": "The warranty covers the high-voltage traction pack, not the 12V auxiliary battery. If your vehicle is under threshold on both age and mileage, the repair is $0. Dealers must honor this regardless of where you bought the car.<br><br>CARB states: California, New York, Massachusetts, Vermont, Maine, Connecticut, Rhode Island, Washington, Oregon, Pennsylvania, Maryland, New Jersey, Delaware, and Colorado. If you live in one, you get 10 years and 150,000 miles."
+    },
+    {
+      "heading": "Is a Remanufactured Hybrid Battery Worth It?",
+      "shortAnswer": "From a reputable shop, yes. A quality reman pack replaces defective modules, balances remaining cells, and comes with a 12-month warranty. Avoid refurbished packs that skip cell replacement.",
+      "content": "Ask the shop: \"How many modules did you replace, and what was the pre-test capacity of the pack?\" A shop that can't answer didn't do a real reman. Shops that show you a before-and-after capacity report are worth trusting.<br><br>Quality reman packs typically last 80,000-120,000 miles. Refurbished packs (cleaned and retested, no cell replacement) carry higher failure risk and shorter warranties. The $300-$700 savings rarely justifies the gamble."
+    },
+    {
+      "heading": "Can I Replace Just the Bad Modules Instead of the Whole Pack?",
+      "shortAnswer": "Often yes. Independent hybrid specialists replace only failing modules for $200-$800 total on many vehicles, versus $1,500-$4,500 for a full pack swap.",
+      "content": "Module repair is most common on Toyota Prius Gen 2 and Gen 3, where individual cell blocks are accessible and aftermarket modules cost $30-$60 each. Ask the shop for a per-module capacity reading before authorizing a full replacement.<br><br>If all or most modules test below 80% capacity, full swap is cheaper long-term. If only 1-3 blocks failed, module repair buys 3-7 more years at a fraction of full replacement price."
+    },
+    {
+      "heading": "How Long Will a Replacement Hybrid Battery Last?",
+      "shortAnswer": "OEM new packs typically last 100,000-150,000 miles. Quality remanufactured packs last 80,000-120,000 miles. Heat is the biggest degradation factor.",
+      "content": "DOE data shows a 1.5% overall replacement rate for model-year 2015 and newer hybrids. Most packs outlast the cars they're in. After replacement, park in shade when possible and keep the 12V battery healthy to reduce stress on the high-voltage system.<br><br>Avoid deep discharge cycles on plug-in hybrids. Keep charge above 20%. An annual hybrid system scan ($50-$100 at an independent shop) catches early cell imbalance before it cascades into a full pack failure."
+    },
+    {
+      "heading": "Does Car Insurance Cover Hybrid Battery Replacement?",
+      "shortAnswer": "No. Standard auto insurance excludes battery wear and failure. It covers battery damage from a covered accident only. Check your vehicle service contract if you have one.",
+      "content": "Comprehensive and collision policies universally exclude wear-and-tear failure. A battery damaged in a collision would be covered under your deductible, but degradation from normal use is not.<br><br>If you have a vehicle service contract (extended warranty), check the covered-components schedule. Some VSC plans cover hybrid battery failure after a $100-$300 deductible. Call your VSC provider before authorizing out-of-pocket payment."
+    },
+    {
+      "heading": "Dealer vs Independent Shop: Which Should I Use?",
+      "shortAnswer": "For in-warranty work, use the dealer. For out-of-warranty, an independent hybrid specialist charges 20-40% less on both labor and parts with equivalent quality.",
+      "content": "Look for ASE Hybrid/Electric Vehicle certification (L3). Ask if the shop has an L3-certified tech on staff. If not, pay the dealer premium because hybrid battery work is not a job for a general mechanic.<br><br>Dealers charge $120-$200/hr; independents charge $80-$130/hr. On a 3-hour Prius job, that's a $120-$210 labor difference before parts markup. Factor in 20-40% lower parts markup at independents and the total savings reach $500-$1,500."
+    },
+    {
+      "heading": "What Code Does a Failing Hybrid Battery Trigger?",
+      "shortAnswer": "P0A80 is the most common code, meaning one or more cell blocks dropped below threshold. It does not mean every cell is dead.",
+      "content": "Other related codes: P0A7F (battery deterioration) and P3000 (battery control system malfunction). If you see P0A80, don't ignore it. Continued driving forces the gas engine to compensate, burning 15-30% more fuel and stressing the inverter.<br><br>A $200 inverter inspection today prevents a $1,500-$3,000 inverter replacement if the battery failure cascades. Get the diagnostic done within days, not months."
+    }
+  ],
+  "callout": [
+    {
+      "heading": "Check the Federal Warranty Before Paying Anything",
+      "content": "<p>Federal law requires every hybrid battery to carry an 8-year/100,000-mile warranty. If you live in a CARB state (California, New York, Massachusetts, and 11 others), that extends to 10 years/150,000 miles.</p><p>Call the dealer with your VIN: \"My hybrid battery is showing a failure code. Can you confirm whether the traction battery is still under the federal emissions warranty?\" If the answer is yes, the entire replacement is free. Dealers are legally required to honor this regardless of vehicle age.</p><p>Do this before calling any shop, getting any quote, or spending any money. If your car qualifies, the next $3,000-$6,000 in repair costs drops to $0.</p>"
+    },
+    {
+      "heading": "How Most People Pay for a $3,000-$6,000 Battery Job",
+      "content": "<p>Dealer financing often includes 6-12 months at 0% through Synchrony or similar. Legitimate option if you'll pay it off in time. Watch for deferred-interest traps where 0% converts to 22%+ retroactively if you miss the payoff window.</p><p>A 0% intro APR credit card (12-15 month typical) beats a personal loan for a $3,000-$4,000 job. Pay it off before the intro period ends.</p><p>If the repair quote exceeds 50% of your car's value, price out selling the car as-is to CarMax or Carvana. They buy hybrids with bad batteries. Sometimes the math says sell, not fix.</p>"
+    },
+    {
+      "heading": "What to Expect After the Battery Is Replaced",
+      "content": "<p>Honda hybrid systems require manufacturer-specific scan tool initialization after replacement. Confirm the shop has it. A generic OBD tool won't cut it, and skipping this step leaves the battery management system misconfigured.</p><p>Reman and refurbished packs may show conservative range estimates for the first 300-500 miles while the battery management system calibrates. Fuel economy may dip slightly for 100-300 miles, then normalize.</p><p>Get the replacement warranty in writing with the part number, install date, and mileage. You'll need this if the pack fails under warranty and you're at a different shop. Keep the invoice permanently. A replaced hybrid battery documented properly has zero negative impact on resale.</p>"
+    }
+  ],
+  "crossLinks": [
+    {
+      "label": "Car Battery Replacement Cost Calculator",
+      "content": "12V auxiliary battery often fails alongside the hybrid pack",
+      "href": "/automotive/car-battery-replacement-cost-calculator/"
+    },
+    {
+      "label": "Catalytic Converter Replacement Cost Calculator",
+      "content": "Hybrid exhaust systems share converters with the ICE side",
+      "href": "/automotive/catalytic-converter-cost-calculator/"
+    },
+    {
+      "label": "Transmission Replacement Cost Calculator",
+      "content": "Hybrid transaxle quotes sometimes come bundled with battery work",
+      "href": "/automotive/transmission-cost-calculator/"
+    }
+  ],
+  "metaTitle": "Hybrid Battery Replacement Cost Calculator (2026)",
+  "metaDescription": "Calculate hybrid battery replacement cost by vehicle, battery type, and location. OEM, remanufactured, and module repair options with BLS labor data."
+}

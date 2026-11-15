@@ -1,0 +1,54 @@
+---
+// /guides/is-asmr-good-for-you/: what ASMR titles promise, by trigger, beside the research counts on the same page.
+// From the build snapshot (titleClaims, scripts/prebuild-hub-data.mjs). Matching rules are stated on the page.
+import hub from '../lib/hub-data-all.json';
+import research from '../lib/research-counts.json';
+
+const { titleClaims: c, catalogDate } = hub as any;
+const fmt = (n: number) => n.toLocaleString('en-US');
+const pct = (a: number, b: number) => Math.round((1000 * a) / b) / 10;
+const rows = c?.byTrigger ?? [];
+const top = rows[0], low = rows[rows.length - 1];
+// Research numbers come from the dated PubMed counts on this page, never typed.
+const rr = ((research as any)['is-asmr-good-for-you']?.rows ?? []) as { label: string; count: number }[];
+const zero = rr.filter((r) => r.count === 0 && r.label.startsWith('ASMR and ')).map((r) => r.label.replace('ASMR and ', ''));
+const rct = rr.find((r) => /randomized/i.test(r.label))?.count;
+const label = (t: string) => t.charAt(0).toUpperCase() + t.slice(1).replace(/-/g, ' ');
+---
+{rows.length >= 5 && (
+<section class="tcl">
+  <h2>What ASMR video titles promise, next to the research</h2>
+  <p>{`In our catalog (${catalogDate}), ${fmt(c.promise)} of ${fmt(c.total)} ASMR video titles (${pct(c.promise, c.total)}%) promise a result: a cure or healing, "instant" sleep, a guarantee, or a sleep percentage or brainwave frequency. ${fmt(c.condition)} (${pct(c.condition, c.total)}%) name a condition such as anxiety, insomnia or tinnitus. ${top ? `${label(top.trigger)} titles promise most (${top.promisePct}%); ${label(low.trigger).toLowerCase()} titles least (${low.promisePct}%).` : ''}`}</p>
+  <p>{`${fmt(c.willSleep)} titles use the exact claim "...% of you will sleep".${zero.length ? ` Set that against the research counts on this page: PubMed lists no study of ASMR and ${zero.slice(0, 4).join(', ')}` : ''}${rct != null ? `, and ${rct} randomized ${rct === 1 ? 'trial' : 'trials'} of ASMR on any topic.` : '.'}`}</p>
+  <div class="tcl-wrap">
+    <table>
+      <caption>{`Triggers with 300+ videos in our catalog, ${catalogDate}. Matched on title words only; we did not watch the videos or judge whether a claim is true.`}</caption>
+      <thead><tr><th scope="col">Main trigger</th><th scope="col">Videos</th><th scope="col">Titles that promise a result</th><th scope="col">Titles naming a condition</th></tr></thead>
+      <tbody>
+        {rows.map((r: any) => (
+          <tr><td><a href={`/${r.trigger}/`}>{label(r.trigger)}</a></td><td>{fmt(r.n)}</td><td>{r.promisePct}%</td><td>{r.conditionPct}%</td></tr>
+        ))}
+      </tbody>
+    </table>
+  </div>
+  <figure class="pc-fig">
+    <img src="/charts/asmr-title-promises-by-trigger.svg" alt="ASMR titles that promise a result, by trigger" width="720" loading="lazy" />
+    {/* template-lint-ok: embed code for this paper chart */}
+    <figcaption><label>Embed this chart (free with the credit link)<textarea readonly rows="2">{`<a href="https://asmrregistry.com/guides/is-asmr-good-for-you/"><img src="https://asmrregistry.com/charts/asmr-title-promises-by-trigger.svg" alt="ASMR titles that promise a result, by trigger (ASMR Registry)"></a>`}</textarea></label></figcaption>
+  </figure>
+  {/* template-lint-ok: method note for the one claims table */}
+  <p class="tcl-note">How we count: cure, heal, instant, miracle and guarantee count on their own; a percentage or a frequency in Hz counts only beside a word like sleep, tingles, brain or binaural, so "390Hz gameplay" and "100% rose" colour themes do not. In a check of 16 titles matched by these rules on 2026-11-12, 1 was not a promise. Titles in other languages are mostly not matched, so non-English channels are undercounted.</p>
+</section>
+)}
+
+<style>
+  .tcl { margin: 2rem 0; }
+  .tcl-wrap { overflow-x: auto; }
+  .tcl table { width: 100%; border-collapse: collapse; font-size: 0.88rem; }
+  .tcl caption { text-align: left; font-size: 0.85rem; color: var(--text-3, #999); padding-bottom: 0.3rem; }
+  .tcl th, .tcl td { text-align: left; padding: 0.35rem 0.5rem; border-bottom: 1px solid var(--border); }
+  .pc-fig img { width: 100%; height: auto; border: 1px solid var(--border, #2a2a3e); border-radius: 8px; background: #fff; }
+  .pc-fig label { display: block; font-size: 0.85rem; color: var(--text-3, #999); }
+  .pc-fig textarea { display: block; width: 100%; margin-top: 0.25rem; font: 0.8rem/1.4 monospace; padding: 0.5rem; border-radius: 6px; border: 1px solid var(--border, #2a2a3e); background: transparent; color: inherit; }
+  .tcl-note { font-size: 0.88rem; color: var(--text-3, #999); }
+</style>

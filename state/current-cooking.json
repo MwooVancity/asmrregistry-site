@@ -1,0 +1,57 @@
+{
+  "slug": "cooking",
+  "title": "ASMR Cooking Videos — Kitchen Sounds, Chopping & Sizzling",
+  "metaDescription": "Classified ASMR cooking videos with chopping, sizzling, and kitchen sounds. 310 monthly searches. Sorted by cooking style, trigger type, and duration.",
+  "h1": "ASMR Cooking",
+  "introHtml": "<p>Cooking ASMR captures the layered sounds of food preparation — chopping, sizzling, stirring, pouring, grinding, and the crisp snap of fresh vegetables — in a close-mic recording format that isolates and amplifies the natural triggers embedded in kitchen activity. The category pulls <strong>300 monthly searches</strong> across \"asmr cooking,\" \"cooking sounds asmr,\" and \"no talking cooking asmr.\" Unlike most ASMR categories that require specialized props, cooking ASMR uses everyday kitchen sounds that many people already find unconsciously relaxing.</p>\n\n<h2>Trigger Sounds in Cooking</h2>\n<p><strong>Chopping:</strong> a knife striking a cutting board produces rhythmic <a href=\"/tapping/\">tapping</a> with pitch variation based on the food being cut — hard vegetables (carrots, celery) produce sharp cracks, while soft foods (tomatoes, bread) create muted thuds. <strong>Sizzling:</strong> oil in a hot pan produces broadband noise similar to <a href=\"/rain/\">rain</a>, with additional popping from moisture evaporation. <strong>Stirring:</strong> wooden spoons in pots create gentle scraping rhythms. <strong>Pouring:</strong> liquids into bowls and pans produce water sounds that layer with vessel resonance. <strong>Kneading:</strong> bread dough produces sticky, rhythmic sounds similar to <a href=\"/slime/\">slime</a> manipulation.</p>\n\n<h2>No-Talking vs. Narrated Cooking ASMR</h2>\n<p><a href=\"/no-talking/\">No-talking</a> cooking ASMR focuses purely on the food sounds — the kitchen becomes a percussion instrument. This format is optimal for sleep and relaxation. Narrated cooking ASMR adds <a href=\"/whispering/\">whispered</a> or <a href=\"/soft-speaking/\">soft-spoken</a> recipe instruction — the viewer learns a recipe while receiving ASMR triggers. Both formats have distinct audiences: no-talking performs better for repeat listening and background audio, while narrated cooking attracts first-time viewers who want both content and triggers.</p>\n\n<h2>Popular Cooking ASMR Formats</h2>\n<p>Full recipe videos (20–40 minutes) showing complete meal preparation from raw ingredients to plated dish. Single-ingredient focus (10–15 minutes) — an entire video on chopping vegetables, kneading bread, or grinding spices. Mukbang-adjacent content combining cooking and <a href=\"/eating-sounds/\">eating sounds</a> in a single video. Outdoor cooking (campfire, grill, wood stove) adds fire crackling and <a href=\"/nature/\">nature ambience</a> to the food preparation sounds. The most effective cooking ASMR records with the microphone positioned near the cutting board and stovetop rather than at head height — proximity to the sound source maximizes trigger detail while minimizing kitchen echo.</p>",
+  "faqItems": [
+    {
+      "question": "Why is cooking ASMR relaxing?",
+      "answer": "Cooking produces a natural sequence of satisfying sounds — each step has a distinct audio profile (chopping is rhythmic, sizzling is continuous, stirring is circular, pouring is brief). The variety prevents habituation while the familiar, domestic context adds comfort. It's one of the few ASMR categories where the content is also useful (you can follow the recipe)."
+    },
+    {
+      "question": "What cooking sounds trigger ASMR best?",
+      "answer": "Knife chopping on a wooden board (rhythmic tapping), oil sizzling in a pan (continuous white noise), liquid pouring, egg cracking, and dough kneading. The crispest triggers come from cooking techniques with sharp, distinct sounds — stir-frying, vegetable slicing, and pastry crimping."
+    },
+    {
+      "question": "Is cooking ASMR good for background noise?",
+      "answer": "Yes — cooking ASMR is one of the most popular background audio categories for studying and working. The varied sounds are engaging enough to mask distractions but don't demand attention the way speech-based ASMR does. No-talking versions are particularly effective as focus audio."
+    }
+  ],
+  "proTips": [
+    "No-talking cooking ASMR is excellent study/work background — kitchen sounds mask distractions without demanding focus",
+    "Japanese and Korean cooking channels often have the highest audio quality due to close-mic recording techniques",
+    "Look for videos that start with ingredient prep — the chopping and washing sequences produce the most varied triggers",
+    "Cooking ASMR pairs naturally with eating ASMR — many creators include both in extended-format videos"
+  ],
+  "lastUpdated": "2026-06-22T00:00:00Z",
+  "status": "published",
+  "crossLinks": [
+    {
+      "label": "Eating sounds ASMR",
+      "href": "/eating-sounds/"
+    },
+    {
+      "label": "No-talking ASMR",
+      "href": "/no-talking/"
+    },
+    {
+      "label": "ASMR for relaxation",
+      "href": "/relax/"
+    },
+    {
+      "label": "How to create ASMR food content",
+      "href": "/guides/how-to-create-asmr-food-content/"
+    }
+  ],
+  "references": [
+    {
+      "label": "ASMR and sensory processing — PeerJ (2019)",
+      "url": "https://doi.org/10.7717/peerj.7122"
+    },
+    {
+      "label": "Food sounds and palatability perception — Flavour (2015)",
+      "url": "https://doi.org/10.1186/2044-7248-4-3"
+    }
+  ]
+}

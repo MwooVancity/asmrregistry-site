@@ -1,0 +1,114 @@
+{
+  "pass": [
+    "kisses",
+    "sleep",
+    "vr-asmr",
+    "unintentional-asmr",
+    "ocean",
+    "scratching",
+    "sand",
+    "cooking",
+    "asmr-podcast",
+    "painting",
+    "hair-play",
+    "soft-speaking",
+    "mouth-sounds",
+    "no-talking",
+    "breathing",
+    "binaural",
+    "light-patterns",
+    "headache",
+    "brushing",
+    "nature",
+    "what-does-asmr-stand-for",
+    "how-to-make-asmr-videos",
+    "best-asmr-for-sleep",
+    "best-asmr-microphone",
+    "best-headphones-for-asmr",
+    "how-to-make-ai-asmr-videos"
+  ],
+  "fail": [
+    {
+      "slug": "asmr-games",
+      "fails": [
+        "density:3.06%"
+      ],
+      "words": 1472,
+      "flesch": "60.0",
+      "emDashes": 0
+    },
+    {
+      "slug": "kids",
+      "fails": [
+        "density:2.51%"
+      ],
+      "words": 1197,
+      "flesch": "64.1",
+      "emDashes": 0
+    },
+    {
+      "slug": "anxiety",
+      "fails": [
+        "density:2.72%"
+      ],
+      "words": 2057,
+      "flesch": "60.6",
+      "emDashes": 0
+    },
+    {
+      "slug": "lofi-asmr",
+      "fails": [
+        "density:3.46%"
+      ],
+      "words": 1591,
+      "flesch": "56.0",
+      "emDashes": 0
+    },
+    {
+      "slug": "asmr-artists",
+      "fails": [
+        "em-dashes:9"
+      ],
+      "words": 2263,
+      "flesch": "56.2",
+      "emDashes": 9
+    },
+    {
+      "slug": "que-es-asmr",
+      "fails": [
+        "HARD-FLESCH:37.4"
+      ],
+      "words": 774,
+      "flesch": "37.4",
+      "emDashes": 0
+    },
+    {
+      "slug": "best-asmr-videos",
+      "fails": [
+        "flesch:54.2"
+      ],
+      "words": 1323,
+      "flesch": "54.2",
+      "emDashes": 0
+    },
+    {
+      "slug": "what-is-asmr-massage",
+      "fails": [
+        "density:2.58%"
+      ],
+      "words": 1239,
+      "flesch": "56.2",
+      "emDashes": 0
+    },
+    {
+      "slug": "is-asmr-good-for-you",
+      "fails": [
+        "density:2.63%"
+      ],
+      "words": 1140,
+      "flesch": "62.4",
+      "emDashes": 0
+    }
+  ],
+  "generatedAt": "2026-08-06T19:28:43.773Z"
+}

@@ -1,0 +1,193 @@
+---
+// Preference finder: goal, sounds you like, sounds to avoid, length. Returns 3 picks from different creators, each with
+// the reason it matches and a way to report a wrong label. Data: /finder-videos.json, filtered at build (no Shorts,
+// nothing suggestive, no health-claim titles). Rows: [id, title, channel, views, minutes, trigger, noTalking, sleep,
+// goals, traits]. Answers are remembered in this browser only.
+interface Props { goal?: 's' | 'r' | 'a' | 'f' | 't'; trigger?: string; scenario?: string; heading?: string }
+const { goal = 'r', trigger = '', scenario = '', heading = 'Find your video' } = Astro.props;
+// Variations a reader can only find by title words; shown on the trigger pages where titles name them.
+const SURFACES: Record<string, string[]> = {
+  tapping: ['wood', 'glass', 'plastic', 'acrylic', 'nails', 'metal'], scratching: ['fabric', 'wood', 'mic', 'nails', 'leather'],
+  brushing: ['mic', 'face', 'hair', 'fluffy'], 'mouth-sounds': ['tongue', 'tk', 'gum'],
+};
+const surfaces = SURFACES[trigger] || [];
+const LIKES = [
+  ['nature', 'Rain and nature'], ['tap', 'Tapping and scratching'], ['voice', 'Whispering and soft voice'],
+  ['care', 'Personal attention'], ['mouth', 'Mouth and eating'],
+];
+---
+<section class="pf" aria-labelledby="pf-h" data-goal={goal} data-trigger={trigger} data-scenario={scenario}>
+  <h2 id="pf-h">{heading}</h2>
+  <form id="pf-form">
+    <fieldset><legend>What for?</legend>
+      {[['s', 'Fall asleep'], ['r', 'Relax'], ['a', 'Calm down'], ['f', 'Study or focus'], ['t', 'Tingles']].map(([v, l]) => (
+        <label><input type="radio" name="goal" value={v} checked={v === goal} /> {l}</label>
+      ))}
+    </fieldset>
+    {surfaces.length > 0 && (
+      <fieldset><legend>Title mentions</legend>
+        <label><input type="radio" name="surface" value="" checked /> Any</label>
+        {surfaces.map((s) => <label><input type="radio" name="surface" value={s} /> {s}</label>)}
+      </fieldset>
+    )}
+    <details class="pf-more"><summary>More filters: pace, language, intensity</summary>
+    <fieldset><legend>Pace</legend>
+      <label><input type="radio" name="pace" value="" checked /> Any</label>
+      <label><input type="radio" name="pace" value="slow" /> Slow or gentle</label>
+      <label><input type="radio" name="pace" value="fast" /> Fast</label>
+    </fieldset>
+    <fieldset><legend>Language</legend>
+      <label><input type="radio" name="lang" value="" checked /> Any</label>
+      <label><input type="radio" name="lang" value="en" /> English</label>
+      <label><input type="radio" name="lang" value="ko" /> Korean</label>
+      <label><input type="radio" name="lang" value="ja" /> Japanese</label>
+      <label><input type="radio" name="lang" value="other" /> Other</label>
+    </fieldset>
+    <fieldset><legend>Estimated intensity</legend>
+      <label><input type="radio" name="int" value="" checked /> Any</label>
+      <label><input type="radio" name="int" value="1-2" /> Gentle</label>
+      <label><input type="radio" name="int" value="3-3" /> Medium</label>
+      <label><input type="radio" name="int" value="4-5" /> Strong</label>
+    </fieldset>
+    </details>
+    {!trigger && !scenario && (
+      <fieldset><legend>Sounds you like (any)</legend>
+        {LIKES.map(([v, l]) => <label><input type="checkbox" name="like" value={v} /> {l}</label>)}
+      </fieldset>
+    )}
+    <fieldset><legend>Leave out</legend>
+      <label><input type="checkbox" name="avoid" value="talk" /> Talking</label>
+      <label><input type="checkbox" name="avoid" value="mouth" checked={trigger !== 'eating-sounds' && trigger !== 'mouth-sounds'} /> Mouth and eating</label>
+      <label><input type="checkbox" name="avoid" value="music" /> Music</label>
+      <label><input type="checkbox" name="avoid" value="fast" /> Fast or aggressive</label>
+    </fieldset>
+    <fieldset><legend>How long?</legend>
+      {[['0-15', 'Under 15 min'], ['15-30', '15 to 30'], ['30-60', '30 to 60'], ['60-180', '1 to 3 hours'], ['180-99999', 'All night']].map(([v, l]) => (
+        <label><input type="radio" name="len" value={v} checked={v === (goal === 's' ? '60-180' : '15-30')} /> {l}</label>
+      ))}
+    </fieldset>
+    <button type="button" id="pf-reset" class="pf-reset">Reset</button>
+  </form>
+  <div id="pf-out" aria-live="polite"><p class="pf-note">Answer the questions above and matching videos appear here.</p></div>
+  {/* template-lint-ok: one component reused on intent and trigger pages; its caveats are the same by design */}
+  <noscript><p>This finder needs JavaScript to pick videos.</p></noscript>
+  {/* template-lint-ok: same caveat wherever the finder appears */}
+  <p class="pf-note">Labels come from an AI reading each video's title, not from listening, so check the first minute and turn off autoplay. <a href="/methodology/">How picks are made</a>.</p>
+</section>
+
+<script is:inline>
+  (function () {
+    var box = document.querySelector('.pf'), form = document.getElementById('pf-form'), out = document.getElementById('pf-out');
+    var fixedTrigger = box.getAttribute('data-trigger'), fixedScenario = box.getAttribute('data-scenario'), KEY = 'pf-answers', rows = null;
+    var SLOW = /\bslow|gentle|soft\b/i, FAST = /\bfast|aggressive|chaotic|quick/i;
+    var NAMES = { talk: 'Talking', mouth: 'Mouth and eating', music: 'Music', fast: 'Fast or aggressive', len: 'the length', pace: 'the pace', int: 'the intensity', surface: 'the title word', like: 'sounds you like', lang: 'the language' };
+    var GROUPS = {
+      nature: ['rain', 'nature', 'ocean', 'water-sounds', 'white-noise', 'fire'],
+      tap: ['tapping', 'scratching', 'typing', 'crinkling', 'page-turning', 'writing', 'glass-sounds', 'folding'],
+      voice: ['whispering', 'soft-speaking', 'positive-affirmations', 'counting', 'reading'],
+      care: ['personal-attention', 'massage', 'hair-play', 'brushing', 'painting'],
+      mouth: ['mouth-sounds', 'eating-sounds', 'cooking']
+    };
+    var GOAL = { s: 'sleep', a: 'calming down', f: 'study or focus', t: 'tingles' };
+    function esc(s) { return String(s).replace(/[&<>"]/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]; }); }
+    function dur(m) { return m >= 60 ? Math.floor(m / 60) + ' h' + (m % 60 ? ' ' + (m % 60) + ' min' : '') : m + ' min'; }
+    function read() {
+      var f = new FormData(form);
+      return { goal: f.get('goal'), like: f.getAll('like'), avoid: f.getAll('avoid'), len: f.get('len'), pace: f.get('pace') || '', int: f.get('int') || '', surface: f.get('surface') || '', lang: f.get('lang') || '' };
+    }
+    // Facts first (length, title words), then AI tags, said as tags: we never claim what we have not heard.
+    function why(r, a) {
+      var bits = [dur(r[4])];
+      if (a.surface) bits.push('title says "' + a.surface + '"');
+      bits.push('tagged ' + r[5].replace(/-/g, ' '));
+      if (r[11]) bits.push(r[11].replace(/-/g, ' '));
+      if (r[6]) bits.push('tagged no talking (not checked by ear)');
+      if (GOAL[a.goal] && r[8].indexOf(a.goal) >= 0) bits.push('tagged for ' + GOAL[a.goal]);
+      if (a.int && r[10]) bits.push('AI-estimated intensity ' + r[10] + '/5');
+      return 'Why: ' + bits.join(', ') + '.';
+    }
+    function card(r, a) {
+      var report = 'mailto:hello@asmrregistry.com?subject=' + encodeURIComponent('Wrong label: ' + r[0]) + '&body=' + encodeURIComponent('Video: https://www.youtube.com/watch?v=' + r[0] + '\nWhat is wrong: ');
+      return '<div class="pf-card"><a href="/video/' + esc(r[0]) + '/"><img src="https://i.ytimg.com/vi/' + esc(r[0]) + '/mqdefault.jpg" alt="" loading="lazy" width="320" height="180"><span class="pf-t">' + esc(r[1]) + '</span></a><small>' + esc(r[2]) + '</small><small class="pf-why">' + esc(why(r, a)) + '</small><a class="pf-report" href="' + report + '">Wrong label?</a></div>';
+    }
+    // Each rule returns true when the row passes; named so an empty result can say which rule to relax.
+    function rules(a) {
+      var len = a.len.split('-'), liked = {}, out = [];
+      a.like.forEach(function (g) { GROUPS[g].forEach(function (t) { liked[t] = 1; }); });
+      out.push(['len', function (r) { return r[4] >= +len[0] && r[4] < +len[1] && (a.goal !== 's' || r[4] >= 30); }]);
+      ['talk', 'mouth', 'music', 'fast'].forEach(function (k) {
+        if (a.avoid.indexOf(k) < 0) return;
+        out.push([k, k === 'talk' ? function (r) { return r[6]; } : k === 'mouth' ? function (r) { return GROUPS.mouth.indexOf(r[5]) < 0; }
+          : k === 'music' ? function (r) { return r[9].indexOf('m') < 0; } : function (r) { return r[9].indexOf('f') < 0; }]);
+      });
+      if (a.like.length) out.push(['like', function (r) { return liked[r[5]]; }]);
+      if (a.pace) out.push(['pace', function (r) { return a.pace === 'fast' ? (r[9].indexOf('f') >= 0 || FAST.test(r[1])) : (SLOW.test(r[1]) && !FAST.test(r[1])); }]);
+      if (a.int) { var b = a.int.split('-'); out.push(['int', function (r) { return r[10] >= +b[0] && r[10] <= +b[1]; }]); }
+      if (a.lang) out.push(['lang', function (r) { return a.lang === 'other' ? ['en', 'ko', 'ja', ''].indexOf(r[12]) < 0 : r[12] === a.lang; }]);
+      if (a.surface) { var re = new RegExp('\\b' + a.surface, 'i'); out.push(['surface', function (r) { return re.test(r[1]); }]); }
+      return out;
+    }
+    function run() {
+      var a = read();
+      try { localStorage.setItem(KEY, JSON.stringify(a)); } catch (e) {}
+      var base = rows.filter(function (r) { return (!fixedTrigger || r[5] === fixedTrigger) && (!fixedScenario || r[11] === fixedScenario); });
+      var rs = rules(a);
+      var list = base.filter(function (r) { return rs.every(function (x) { return x[1](r); }); });
+      // Fit before popularity: tagged for the goal first, then views (rows arrive sorted by views).
+      list.sort(function (x, y) { return (y[8].indexOf(a.goal) >= 0) - (x[8].indexOf(a.goal) >= 0); });
+      var picks = [], seen = {};
+      for (var i = 0; i < list.length && picks.length < 3; i++) if (!seen[list[i][2]]) { seen[list[i][2]] = 1; picks.push(list[i]); }
+      out.innerHTML = picks.length
+        ? '<div class="pf-picks">' + picks.map(function (r) { return card(r, a); }).join('') + '</div><p class="pf-note">' + list.length + ' videos match. <a href="/asmr-videos/">Browse them all in the finder</a>.</p>'
+        : '<p>Nothing in our list matches all of that.' + hint(base, rs) + '</p>';
+      if (picks.length && list.length < 5) out.innerHTML += '<p class="pf-note">Only ' + list.length + ' match, so treat these as a small sample.</p>';
+      // Sleep mode: the honest part we can add without hearing the video.
+      if (picks.length && a.goal === 's') out.innerHTML += '<p class="pf-note">Before you sleep: turn off autoplay and set a sleep timer shorter than the video, so it stops before the end. Ads can still play during a video; we cannot tell which videos have them.</p>';
+    }
+    // Which single rule, if dropped, frees up the most videos.
+    function hint(base, rs) {
+      var best = null;
+      rs.forEach(function (x) {
+        var n = base.filter(function (r) { return rs.every(function (y) { return y === x || y[1](r); }); }).length;
+        if (n && (!best || n > best[1])) best = [x[0], n];
+      });
+      return best ? ' Changing ' + NAMES[best[0]] + ' would give ' + best[1] + ' videos.' : ' Try fewer filters.';
+    }
+    try {
+      var saved = JSON.parse(localStorage.getItem(KEY) || 'null');
+      if (saved && !fixedTrigger) {
+        Array.prototype.forEach.call(form.elements, function (el) {
+          if (el.name === 'like' || el.name === 'avoid') el.checked = (saved[el.name] || []).indexOf(el.value) >= 0;
+          if (el.name === 'len') el.checked = el.value === saved.len;
+        });
+      }
+    } catch (e) {}
+    form.addEventListener('change', function () { if (rows) run(); });
+    document.getElementById('pf-reset').addEventListener('click', function () {
+      try { localStorage.removeItem(KEY); } catch (e) {}
+      form.reset(); if (rows) run();
+    });
+    fetch('/finder-videos.json').then(function (r) { return r.json(); }).then(function (d) { rows = d; run(); })
+      .catch(function () { out.innerHTML = '<p>The finder could not load. Refresh to try again.</p>'; });
+  })();
+</script>
+
+<style>
+  .pf { margin: 1rem 0 1.5rem; padding: 1rem 1.1rem; border: 1px solid var(--border, #2a2a3e); border-radius: 10px; background: var(--bg-2, #1a1a2e); }
+  .pf h2 { margin-top: 0; }
+  .pf form { display: flex; flex-direction: column; gap: 0.6rem; }
+  .pf fieldset { border: 0; padding: 0; margin: 0; display: flex; flex-wrap: wrap; gap: 0 0.9rem; }
+  .pf legend { font-weight: 600; font-size: 0.9rem; padding: 0; width: 100%; }
+  .pf label { display: flex; align-items: center; gap: 0.35rem; min-height: 44px; font-size: 0.92rem; }
+  .pf-more summary { cursor: pointer; font-weight: 600; font-size: 0.9rem; min-height: 44px; display: flex; align-items: center; }
+  .pf-more[open] summary { margin-bottom: 0.4rem; }
+  .pf-reset { align-self: flex-start; min-height: 44px; padding: 0 1rem; border-radius: 8px; border: 1px solid var(--border, #2a2a3e); background: transparent; color: inherit; cursor: pointer; }
+  .pf :global(.pf-picks) { display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); gap: 1rem; margin-top: 0.75rem; }
+  .pf :global(.pf-card) { display: flex; flex-direction: column; gap: 0.3rem; }
+  .pf :global(.pf-card > a) { color: inherit; text-decoration: none; display: flex; flex-direction: column; gap: 0.35rem; }
+  .pf :global(.pf-card img) { width: 100%; height: auto; border-radius: 8px; }
+  .pf :global(.pf-t) { font-size: 0.92rem; line-height: 1.3; }
+  .pf :global(.pf-card small) { font-size: 0.8rem; color: var(--text-3, #999); }
+  .pf :global(.pf-report) { font-size: 0.78rem; color: var(--text-3, #999); min-height: 32px; display: inline-flex; align-items: center; }
+  .pf-note, .pf :global(.pf-note) { font-size: 0.84rem; color: var(--text-3, #999); }
+</style>

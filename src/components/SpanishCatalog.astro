@@ -1,0 +1,36 @@
+---
+// /guides/que-es-asmr/: Spanish-language videos in the catalog (title says "español" or tagged es), with counts and
+// the 6 most watched playing in place. From the build snapshot (spanish), no database read.
+import hub from '../lib/hub-data-all.json';
+
+const { spanish: s, catalogDate } = hub as any;
+const ES: Record<string, string> = { 'mouth-sounds': 'sonidos de boca', 'personal-attention': 'atención personal', painting: 'pintura', 'soft-speaking': 'voz suave', tapping: 'tapping', whispering: 'susurros', 'eating-sounds': 'sonidos de comer', 'hair-play': 'cabello', massage: 'masaje', roleplay: 'roleplay' };
+const t = (k: string) => ES[k] ?? k.replace(/-/g, ' ');
+const fmt = (n: number) => n.toLocaleString('es-ES');
+const len = (x: number) => (x >= 3600 ? `${Math.floor(x / 3600)} h ${Math.round((x % 3600) / 60)} min` : `${Math.round(x / 60)} min`);
+---
+{s?.count >= 30 && s.top.length >= 3 && (
+<section class="esc" lang="es">
+  <h2>Videos ASMR en español: lo que muestra nuestro catálogo</h2>
+  <p>{`En nuestro catálogo (${catalogDate}) hay ${fmt(s.count)} videos ASMR en español de ${s.channels} canales. El video típico dura ${s.medianMin} minutos. Los estímulos más comunes son ${s.triggers.slice(0, 3).map(([k, n]: [string, number]) => `${t(k)} (${fmt(n)})`).join(', ')}. Contamos un video como español si su título lo dice; las etiquetas salen de los títulos, no de escucharlos.`}</p>
+  <h3>Los más vistos: pulsa para verlos aquí</h3>
+  <div class="video-grid">
+    {s.top.map((v: any) => (
+      <article class="video-card">
+        <button type="button" class="vplay" data-v={v.id} aria-label={`Ver ${v.title}`}>
+          <div class="video-thumb">
+            <img src={`https://i.ytimg.com/vi/${v.id}/mqdefault.jpg`} alt={v.title} loading="lazy" width="320" height="180" />
+            <span class="duration-badge">{len(v.duration_seconds)}</span>
+          </div>
+          <p class="vt">{v.title}</p>
+        </button>
+      </article>
+    ))}
+  </div>
+  <script src="/js/vplay.js" defer></script>
+</section>
+)}
+
+<style>
+  .esc { margin: 2rem 0; }
+</style>

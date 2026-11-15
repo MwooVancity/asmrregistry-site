@@ -1,0 +1,1425 @@
+{
+  "generatedAt": "2026-09-21T00:55:52.467Z",
+  "stats": {
+    "total": 243,
+    "p0": 183,
+    "p1": 8,
+    "p2": 0,
+    "notInLedger": 0,
+    "thinPages": 12
+  },
+  "findings": [
+    {
+      "slug": "massage",
+      "severity": "P0",
+      "category": "thin-prose",
+      "detail": "introHtml=1583w sections=860w total=2443w (need introHtml≥2000)",
+      "url": "/massage/"
+    },
+    {
+      "slug": "eating-sounds",
+      "severity": "P0",
+      "category": "thin-prose",
+      "detail": "introHtml=1560w sections=733w total=2293w (need introHtml≥2000)",
+      "url": "/eating-sounds/"
+    },
+    {
+      "slug": "triggers-overview",
+      "severity": "P0",
+      "category": "thin-prose",
+      "detail": "introHtml=1514w sections=721w total=2235w (need introHtml≥2000)",
+      "url": "/triggers/"
+    },
+    {
+      "slug": "kisses",
+      "severity": "P0",
+      "category": "thin-prose",
+      "detail": "introHtml=1324w sections=734w total=2058w (need introHtml≥2000)",
+      "url": "/kisses/"
+    },
+    {
+      "slug": "sleep",
+      "severity": "P0",
+      "category": "thin-prose",
+      "detail": "introHtml=1522w sections=811w total=2333w (need introHtml≥2000)",
+      "url": "/sleep/"
+    },
+    {
+      "slug": "asmr-games",
+      "severity": "P0",
+      "category": "thin-prose",
+      "detail": "introHtml=1655w sections=839w total=2494w (need introHtml≥2000)",
+      "url": "/asmr-games/"
+    },
+    {
+      "slug": "vr-asmr",
+      "severity": "P0",
+      "category": "thin-prose",
+      "detail": "introHtml=1511w sections=847w total=2358w (need introHtml≥2000)",
+      "url": "/vr-asmr/"
+    },
+    {
+      "slug": "kids",
+      "severity": "P0",
+      "category": "thin-prose",
+      "detail": "introHtml=1517w sections=807w total=2324w (need introHtml≥2000)",
+      "url": "/kids/"
+    },
+    {
+      "slug": "unintentional-asmr",
+      "severity": "P0",
+      "category": "thin-prose",
+      "detail": "introHtml=1568w sections=751w total=2319w (need introHtml≥2000)",
+      "url": "/unintentional-asmr/"
+    },
+    {
+      "slug": "ocean",
+      "severity": "P0",
+      "category": "thin-prose",
+      "detail": "introHtml=1490w sections=800w total=2290w (need introHtml≥2000)",
+      "url": "/ocean/"
+    },
+    {
+      "slug": "scratching",
+      "severity": "P0",
+      "category": "thin-prose",
+      "detail": "introHtml=1750w sections=818w total=2568w (need introHtml≥2000)",
+      "url": "/scratching/"
+    },
+    {
+      "slug": "sand",
+      "severity": "P0",
+      "category": "thin-prose",
+      "detail": "introHtml=1537w sections=917w total=2454w (need introHtml≥2000)",
+      "url": "/sand/"
+    },
+    {
+      "slug": "cooking",
+      "severity": "P0",
+      "category": "thin-prose",
+      "detail": "introHtml=1384w sections=767w total=2151w (need introHtml≥2000)",
+      "url": "/cooking/"
+    },
+    {
+      "slug": "asmr-podcast",
+      "severity": "P0",
+      "category": "thin-prose",
+      "detail": "introHtml=1308w sections=751w total=2059w (need introHtml≥2000)",
+      "url": "/asmr-podcast/"
+    },
+    {
+      "slug": "painting",
+      "severity": "P0",
+      "category": "thin-prose",
+      "detail": "introHtml=1388w sections=777w total=2165w (need introHtml≥2000)",
+      "url": "/painting/"
+    },
+    {
+      "slug": "hair-play",
+      "severity": "P0",
+      "category": "thin-prose",
+      "detail": "introHtml=1619w sections=899w total=2518w (need introHtml≥2000)",
+      "url": "/hair-play/"
+    },
+    {
+      "slug": "anxiety",
+      "severity": "P0",
+      "category": "thin-prose",
+      "detail": "introHtml=1573w sections=877w total=2450w (need introHtml≥2000)",
+      "url": "/anxiety/"
+    },
+    {
+      "slug": "mouth-sounds",
+      "severity": "P0",
+      "category": "thin-prose",
+      "detail": "introHtml=1280w sections=772w total=2052w (need introHtml≥2000)",
+      "url": "/mouth-sounds/"
+    },
+    {
+      "slug": "no-talking",
+      "severity": "P0",
+      "category": "thin-prose",
+      "detail": "introHtml=1363w sections=816w total=2179w (need introHtml≥2000)",
+      "url": "/no-talking/"
+    },
+    {
+      "slug": "breathing",
+      "severity": "P0",
+      "category": "thin-prose",
+      "detail": "introHtml=1689w sections=832w total=2521w (need introHtml≥2000)",
+      "url": "/breathing/"
+    },
+    {
+      "slug": "binaural",
+      "severity": "P0",
+      "category": "thin-prose",
+      "detail": "introHtml=1510w sections=834w total=2344w (need introHtml≥2000)",
+      "url": "/binaural/"
+    },
+    {
+      "slug": "headache",
+      "severity": "P0",
+      "category": "thin-prose",
+      "detail": "introHtml=990w sections=1093w total=2083w (need introHtml≥2000)",
+      "url": "/headache/"
+    },
+    {
+      "slug": "brushing",
+      "severity": "P0",
+      "category": "thin-prose",
+      "detail": "introHtml=1002w sections=1063w total=2065w (need introHtml≥2000)",
+      "url": "/brushing/"
+    },
+    {
+      "slug": "nature",
+      "severity": "P0",
+      "category": "thin-prose",
+      "detail": "introHtml=896w sections=1158w total=2054w (need introHtml≥2000)",
+      "url": "/nature/"
+    },
+    {
+      "slug": "asmr-artists",
+      "severity": "P0",
+      "category": "thin-prose",
+      "detail": "introHtml=1779w sections=672w total=2451w (need introHtml≥2000)",
+      "url": "/creators/"
+    },
+    {
+      "slug": "how-to-make-asmr-videos",
+      "severity": "P0",
+      "category": "thin-prose",
+      "detail": "introHtml=935w sections=1115w total=2050w (need introHtml≥2000)",
+      "url": "/guides/how-to-make-asmr-videos/"
+    },
+    {
+      "slug": "is-asmr-good-for-you",
+      "severity": "P0",
+      "category": "thin-prose",
+      "detail": "introHtml=883w sections=1174w total=2057w (need introHtml≥2000)",
+      "url": "/guides/is-asmr-good-for-you/"
+    },
+    {
+      "slug": "best-asmr-for-sleep",
+      "severity": "P0",
+      "category": "thin-prose",
+      "detail": "introHtml=1939w sections=692w total=2631w (need introHtml≥2000)",
+      "url": "/best/best-asmr-for-sleep/"
+    },
+    {
+      "slug": "best-headphones-for-asmr",
+      "severity": "P0",
+      "category": "thin-prose",
+      "detail": "introHtml=1433w sections=822w total=2255w (need introHtml≥2000)",
+      "url": "/best/best-headphones-for-asmr/"
+    },
+    {
+      "slug": "how-to-make-ai-asmr-videos",
+      "severity": "P0",
+      "category": "thin-prose",
+      "detail": "introHtml=1546w sections=811w total=2357w (need introHtml≥2000)",
+      "url": "/guides/how-to-make-ai-asmr-videos/"
+    },
+    {
+      "slug": "what-is-mommy-asmr",
+      "severity": "P0",
+      "category": "thin-prose",
+      "detail": "introHtml=1551w sections=760w total=2311w (need introHtml≥2000)",
+      "url": "/guides/what-is-mommy-asmr/"
+    },
+    {
+      "slug": "how-to-create-asmr-food-content",
+      "severity": "P0",
+      "category": "thin-prose",
+      "detail": "introHtml=1811w sections=802w total=2613w (need introHtml≥2000)",
+      "url": "/guides/how-to-create-asmr-food-content/"
+    },
+    {
+      "slug": "best-earbuds-for-asmr",
+      "severity": "P0",
+      "category": "thin-prose",
+      "detail": "introHtml=1700w sections=843w total=2543w (need introHtml≥2000)",
+      "url": "/best/best-earbuds-for-asmr/"
+    },
+    {
+      "slug": "asmr-equipment",
+      "severity": "P0",
+      "category": "thin-prose",
+      "detail": "introHtml=1773w sections=700w total=2473w (need introHtml≥2000)",
+      "url": "/gear/asmr-equipment/"
+    },
+    {
+      "slug": "how-to-start-an-asmr-channel",
+      "severity": "P0",
+      "category": "thin-prose",
+      "detail": "introHtml=1740w sections=822w total=2562w (need introHtml≥2000)",
+      "url": "/guides/how-to-start-an-asmr-channel/"
+    },
+    {
+      "slug": "bfe-meaning-asmr",
+      "severity": "P0",
+      "category": "thin-prose",
+      "detail": "introHtml=1607w sections=819w total=2426w (need introHtml≥2000)",
+      "url": "/guides/bfe-meaning-asmr/"
+    },
+    {
+      "slug": "brown-noise",
+      "severity": "P0",
+      "category": "thin-prose",
+      "detail": "introHtml=1960w sections=712w total=2672w (need introHtml≥2000)",
+      "url": "/guides/brown-noise/"
+    },
+    {
+      "slug": "white-noise",
+      "severity": "P0",
+      "category": "thin-prose",
+      "detail": "introHtml=1716w sections=837w total=2553w (need introHtml≥2000)",
+      "url": "/guides/white-noise/"
+    },
+    {
+      "slug": "pink-noise",
+      "severity": "P0",
+      "category": "thin-prose",
+      "detail": "introHtml=1770w sections=723w total=2493w (need introHtml≥2000)",
+      "url": "/guides/pink-noise/"
+    },
+    {
+      "slug": "rain-sounds-for-sleeping",
+      "severity": "P0",
+      "category": "thin-prose",
+      "detail": "introHtml=1208w sections=811w total=2019w (need introHtml≥2000)",
+      "url": "/guides/rain-sounds-for-sleeping/"
+    },
+    {
+      "slug": "asmr-for-studying",
+      "severity": "P0",
+      "category": "thin-prose",
+      "detail": "introHtml=1318w sections=760w total=2078w (need introHtml≥2000)",
+      "url": "/guides/asmr-for-studying/"
+    },
+    {
+      "slug": "ai-asmr-generator",
+      "severity": "P0",
+      "category": "thin-prose",
+      "detail": "introHtml=1315w sections=767w total=2082w (need introHtml≥2000)",
+      "url": "/guides/ai-asmr-generator/"
+    },
+    {
+      "slug": "brown-noise-for-sleep",
+      "severity": "P0",
+      "category": "thin-prose",
+      "detail": "introHtml=1353w sections=717w total=2070w (need introHtml≥2000)",
+      "url": "/guides/brown-noise-for-sleep/"
+    },
+    {
+      "slug": "how-asmr-affects-the-brain",
+      "severity": "P0",
+      "category": "thin-prose",
+      "detail": "introHtml=1501w sections=786w total=2287w (need introHtml≥2000)",
+      "url": "/guides/how-asmr-affects-the-brain/"
+    },
+    {
+      "slug": "crinkling",
+      "severity": "P0",
+      "category": "thin-prose",
+      "detail": "introHtml=1368w sections=706w total=2074w (need introHtml≥2000)",
+      "url": "/crinkling/"
+    },
+    {
+      "slug": "singing-bowls",
+      "severity": "P0",
+      "category": "thin-prose",
+      "detail": "introHtml=1772w sections=712w total=2484w (need introHtml≥2000)",
+      "url": "/singing-bowls/"
+    },
+    {
+      "slug": "roleplay",
+      "severity": "P0",
+      "category": "thin-prose",
+      "detail": "introHtml=1263w sections=777w total=2040w (need introHtml≥2000)",
+      "url": "/roleplay/"
+    },
+    {
+      "slug": "positive-affirmations",
+      "severity": "P0",
+      "category": "thin-prose",
+      "detail": "introHtml=1040w sections=1027w total=2067w (need introHtml≥2000)",
+      "url": "/positive-affirmations/"
+    },
+    {
+      "slug": "doctor-roleplay",
+      "severity": "P0",
+      "category": "thin-prose",
+      "detail": "introHtml=1060w sections=953w total=2013w (need introHtml≥2000)",
+      "url": "/doctor-roleplay/"
+    },
+    {
+      "slug": "dental-roleplay",
+      "severity": "P0",
+      "category": "thin-prose",
+      "detail": "introHtml=1507w sections=820w total=2327w (need introHtml≥2000)",
+      "url": "/dental-roleplay/"
+    },
+    {
+      "slug": "haircut-asmr",
+      "severity": "P0",
+      "category": "thin-prose",
+      "detail": "introHtml=1566w sections=873w total=2439w (need introHtml≥2000)",
+      "url": "/haircut-asmr/"
+    },
+    {
+      "slug": "asmr-for-adhd",
+      "severity": "P0",
+      "category": "thin-prose",
+      "detail": "introHtml=1810w sections=699w total=2509w (need introHtml≥2000)",
+      "url": "/asmr-for-adhd/"
+    },
+    {
+      "slug": "asmr-for-depression",
+      "severity": "P0",
+      "category": "thin-prose",
+      "detail": "introHtml=1906w sections=740w total=2646w (need introHtml≥2000)",
+      "url": "/asmr-for-depression/"
+    },
+    {
+      "slug": "fireplace-asmr",
+      "severity": "P0",
+      "category": "thin-prose",
+      "detail": "introHtml=1548w sections=855w total=2403w (need introHtml≥2000)",
+      "url": "/fireplace-asmr/"
+    },
+    {
+      "slug": "thunderstorm-asmr",
+      "severity": "P0",
+      "category": "thin-prose",
+      "detail": "introHtml=1587w sections=856w total=2443w (need introHtml≥2000)",
+      "url": "/thunderstorm-asmr/"
+    },
+    {
+      "slug": "cat-purring-asmr",
+      "severity": "P0",
+      "category": "thin-prose",
+      "detail": "introHtml=1847w sections=640w total=2487w (need introHtml≥2000)",
+      "url": "/cat-purring-asmr/"
+    },
+    {
+      "slug": "best-asmr-apps",
+      "severity": "P0",
+      "category": "thin-prose",
+      "detail": "introHtml=1565w sections=779w total=2344w (need introHtml≥2000)",
+      "url": "/best/best-asmr-apps/"
+    },
+    {
+      "slug": "male-asmr",
+      "severity": "P0",
+      "category": "thin-prose",
+      "detail": "introHtml=1462w sections=737w total=2199w (need introHtml≥2000)",
+      "url": "/male-asmr/"
+    },
+    {
+      "slug": "anime-asmr",
+      "severity": "P0",
+      "category": "thin-prose",
+      "detail": "introHtml=1439w sections=730w total=2169w (need introHtml≥2000)",
+      "url": "/anime-asmr/"
+    },
+    {
+      "slug": "study-with-me-asmr",
+      "severity": "P0",
+      "category": "thin-prose",
+      "detail": "introHtml=1374w sections=803w total=2177w (need introHtml≥2000)",
+      "url": "/study-with-me-asmr/"
+    },
+    {
+      "slug": "asmr-para-dormir",
+      "severity": "P0",
+      "category": "thin-prose",
+      "detail": "introHtml=1418w sections=825w total=2243w (need introHtml≥2000)",
+      "url": "/guides/asmr-para-dormir/"
+    },
+    {
+      "slug": "asmr-para-estudiar",
+      "severity": "P0",
+      "category": "thin-prose",
+      "detail": "introHtml=1338w sections=739w total=2077w (need introHtml≥2000)",
+      "url": "/guides/asmr-para-estudiar/"
+    },
+    {
+      "slug": "asmr-para-ansiedad",
+      "severity": "P0",
+      "category": "thin-prose",
+      "detail": "introHtml=1506w sections=827w total=2333w (need introHtml≥2000)",
+      "url": "/guides/asmr-para-ansiedad/"
+    },
+    {
+      "slug": "humming",
+      "severity": "P0",
+      "category": "thin-prose",
+      "detail": "introHtml=1636w sections=809w total=2445w (need introHtml≥2000)",
+      "url": "/humming/"
+    },
+    {
+      "slug": "fast-aggressive-asmr",
+      "severity": "P0",
+      "category": "thin-prose",
+      "detail": "introHtml=1383w sections=721w total=2104w (need introHtml≥2000)",
+      "url": "/fast-aggressive-asmr/"
+    },
+    {
+      "slug": "reading-to-you",
+      "severity": "P0",
+      "category": "thin-prose",
+      "detail": "introHtml=1495w sections=789w total=2284w (need introHtml≥2000)",
+      "url": "/reading-to-you/"
+    },
+    {
+      "slug": "asmr-for-ptsd",
+      "severity": "P0",
+      "category": "thin-prose",
+      "detail": "introHtml=1394w sections=817w total=2211w (need introHtml≥2000)",
+      "url": "/asmr-for-ptsd/"
+    },
+    {
+      "slug": "best-asmr-camera",
+      "severity": "P0",
+      "category": "thin-prose",
+      "detail": "introHtml=1634w sections=833w total=2467w (need introHtml≥2000)",
+      "url": "/best/best-asmr-camera/"
+    },
+    {
+      "slug": "asmr-audio-interface",
+      "severity": "P0",
+      "category": "thin-prose",
+      "detail": "introHtml=1768w sections=767w total=2535w (need introHtml≥2000)",
+      "url": "/gear/asmr-audio-interface/"
+    },
+    {
+      "slug": "asmr-room-setup",
+      "severity": "P0",
+      "category": "thin-prose",
+      "detail": "introHtml=1893w sections=717w total=2610w (need introHtml≥2000)",
+      "url": "/gear/asmr-room-setup/"
+    },
+    {
+      "slug": "10-hour-asmr",
+      "severity": "P0",
+      "category": "thin-prose",
+      "detail": "introHtml=1767w sections=742w total=2509w (need introHtml≥2000)",
+      "url": "/10-hour-asmr/"
+    },
+    {
+      "slug": "sleep-sounds",
+      "severity": "P0",
+      "category": "thin-prose",
+      "detail": "introHtml=1671w sections=867w total=2538w (need introHtml≥2000)",
+      "url": "/guides/sleep-sounds/"
+    },
+    {
+      "slug": "frisson",
+      "severity": "P0",
+      "category": "thin-prose",
+      "detail": "introHtml=1755w sections=712w total=2467w (need introHtml≥2000)",
+      "url": "/guides/frisson/"
+    },
+    {
+      "slug": "sound-therapy-and-asmr",
+      "severity": "P0",
+      "category": "thin-prose",
+      "detail": "introHtml=1892w sections=673w total=2565w (need introHtml≥2000)",
+      "url": "/guides/sound-therapy-and-asmr/"
+    },
+    {
+      "slug": "binaural-beats-guide",
+      "severity": "P0",
+      "category": "thin-prose",
+      "detail": "introHtml=1473w sections=777w total=2250w (need introHtml≥2000)",
+      "url": "/guides/binaural-beats-guide/"
+    },
+    {
+      "slug": "nature-sounds-for-sleep",
+      "severity": "P0",
+      "category": "thin-prose",
+      "detail": "introHtml=1235w sections=827w total=2062w (need introHtml≥2000)",
+      "url": "/guides/nature-sounds-for-sleep/"
+    },
+    {
+      "slug": "ambient-sounds",
+      "severity": "P0",
+      "category": "thin-prose",
+      "detail": "introHtml=1574w sections=854w total=2428w (need introHtml≥2000)",
+      "url": "/guides/ambient-sounds/"
+    },
+    {
+      "slug": "asmr-community",
+      "severity": "P0",
+      "category": "thin-prose",
+      "detail": "introHtml=1277w sections=821w total=2098w (need introHtml≥2000)",
+      "url": "/guides/asmr-community/"
+    },
+    {
+      "slug": "asmr-microphone",
+      "severity": "P0",
+      "category": "thin-prose",
+      "detail": "introHtml=1438w sections=875w total=2313w (need introHtml≥2000)",
+      "url": "/gear/asmr-microphone/"
+    },
+    {
+      "slug": "asmr-gear-tools",
+      "severity": "P0",
+      "category": "thin-prose",
+      "detail": "introHtml=1467w sections=814w total=2281w (need introHtml≥2000)",
+      "url": "/gear/asmr-gear-tools/"
+    },
+    {
+      "slug": "whats-asmr",
+      "severity": "P0",
+      "category": "thin-prose",
+      "detail": "introHtml=1641w sections=758w total=2399w (need introHtml≥2000)",
+      "url": "/guides/whats-asmr/"
+    },
+    {
+      "slug": "misophonia-and-asmr",
+      "severity": "P0",
+      "category": "thin-prose",
+      "detail": "introHtml=1057w sections=1018w total=2075w (need introHtml≥2000)",
+      "url": "/guides/misophonia-and-asmr/"
+    },
+    {
+      "slug": "vagus-nerve-and-asmr",
+      "severity": "P0",
+      "category": "thin-prose",
+      "detail": "introHtml=1326w sections=729w total=2055w (need introHtml≥2000)",
+      "url": "/guides/vagus-nerve-and-asmr/"
+    },
+    {
+      "slug": "sound-sensitivity",
+      "severity": "P0",
+      "category": "thin-prose",
+      "detail": "introHtml=1360w sections=653w total=2013w (need introHtml≥2000)",
+      "url": "/guides/sound-sensitivity/"
+    },
+    {
+      "slug": "glass-sounds",
+      "severity": "P0",
+      "category": "thin-prose",
+      "detail": "introHtml=1237w sections=843w total=2080w (need introHtml≥2000)",
+      "url": "/glass-sounds/"
+    },
+    {
+      "slug": "best-asmr-youtube-channels",
+      "severity": "P0",
+      "category": "thin-prose",
+      "detail": "introHtml=1355w sections=766w total=2121w (need introHtml≥2000)",
+      "url": "/best/best-asmr-youtube-channels/"
+    },
+    {
+      "slug": "soap-carving",
+      "severity": "P0",
+      "category": "thin-prose",
+      "detail": "introHtml=1044w sections=1057w total=2101w (need introHtml≥2000)",
+      "url": "/soap-carving/"
+    },
+    {
+      "slug": "asmr-meaning-slang",
+      "severity": "P0",
+      "category": "thin-prose",
+      "detail": "introHtml=1657w sections=840w total=2497w (need introHtml≥2000)",
+      "url": "/guides/asmr-meaning-slang/"
+    },
+    {
+      "slug": "best-asmr",
+      "severity": "P0",
+      "category": "thin-prose",
+      "detail": "introHtml=1298w sections=773w total=2071w (need introHtml≥2000)",
+      "url": "/best/best-asmr/"
+    },
+    {
+      "slug": "what-does-asmr-mean-in-text",
+      "severity": "P0",
+      "category": "thin-prose",
+      "detail": "introHtml=1248w sections=806w total=2054w (need introHtml≥2000)",
+      "url": "/guides/what-does-asmr-mean-in-text/"
+    },
+    {
+      "slug": "asmr-meaning-in-social-media",
+      "severity": "P0",
+      "category": "thin-prose",
+      "detail": "introHtml=1471w sections=785w total=2256w (need introHtml≥2000)",
+      "url": "/guides/asmr-meaning-in-social-media/"
+    },
+    {
+      "slug": "why-does-asmr-make-you-tingle",
+      "severity": "P0",
+      "category": "thin-prose",
+      "detail": "introHtml=1289w sections=768w total=2057w (need introHtml≥2000)",
+      "url": "/guides/why-does-asmr-make-you-tingle/"
+    },
+    {
+      "slug": "best-kept-secret-asmr",
+      "severity": "P0",
+      "category": "thin-prose",
+      "detail": "introHtml=1490w sections=746w total=2236w (need introHtml≥2000)",
+      "url": "/best/best-kept-secret-asmr/"
+    },
+    {
+      "slug": "live-asmr",
+      "severity": "P0",
+      "category": "thin-prose",
+      "detail": "introHtml=1233w sections=836w total=2069w (need introHtml≥2000)",
+      "url": "/live-asmr/"
+    },
+    {
+      "slug": "cutting",
+      "severity": "P0",
+      "category": "thin-prose",
+      "detail": "introHtml=1993w sections=781w total=2774w (need introHtml≥2000)",
+      "url": "/cutting/"
+    },
+    {
+      "slug": "asmr-for-anxiety",
+      "severity": "P0",
+      "category": "thin-prose",
+      "detail": "introHtml=1826w sections=612w total=2438w (need introHtml≥2000)",
+      "url": "/asmr-for-anxiety/"
+    },
+    {
+      "slug": "asmr-for-focus",
+      "severity": "P0",
+      "category": "thin-prose",
+      "detail": "introHtml=1437w sections=832w total=2269w (need introHtml≥2000)",
+      "url": "/asmr-for-focus/"
+    },
+    {
+      "slug": "sleep-stories",
+      "severity": "P0",
+      "category": "thin-prose",
+      "detail": "introHtml=1347w sections=714w total=2061w (need introHtml≥2000)",
+      "url": "/sleep-stories/"
+    },
+    {
+      "slug": "hand-sounds",
+      "severity": "P0",
+      "category": "thin-prose",
+      "detail": "introHtml=1524w sections=847w total=2371w (need introHtml≥2000)",
+      "url": "/hand-sounds/"
+    },
+    {
+      "slug": "chewing",
+      "severity": "P0",
+      "category": "thin-prose",
+      "detail": "introHtml=1490w sections=805w total=2295w (need introHtml≥2000)",
+      "url": "/chewing/"
+    },
+    {
+      "slug": "asmr-for-stress",
+      "severity": "P0",
+      "category": "thin-prose",
+      "detail": "introHtml=1979w sections=719w total=2698w (need introHtml≥2000)",
+      "url": "/asmr-for-stress/"
+    },
+    {
+      "slug": "writing",
+      "severity": "P0",
+      "category": "thin-prose",
+      "detail": "introHtml=1701w sections=849w total=2550w (need introHtml≥2000)",
+      "url": "/writing/"
+    },
+    {
+      "slug": "pouring",
+      "severity": "P0",
+      "category": "thin-prose",
+      "detail": "introHtml=1327w sections=744w total=2071w (need introHtml≥2000)",
+      "url": "/pouring/"
+    },
+    {
+      "slug": "fabric-sounds",
+      "severity": "P0",
+      "category": "thin-prose",
+      "detail": "introHtml=1369w sections=766w total=2135w (need introHtml≥2000)",
+      "url": "/fabric-sounds/"
+    },
+    {
+      "slug": "tearing",
+      "severity": "P0",
+      "category": "thin-prose",
+      "detail": "introHtml=1885w sections=667w total=2552w (need introHtml≥2000)",
+      "url": "/tearing/"
+    },
+    {
+      "slug": "meditation-asmr",
+      "severity": "P0",
+      "category": "thin-prose",
+      "detail": "introHtml=1907w sections=681w total=2588w (need introHtml≥2000)",
+      "url": "/meditation-asmr/"
+    },
+    {
+      "slug": "asmr-for-sleep",
+      "severity": "P0",
+      "category": "thin-prose",
+      "detail": "introHtml=1871w sections=652w total=2523w (need introHtml≥2000)",
+      "url": "/asmr-for-sleep/"
+    },
+    {
+      "slug": "autonomous-asmr",
+      "severity": "P0",
+      "category": "thin-prose",
+      "detail": "introHtml=1545w sections=802w total=2347w (need introHtml≥2000)",
+      "url": "/autonomous-asmr/"
+    },
+    {
+      "slug": "speaking-asmr",
+      "severity": "P0",
+      "category": "thin-prose",
+      "detail": "introHtml=1737w sections=851w total=2588w (need introHtml≥2000)",
+      "url": "/speaking-asmr/"
+    },
+    {
+      "slug": "roleplay-asmr",
+      "severity": "P0",
+      "category": "thin-prose",
+      "detail": "introHtml=1569w sections=908w total=2477w (need introHtml≥2000)",
+      "url": "/roleplay-asmr/"
+    },
+    {
+      "slug": "mukbang-asmr",
+      "severity": "P0",
+      "category": "thin-prose",
+      "detail": "introHtml=1663w sections=887w total=2550w (need introHtml≥2000)",
+      "url": "/mukbang-asmr/"
+    },
+    {
+      "slug": "crafting-asmr",
+      "severity": "P0",
+      "category": "thin-prose",
+      "detail": "introHtml=1417w sections=805w total=2222w (need introHtml≥2000)",
+      "url": "/crafting-asmr/"
+    },
+    {
+      "slug": "cleaning-asmr",
+      "severity": "P0",
+      "category": "thin-prose",
+      "detail": "introHtml=1547w sections=858w total=2405w (need introHtml≥2000)",
+      "url": "/cleaning-asmr/"
+    },
+    {
+      "slug": "organizing-asmr",
+      "severity": "P0",
+      "category": "thin-prose",
+      "detail": "introHtml=1696w sections=770w total=2466w (need introHtml≥2000)",
+      "url": "/organizing-asmr/"
+    },
+    {
+      "slug": "gaming-asmr",
+      "severity": "P0",
+      "category": "thin-prose",
+      "detail": "introHtml=1687w sections=820w total=2507w (need introHtml≥2000)",
+      "url": "/gaming-asmr/"
+    },
+    {
+      "slug": "cyberpunk-asmr",
+      "severity": "P0",
+      "category": "thin-prose",
+      "detail": "introHtml=1865w sections=681w total=2546w (need introHtml≥2000)",
+      "url": "/cyberpunk-asmr/"
+    },
+    {
+      "slug": "medieval-asmr",
+      "severity": "P0",
+      "category": "thin-prose",
+      "detail": "introHtml=1503w sections=783w total=2286w (need introHtml≥2000)",
+      "url": "/medieval-asmr/"
+    },
+    {
+      "slug": "alien-asmr",
+      "severity": "P0",
+      "category": "thin-prose",
+      "detail": "introHtml=1857w sections=640w total=2497w (need introHtml≥2000)",
+      "url": "/alien-asmr/"
+    },
+    {
+      "slug": "goth-asmr",
+      "severity": "P0",
+      "category": "thin-prose",
+      "detail": "introHtml=1888w sections=676w total=2564w (need introHtml≥2000)",
+      "url": "/goth-asmr/"
+    },
+    {
+      "slug": "emo-asmr",
+      "severity": "P0",
+      "category": "thin-prose",
+      "detail": "introHtml=1980w sections=746w total=2726w (need introHtml≥2000)",
+      "url": "/emo-asmr/"
+    },
+    {
+      "slug": "cottagecore-crafts",
+      "severity": "P0",
+      "category": "thin-prose",
+      "detail": "introHtml=1703w sections=879w total=2582w (need introHtml≥2000)",
+      "url": "/cottagecore-crafts/"
+    },
+    {
+      "slug": "asmr-in-korea",
+      "severity": "P0",
+      "category": "thin-prose",
+      "detail": "introHtml=1268w sections=746w total=2014w (need introHtml≥2000)",
+      "url": "/guides/asmr-in-korea/"
+    },
+    {
+      "slug": "asmr-in-latin-america",
+      "severity": "P0",
+      "category": "thin-prose",
+      "detail": "introHtml=1354w sections=702w total=2056w (need introHtml≥2000)",
+      "url": "/guides/asmr-in-latin-america/"
+    },
+    {
+      "slug": "asmr-in-japan",
+      "severity": "P0",
+      "category": "thin-prose",
+      "detail": "introHtml=1286w sections=779w total=2065w (need introHtml≥2000)",
+      "url": "/guides/asmr-in-japan/"
+    },
+    {
+      "slug": "best-asmr-youtuber-rankings",
+      "severity": "P0",
+      "category": "thin-prose",
+      "detail": "introHtml=1274w sections=806w total=2080w (need introHtml≥2000)",
+      "url": "/guides/best-asmr-youtuber-rankings/"
+    },
+    {
+      "slug": "best-asmr-creators",
+      "severity": "P0",
+      "category": "thin-prose",
+      "detail": "introHtml=1341w sections=725w total=2066w (need introHtml≥2000)",
+      "url": "/guides/best-asmr-creators/"
+    },
+    {
+      "slug": "asmr-trends",
+      "severity": "P0",
+      "category": "thin-prose",
+      "detail": "introHtml=1254w sections=806w total=2060w (need introHtml≥2000)",
+      "url": "/guides/asmr-trends/"
+    },
+    {
+      "slug": "asmr-challenges",
+      "severity": "P0",
+      "category": "thin-prose",
+      "detail": "introHtml=1435w sections=833w total=2268w (need introHtml≥2000)",
+      "url": "/guides/asmr-challenges/"
+    },
+    {
+      "slug": "beeping",
+      "severity": "P0",
+      "category": "thin-prose",
+      "detail": "introHtml=1368w sections=748w total=2116w (need introHtml≥2000)",
+      "url": "/beeping/"
+    },
+    {
+      "slug": "asmr-copyright",
+      "severity": "P0",
+      "category": "thin-prose",
+      "detail": "introHtml=1245w sections=790w total=2035w (need introHtml≥2000)",
+      "url": "/guides/asmr-copyright/"
+    },
+    {
+      "slug": "asmr-lighting-setup",
+      "severity": "P0",
+      "category": "thin-prose",
+      "detail": "introHtml=1257w sections=747w total=2004w (need introHtml≥2000)",
+      "url": "/guides/asmr-lighting-setup/"
+    },
+    {
+      "slug": "asmr-monetization",
+      "severity": "P0",
+      "category": "thin-prose",
+      "detail": "introHtml=1186w sections=946w total=2132w (need introHtml≥2000)",
+      "url": "/guides/asmr-monetization/"
+    },
+    {
+      "slug": "asmr-research-studies",
+      "severity": "P0",
+      "category": "thin-prose",
+      "detail": "introHtml=1373w sections=767w total=2140w (need introHtml≥2000)",
+      "url": "/guides/asmr-research-studies/"
+    },
+    {
+      "slug": "asmr-neuroimaging",
+      "severity": "P0",
+      "category": "thin-prose",
+      "detail": "introHtml=1407w sections=792w total=2199w (need introHtml≥2000)",
+      "url": "/guides/asmr-neuroimaging/"
+    },
+    {
+      "slug": "asmr-editing-guide",
+      "severity": "P0",
+      "category": "thin-prose",
+      "detail": "introHtml=1357w sections=853w total=2210w (need introHtml≥2000)",
+      "url": "/guides/asmr-editing-guide/"
+    },
+    {
+      "slug": "asmr-misconceptions",
+      "severity": "P0",
+      "category": "thin-prose",
+      "detail": "introHtml=1364w sections=701w total=2065w (need introHtml≥2000)",
+      "url": "/guides/asmr-misconceptions/"
+    },
+    {
+      "slug": "bubble-wrap",
+      "severity": "P0",
+      "category": "thin-prose",
+      "detail": "introHtml=1287w sections=716w total=2003w (need introHtml≥2000)",
+      "url": "/bubble-wrap/"
+    },
+    {
+      "slug": "cardboard-sounds",
+      "severity": "P0",
+      "category": "thin-prose",
+      "detail": "introHtml=1000w sections=1084w total=2084w (need introHtml≥2000)",
+      "url": "/cardboard-sounds/"
+    },
+    {
+      "slug": "fan-sounds",
+      "severity": "P0",
+      "category": "thin-prose",
+      "detail": "introHtml=1092w sections=978w total=2070w (need introHtml≥2000)",
+      "url": "/fan-sounds/"
+    },
+    {
+      "slug": "origami",
+      "severity": "P0",
+      "category": "thin-prose",
+      "detail": "introHtml=1109w sections=944w total=2053w (need introHtml≥2000)",
+      "url": "/origami/"
+    },
+    {
+      "slug": "pouring-sounds",
+      "severity": "P0",
+      "category": "thin-prose",
+      "detail": "introHtml=1031w sections=976w total=2007w (need introHtml≥2000)",
+      "url": "/pouring-sounds/"
+    },
+    {
+      "slug": "thunder-sounds",
+      "severity": "P0",
+      "category": "thin-prose",
+      "detail": "introHtml=1089w sections=960w total=2049w (need introHtml≥2000)",
+      "url": "/thunder-sounds/"
+    },
+    {
+      "slug": "scissors-sounds",
+      "severity": "P0",
+      "category": "thin-prose",
+      "detail": "introHtml=1233w sections=840w total=2073w (need introHtml≥2000)",
+      "url": "/scissors-sounds/"
+    },
+    {
+      "slug": "page-turning",
+      "severity": "P0",
+      "category": "thin-prose",
+      "detail": "introHtml=1078w sections=925w total=2003w (need introHtml≥2000)",
+      "url": "/page-turning/"
+    },
+    {
+      "slug": "nail-painting",
+      "severity": "P0",
+      "category": "thin-prose",
+      "detail": "introHtml=1195w sections=984w total=2179w (need introHtml≥2000)",
+      "url": "/nail-painting/"
+    },
+    {
+      "slug": "wind-sounds",
+      "severity": "P0",
+      "category": "thin-prose",
+      "detail": "introHtml=1255w sections=896w total=2151w (need introHtml≥2000)",
+      "url": "/wind-sounds/"
+    },
+    {
+      "slug": "water-sounds",
+      "severity": "P0",
+      "category": "thin-prose",
+      "detail": "introHtml=1358w sections=827w total=2185w (need introHtml≥2000)",
+      "url": "/water-sounds/"
+    },
+    {
+      "slug": "dripping-water",
+      "severity": "P0",
+      "category": "thin-prose",
+      "detail": "introHtml=1382w sections=757w total=2139w (need introHtml≥2000)",
+      "url": "/dripping-water/"
+    },
+    {
+      "slug": "layered-sounds",
+      "severity": "P0",
+      "category": "thin-prose",
+      "detail": "introHtml=1241w sections=867w total=2108w (need introHtml≥2000)",
+      "url": "/layered-sounds/"
+    },
+    {
+      "slug": "tinfoil",
+      "severity": "P0",
+      "category": "thin-prose",
+      "detail": "introHtml=1352w sections=724w total=2076w (need introHtml≥2000)",
+      "url": "/tinfoil/"
+    },
+    {
+      "slug": "whittling",
+      "severity": "P0",
+      "category": "thin-prose",
+      "detail": "introHtml=1337w sections=734w total=2071w (need introHtml≥2000)",
+      "url": "/whittling/"
+    },
+    {
+      "slug": "spray-sounds",
+      "severity": "P0",
+      "category": "thin-prose",
+      "detail": "introHtml=1198w sections=901w total=2099w (need introHtml≥2000)",
+      "url": "/spray-sounds/"
+    },
+    {
+      "slug": "writing-sounds",
+      "severity": "P0",
+      "category": "thin-prose",
+      "detail": "introHtml=1398w sections=847w total=2245w (need introHtml≥2000)",
+      "url": "/writing-sounds/"
+    },
+    {
+      "slug": "plastic-sounds",
+      "severity": "P0",
+      "category": "thin-prose",
+      "detail": "introHtml=1246w sections=859w total=2105w (need introHtml≥2000)",
+      "url": "/plastic-sounds/"
+    },
+    {
+      "slug": "asmr-for-nausea",
+      "severity": "P0",
+      "category": "thin-prose",
+      "detail": "introHtml=1420w sections=815w total=2235w (need introHtml≥2000)",
+      "url": "/asmr-for-nausea/"
+    },
+    {
+      "slug": "asmr-mukbang",
+      "severity": "P0",
+      "category": "thin-prose",
+      "detail": "introHtml=1469w sections=756w total=2225w (need introHtml≥2000)",
+      "url": "/asmr-mukbang/"
+    },
+    {
+      "slug": "asmr-for-babies",
+      "severity": "P0",
+      "category": "thin-prose",
+      "detail": "introHtml=1521w sections=825w total=2346w (need introHtml≥2000)",
+      "url": "/asmr-for-babies/"
+    },
+    {
+      "slug": "asmr-medieval",
+      "severity": "P0",
+      "category": "thin-prose",
+      "detail": "introHtml=1248w sections=779w total=2027w (need introHtml≥2000)",
+      "url": "/asmr-medieval/"
+    },
+    {
+      "slug": "asmr-spa",
+      "severity": "P0",
+      "category": "thin-prose",
+      "detail": "introHtml=1244w sections=772w total=2016w (need introHtml≥2000)",
+      "url": "/asmr-spa/"
+    },
+    {
+      "slug": "asmr-for-seniors",
+      "severity": "P0",
+      "category": "thin-prose",
+      "detail": "introHtml=1330w sections=739w total=2069w (need introHtml≥2000)",
+      "url": "/asmr-for-seniors/"
+    },
+    {
+      "slug": "asmr-cooking-show",
+      "severity": "P0",
+      "category": "thin-prose",
+      "detail": "introHtml=1471w sections=751w total=2222w (need introHtml≥2000)",
+      "url": "/asmr-cooking-show/"
+    },
+    {
+      "slug": "asmr-for-panic-attacks",
+      "severity": "P0",
+      "category": "thin-prose",
+      "detail": "introHtml=1208w sections=874w total=2082w (need introHtml≥2000)",
+      "url": "/asmr-for-panic-attacks/"
+    },
+    {
+      "slug": "asmr-for-chronic-pain",
+      "severity": "P0",
+      "category": "thin-prose",
+      "detail": "introHtml=1235w sections=893w total=2128w (need introHtml≥2000)",
+      "url": "/asmr-for-chronic-pain/"
+    },
+    {
+      "slug": "asmr-shorts",
+      "severity": "P0",
+      "category": "thin-prose",
+      "detail": "introHtml=1553w sections=761w total=2314w (need introHtml≥2000)",
+      "url": "/asmr-shorts/"
+    },
+    {
+      "slug": "asmr-storytime",
+      "severity": "P0",
+      "category": "thin-prose",
+      "detail": "introHtml=1243w sections=926w total=2169w (need introHtml≥2000)",
+      "url": "/asmr-storytime/"
+    },
+    {
+      "slug": "asmr-compilation",
+      "severity": "P0",
+      "category": "thin-prose",
+      "detail": "introHtml=1049w sections=961w total=2010w (need introHtml≥2000)",
+      "url": "/asmr-compilation/"
+    },
+    {
+      "slug": "asmr-with-music",
+      "severity": "P0",
+      "category": "thin-prose",
+      "detail": "introHtml=1399w sections=802w total=2201w (need introHtml≥2000)",
+      "url": "/asmr-with-music/"
+    },
+    {
+      "slug": "asmr-nature-walk",
+      "severity": "P0",
+      "category": "thin-prose",
+      "detail": "introHtml=1318w sections=773w total=2091w (need introHtml≥2000)",
+      "url": "/asmr-nature-walk/"
+    },
+    {
+      "slug": "asmr-camping",
+      "severity": "P0",
+      "category": "thin-prose",
+      "detail": "introHtml=1536w sections=0w total=1536w (need introHtml≥2000)",
+      "url": "/asmr-camping/"
+    },
+    {
+      "slug": "asmr-rain-on-tent",
+      "severity": "P0",
+      "category": "thin-prose",
+      "detail": "introHtml=1509w sections=0w total=1509w (need introHtml≥2000)",
+      "url": "/asmr-rain-on-tent/"
+    },
+    {
+      "slug": "asmr-coffee-shop",
+      "severity": "P0",
+      "category": "thin-prose",
+      "detail": "introHtml=1464w sections=0w total=1464w (need introHtml≥2000)",
+      "url": "/asmr-coffee-shop/"
+    },
+    {
+      "slug": "asmr-and-dopamine",
+      "severity": "P0",
+      "category": "thin-prose",
+      "detail": "introHtml=1491w sections=0w total=1491w (need introHtml≥2000)",
+      "url": "/guides/asmr-and-dopamine/"
+    },
+    {
+      "slug": "asmr-vs-white-noise",
+      "severity": "P0",
+      "category": "thin-prose",
+      "detail": "introHtml=1539w sections=0w total=1539w (need introHtml≥2000)",
+      "url": "/guides/asmr-vs-white-noise/"
+    },
+    {
+      "slug": "how-to-find-your-asmr-triggers",
+      "severity": "P0",
+      "category": "thin-prose",
+      "detail": "introHtml=1571w sections=0w total=1571w (need introHtml≥2000)",
+      "url": "/guides/how-to-find-your-asmr-triggers/"
+    },
+    {
+      "slug": "asmr-immunity",
+      "severity": "P0",
+      "category": "thin-prose",
+      "detail": "introHtml=1528w sections=0w total=1528w (need introHtml≥2000)",
+      "url": "/guides/asmr-immunity/"
+    },
+    {
+      "slug": "asmr-and-introverts",
+      "severity": "P0",
+      "category": "thin-prose",
+      "detail": "introHtml=1532w sections=0w total=1532w (need introHtml≥2000)",
+      "url": "/guides/asmr-and-introverts/"
+    },
+    {
+      "slug": "asmr-placebo-or-real",
+      "severity": "P0",
+      "category": "thin-prose",
+      "detail": "introHtml=1538w sections=0w total=1538w (need introHtml≥2000)",
+      "url": "/guides/asmr-placebo-or-real/"
+    },
+    {
+      "slug": "types-of-asmr",
+      "severity": "P0",
+      "category": "thin-prose",
+      "detail": "introHtml=1618w sections=0w total=1618w (need introHtml≥2000)",
+      "url": "/guides/types-of-asmr/"
+    },
+    {
+      "slug": "asmr-tingles-not-working",
+      "severity": "P0",
+      "category": "thin-prose",
+      "detail": "introHtml=1407w sections=0w total=1407w (need introHtml≥2000)",
+      "url": "/guides/asmr-tingles-not-working/"
+    },
+    {
+      "slug": "what-is-asmr-roleplay",
+      "severity": "P0",
+      "category": "thin-prose",
+      "detail": "introHtml=1433w sections=0w total=1433w (need introHtml≥2000)",
+      "url": "/guides/what-is-asmr-roleplay/"
+    },
+    {
+      "slug": "asmr-and-highly-sensitive-person",
+      "severity": "P0",
+      "category": "thin-prose",
+      "detail": "introHtml=1948w sections=1136w total=3084w (need introHtml≥2000)",
+      "url": "/guides/asmr-and-highly-sensitive-person/"
+    },
+    {
+      "slug": "best-asmr-playlists",
+      "severity": "P0",
+      "category": "thin-prose",
+      "detail": "introHtml=1950w sections=997w total=2947w (need introHtml≥2000)",
+      "url": "/best/best-asmr-playlists/"
+    },
+    {
+      "slug": "asmr-shock-mount",
+      "severity": "P0",
+      "category": "thin-prose",
+      "detail": "introHtml=1986w sections=923w total=2909w (need introHtml≥2000)",
+      "url": "/gear/asmr-shock-mount/"
+    },
+    {
+      "slug": "whispering",
+      "severity": "P1",
+      "category": "em-dashes",
+      "detail": "contains -- em dash pattern",
+      "url": "/whispering/"
+    },
+    {
+      "slug": "whispering",
+      "severity": "P1",
+      "category": "jargon",
+      "detail": "neurological, physiological, cognitive",
+      "url": "/whispering/"
+    },
+    {
+      "slug": "light-patterns",
+      "severity": "P1",
+      "category": "jargon",
+      "detail": "stimuli",
+      "url": "/light-patterns/"
+    },
+    {
+      "slug": "spa-roleplay",
+      "severity": "P1",
+      "category": "jargon",
+      "detail": "stimuli",
+      "url": "/spa-roleplay/"
+    },
+    {
+      "slug": "asmr-for-insomnia",
+      "severity": "P1",
+      "category": "jargon",
+      "detail": "physiological",
+      "url": "/asmr-for-insomnia/"
+    },
+    {
+      "slug": "asmr-for-pain",
+      "severity": "P1",
+      "category": "jargon",
+      "detail": "cognitive",
+      "url": "/asmr-for-pain/"
+    },
+    {
+      "slug": "fantasy-asmr",
+      "severity": "P1",
+      "category": "jargon",
+      "detail": "cognitive",
+      "url": "/fantasy-asmr/"
+    },
+    {
+      "slug": "types-of-asmr",
+      "severity": "P1",
+      "category": "em-dashes",
+      "detail": "contains -- em dash pattern",
+      "url": "/guides/types-of-asmr/"
+    }
+  ],
+  "thinPages": [
+    {
+      "slug": "asmr-tingles-not-working",
+      "introW": 1407,
+      "secW": 0,
+      "totalW": 1407
+    },
+    {
+      "slug": "what-is-asmr-roleplay",
+      "introW": 1433,
+      "secW": 0,
+      "totalW": 1433
+    },
+    {
+      "slug": "asmr-coffee-shop",
+      "introW": 1464,
+      "secW": 0,
+      "totalW": 1464
+    },
+    {
+      "slug": "asmr-and-dopamine",
+      "introW": 1491,
+      "secW": 0,
+      "totalW": 1491
+    },
+    {
+      "slug": "asmr-rain-on-tent",
+      "introW": 1509,
+      "secW": 0,
+      "totalW": 1509
+    },
+    {
+      "slug": "asmr-immunity",
+      "introW": 1528,
+      "secW": 0,
+      "totalW": 1528
+    },
+    {
+      "slug": "asmr-and-introverts",
+      "introW": 1532,
+      "secW": 0,
+      "totalW": 1532
+    },
+    {
+      "slug": "asmr-camping",
+      "introW": 1536,
+      "secW": 0,
+      "totalW": 1536
+    },
+    {
+      "slug": "asmr-placebo-or-real",
+      "introW": 1538,
+      "secW": 0,
+      "totalW": 1538
+    },
+    {
+      "slug": "asmr-vs-white-noise",
+      "introW": 1539,
+      "secW": 0,
+      "totalW": 1539
+    },
+    {
+      "slug": "how-to-find-your-asmr-triggers",
+      "introW": 1571,
+      "secW": 0,
+      "totalW": 1571
+    },
+    {
+      "slug": "types-of-asmr",
+      "introW": 1618,
+      "secW": 0,
+      "totalW": 1618
+    }
+  ],
+  "notInLedger": []
+}

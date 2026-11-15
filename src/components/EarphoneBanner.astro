@@ -1,0 +1,57 @@
+---
+// Display ads on every page except admin: one Adsterra 300x250 banner mid-page, plus one 160x600 rail on wide screens.
+// Banners only. Popunder and Social Bar units exist in the Adsterra account but are deliberately never placed: they
+// cover or redirect the page, which drives sleepy readers away and gets pages ranked lower. Adult ads are off on these units.
+// Each banner runs in its own same-domain page (public/ads/b300.html, b160.html, Adsterra's exact code) inside an
+// iframe: their code uses one global `atOptions`, so two units on one page would overwrite each other, and a srcdoc
+// frame would hide our domain from Adsterra. The rail is added by script only on wide screens, so phones never load it.
+// The script below also keeps the in-page Amazon links (AffiliateBox on gear pages) working and counts real clicks.
+import { AMAZON_TAG, AMAZON_BEST } from '../lib/amazon';
+const path = Astro.url.pathname;
+// No ads on admin or on /kids/ (child-directed: COPPA risk, and ad networks restrict it; 2026-11-12).
+const show = !/^\/(admin|kids)(\/|$)/.test(path);
+
+---
+{show && (
+  <aside class="ear-ad" aria-label="Advertisement">
+    <small>Advertisement</small>
+    <iframe class="ad-frame" title="Advertisement" width="300" height="250" loading="lazy" src="/ads/b300" scrolling="no"></iframe>
+  </aside>
+)}
+
+<script is:inline define:vars={{ tag: AMAZON_TAG, best: AMAZON_BEST, rail: show ? '/ads/b160' : '' }}>
+  (function () {
+    // Readers stay about 30 seconds, so move the ad up before the page's second heading.
+    var b = document.querySelector('.ear-ad');
+    var h = document.querySelectorAll('main h2')[1];
+    if (b && h && h.parentNode) h.parentNode.insertBefore(b, h);
+    // Side rail only where there is room beside the content.
+    if (rail && window.matchMedia('(min-width: 1480px)').matches) {
+      var a = document.createElement('aside');
+      a.className = 'ad-rail'; a.setAttribute('aria-label', 'Advertisement');
+      var f = document.createElement('iframe');
+      f.title = 'Advertisement'; f.width = '160'; f.height = '600'; f.className = 'ad-frame'; f.scrolling = 'no'; f.src = rail;
+      a.appendChild(f); document.body.appendChild(a);
+    }
+    // Real people get the direct Amazon URL as soon as they point at, focus or tap a link (see src/lib/amazon.ts).
+    function direct(e) {
+      var a = e.target.closest && e.target.closest('a[data-amz]');
+      if (a) a.href = a.dataset.asin ? 'https://www.amazon.com/dp/' + a.dataset.asin + '?tag=' + tag : 'https://www.amazon.com/s?k=' + encodeURIComponent(a.dataset.amz) + (a.dataset.best ? best : '') + '&tag=' + tag;
+    }
+    ['pointerover', 'pointerdown', 'focusin', 'touchstart'].forEach(function (ev) { document.addEventListener(ev, direct, { passive: true }); });
+    // Count real Amazon clicks in Analytics.
+    document.addEventListener('click', function (e) {
+      direct(e);
+      var a = e.target.closest && e.target.closest('a[data-amz]');
+      // isTrusted is false for clicks fired by a script, so bots running this page are not counted.
+      if (a && e.isTrusted && window.gtag) gtag('event', 'amazon_click', { placement: 'table', item: a.dataset.amz.slice(0, 60) });
+    });
+  })();
+</script>
+
+<style>
+  .ear-ad { margin: 1.75rem 0; display: flex; flex-direction: column; align-items: center; min-height: 270px; }
+  .ear-ad small { font-size: 0.68rem; color: var(--text-3, #777); margin-bottom: 0.25rem; }
+  .ad-frame { border: 0; display: block; max-width: 100%; background: transparent; }
+  :global(.ad-rail) { position: fixed; top: 96px; right: calc((100vw - 1072px) / 2 - 184px); width: 160px; z-index: 5; }
+</style>

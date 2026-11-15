@@ -1,0 +1,157 @@
+{
+  "intro": "<p>Your mechanic just said the words nobody wants to hear. The estimate is on the counter, and you have no idea whether that number is fair, inflated, or missing half the charges.</p>\n<p>Most guides throw out a range so wide it's useless. \"$500 to $10,000, depending on the vehicle\" tells you nothing about your car, your shop, or your specific failure.</p>\n<p>Adjust repair type, shop type, parts tier, and labor rate in the calculator above to build an estimate for your situation. The sections below explain what each input controls and how to verify any quote you receive.</p>",
+
+  "heroAnswer": "<p>Most engine repairs run $800 to $5,500. The spread depends on whether you're fixing a head gasket, rebuilding the bottom end, or swapping in a reman long block. Minor sensor and gasket work sits below $800; full replacements with a new crate engine push past $8,000. Set the repair type dropdown above to your specific job, then adjust shop type and parts tier to match the quotes you're comparing.</p>",
+
+  "reference": [
+    {
+      "heading": "The Four Inputs That Control Your Estimate",
+      "content": "<p>Four inputs control 90% of the spread in any engine repair quote. Change any one in the calculator above and the estimate shifts by hundreds.</p>\n<p>Shop type is the biggest lever. Independent shops charge $85-$120 per hour; dealerships run $130-$185. On a 10-hour job, switching from dealer to independent saves $450-$650 in labor alone.</p>\n<p>Parts tier creates the second-largest swing. OEM parts from the dealer run 30-50% more than aftermarket equivalents. Remanufactured parts offer factory-spec tolerances at 20-30% below OEM. Change the parts tier dropdown to compare.</p>\n<p>Engine size determines flat-rate hours. A 4-cylinder head gasket books at 6-8 hours; a V8 in a truck books at 10-14. Those extra hours multiply against your shop's rate.</p>\n<p>Regional labor rates set the floor. <a href=\"https://www.bls.gov/oes/current/oes493023.htm\">BLS wage data for auto technicians</a> shows a national median of [RATE:auto_labor_hourly]. Shops mark that up 2-4x to cover overhead, so your local rate lands between $85 and $185 per billed hour.</p>"
+    },
+    {
+      "heading": "Minor Tune-Up to Full Replacement: What Each Repair Tier Costs",
+      "content": "<p>Every engine repair falls into one of five tiers. The table below shows flat-rate labor hours and typical parts ranges so you can check any quote against the published numbers.</p>\n<table><thead><tr><th>Repair Type</th><th>Parts</th><th>Labor Hours</th><th>Total Range</th></tr></thead><tbody><tr><td>Minor (sensors, gaskets, belts)</td><td>$50-$400</td><td>1-3</td><td>$150-$800</td></tr><tr><td>Head gasket</td><td>$200-$600</td><td>6-10</td><td>$900-$2,500</td></tr><tr><td>Timing belt/chain</td><td>$150-$400</td><td>4-8</td><td>$500-$1,500</td></tr><tr><td>Engine rebuild</td><td>$500-$2,000</td><td>15-25</td><td>$2,500-$5,000</td></tr><tr><td>Engine replacement (reman)</td><td>$2,000-$4,000</td><td>8-15</td><td>$3,500-$6,500</td></tr><tr><td>Engine replacement (new crate)</td><td>$3,500-$7,000</td><td>8-15</td><td>$4,500-$10,000+</td></tr></tbody></table>\n<p>Labor hours are the number you can audit. Ask the shop what the book time is for the job. If they're quoting 12 hours on a timing belt that books at 6, you're paying for inexperience or padding.</p>\n<p>These ranges assume a mid-range labor rate. Shop rates span $75-$95 per hour in the rural Midwest to $150-$185 in coastal metros, as tracked by <a href=\"https://www.bea.gov/data/prices-inflation/regional-price-parities-state-and-metro-area\">BEA state-level price data</a>. Adjust the labor rate input above to match what shops in your area charge.</p>"
+    },
+    {
+      "heading": "When the Repair Bill Exceeds the Car's Value",
+      "content": "<p>Pull up your car's current market value on KBB or Edmunds before authorizing any major work. The 50% rule gives you a clean decision point.</p>\n<table><thead><tr><th>Repair vs. Vehicle Value</th><th>Decision</th></tr></thead><tbody><tr><td>Below 50%</td><td>Repair. The math works.</td></tr><tr><td>50-75%</td><td>Borderline. Factor in age, mileage, and rust.</td></tr><tr><td>Above 75%</td><td>Replace the vehicle unless it has classic or sentimental value.</td></tr></tbody></table>\n<p>A $3,500 reman swap on a car worth $5,000 sits at 70%. If the car has 80,000 miles and no rust, a reman engine adds 150,000-200,000 miles of life, and the repair makes sense. At 200,000 miles with a rusted frame, you're investing in a vehicle that will fail elsewhere.</p>\n<p>Check the calculator's repair-vs-replace flag. When the bill exceeds your threshold, get a written diagnostic so you can price a used vehicle against the repair.</p>\n<p>If the <a href=\"/automotive/transmission-cost-calculator/\">transmission</a> is also showing symptoms, add that to your total before deciding.</p>"
+    },
+    {
+      "heading": "Dealership vs. Independent vs. Chain: What Each Charges and Why",
+      "content": "<p>Three shop tiers exist, and each charges differently because their overhead structure is different.</p>\n<table><thead><tr><th></th><th>Independent</th><th>Dealership</th><th>Chain</th></tr></thead><tbody><tr><td>Labor rate</td><td>$85-$120/hr</td><td>$130-$185/hr</td><td>$95-$130/hr</td></tr><tr><td>Parts default</td><td>Aftermarket/reman</td><td>OEM</td><td>House-brand</td></tr><tr><td>Warranty</td><td>12-24 months typical</td><td>OEM warranty on parts</td><td>Chain warranty, transferable</td></tr><tr><td>Best for</td><td>Most out-of-warranty repairs</td><td>Warranty work, ADAS calibration</td><td>Quick standard jobs</td></tr></tbody></table>\n<p>Dealerships are the right call in two situations: your car is under powertrain warranty, or the repair requires proprietary diagnostic software. Some engine computers can only be reprogrammed with the manufacturer's scan tool.</p>\n<p>Paying $130-$185 per hour for that access beats paying any rate at a shop that can't finish the job. For everything else, an independent shop at $85-$120 saves you 30-50% on the same work.</p>\n<h4>What Your Shop's Hourly Rate Actually Covers</h4>\n<table><thead><tr><th>Line Item</th><th>Amount</th><th>Formula</th></tr></thead><tbody><tr><td>Tech base wage</td><td>$22.74/hr</td><td>BLS OES median, SOC 49-3023</td></tr><tr><td>+ Benefits, taxes, workers' comp</td><td>$32.52/hr</td><td>$22.74 x 1.43 (BLS ECEC burden)</td></tr><tr><td>+ Shop overhead and profit</td><td>$39.35/hr</td><td>$32.52 x 1.21 (21% O&amp;P)</td></tr><tr><td>= Billed to you (independent)</td><td>$100-$130/hr</td><td>Markup over loaded shop rate</td></tr></tbody></table>\n<p>Your $110/hr shop rate pays for a tech earning $22.74/hr plus rent, insurance, lifts, scan tools, and profit. The markup isn't gouging; it's overhead. Push back on hours, not rate. Ask for the flat-rate book time and hold them to it.</p>"
+    },
+    {
+      "heading": "Six Questions That Protect You at the Service Counter",
+      "content": "<p>Print these or save them on your phone before walking into the shop. Each question forces a specific, verifiable answer.</p>\n<p>1. \"What's the book time for this repair, and how many hours are you billing?\" Flat-rate hours are published. Any shop quoting more than book time should explain why.</p>\n<p>2. \"Are you using OEM, aftermarket, or remanufactured parts?\" OEM carries a 30-50% premium. Aftermarket works fine for gaskets, sensors, and belts. Reman is the sweet spot for major components.</p>\n<p>3. \"What's NOT included in this estimate?\" Mounts, timing components, coolant flush, and flywheel resurfacing are commonly excluded. Get the all-in number before you authorize.</p>\n<p>4. \"What caused the original failure, and does this fix that cause?\" A new head gasket won't help if the leaking radiator that caused the overheat is still broken.</p>\n<p>5. \"Can I see the warranty terms in writing before we start?\" Verbal warranties are unenforceable. Get parts and labor coverage documented with specific mileage or time limits.</p>\n<p>6. \"Will you replace the timing belt and water pump while you have access?\" Skipping these now means paying $800-$1,500 in labor to reopen the same area later. Ask for a bundled price.</p>"
+    },
+    {
+      "heading": "How Much Location Moves the Number",
+      "content": "<p>Labor is the largest variable in any engine repair, and rates track geography more than skill. A head gasket job that bills $1,200 in Mississippi bills $2,800 in San Francisco because the shop rate doubles.</p>\n<p>BLS data shows auto technician wages ranging from [RATE:auto_labor_hourly] nationally. Shops multiply that base by 2-4x for their billed rate. In low-cost states like Mississippi, Arkansas, and West Virginia, independent shop rates sit at $75-$95 per hour. California, New York, and Massachusetts push $150-$185.</p>\n<p>Adjust the labor rate slider in the calculator to match local shop quotes. If you're getting quotes from shops in different areas, this single input explains the spread. A 10-hour job at $85/hr versus $150/hr is a $650 difference in labor alone.</p>"
+    }
+  ],
+
+  "hiddenCosts": [
+    {
+      "heading": "Diagnostic and Teardown Fees Before Work Begins",
+      "content": "<p>Most shops charge $100-$300 for diagnosis before they even name the problem. Teardown labor, where the tech partially disassembles the engine to confirm the failure, adds 2-4 hours at the shop's rate. On a $110/hr shop, that's $220-$440 before any repair starts.</p>\n<p>Ask whether the diagnostic fee gets applied to the repair if you proceed. Most independent shops credit it; some dealerships don't. Get this in writing before authorizing the teardown.</p>"
+    },
+    {
+      "heading": "Secondary Failures Found During Teardown",
+      "content": "<p>Once the engine is apart, shops frequently find additional damage. A warped cylinder head needs resurfacing ($200-$500), worn timing components need replacement ($300-$800), and cracked exhaust manifolds add $200-$600. These show up as a phone call mid-repair asking for more money.</p>\n<p>Set a ceiling before teardown begins. Tell the shop your maximum total and instruct them to call before exceeding it. Get this cap in writing on the work order.</p>"
+    },
+    {
+      "heading": "Fluids, Gaskets, and the Shop Supplies Line",
+      "content": "<p>Coolant, engine oil, transmission fluid disturbed during removal, and replacement gaskets beyond the primary repair add $100-$300. Many shops tack on a \"shop supplies\" charge of $25-$75 for rags, cleaners, and disposal.</p>\n<p>These charges are legitimate but should appear on the initial estimate, not as surprises on the final bill. If they're missing from the written quote, ask for a revised number before authorizing.</p>"
+    }
+  ],
+
+  "valueEngineering": [
+    {
+      "heading": "Replace the Timing Belt and Water Pump While Access Is Open",
+      "content": "<p>Most major engine repairs already expose the timing cover. Replacing the belt or chain and water pump now adds $200-$400 in parts but saves $800-$1,500 in future labor.</p>\n<p>You'd pay that full labor amount later to reopen the same access point. Ask the shop to bundle these into the current job.</p>"
+    },
+    {
+      "heading": "Choose Remanufactured Over New for Daily Drivers",
+      "content": "<p>A reman engine runs $2,000-$4,000 installed versus $4,000-$8,000 for a new crate. Reman units are rebuilt to factory tolerances and typically carry a 3-year/100,000-mile warranty.</p>\n<p>Skip the used salvage pull unless budget forces the issue. Salvage units carry 30-90 day warranties and unknown histories. The $1,000 you save disappears if it fails at month four.</p>"
+    },
+    {
+      "heading": "Schedule the Repair for October or November",
+      "content": "<p>Shops are busiest in January (cold-weather failures) and summer (overheating season). Wait times stretch to 1-2 weeks and pricing pressure goes up.</p>\n<p>If your car is limping but drivable, book the repair for October or November. Shops compete for work during the shoulder season, and turnaround drops to days.</p>"
+    }
+  ],
+
+  "diySection": [
+    {
+      "heading": "Engine Repairs You Can DIY and the Ones That Destroy Engines",
+      "content": "<p>Some jobs save real money with basic tools. Sensors, belts, valve cover gaskets, and thermostats are 1-3 hour jobs with $20-$150 in parts versus $200-$500 at a shop.</p>\n<p>Stop at the timing system. Before touching a timing belt or chain, check whether your engine is an interference design. On an interference engine, a belt that slips by one tooth bends valves into pistons.</p>\n<p>A $40 belt becomes a $2,000-$4,000 valve and piston replacement. Search your engine code plus \"interference\" online before starting. If it's interference, pay the shop.</p>\n<p>Bottom-end work, block boring, and crankshaft grinding require a machine shop regardless of skill level. No garage setup replicates those tolerances.</p>\n<p>Focus your DIY energy on jobs where savings exceed $300 and failure risk is low, like an <a href=\"/automotive/alternator-cost-calculator/\">alternator swap</a> or sensor replacement.</p>"
+    }
+  ],
+
+  "faq": [
+    {
+      "heading": "How much does engine repair cost on average?",
+      "shortAnswer": "Most engine repairs run $800 to $5,500. Minor sensor and gasket work stays below $800. Head gaskets run $900-$2,500. Rebuilds run $2,500-$5,000. Reman replacements land at $3,500-$6,500 installed.",
+      "content": "The range depends on repair type, engine size, shop type, and parts tier. Minor work like sensors and belts sits at $150-$800. Head gaskets on a 4-cylinder run $900-$2,500; V6 and V8 engines push higher because of added labor hours. Timing belt and chain repairs fall between $500 and $1,500.<br><br>Full rebuilds run $2,500-$5,000 depending on how much machine work the block needs. Remanufactured replacements land at $3,500-$6,500 installed, and new crate engines start at $4,500 and can exceed $10,000 on trucks and European vehicles. Labor accounts for 40-60% of most bills in this category. Set your specific inputs in the calculator above for a narrower estimate tailored to your vehicle and region."
+    },
+    {
+      "heading": "Is it cheaper to rebuild or replace an engine?",
+      "shortAnswer": "Rebuilding uses your existing block and runs $2,500-$5,000. A remanufactured replacement costs $3,500-$6,500. Rebuilds win on price when the block is sound; reman wins on warranty.",
+      "content": "Rebuilding preserves your original block. A machine shop hones the cylinders, replaces bearings and seals, and reassembles to spec. Total runs $2,500-$5,000 depending on machining needs.<br><br>A remanufactured engine arrives ready to install with new internals and typically carries a 3-year/100,000-mile warranty. Installed total runs $3,500-$6,500. If your rebuild quote exceeds 80% of the reman price, buy the reman. You get a factory-spec unit with a longer warranty for a small premium."
+    },
+    {
+      "heading": "How much does a head gasket replacement cost?",
+      "shortAnswer": "Head gasket replacement runs $900-$2,500 on a 4-cylinder and $1,500-$3,500 on a V6 or V8. Add $200-$500 for head resurfacing if overheating warped the cylinder head.",
+      "content": "Head gasket jobs are labor-heavy. Book time runs 6-10 hours depending on engine layout. Parts (gasket set, head bolts, coolant) total $200-$600; the rest is labor at your shop's hourly rate.<br><br>Overheating damage is the wild card. If the cylinder head warped from excessive heat, machine shop resurfacing adds $200-$500. Ask the shop to check head flatness with a straightedge before reassembly. A head that passes saves you the machining charge."
+    },
+    {
+      "heading": "What is the average labor rate for engine work?",
+      "shortAnswer": "Independent shops charge $85-$120 per hour. Dealerships run $130-$185. Chain shops sit at $95-$130. The national median auto tech wage is about $22.74 per hour.",
+      "content": "Shop rates reflect tech wages plus overhead. BLS data puts the national median auto tech wage at [RATE:auto_labor_hourly]. Shops multiply by 2-4x to cover rent, insurance, equipment, and profit.<br><br>Independent shops bill $85-$120 per hour. Dealerships charge $130-$185. Chains land at $95-$130. Flat-rate hours, not actual clock time, determine your total labor charge. A shop billing 8 flat-rate hours at $110 charges $880 regardless of whether the job took 6 hours or 10."
+    },
+    {
+      "heading": "How do I know if my engine is worth fixing?",
+      "shortAnswer": "Compare the repair bill to your car's current market value. Below 50%, repair confidently. Between 50-75%, factor in age and mileage. Above 75%, replacing the vehicle usually wins.",
+      "content": "Pull your car's private-party value from KBB or Edmunds. Divide the repair estimate by that value. Below 50%, the repair makes financial sense. Between 50% and 75%, factor in remaining vehicle life: under 100,000 miles with no rust favors repair; over 200,000 miles with body problems favors replacement.<br><br>Above 75%, replacing the vehicle wins almost every time unless the car has sentimental or collector value. Run both scenarios through the calculator above to compare total outlay."
+    },
+    {
+      "heading": "What does a complete engine replacement include?",
+      "shortAnswer": "Replacement includes removal of the old engine, installation of the new or reman unit, and reconnection of all systems. It usually excludes mounts, timing components, and fluids unless quoted separately.",
+      "content": "A standard replacement quote covers engine removal, installation, and reconnection of electrical, fuel, and cooling systems. Labor runs 8-15 hours depending on vehicle layout.<br><br>Commonly excluded: engine mounts ($150-$400), timing belt or chain ($150-$400 in parts), water pump ($100-$250), thermostat and coolant flush ($50-$150), and flywheel resurfacing ($80-$200). Ask for an all-in quote that includes these items. Paying to address them now while access is open saves $500-$1,500 in future labor."
+    },
+    {
+      "heading": "Can I negotiate the price of engine work?",
+      "shortAnswer": "Negotiate on parts, not labor. Shops mark up parts 20-50% over wholesale. Ask for aftermarket or reman alternatives on non-critical components to save 20-40%.",
+      "content": "Labor rates are fixed by shop overhead and rarely negotiable. Parts are where the margin sits. Ask what the shop pays wholesale versus what they're billing you. Aftermarket gaskets, sensors, and belts perform identically to OEM at 20-40% less.<br><br>On full replacements, the biggest savings come from choosing your engine source. A reman at $3,000 versus a new crate at $6,000 saves $3,000 with comparable warranty. Ask the shop to quote both on the same estimate so you can compare."
+    },
+    {
+      "heading": "What voids a repair warranty on engine work?",
+      "shortAnswer": "Running the car on low oil, overheating after the repair, using wrong fluids, or modifying the engine. Get warranty terms in writing before work begins.",
+      "content": "Most warranties exclude damage caused by owner neglect after the repair. Running low on oil, ignoring a coolant leak, using non-specified fluids, or adding performance modifications all void coverage.<br><br>Ask for the warranty document before authorizing work. Read the exclusions closely. Some shops exclude consequential damage, meaning a failed gasket that destroys a piston is not covered even though the gasket itself is. Knowing this upfront changes which shop you choose."
+    },
+    {
+      "heading": "Does car insurance cover engine failure?",
+      "shortAnswer": "Standard auto insurance does not cover mechanical failure. Mechanical breakdown insurance and extended warranties do. If the failure resulted from a covered accident, collision or comprehensive may apply.",
+      "content": "Standard liability, collision, and comprehensive policies exclude mechanical breakdown. They cover the engine only if failure resulted from a covered event like a collision or flood.<br><br>Mechanical breakdown insurance (MBI), available from some insurers, functions like an extended warranty and covers engine failure from normal wear. If you have an extended warranty or vehicle service contract, call the provider before authorizing any teardown. Pre-authorization is almost always required, and starting work without it can void the claim entirely."
+    }
+  ],
+
+  "callout": [
+    {
+      "heading": "Four Problems That Double If You Drive Another Week",
+      "content": "<table><thead><tr><th>Symptom</th><th>What Happens If You Wait</th><th>Now vs. Later</th></tr></thead><tbody><tr><td>Overheating (temp gauge pegged)</td><td>Warps cylinder head in 1-2 drives</td><td>$1,500 head gasket now vs. $3,500 head replacement later</td></tr><tr><td>Rod knock (rhythmic tapping)</td><td>Rod punches through block in days</td><td>$3,000 rebuild now vs. $500 scrap value later</td></tr><tr><td>Heavy oil leak (puddle under car)</td><td>Engine seizes from oil starvation</td><td>$200-$800 seal now vs. $3,000-$6,000 replacement later</td></tr><tr><td>Milky dipstick (coolant in oil)</td><td>Bearing damage from contamination</td><td>$1,500-$2,500 gasket now vs. $4,000+ rebuild later</td></tr></tbody></table>\n<p>If your temperature gauge reads hot, pull over and shut off the engine immediately. Every minute of driving compounds the damage. The $75 tow to a shop is the cheapest line item on this entire page.</p>"
+    },
+    {
+      "heading": "When Your Warranty or Extended Coverage Pays for the Repair",
+      "content": "<p>Before authorizing any work, check your factory powertrain warranty. Most brands cover 5 years/60,000 miles; Hyundai and Kia extend to 10 years/100,000. Also check any extended warranty or vehicle service contract, plus CPO coverage if you bought the car certified.</p>\n<p>Extended warranties almost always require pre-authorization before teardown. Let a shop pull the engine apart before you call the warranty company, and the claim is dead. Call first, get a claim number, then authorize the shop to proceed.</p>\n<p>Check NHTSA.gov for open recalls on your make, model, and year before paying anything. Kia and Hyundai engine failures tied to the Theta II and Nu engine families are covered under manufacturer campaigns regardless of mileage. A 5-minute VIN search saves you the entire bill.</p>"
+    },
+    {
+      "heading": "Shop Financing, Credit Cards, and How to Negotiate Parts",
+      "content": "<p>A $3,000-$6,000 repair isn't a cash purchase for most people. Dealerships often offer 6-12 month same-as-cash financing through Synchrony or similar lenders. Independent shops accept credit cards, and some have added Affirm or Klarna for larger jobs.</p>\n<p>Negotiate on parts, not labor. Shops mark up parts 20-50% over wholesale. Ask whether aftermarket or reman options exist for non-critical components.</p>\n<p>On full replacements, requesting a used pull instead of a reman saves $800-$2,000. Confirm the warranty difference first. Reman typically carries 3 years/100,000 miles; salvage pulls get 30-90 days.</p>\n<p>One caution: financing a repair on a vehicle worth less than the bill puts you upside-down. If the car dies again, you owe money on something you've already scrapped. Run the 50% rule above before signing a payment plan.</p>"
+    },
+    {
+      "heading": "The First 500 Miles After a Rebuild or Replacement",
+      "content": "<p>Rebuilt and reman engines have a break-in period. New piston rings need to seat, gaskets need heat cycling to seal, and oil passages need to flush manufacturing debris.</p>\n<p>Drive normally for the first 500 miles but avoid hard acceleration, high RPM, and towing. Change the oil at 500 miles; this is not optional.</p>\n<p>Metal particles from break-in contaminate the oil, and leaving them in shortens the engine's life. Budget $60-$100 for this change using the <a href=\"/automotive/oil-change-cost-calculator/\">oil change calculator</a>.</p>\n<p>Watch for red flags after the repair: persistent oil leaks at gasket surfaces, milky residue on the dipstick, warning lights that stay on, or dropping oil pressure. Any of these means return to the shop immediately under your repair warranty.</p>"
+    }
+  ],
+
+  "crossLinks": [
+    {
+      "label": "Transmission Replacement Cost Calculator",
+      "content": "Transmission problems often surface during engine removal",
+      "href": "/automotive/transmission-cost-calculator/"
+    },
+    {
+      "label": "Catalytic Converter Replacement Cost Calculator",
+      "content": "A failing engine frequently damages the catalytic converter",
+      "href": "/automotive/catalytic-converter-cost-calculator/"
+    },
+    {
+      "label": "Alternator Replacement Cost Calculator",
+      "content": "High-mileage vehicles needing engine work often need this too",
+      "href": "/automotive/alternator-cost-calculator/"
+    }
+  ],
+
+  "metaTitle": "Engine Repair Cost Calculator (2026) | Sourced Rates",
+  "metaDescription": "Calculate your engine repair estimate by type, shop, and region. Sourced from BLS labor data. Head gaskets to full replacements with quote-checking tools."
+}

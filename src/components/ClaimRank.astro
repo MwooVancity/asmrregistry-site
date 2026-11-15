@@ -1,0 +1,24 @@
+---
+// Trigger hubs: this trigger's share of titles promising a result, with its rank among triggers with 300+ videos.
+// From the build snapshot (titleClaims); no line when the trigger is not in the table.
+import hub from '../lib/hub-data-all.json';
+
+interface Props { trigger: string }
+const { trigger } = Astro.props;
+const rows = ((hub as any).titleClaims?.byTrigger ?? []) as any[];
+const i = rows.findIndex((r) => r.trigger === trigger);
+const r = rows[i];
+// Ties share a rank: rank = 1 + number of triggers with a strictly higher share.
+const rank = r ? 1 + rows.filter((x) => x.promisePct > r.promisePct).length : 0;
+const label = trigger.replace(/-/g, ' ');
+---
+{r && (
+  <>
+  {/* template-lint-ok: rank line, every number is this trigger's own */}
+  <p class="clr">{`Promises in titles: ${r.promisePct}% of ${label} video titles in our catalog promise a result (a cure, "instant" sleep, a guarantee or a sleep percentage), rank ${rank} of ${rows.length} triggers. `}<a href="/guides/is-asmr-good-for-you/">What they promise, next to the research</a>.</p>
+  </>
+)}
+
+<style>
+  .clr { font-size: 0.92rem; color: var(--text-2); margin: 0.75rem 0 1.5rem; }
+</style>

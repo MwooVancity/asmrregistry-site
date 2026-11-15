@@ -1,0 +1,36 @@
+---
+// Catalog-wide trigger table (count, median length, share over 30 minutes, share labelled no talking), from the build
+// snapshot. Used on /guides/asmr-statistics/ so the site has one quotable reference table for ASMR video statistics.
+import hub from '../lib/hub-data-all.json';
+import { hrefFor } from '../lib/page-content';
+
+const { catalogStats: stats, catalogDate } = hub as any;
+const total = stats.reduce((n: number, s: any) => n + s.count, 0);
+const top = stats[0];
+const longest = [...stats].sort((a: any, b: any) => b.medianMin - a.medianMin)[0];
+const label = (t: string) => t.charAt(0).toUpperCase() + t.slice(1).replace(/-/g, ' ');
+const fmt = (n: number) => n.toLocaleString('en-US');
+---
+<section class="tst">
+  <h2>ASMR video statistics by trigger</h2>
+  <p>As of {catalogDate}, the ASMR Registry catalog lists {fmt(total)} tagged ASMR videos across {stats.length} triggers with at least 30 videos each. The most common main trigger is {label(top.trigger).toLowerCase()} ({fmt(top.count)} videos). {label(longest.trigger)} videos have the longest median length, {longest.medianMin} minutes.</p>
+  <div class="tst-wrap">
+    <table>
+      <caption>Videos by main trigger in the ASMR Registry catalog, {catalogDate}. Tags come from titles and descriptions, not listening.</caption>
+      <thead><tr><th scope="col">Trigger</th><th scope="col">Videos</th><th scope="col">Median length</th><th scope="col">Over 30 min</th><th scope="col">Labelled no talking</th></tr></thead>
+      <tbody>
+        {stats.map((s: any) => (
+          <tr><td>{hrefFor(s.trigger) ? <a href={hrefFor(s.trigger)!}>{label(s.trigger)}</a> : label(s.trigger)}</td><td>{fmt(s.count)}</td><td>{s.medianMin} min</td><td>{s.over30}%</td><td>{s.noTalking}%</td></tr>
+        ))}
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<style>
+  .tst { margin: 2rem 0; }
+  .tst-wrap { overflow-x: auto; }
+  .tst table { width: 100%; border-collapse: collapse; font-size: 0.92rem; }
+  .tst caption { text-align: left; font-size: 0.85rem; color: var(--text-3, #999); padding-bottom: 0.3rem; }
+  .tst th, .tst td { padding: 0.35rem 0.4rem; border-bottom: 1px solid var(--border, #2a2a3e); text-align: left; }
+</style>
