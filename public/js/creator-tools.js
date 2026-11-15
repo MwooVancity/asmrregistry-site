@@ -30,7 +30,7 @@
     shown = filtered();
     const wl = store.get() || [];
     count.textContent = `${shown.length.toLocaleString('en-US')} videos`;
-    out.innerHTML = shown.slice(0, 300).map((v) => `<li><a href="/creators/${slug}/v/${v[0]}/">${esc(v[1])}</a> <span class="vm">${fmtLen(v[3])}${v[2] != null ? ' · ' + big(v[2]) : ''} · ${v[4].slice(0, 4)}</span> <button type="button" class="cv-wl" data-id="${v[0]}" aria-pressed="${wl.includes(v[0])}">${wl.includes(v[0]) ? 'Saved' : 'Watch later'}</button></li>`).join('') +
+    out.innerHTML = shown.slice(0, 300).map((v) => `<li><a href="/creators/${slug}/v/${v[0]}/"><img src="https://i.ytimg.com/vi/${v[0]}/mqdefault.jpg" alt="" loading="lazy" width="96" height="54"></a><div><a href="/creators/${slug}/v/${v[0]}/">${esc(v[1])}</a><span class="vm">${fmtLen(v[3])}${v[2] != null ? ' · ' + big(v[2]) : ''} · ${v[4].slice(0, 4)}</span></div><button type="button" class="cv-wl" data-id="${v[0]}" aria-pressed="${wl.includes(v[0])}">${wl.includes(v[0]) ? 'Saved' : '+ Later'}</button></li>`).join('') +
       (shown.length > 300 ? `<li class="vm">Showing 300 of ${shown.length.toLocaleString('en-US')}. Narrow the filters to see the rest.</li>` : '');
   }
   function play(ids) {
@@ -51,6 +51,11 @@
     store.set(wl.slice(-200)); render();
   });
   if (store.get() === null) $('#cv-saved').hidden = true;
+  // Trigger chips further down filter this list.
+  document.querySelectorAll('.chip[data-trig]').forEach((c) => c.addEventListener('click', () => {
+    if ([...trig.options].some((o) => o.value === c.dataset.trig)) { trig.value = c.dataset.trig; render(); root.scrollIntoView({ behavior: 'smooth' }); }
+  }));
+  const seo = document.querySelector('.seo-list'); if (seo) seo.hidden = true; // text list stays in the HTML for crawlers
   root.hidden = false;
   render();
 })();
