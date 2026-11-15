@@ -23,11 +23,11 @@ atOptions = {
   var fb = document.getElementById('fb');
   function check() {
     var ad = [].some.call(document.body.querySelectorAll('iframe,img,ins'), function (el) {
-      return !fb.contains(el) && el.offsetWidth > 0 && el.offsetHeight > 0;
+      return !fb.contains(el) && el.offsetWidth >= 100 && el.offsetHeight >= 50;
     });
     fb.style.display = ad ? 'none' : 'flex';
   }
-  setTimeout(check, 4000); setTimeout(check, 8000);
+  setTimeout(check, 4000); setTimeout(check, 8000); setTimeout(check, 15000);
   // Real people get the direct tagged Amazon URL on hover, focus or tap, as in EarphoneBanner (bots reading HTML do not).
   function direct() { fb.href = 'https://www.amazon.com/s?k=sleep%20headphones%20headband&rh=p_36%3A-2000&s=exact-aware-popularity-rank&tag=220a102-20'; }
   ['pointerover', 'pointerdown', 'focusin', 'touchstart'].forEach(function (ev) { fb.addEventListener(ev, direct, { passive: true }); });
