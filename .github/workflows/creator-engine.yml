@@ -1,0 +1,45 @@
+name: Creator Engine
+# Daily: refresh creator files older than 25 days, build the next 100 creators, publish the creator-data branch
+# (latest copy only), then build and deploy. YouTube quota capped at 6,000 units (shared with the cron worker).
+on:
+  schedule:
+    - cron: '30 14 * * *'
+  workflow_dispatch:
+    inputs:
+      new:
+        description: 'New creators to build'
+        default: '100'
+permissions:
+  contents: write
+jobs:
+  engine:
+    runs-on: ubuntu-latest
+    timeout-minutes: 120
+    steps:
+      - uses: actions/checkout@v4
+      - name: Load creator data
+        run: |
+          git fetch --depth 1 origin creator-data && mkdir -p public/creator-data && git --work-tree=public/creator-data checkout origin/creator-data -- . || echo "no creator-data branch yet"
+          git reset -q
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - name: Build creators
+        env:
+          YOUTUBE_API_KEY: ${{ secrets.YOUTUBE_API_KEY }}
+        run: |
+          IDS=$(node tools/creator-daily.mjs --new ${{ github.event.inputs.new || '100' }})
+          [ -n "$IDS" ] && node tools/creator-build.mjs $IDS --budget 6000 || echo "nothing to build"
+      - name: Publish creator-data branch
+        run: |
+          git config user.name "ASMR Registry"
+          git config user.email "3124681+MwooVancity@users.noreply.github.com"
+          sh tools/push-creator-data.sh
+      - name: Build and deploy
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          YOUTUBE_API_KEY: ${{ secrets.YOUTUBE_API_KEY }}
+        run: npm run build && npx wrangler deploy
