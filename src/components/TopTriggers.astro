@@ -1,0 +1,29 @@
+---
+// /guides/what-is-asmr/: the 8 most common main triggers, computed from the build snapshot (catalogStats) so the
+// counts never drift (2026-11-15: a typed table dated 3 Nov failed the truth gate once the catalog grew).
+import hub from '../lib/hub-data-all.json';
+
+const { catalogStats = [], catalogDate } = hub as any;
+const total = catalogStats.reduce((n: number, s: any) => n + s.count, 0);
+const top = catalogStats.slice(0, 8);
+const label = (t: string) => t.charAt(0).toUpperCase() + t.slice(1).replace(/-/g, ' ');
+---
+{top.length >= 5 && (
+<section class="tt8">
+  {/* template-lint-ok: one computed lead for the trigger table */}
+  <p>{`As of ${catalogDate}, the ${total.toLocaleString('en-US')} tagged videos in our catalog break down like this. This shows what creators make, not what works best for you.`}</p>
+  <table>
+    <thead><tr><th scope="col">Main trigger</th><th scope="col">Videos in our catalog</th><th scope="col">Share</th></tr></thead>
+    <tbody>
+      {top.map((s: any) => (
+        <tr><td><a href={`/${s.trigger}/`}>{label(s.trigger)}</a></td><td>{s.count.toLocaleString('en-US')}</td><td>{`${Math.round((100 * s.count) / total)}%`}</td></tr>
+      ))}
+    </tbody>
+  </table>
+</section>
+)}
+
+<style>
+  .tt8 table { width: 100%; border-collapse: collapse; font-size: 0.9rem; }
+  .tt8 th, .tt8 td { text-align: left; padding: 0.35rem 0.5rem; border-bottom: 1px solid var(--border); }
+</style>

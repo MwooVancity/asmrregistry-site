@@ -4,7 +4,11 @@ const BANNED = /\b(popular|famous|best|top|prolific|legendary|beloved|talented|q
 const INTERNAL = /\b(intent mix|style labels?|tagged|modifiers?|triggerShare|data pack|classified as)\b/i;
 // Health-claim titles never appear in our lists (hubs, finder, creator pages): "cure", "relief", "treated", Hz healing.
 export const CLAIM = /\bcures?\b|\brelief\b|\btreat(ed|s|ment)?\b|healing|\d+(\.\d+)? ?hz\b|guaranteed|no surgery/i;
-export const SUGGESTIVE =/kiss|\blick|girlfriend|boyfriend|making out|spicy|seduc|flirt|sexy|cuddl|lingerie|bikini|moan|nsfw|18\+/i;
+// Owner 2026-11-15 ("Adult and etc is fine"): suggestive ASMR is allowed. SUGGESTIVE now blocks only what stays banned
+// whatever the owner decides: anything sexual with minors, and explicit content. Every list imports this one rule.
+export const SUGGESTIVE = /\b(1[0-7]|[1-9]) ?(yo|y\/o|years? old)\b|\bunderage\b|\bminors?\b|\bloli|\bschool ?girl|\bteen(s|ager)?\b|\bnude|\bnaked|\bporn|\bsex\b|\bsexual|\bnsfw\b|onlyfans|\bexplicit\b/i;
+// The old, wider list: adult-leaning but legal. Used only where kids could land (site-wide related links, footer).
+export const ADULT = /kiss|\blick|girlfriend|boyfriend|making out|spicy|seduc|flirt|sexy|cuddl|lingerie|bikini|moan|nsfw|18\+/i;
 const PERSONAL = /\b(years old|born in|lives in|his wife|her husband|boyfriend|girlfriend|married|real name|nationality)\b/i;
 
 // "around 20 minutes" style claims, as numbers. Used by the gate and by prebuild-creators to catch drift.

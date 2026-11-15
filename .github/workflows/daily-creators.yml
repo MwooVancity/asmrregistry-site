@@ -7,7 +7,7 @@ on:
     inputs:
       count:
         description: Pages to publish
-        default: '25'
+        default: '100'
 
 permissions:
   contents: write
@@ -35,7 +35,7 @@ jobs:
       - run: npm ci
       - name: Write and publish creator pages
         id: pilot
-        run: node scripts/creator-autopilot.mjs --count ${{ github.event.inputs.count || '25' }}
+        run: node scripts/creator-autopilot.mjs --count ${{ github.event.inputs.count || '100' }}
       # A crash mid-run still leaves published rows in D1, so these run on failure too. Only a cancel skips them.
       - name: Build
         id: build

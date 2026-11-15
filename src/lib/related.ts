@@ -3,7 +3,7 @@
 // than its cap (6, or 30 for high-demand pages), so the same popular pages cannot take every slot and small pages get linked.
 import ledgerData from './asmr-keyword-ledger.json';
 import { hrefFor, getContent } from './page-content';
-import { SUGGESTIVE } from '../../scripts/lib/creator-gate-lib.mjs';
+import { ADULT as SUGGESTIVE } from '../../scripts/lib/creator-gate-lib.mjs'; // adult-leaning slugs never in site-wide links (kids page)
 
 const GROUPS = [['GUIDE', 'INFO_GUIDE', 'BEST_LIST', 'EQUIPMENT'], ['TRIGGER_HUB', 'FORMAT_HUB'], ['INTENT_HUB']];
 const STOP = new Set(['asmr', 'for', 'the', 'and', 'what', 'how', 'best', 'with', 'you', 'your', 'why', 'does', 'sounds', 'sound', 'video', 'videos', 'youtube', 'free', 'online']);

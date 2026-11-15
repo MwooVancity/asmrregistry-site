@@ -17,6 +17,7 @@ import SpanishCatalog from '../../components/SpanishCatalog.astro';
 import TitleClaims from '../../components/TitleClaims.astro';
 import LengthChange from '../../components/LengthChange.astro';
 import LanguageMap from '../../components/LanguageMap.astro';
+import TopTriggers from '../../components/TopTriggers.astro';
 import hub from '../../lib/hub-data-all.json';
 import { DATA_DOI } from '../../lib/dataset';
 const SAMPLER = new Set(['what-is-asmr', 'how-to-find-your-asmr-triggers', 'why-doesnt-asmr-work-for-me', 'asmr-tingles-not-working', 'asmr-immunity']);
@@ -112,6 +113,7 @@ if (faqItems.length > 0) {
   {page.slug === 'rain-sounds-for-sleeping' && <PlayNow trigger="rain" label="rain" />}
   {page.slug === 'que-es-asmr' && <SpanishCatalog />}
   {page.slug === 'is-asmr-good-for-you' && <TitleClaims />}
+  {page.slug === 'what-is-asmr' && <TopTriggers />}
   {page.slug === 'asmr-trends' && <TrendsByYear />}
   {page.slug === 'asmr-trends' && <LengthChange mode="table" />}
   {page.slug === 'asmr-trends' && <LanguageMap />}

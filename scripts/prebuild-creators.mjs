@@ -56,7 +56,7 @@ try {
     const trig = {}; for (const r of all) if (r.primary_trigger && r.primary_trigger !== 'kisses') trig[r.primary_trigger] = (trig[r.primary_trigger] || 0) + 1
     // A channel whose titles are mostly treatment claims is marketing, not ASMR (a chiropractic clinic had a page).
     if (all.filter(r => CLAIM.test(r.title)).length >= all.length * 0.2) { console.warn(`prebuild-creators: no page for ${p.slug} (health-claim titles)`); continue }
-    if (all.length < 15 || !v.length || !Object.keys(trig).length) { console.warn(`prebuild-creators: no page for ${p.slug} (${all.length} videos)`); continue }
+    if (all.length < 5 || !v.length || !Object.keys(trig).length) { console.warn(`prebuild-creators: no page for ${p.slug} (${all.length} videos)`); continue }
     const mins = all.map(r => (r.duration_seconds || 0) / 60).filter(m => m > 0)
     const bucket = (a, b) => mins.filter(m => m >= a && m < b).length
     const has = (r, list, x) => arr(r[list]).includes(x)
