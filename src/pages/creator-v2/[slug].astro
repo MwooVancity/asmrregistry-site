@@ -27,6 +27,19 @@ const peak = years.reduce((a, b) => (b[1] > a[1] ? b : a), years[0] || ['', 0]);
 const title = `${ch.title}: all ${fmt(n.public)} videos, most watched and stats`;
 const desc = `Every ${ch.title} video in one list, most watched first, with what they make most, typical length, Shorts vs full videos and whether they still upload. Data from YouTube, ${d.fetched}.`.slice(0, 160);
 const lead = `${ch.title} has ${fmt(n.public)} public videos on YouTube${ch.subs ? ` and ${big(ch.subs)} subscribers` : ''}, ${big(ch.views)} views in total, uploading since ${d.first.slice(0, 4)}. ${active ? `They are still uploading: the latest video went up ${daysSince <= 1 ? 'in the last day' : `${daysSince} days`} before our check.` : `Their latest upload was ${d.last}, ${daysSince} days before our check.`} The typical full video runs ${L.medianMin} minutes; ${n.shorts ? `${fmt(n.shorts)} of their uploads are Shorts.` : 'they post no Shorts.'}`;
+// Similar creators: shared title triggers (weighted by share) and close typical length, from public/creator-index.json.
+let similar: any[] = [];
+try {
+  const iu = new URL('/creator-index.json', Astro.url);
+  const ir = (env as any)?.ASSETS ? await (env as any).ASSETS.fetch(iu) : await fetch(iu);
+  const idx: any[] = ir.ok ? await ir.json() : [];
+  const mine = Object.fromEntries((d.triggers || []).map(([k, c]: any) => [k, c / Math.max(n.full, 1)]));
+  similar = idx.filter((o) => o.s !== slug).map((o) => {
+    const shared = o.tr.filter(([k]: any) => mine[k]).map(([k, p]: any) => [k, Math.min(p / 100, mine[k])]);
+    const score = shared.reduce((a: number, [, x]: any) => a + x, 0) - 0.1 * Math.abs(Math.log((o.m || 1) / (L.medianMin || 1)));
+    return { ...o, score, why: shared.length ? `both make ${shared.slice(0, 2).map(([k]: any) => k).join(' and ')}` : 'similar length' };
+  }).filter((o) => o.score > 0.05).sort((a, b) => b.score - a.score).slice(0, 6);
+} catch {}
 const SHOW = 48;
 const card = (v: any) => ({ ...v, meta: [len(v.d), v.v != null ? `${big(v.v)} views` : '', v.p.slice(0, 4)].filter(Boolean).join(' · ') });
 ---
@@ -65,15 +78,36 @@ const card = (v: any) => ({ ...v, meta: [len(v.d), v.v != null ? `${big(v.v)} vi
   <h2>Newest uploads</h2>
   <ul class="plain">{d.newest.map(card).map((v: any) => <li><button type="button" class="vplay linkish" data-v={v.id} aria-label={`Play ${v.t}`}>{v.t}</button> <span class="vm">{`${v.p} · ${v.meta}`}</span></li>)}</ul>
 
-  <h2>{`All ${fmt(d.all.length)} ${ch.title} videos, most watched first`}</h2>
-  <ol class="all">
-    {d.all.map(card).map((v: any, i: number) => (
-      <li hidden={i >= SHOW} class={i >= SHOW ? 'more' : ''}><a href={`/creators/${slug}/v/${v.id}/`}>{v.t}</a> <span class="vm">{v.meta}</span></li>
-    ))}
-  </ol>
-  {d.all.length > SHOW && <button type="button" class="showall" onclick="this.previousElementSibling.querySelectorAll('.more').forEach(e=>e.hidden=false);this.remove()">{`Show all ${fmt(d.all.length)}`}</button>}
+  <h2>{`All ${fmt(d.all.length)} ${ch.title} videos`}</h2>
+  <div id="cv-tools" data-slug={slug} hidden>
+    <div class="cv-bar">
+      <input id="cv-q" type="search" placeholder={`Search ${ch.title} videos`} aria-label="Search this creator's videos" />
+      <select id="cv-len" aria-label="Length"><option value="">Any length</option><option value="u10">Under 10 min</option><option value="10-30">10 to 30 min</option><option value="30-60">30 to 60 min</option><option value="60">Over an hour</option></select>
+      <select id="cv-trig" aria-label="Trigger"></select>
+      <select id="cv-year" aria-label="Year"></select>
+      <select id="cv-sort" aria-label="Sort"><option value="views">Most viewed</option><option value="new">Newest</option><option value="old">Oldest</option><option value="long">Longest</option><option value="short">Shortest</option></select>
+      <label><input id="cv-shorts" type="checkbox" checked /> Include Shorts</label>
+    </div>
+    <div class="cv-bar">
+      <button type="button" id="cv-play">Play all (up to 50)</button>
+      <button type="button" id="cv-random">Surprise me</button>
+      <button type="button" id="cv-saved">Play my watch later</button>
+      <span id="cv-count" class="vm"></span>
+    </div>
+    <div id="cv-player"></div>
+    <ol id="cv-list" class="all"></ol>
+  </div>
+  <script id="cv-data" type="application/json" set:html={JSON.stringify(d.all.map((v: any) => [v.id, v.t, v.v, v.d, v.p])).replace(/</g, '\u003c')}></script>
+  <noscript><ol class="all">{d.all.slice(0, 200).map((v: any) => <li><a href={`/creators/${slug}/v/${v.id}/`}>{v.t}</a></li>)}</ol></noscript>
+  <h3 class="vm">{`Most watched ${Math.min(200, d.all.length)}`}</h3>
+  <ol class="all seo">{d.all.slice(0, 200).map(card).map((v: any) => <li><a href={`/creators/${slug}/v/${v.id}/`}>{v.t}</a> <span class="vm">{v.meta}</span></li>)}</ol>
+  {similar.length > 0 && (<>
+    <h2>{`Creators like ${ch.title}`}</h2>
+    <ul class="plain">{similar.map((o: any) => <li><a href={`/creators/${o.s}/`}>{o.t}</a> <span class="vm">{`${o.why}; ${fmt(o.n)} videos, typical ${o.m} min`}</span></li>)}</ul>
+  </>)}
   <p class="src"><a href={`https://www.youtube.com/channel/${ch.id}`} rel="nofollow noopener" target="_blank">{`${ch.title} on YouTube`}</a> · <a href="/best/best-asmr-youtube-channels/">Compare channels</a></p>
   <script src="/js/vplay.js" defer></script>
+  <script src="/js/creator-tools.js" defer></script>
 </BaseLayout>
 
 <style>
@@ -87,5 +121,10 @@ const card = (v: any) => ({ ...v, meta: [len(v.d), v.v != null ? `${big(v.v)} vi
   .tw { overflow-x: auto; }
   .all { padding-left: 1.4rem; }
   .all li { margin: 0.3rem 0; }
+  .cv-bar { display: flex; flex-wrap: wrap; gap: 0.5rem; align-items: center; margin: 0.5rem 0; }
+  .cv-bar input[type=search] { flex: 1 1 14rem; padding: 0.45rem 0.6rem; }
+  .cv-bar button, .cv-wl { padding: 0.35rem 0.8rem; border-radius: 999px; border: 1px solid var(--border); background: var(--bg-2); color: var(--accent); cursor: pointer; }
+  .cv-wl { font-size: 0.75rem; padding: 0.1rem 0.5rem; }
+  #cv-player iframe { width: 100%; max-width: 720px; aspect-ratio: 16 / 9; border: 0; border-radius: 10px; }
   .showall { margin-top: 0.75rem; padding: 0.5rem 1rem; border-radius: 999px; border: 1px solid var(--border); background: var(--bg-2); color: var(--accent); cursor: pointer; }
 </style>

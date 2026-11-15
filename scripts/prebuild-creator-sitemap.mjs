@@ -4,13 +4,16 @@ import { readdirSync, readFileSync, writeFileSync, existsSync, unlinkSync } from
 const DIR = 'public/creator-data', SITE = 'https://asmrregistry.com';
 for (const f of readdirSync('public').filter((f) => /^sitemap-creators-\d+\.xml$/.test(f))) unlinkSync(`public/${f}`);
 const urls = [];
+const index = []; // compact creator index for "similar creators" (public/creator-index.json, ~150 bytes each)
 if (existsSync(DIR)) for (const f of readdirSync(DIR).filter((f) => f.endsWith('.json'))) {
   let d; try { d = JSON.parse(readFileSync(`${DIR}/${f}`, 'utf8')); } catch { continue; } // half-written file: skip
   if (Date.now() - Date.parse(d.fetched) > 30 * 864e5) continue; // pages for stale data 410
   const slug = f.slice(0, -5);
   urls.push([`/creators/${slug}/`, d.fetched]);
+  index.push({ s: slug, t: d.channel.title, n: d.counts.public, m: d.lengths.medianMin, sub: d.channel.subs, tr: (d.triggers || []).slice(0, 5).map(([k, c]) => [k, Math.round((100 * c) / Math.max(d.counts.full, 1))]) });
   for (const v of d.all || []) urls.push([`/creators/${slug}/v/${v.id}/`, d.fetched]);
 }
+writeFileSync('public/creator-index.json', JSON.stringify(index));
 const files = [];
 for (let i = 0; i < urls.length; i += 45000) {
   const name = `sitemap-creators-${files.length + 1}.xml`;
