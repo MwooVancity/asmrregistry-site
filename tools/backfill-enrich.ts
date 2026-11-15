@@ -32,7 +32,11 @@ async function main() {
   // Uploads from the last 30 days go first (index idx_queue_status_pub, reads only those rows): otherwise a creator's
   // new video waits behind 100K+ older ones and is purged at 30 days (Zach Choi's newest in the catalog was August).
   const since = new Date(Date.now() - 30 * 864e5).toISOString().slice(0, 19) + 'Z';
-  const fresh = await db.execute({
+  // --channel <id>: enrich only that creator's queued videos (one creator at a time, owner 2026-11-15).
+  const oneCh = args.indexOf('--channel') >= 0 ? args[args.indexOf('--channel') + 1] : null;
+  const fresh = oneCh
+    ? await db.execute({ sql: `SELECT * FROM ingest_queue WHERE processing_status = 'pending' AND raw_channel_id = ? LIMIT ?`, args: [oneCh, batchSize] })
+    : await db.execute({
     sql: `SELECT * FROM ingest_queue WHERE processing_status = 'pending' AND raw_publish_date >= ? ORDER BY raw_publish_date DESC LIMIT ?`,
     args: [since, batchSize],
   });
@@ -44,7 +48,7 @@ async function main() {
     pending = await db.execute({ sql: `SELECT * FROM ingest_queue WHERE processing_status = 'pending' LIMIT ?`, args: [batchSize] });
   }
   const seen = new Set(fresh.rows.map((r: any) => r.id));
-  pending = { ...pending, rows: [...fresh.rows, ...pending.rows.filter((r: any) => !seen.has(r.id))].slice(0, batchSize) } as typeof pending;
+  pending = oneCh ? fresh : { ...pending, rows: [...fresh.rows, ...pending.rows.filter((r: any) => !seen.has(r.id))].slice(0, batchSize) } as typeof pending;
 
   console.log(`Backfill enrich: ${pending.rows.length} pending rows (cap ${batchSize}), concurrency=${concurrency}, publish-cap=${publishCapArg}/day, dry-run=${dryRun}`);
   if (pending.rows.length === 0) { console.log('No pending rows.'); return; }

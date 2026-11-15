@@ -36,10 +36,14 @@ async function existingIds(db: ReturnType<typeof getDb>, ids: string[]): Promise
 async function main() {
   const db = getDb();
 
-  const channels = await db.execute({
-    sql: `SELECT id, name FROM channels WHERE status = 'pending_ingestion' ORDER BY last_updated ASC LIMIT ?`,
-    args: [maxChannels],
-  });
+  // --channel <id>: one creator at a time (owner 2026-11-15), whatever its status.
+  const one = args.indexOf('--channel') >= 0 ? args[args.indexOf('--channel') + 1] : null;
+  const channels = one
+    ? await db.execute({ sql: `SELECT id, name FROM channels WHERE id = ? UNION SELECT ? AS id, ? AS name WHERE NOT EXISTS (SELECT 1 FROM channels WHERE id = ?)`, args: [one, one, one, one] })
+    : await db.execute({
+        sql: `SELECT id, name FROM channels WHERE status = 'pending_ingestion' ORDER BY last_updated ASC LIMIT ?`,
+        args: [maxChannels],
+      });
 
   console.log(`Backfill ingest: ${channels.rows.length} pending channels (cap ${maxChannels}), dry-run=${dryRun}`);
   if (channels.rows.length === 0) { console.log('No pending channels.'); return; }

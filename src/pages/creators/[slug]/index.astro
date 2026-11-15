@@ -4,6 +4,7 @@
 export const prerender = false;
 import BaseLayout from '../../../layouts/BaseLayout.astro';
 import ShareCreator from '../../../components/ShareCreator.astro';
+import CreatorAllVideos from '../../../components/CreatorAllVideos.astro';
 import BreadcrumbNav from '../../../components/BreadcrumbNav.astro';
 import { getRootPages } from '../../../lib/ledger';
 import { getContent } from '../../../lib/page-content';
@@ -137,6 +138,7 @@ const jsonLd = [
     </section>
   )}
 
+  <CreatorAllVideos channelId={c.channelId} name={name} />
   {c.signature.length > 0 && (
     <section>
       <h2>Start here: signature videos</h2>

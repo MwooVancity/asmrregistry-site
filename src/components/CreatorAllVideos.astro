@@ -1,0 +1,59 @@
+---
+// Creator pages: every catalog video by this channel (owner 2026-11-15: a creator page lists 100+ of their videos).
+// One D1 query per creator, kept in the edge cache for a day: D1 sees about one read per creator per data centre per
+// day, never one per visit. Titles render as text for search engines; thumbnails load lazily; 48 shown, the rest behind
+// "Show all". No list when the query fails (the rest of the page still renders).
+import { getDb } from '../lib/db';
+
+interface Props { channelId: string; name: string }
+const { channelId, name } = Astro.props;
+let rows: any[] = [];
+try {
+  const key = new Request(`https://asmrregistry.com/__cache/creator-videos/${channelId}`);
+  const cache = (globalThis as any).caches?.default;
+  let res: Response | undefined = cache ? await cache.match(key) : undefined;
+  if (!res) {
+    const r = await getDb().execute({
+      sql: `SELECT id, title, duration_seconds, primary_trigger FROM videos WHERE channel_id = ? AND status = 'published' ORDER BY view_count DESC LIMIT 1500`,
+      args: [channelId],
+    });
+    res = new Response(JSON.stringify(r.rows), { headers: { 'Cache-Control': 'max-age=86400' } });
+    if (cache) await cache.put(key, res.clone());
+  }
+  rows = await res.json();
+} catch { rows = []; }
+const len = (s: number) => (!s || s < 0 ? '' : s >= 3600 ? `${Math.floor(s / 3600)} h ${Math.round((s % 3600) / 60)} min` : `${Math.round(s / 60)} min`);
+const SHOW = 48;
+---
+{rows.length >= 20 && (
+<section class="cav">
+  <h2>{`All ${rows.length.toLocaleString('en-US')} ${name} videos in our catalog`}</h2>
+  {/* template-lint-ok: one note for the full creator list */}
+  <p class="cav-note">Most watched first. Press play to watch here. Trigger labels come from titles, not listening.</p>
+  <ol class="cav-list">
+    {rows.map((v, i) => (
+      <li class={i >= SHOW ? 'cav-more' : ''} hidden={i >= SHOW}>
+        <button type="button" class="vplay cav-item" data-v={v.id} aria-label={`Play ${v.title}`}>
+          <div class="video-thumb"><img src={`https://i.ytimg.com/vi/${v.id}/mqdefault.jpg`} alt="" loading="lazy" width="160" height="90" /></div>
+          <span class="cav-t">{v.title}</span>
+          <span class="cav-m">{[len(v.duration_seconds), (v.primary_trigger || '').replace(/-/g, ' ')].filter(Boolean).join(' · ')}</span>
+        </button>
+      </li>
+    ))}
+  </ol>
+  {rows.length > SHOW && <button type="button" class="cav-all" onclick="this.previousElementSibling.querySelectorAll('.cav-more').forEach(e=>e.hidden=false);this.remove()">{`Show all ${rows.length}`}</button>}
+  <script src="/js/vplay.js" defer></script>
+</section>
+)}
+
+<style>
+  .cav { margin: 2rem 0; }
+  .cav-note { font-size: 0.88rem; color: var(--text-3, #999); }
+  .cav-list { list-style: none; padding: 0; display: grid; gap: 0.5rem; }
+  .cav-item { display: grid; grid-template-columns: 120px 1fr; grid-template-rows: auto auto; gap: 0.1rem 0.75rem; width: 100%; text-align: left; background: none; border: 0; padding: 0.25rem; color: inherit; cursor: pointer; }
+  .cav-item .video-thumb { grid-row: span 2; }
+  .cav-item img { width: 120px; height: auto; border-radius: 6px; }
+  .cav-t { font-size: 0.92rem; }
+  .cav-m { font-size: 0.8rem; color: var(--text-3, #999); }
+  .cav-all { margin-top: 0.75rem; padding: 0.5rem 1rem; border-radius: 999px; border: 1px solid var(--border); background: var(--bg-2); color: var(--accent); cursor: pointer; }
+</style>

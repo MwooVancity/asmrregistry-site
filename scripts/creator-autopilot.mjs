@@ -40,7 +40,7 @@ const q = async (sql, params = []) => {
   if (!j.success) { const m = JSON.stringify(j.errors); if (/7500|exceeded/.test(m)) stop('D1 daily limit reached'); throw new Error(m.slice(0, 200)); }
   return j.result?.[0]?.results ?? [];
 };
-const prompt = readFileSync(join(root, '.claude/prompts/creator-master-prompt.txt'), 'utf8');
+const prompt = readFileSync(join(root, 'scripts/prompts/creator-master-prompt.txt'), 'utf8');
 const deepseek = async (messages) => {
   const r = await fetch('https://api.deepseek.com/chat/completions', {
     method: 'POST', headers: { Authorization: `Bearer ${dsKey}`, 'Content-Type': 'application/json' },
@@ -87,6 +87,8 @@ const demand = {}; for (const e of ledger) { const k = norm(e.headKeyword); if (
 const channels = await q(`SELECT channel_id, channel_name, COUNT(*) n FROM videos WHERE status = 'published' GROUP BY channel_id HAVING n >= ${MIN_VIDEOS}`);
 const pool = channels.filter(c => !taken.has(c.channel_id) && !blocked.has(c.channel_id) && !state.skipped[c.channel_id] && !NOT_CREATORS.test(c.channel_name) && /[a-z]{3}/i.test(c.channel_name))
   .sort((a, b) => (demand[norm(b.channel_name)]?.d || 0) - (demand[norm(a.channel_name)]?.d || 0) || b.n - a.n);
+// --channel <id>: one creator at a time (owner 2026-11-15).
+if (args.includes('--channel')) { const id = args[args.indexOf('--channel') + 1]; pool.splice(0, pool.length, ...pool.filter(c => c.channel_id === id)); }
 console.log(`pool: ${pool.length} eligible of ${channels.length} channels with ${MIN_VIDEOS}+ videos`);
 if (!pool.length) stop('no eligible channels left (ingest more before expecting pages)', 0);
 
@@ -116,7 +118,10 @@ for (const ch of pool) {
       const out = await deepseek(messages);
       fails = gateBio(out, pack, dead);
       if (!fails.length) bio = out;
-      else messages.push({ role: 'assistant', content: JSON.stringify(out) }, { role: 'user', content: `Rejected. Fix all of these and return the full JSON again: ${fails.join('; ')}` });
+      else messages.push({ role: 'assistant', content: JSON.stringify(out) }, { role: 'user', content: `Rejected. Fix all of these and return the full JSON again: ${fails.join('; ')}.` +
+        // 2026-11-15: Puffin failed 4 times keeping years and the video count; say exactly how to cut numbers.
+        (fails.some(f => /numbers/.test(f)) ? ' To cut numbers: write years as words ("since the late 2010s", "still uploading"), drop the total video count, and keep at most 4 digits-numbers in the whole bio.' : '') +
+        (fails.some(f => /banned word/.test(f)) ? ' Replace the banned word with a plain description.' : '') });
     } catch (e) { fails = [`DeepSeek: ${e.message}`]; }
   }
   if (!bio) { skip(`gate: ${fails.slice(0, 3).join('; ')}`); continue; }

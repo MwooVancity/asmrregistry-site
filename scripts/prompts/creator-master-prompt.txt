@@ -1,0 +1,47 @@
+CREATOR PAGE MASTER PROMPT v2 (asmrregistry.com)
+
+THE READER
+Someone typed this creator's name into Google, often at night, often tired. In about ten seconds they decide: is this channel for me, which video do I play first, and if not, who instead? The page already shows them, above and below your text: a play button for the first signature video, a button to the YouTube channel, a list of video counts per trigger, and the most watched videos with lengths. Your text must not repeat those. It explains them in plain words and helps the reader choose.
+
+THE SOURCE
+One data pack per creator, from our own catalog of their videos (classified by trigger, length, talking or not, intensity, language). It is the only source of facts. You interpret it. You add nothing to it.
+Fields: name, videosInCatalog, triggerShare, medianMinutes, shareOver30Min, shareUnder10Min, modifierShare, intentShare, avgIntensity, mainLanguage, firstAndLatestUploadInCatalog, topVideos (id, title, minutes, trigger), similar (slug, name).
+
+WRITE editorial_bio: plain text, 4 paragraphs separated by a blank line, 170 to 280 words total.
+
+Paragraph 1, WHAT IT IS LIKE AND WHO IT SUITS (2 or 3 sentences, at most one number).
+  Describe the channel the way a friend would: what you hear, how long videos usually run, talking or not. Then who it suits.
+  Good: "Mostly tapping and whispering, in videos around twenty minutes long. It suits listeners who want a short, steady session before sleep."
+  Bad: "In our catalog, tapping appears in 62 percent of videos, whispering in 26 percent..."
+
+Paragraph 2, START WITH (2 or 3 videos).
+  Name 2 or 3 videos from topVideos by their title (you may drop emoji), each with one plain reason drawn from its trigger and length and matched to a reader need: "for falling asleep", "to test if the whispering works for you", "if you only have ten minutes".
+  Never call a video good, best or popular.
+
+Paragraph 3, SKIP IT IF, AND WHO INSTEAD.
+  One or two honest reasons someone would dislike this channel, taken from the data (mostly eating sounds, almost all short videos, lots of talking, dark roleplay themes in titles). Then name 1 or 2 creators from the similar list by name, each with a few words on how they differ.
+
+Paragraph 4, ONE SENTENCE ABOUT OUR DATA.
+  Say how many of their videos are in our catalog and the upload span. If videosInCatalog is under 30, say it is a sample of the channel.
+
+NUMBERS RULE
+  At most 4 numbers in the whole bio, including paragraph 4. Use a number only when it changes a decision (video length for sleep, talking vs silent). Prefer words: "most", "about half", "a few", "around twenty minutes". Every number must come from the data pack.
+
+ALSO WRITE
+  trigger_specialties: JSON array of trigger slugs with at least 10 percent in triggerShare (1 to 5; empty if none qualify).
+  style_tags: JSON array, 3 to 6 short observable tags from the data only ("no talking", "long videos", "short videos", "Korean titles", "binaural", "roleplay"). Never subjective ("relaxing", "high quality").
+  signature_videos: JSON array of the video ids named in paragraph 2, in the order named. The first one becomes the page's play button, so pick the best first listen.
+
+NEVER
+  - Repeat the per-trigger percentages (the page shows them).
+  - Use internal words: "intent mix", "style labels", "tagged", "modifier", "triggerShare", "data pack", "classified as".
+  - Subscriber counts, view counts, earnings, rankings, or: popular, famous, top, best, prolific, legendary, beloved, talented, quality, iconic.
+  - Anything personal about the human being: real name, age, nationality, location, gender, face, relationships, health, personality, life story. Talk about the videos only. Title language is a catalog fact and may be stated.
+  - Claims that we watched, tested or reviewed anything. We classified videos.
+  - Health claims, quotes, testimonials, "fans say".
+  - A video whose title is sexual or suggestive.
+  - Em dashes, en dashes or double hyphens. Filler words (furthermore, moreover, delve, crucial, vital, essential, robust, seamless, holistic).
+
+SELF-CHECK before saving each creator
+  Point every sentence at a field in the data pack. Count the numbers (max 4). Read paragraph 1 alone: would a tired stranger know in ten seconds whether to press play?
+UNIQUE DATA (project rule, see CLAUDE.md): the page already shows catalog tables and lists. The bio must point out what is unusual about this creator in our data, the thing a reader could not learn from YouTube. If nothing is unusual, say so briefly rather than padding.
