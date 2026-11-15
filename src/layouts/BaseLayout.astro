@@ -800,6 +800,12 @@ const fullGraph = {
 
   {!bare && !/^\/(kids|admin)(\/|$)/.test(Astro.url.pathname) && (
     <>
+      {/* Phone-only 320x50 strip at the bottom, closable (owner 2026-11-15). */}
+      <div id="m-ad" style="position:fixed;left:0;right:0;bottom:0;z-index:50;display:none;justify-content:center;background:var(--bg,#fff);border-top:1px solid #ddd">
+        <iframe title="Advertisement" width="320" height="50" data-src="/ads/b320" scrolling="no" style="border:0"></iframe>
+        <button type="button" aria-label="Close ad" onclick="this.parentNode.remove()" style="position:absolute;right:4px;top:-22px;border:1px solid #ccc;background:#fff;border-radius:4px;font-size:12px;line-height:18px">✕</button>
+      </div>
+      <script is:inline>if (matchMedia('(max-width: 767px)').matches) { var m = document.getElementById('m-ad'); m.style.display = 'flex'; m.querySelector('iframe').src = '/ads/b320'; }</script>
       {/* Adsterra Social Bar on every page; Popunder loads at most once per visitor a day (owner 2026-11-15). */}
       <script is:inline data-cfasync="false" src="https://bauval.org/14/cfabe6f8ced7c74b1dc13fe7c8b742ba"></script>
       <script is:inline>
