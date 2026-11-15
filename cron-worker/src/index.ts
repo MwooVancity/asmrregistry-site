@@ -13,7 +13,7 @@ export interface Env {
 const HOUR_PLAN: Record<number, StageName[]> = {
   0: ['linkcheck'],
   1: ['pillar'],
-  2: ['taxonomy'],
+  // 2: taxonomy discovery searches stopped 2026-11-15 (owner refactor; ~1,500 YouTube units/day now go to tools/creator-build.mjs).
   3: ['ingest'],
   // ponytail: 'hub' unscheduled 2026-10-25. Its aggregate read ~15M D1 rows per run (3x the 5M/day
   // free tier), which made /video/ and creator pages 503. Output only feeds combo-route redirects in
