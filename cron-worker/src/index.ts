@@ -10,11 +10,10 @@ export interface Env {
   DB: D1Database;
 }
 
+// Refactor 2026-11-15 (owner: "kill old jobs"): the per-creator engine (tools/creator-build.mjs, GitHub) replaces
+// discovery and AI tagging. Stopped: linkcheck, pillar, taxonomy, ingest, gapfill, and enrich in every free hour.
+// Kept: deadcheck (YouTube 30-day rule for the stored catalog), triggerstats, indexnow, live-now (every 3 h).
 const HOUR_PLAN: Record<number, StageName[]> = {
-  0: ['linkcheck'],
-  1: ['pillar'],
-  // 2: taxonomy discovery searches stopped 2026-11-15 (owner refactor; ~1,500 YouTube units/day now go to tools/creator-build.mjs).
-  3: ['ingest'],
   // ponytail: 'hub' unscheduled 2026-10-25. Its aggregate read ~15M D1 rows per run (3x the 5M/day
   // free tier), which made /video/ and creator pages 503. Output only feeds combo-route redirects in
   // middleware, where stale counts are fine. Run by hand via ?mode=stage&stage=hub if ever needed.
@@ -24,10 +23,9 @@ const HOUR_PLAN: Record<number, StageName[]> = {
   // YouTube data refresh (30-day rule), spread over the day; other hours run enrich.
   7: ['deadcheck'], 9: ['deadcheck'], 11: ['deadcheck'], 13: ['deadcheck'], 15: ['deadcheck'], 17: ['deadcheck'], 19: ['deadcheck'],
   21: ['deadcheck'],
-  23: ['gapfill', 'finalize'],
 };
 function stagesForHour(hour: number): StageName[] {
-  return HOUR_PLAN[hour] ?? ['enrich'];
+  return HOUR_PLAN[hour] ?? [];
 }
 
 export default {

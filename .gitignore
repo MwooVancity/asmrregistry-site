@@ -100,3 +100,4 @@ tools/secrets-vault.ps1
 # YouTube data: never in git history (30-day rule); a force-pushed data branch holds only the latest copy
 /public/creator-data/
 /public/sitemap-creators-*.xml
+/public/sitemap-videos-*.xml

@@ -355,6 +355,24 @@ const removed = { total: removedRows.reduce((n, r) => n + r.n, 0), tracked: allV
 const out = { languageMap, lengthChange, titleClaims, spanish, whisperStyles, triggerHubs, triggersOverview, intentHubs, formatHub, catalogStats, facts, trends, removed, sleepLengths, catalogCount: allVideos.length, catalogChannels: new Set(allVideos.map(v => v.channel_name)).size, catalogDate: new Date().toLocaleDateString('en-CA', { timeZone: 'America/Los_Angeles' }) } // Pacific date: a UTC date reads as tomorrow to US readers in the evening
 writeFileSync(OUT, JSON.stringify(out))
 
+// Static sitemaps for every published /video/ page (owner 2026-11-15: index them). Built here from the fetch
+// already done, 45,000 per file: no per-request table scan (the old dynamic sitemap-videos.xml did one per fetch).
+{
+  const { readdirSync, unlinkSync } = await import('fs')
+  for (const f of readdirSync(join(root, 'public')).filter(f => /^sitemap-videos-\d+\.xml$/.test(f))) unlinkSync(join(root, 'public', f))
+  const ids = allVideos.filter(v => v.id && !SUGGESTIVE.test(v.title || '')).map(v => v.id)
+  const files = []
+  for (let i = 0; i < ids.length; i += 45000) {
+    const name = `sitemap-videos-${files.length + 1}.xml`
+    writeFileSync(join(root, 'public', name), `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${ids.slice(i, i + 45000).map(id => `<url><loc>https://asmrregistry.com/video/${id}/</loc></url>`).join('\n')}\n</urlset>\n`)
+    files.push(name)
+  }
+  const rp = join(root, 'public/robots.txt')
+  const robots = readFileSync(rp, 'utf8').split(/\r?\n/).filter(l => l && !/sitemap-videos-\d+\.xml/.test(l))
+  writeFileSync(rp, [...robots, ...files.map(f => `Sitemap: https://asmrregistry.com/${f}`), ''].join('\n'))
+  console.log(`prebuild-hub-data: ${ids.length} video URLs in ${files.length} sitemap file(s)`)
+}
+
 const stats = {
   triggers: Object.keys(triggerHubs).length,
   intents: Object.keys(intentHubs).length,

@@ -104,7 +104,7 @@ const intensityRank: { rank: number; total: number } | null = null;
 
 // Index published videos that have at least a primary trigger or intents (99.9% of them).
 // The 45 with neither get noindex — bare embed with no classification is indefensible to Google.
-const indexable = false; // noindex all video pages — crawl budget goes to hub/guide pages
+const indexable = true; // owner 2026-11-15: index every video page (ASMR Index model); was noindex
 
 // Build classification-first title/H1/desc (targets queries a directory can win; YouTube title stays in meta desc for recognition)
 const triggerLabel = video.primary_trigger ? (video.primary_trigger as string).replace(/-/g, ' ') : 'ASMR';
