@@ -5,6 +5,7 @@
 export const prerender = false;
 import BaseLayout from '../../../../layouts/BaseLayout.astro';
 import { env } from 'cloudflare:workers';
+import { TRIG } from '../../../../../scripts/lib/creator-gate-lib.mjs';
 
 const { slug, id } = Astro.params;
 let d: any = null;
@@ -25,13 +26,16 @@ const typical = d.lengths.medianMin;
 const mins = Math.round(v.d / 60);
 const vsTypical = v.d <= 180 ? 'a Short' : mins > typical * 1.5 ? `longer than their typical ${typical}-minute video` : mins < typical * 0.67 ? `shorter than their typical ${typical}-minute video` : `about their typical length (${typical} minutes)`;
 const yearCount = d.byYear[v.p.slice(0, 4)] || 0;
-const TRIG: [string, RegExp][] = [['whispering', /whisper/i], ['tapping', /tap(ping)?\b/i], ['mouth sounds', /mouth sound/i], ['ear cleaning', /ear clean/i], ['ear licking', /ear lick|licking/i], ['kisses', /kiss/i], ['massage', /massage/i], ['hair play', /hair (play|brush)|scalp/i], ['roleplay', /role ?play|\brp\b/i], ['soft spoken', /soft[ -]?spoken/i], ['no talking', /no talking/i], ['eating', /eating|mukbang/i], ['rain', /\brain\b/i], ['sleep', /sleep/i]];
-const trig = TRIG.filter(([, re]) => re.test(v.t)).map(([k]) => k);
-const same = all.filter((o: any) => o.id !== v.id && TRIG.some(([k, re]) => trig.includes(k) && re.test(o.t))).slice(0, 8);
+const trig = Object.entries(TRIG).filter(([, re]) => re.test(v.t)).map(([k]) => k);
+// "More <trigger>" lists only videos with that same first trigger, so the heading tells the truth.
+const same = trig.length ? all.filter((o: any) => o.id !== v.id && TRIG[trig[0]].test(o.t)).slice(0, 8) : [];
 const near = all.slice(Math.max(0, i - 4), i + 5).filter((o: any) => o.id !== v.id);
-const title = `${v.t} - ${ch.title}`.slice(0, 95);
-const lead = `"${v.t}" is ${len(v.d)} long, ${vsTypical}. ${v.v != null ? `With ${fmt(v.v)} views it is #${fmt(i + 1)} of ${fmt(all.length)} ${ch.title} videos by YouTube views.` : ''} It came out on ${v.p}, one of ${fmt(yearCount)} videos they uploaded that year.${trig.length ? ` Title words point to: ${trig.join(', ')}.` : ''}`;
-const desc = `${len(v.d)} ${ch.title} ASMR video, #${i + 1} of ${all.length} by views. Play it here, with more like it from the same creator.`.slice(0, 160);
+const cut = (s: string, n: number) => { const a = [...s]; return a.length > n ? a.slice(0, n - 1).join('').replace(/\s+\S*$/, '') + '…' : s; }; // whole characters, whole words
+const title = cut(`${v.t} - ${ch.title}`, 95);
+const day = new Date(v.p + 'T12:00:00Z').toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric', timeZone: 'UTC' });
+const name = /asmr/i.test(ch.title) ? ch.title : `${ch.title} ASMR`;
+const lead = `"${v.t}" is ${len(v.d)} long, ${vsTypical}. ${v.v != null ? `With ${fmt(v.v)} views it is #${fmt(i + 1)} of ${fmt(all.length)} ${ch.title} videos by YouTube views.` : ''} It came out on ${day}, one of ${fmt(yearCount)} videos they uploaded that year.${trig.length ? ` Title words point to: ${trig.join(', ')}.` : ''}`;
+const desc = `${len(v.d)} ${name} video, #${i + 1} of ${all.length} by views. Play it here, with more like it from the same creator.`.slice(0, 160);
 ---
 <BaseLayout title={title} description={desc} canonical={`/creators/${slug}/v/${id}/`}>
   <p class="crumb"><a href={`/creators/${slug}/`}>{`${ch.title}: all ${fmt(all.length)} videos`}</a></p>

@@ -72,3 +72,7 @@ export function gateBio(b, p, dead = []) {
   if (tags.length < 3 || tags.length > 6) fails.push(`${tags.length} style tags (3-6)`);
   return fails;
 }
+
+// Title trigger rules shared by the creator builder and the creator video page (one list, so chips, counts and
+// "more like this" always agree). public/js/creator-tools.js keeps a copy with the same keys (browser file).
+export const TRIG = { whispering: /whisper/i, tapping: /tap(ping)?\b/i, 'mouth sounds': /mouth sound/i, 'ear cleaning': /ear clean/i, 'ear licking': /ear lick|licking/i, kisses: /kiss/i, massage: /massage/i, 'hair play': /hair (play|brush)|scalp/i, 'personal attention': /personal attention|pampering/i, roleplay: /role ?play|\brp\b/i, 'soft spoken': /soft[ -]?spoken/i, 'no talking': /no talking/i, eating: /eating|mukbang/i, rain: /\brain\b/i, scratching: /scratch/i, 'face touching': /face touch/i, sleep: /sleep/i, binaural: /binaural|3dio|ku ?100/i };

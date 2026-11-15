@@ -6,7 +6,7 @@
   if (!root || !raw) return;
   const slug = root.dataset.slug;
   const all = JSON.parse(raw.textContent); // [id, title, views, seconds, date]
-  const TRIG = { whispering: /whisper/i, tapping: /tap(ping)?\b/i, 'mouth sounds': /mouth sound/i, 'ear cleaning': /ear clean/i, 'ear licking': /ear lick|licking/i, kisses: /kiss/i, massage: /massage/i, 'hair play': /hair (play|brush)|scalp/i, roleplay: /role ?play|\brp\b/i, 'soft spoken': /soft[ -]?spoken/i, 'no talking': /no talking/i, eating: /eating|mukbang/i, rain: /\brain\b/i, sleep: /sleep/i };
+  const TRIG = { whispering: /whisper/i, tapping: /tap(ping)?\b/i, 'mouth sounds': /mouth sound/i, 'ear cleaning': /ear clean/i, 'ear licking': /ear lick|licking/i, kisses: /kiss/i, massage: /massage/i, 'hair play': /hair (play|brush)|scalp/i, 'personal attention': /personal attention|pampering/i, roleplay: /role ?play|\brp\b/i, 'soft spoken': /soft[ -]?spoken/i, 'no talking': /no talking/i, eating: /eating|mukbang/i, rain: /\brain\b/i, scratching: /scratch/i, 'face touching': /face touch/i, sleep: /sleep/i, binaural: /binaural|3dio|ku ?100/i }; // same keys as TRIG in scripts/lib/creator-gate-lib.mjs
   const $ = (s) => root.querySelector(s);
   const q = $('#cv-q'), len = $('#cv-len'), trig = $('#cv-trig'), year = $('#cv-year'), sort = $('#cv-sort'), shorts = $('#cv-shorts'), out = $('#cv-list'), count = $('#cv-count');
   const present = Object.keys(TRIG).filter((k) => all.some((v) => TRIG[k].test(v[1])));
@@ -53,7 +53,7 @@
   if (store.get() === null) $('#cv-saved').hidden = true;
   // Trigger chips further down filter this list.
   document.querySelectorAll('.chip[data-trig]').forEach((c) => c.addEventListener('click', () => {
-    if ([...trig.options].some((o) => o.value === c.dataset.trig)) { trig.value = c.dataset.trig; render(); root.scrollIntoView({ behavior: 'smooth' }); }
+    if ([...trig.options].some((o) => o.value === c.dataset.trig)) { trig.value = c.dataset.trig; shorts.checked = false; /* chip counts are full videos only */ render(); root.scrollIntoView({ behavior: 'smooth' }); }
   }));
   const seo = document.querySelector('.seo-list'); if (seo) seo.hidden = true; // text list stays in the HTML for crawlers
   root.hidden = false;

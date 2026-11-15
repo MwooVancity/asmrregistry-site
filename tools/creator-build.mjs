@@ -3,7 +3,7 @@
 // facts, and writes public/creator-data/<slug>.json. Refresh = run again (YouTube 30-day rule).
 //   node tools/creator-build.mjs <channelId> [<channelId> ...]   [--budget 6000]
 import { readFileSync, writeFileSync, appendFileSync, mkdirSync, existsSync } from 'node:fs';
-import { SUGGESTIVE } from '../scripts/lib/creator-gate-lib.mjs';
+import { SUGGESTIVE, TRIG } from '../scripts/lib/creator-gate-lib.mjs'; // TRIG: title trigger rules, no AI
 
 for (const l of (existsSync('.env') ? readFileSync('.env', 'utf8') : '').split(/\r?\n/)) {
   const i = l.indexOf('='); if (i > 0 && !process.env[l.slice(0, i)]) process.env[l.slice(0, i)] = l.slice(i + 1).replace(/^["']|["']$/g, '').trim();
@@ -28,8 +28,6 @@ const api = async (path) => {
 };
 const dur = (s = '') => { const m = s.match(/P(?:(\d+)D)?T?(?:(\d+)H)?(?:(\d+)M)?(?:(\d+)S)?/) || []; return (+m[1] || 0) * 86400 + (+m[2] || 0) * 3600 + (+m[3] || 0) * 60 + (+m[4] || 0); };
 const slugify = (t) => t.toLowerCase().normalize('NFKD').replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
-// Rule-based triggers from titles (no AI): first match per rule, a video can have several.
-const TRIG = { whispering: /whisper/i, tapping: /tap(ping)?\b/i, 'mouth sounds': /mouth sound/i, 'ear cleaning': /ear clean/i, 'ear licking': /ear lick|licking/i, kisses: /kiss/i, massage: /massage/i, 'hair play': /hair (play|brush)|scalp/i, 'personal attention': /personal attention|pampering/i, roleplay: /role ?play|\brp\b/i, 'soft spoken': /soft[ -]?spoken/i, 'no talking': /no talking/i, eating: /eating|mukbang/i, rain: /\brain\b/i, scratching: /scratch/i, 'face touching': /face touch/i, 'sleep': /sleep/i, binaural: /binaural|3dio|ku ?100/i };
 const median = (a) => { const s = [...a].sort((x, y) => x - y); return s.length ? s[Math.floor(s.length / 2)] : 0; };
 
 async function build(cid) {

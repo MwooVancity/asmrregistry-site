@@ -2,13 +2,17 @@
 // Pulls the creator-data branch into public/creator-data so any build, laptop or CI, ships every creator.
 // No network or no branch = the build stops, never deploys a partial set.
 import { execSync } from 'node:child_process';
-import { mkdirSync, readdirSync } from 'node:fs';
+import { mkdirSync, readdirSync, rmSync } from 'node:fs';
+import { join } from 'node:path';
+import { tmpdir } from 'node:os';
 const sh = (c) => execSync(c, { stdio: ['ignore', 'pipe', 'pipe'] }).toString().trim();
 try {
   sh('git fetch --depth 1 origin creator-data');
   mkdirSync('public/creator-data', { recursive: true });
-  sh('git --work-tree=public/creator-data checkout FETCH_HEAD -- .');
-  sh('git reset -q');
+  // Throwaway index: the repo's own staged changes are never touched by a build.
+  const idx = join(tmpdir(), `creator-data-index-${process.pid}`);
+  execSync('git --work-tree=public/creator-data checkout FETCH_HEAD -- .', { stdio: 'pipe', env: { ...process.env, GIT_INDEX_FILE: idx } });
+  rmSync(idx, { force: true });
 } catch (e) {
   console.error('load-creator-data: could not load the creator-data branch, build stopped so no creators get removed.\n' + e.message);
   process.exit(1);
