@@ -42,17 +42,20 @@ async function build(cid) {
     vidIds.push(...p.items.map((i) => i.contentDetails.videoId));
     if (!p.nextPageToken) break; tok = p.nextPageToken;
   }
-  const vids = [];
+  const vids = []; let kids = 0;
   for (let i = 0; i < vidIds.length; i += 50) {
     const r = await api(`videos?part=snippet,contentDetails,statistics,status&id=${vidIds.slice(i, i + 50).join(',')}`);
     for (const v of r.items) {
       if (v.status?.privacyStatus !== 'public' || v.contentDetails?.contentRating?.ytRating === 'ytAgeRestricted') continue;
+      if (v.status?.madeForKids) kids++;
       const t = v.snippet.title;
       vids.push({ id: v.id, t, v: v.statistics.viewCount == null ? null : +v.statistics.viewCount, d: dur(v.contentDetails.duration), p: v.snippet.publishedAt.slice(0, 10), blocked: SUGGESTIVE.test(t) });
     }
   }
   const ok = vids.filter((v) => !v.blocked);
   // Owner rule: a creator page needs 100+ videos. Thinner channels are remembered so the queue never retries them.
+  // Kids channels (YouTube "made for kids" on most uploads) never get a page: our pages carry adult-capable ads.
+  if (kids > vids.length / 2) { skipForever(cid); return { slug: '(skipped, made for kids)', uploads: vidIds.length, full: 0, shorts: 0, blocked: 0, top: 0 }; }
   if (ok.length < 100) { skipForever(cid); return { slug: '(skipped, under 100 videos)', uploads: vidIds.length, full: 0, shorts: 0, blocked: 0, top: 0 }; }
   const full = ok.filter((v) => v.d > 180), shorts = ok.filter((v) => v.d > 0 && v.d <= 180);
   const byYear = {}; for (const v of ok) byYear[v.p.slice(0, 4)] = (byYear[v.p.slice(0, 4)] || 0) + 1;
