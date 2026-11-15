@@ -5,7 +5,8 @@ const args = process.argv.slice(2);
 const NEW = args.includes('--new') ? Number(args[args.indexOf('--new') + 1]) : 100;
 const DIR = 'public/creator-data';
 const have = new Map();
-if (existsSync(DIR)) for (const f of readdirSync(DIR)) { try { const d = JSON.parse(readFileSync(`${DIR}/${f}`, 'utf8')); have.set(d.channel.id, d.fetched); } catch {} }
+if (existsSync(DIR)) for (const f of readdirSync(DIR).filter((f) => f.endsWith('.json'))) { try { const d = JSON.parse(readFileSync(`${DIR}/${f}`, 'utf8')); have.set(d.channel.id, d.fetched); } catch {} }
+const skip = new Set(existsSync(`${DIR}/_skipped.txt`) ? readFileSync(`${DIR}/_skipped.txt`, 'utf8').split(/\s+/) : []);
 const stale = [...have].filter(([, f]) => Date.now() - Date.parse(f) > 25 * 864e5).map(([id]) => id);
-const queue = JSON.parse(readFileSync('state/creator-queue.json', 'utf8')).map((c) => c.id).filter((id) => !have.has(id));
+const queue = JSON.parse(readFileSync('state/creator-queue.json', 'utf8')).map((c) => c.id).filter((id) => !have.has(id) && !skip.has(id));
 console.log([...stale, ...queue.slice(0, NEW)].join(' '));

@@ -29,7 +29,7 @@ const desc = `Every ${ch.title} video in one list, most watched first, with what
 const monthYear = (iso: string) => new Date(iso + 'T12:00:00Z').toLocaleDateString('en-US', { month: 'long', year: 'numeric', timeZone: 'UTC' });
 const ago = daysSince < 45 ? `${daysSince} days ago` : daysSince < 730 ? `about ${Math.round(daysSince / 30)} months ago` : `about ${Math.round(daysSince / 365)} years ago`;
 const name = /asmr/i.test(ch.title) ? ch.title : `${ch.title} ASMR`;
-const lead = `${ch.title} has ${fmt(n.public)} public videos${ch.subs ? ` and ${big(ch.subs)} subscribers` : ''}, ${big(ch.views)} views in total, uploading since ${d.first.slice(0, 4)}. ${active ? `Still uploading: the latest video went up ${daysSince <= 1 ? 'in the last day' : ago}.` : `Not uploading lately: the last video was ${monthYear(d.last)}, ${ago}.`} Their typical full video runs ${L.medianMin} minutes${n.shorts ? `, and ${fmt(n.shorts)} uploads are Shorts` : ''}.`;
+const lead = `${ch.title} has ${fmt(n.public)} public videos${ch.subs ? ` and ${big(ch.subs)} subscribers` : ''}, ${big(ch.views)} views in total, uploading since ${d.first.slice(0, 4)}. ${active ? `Still uploading: the latest video went up ${daysSince <= 1 ? 'in the last day' : ago}.` : `Not uploading lately: the last video was ${monthYear(d.last)}, ${ago}.`} ${n.full ? `Their typical full video runs ${L.medianMin} minutes${n.shorts ? `, and ${fmt(n.shorts)} uploads are Shorts` : ''}.` : `All ${fmt(n.shorts)} uploads are Shorts.`}`;
 // Similar creators: shared title triggers (weighted by share) and close typical length, from public/creator-index.json.
 let similar: any[] = [];
 try {
@@ -103,8 +103,10 @@ const card = (v: any) => ({ ...v, meta: [len(v.d), v.v != null ? `${big(v.v)} vi
   <p>{`Their busiest year was ${peak[0]} with ${fmt(Number(peak[1]))} uploads.`}</p>
   <div class="tw"><table class="t"><thead><tr>{years.map(([y]) => <th scope="col">{y}</th>)}</tr></thead><tbody><tr>{years.map(([, c]) => <td>{fmt(c)}</td>)}</tr></tbody></table></div>
 
+  {d.newest.length > 0 && (<>
   <h2>Newest uploads</h2>
   <ul class="plain">{d.newest.map((v: any) => <li><a href={`/creators/${slug}/v/${v.id}/`}>{v.t}</a> <span class="vm">{`${monthYear(v.p)} · ${len(v.d)}`}</span></li>)}</ul>
+  </>)}
 
   <noscript><h2>{`All ${fmt(d.all.length)} videos`}</h2></noscript>
   <ol class="all seo-list">{d.all.slice(0, 200).map(card).map((v: any) => <li><a href={`/creators/${slug}/v/${v.id}/`}>{v.t}</a> <span class="vm">{v.meta}</span></li>)}</ol>

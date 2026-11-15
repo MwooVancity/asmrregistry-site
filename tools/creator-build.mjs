@@ -2,7 +2,7 @@
 // Pulls every upload of a channel (uploads playlist + videos.list, ~1 quota unit per 50 videos), computes the page's
 // facts, and writes public/creator-data/<slug>.json. Refresh = run again (YouTube 30-day rule).
 //   node tools/creator-build.mjs <channelId> [<channelId> ...]   [--budget 6000]
-import { readFileSync, writeFileSync, mkdirSync, existsSync } from 'node:fs';
+import { readFileSync, writeFileSync, appendFileSync, mkdirSync, existsSync } from 'node:fs';
 import { SUGGESTIVE } from '../scripts/lib/creator-gate-lib.mjs';
 
 for (const l of (existsSync('.env') ? readFileSync('.env', 'utf8') : '').split(/\r?\n/)) {
@@ -16,6 +16,8 @@ const OUT = 'public/creator-data';
 const OLD = existsSync('src/lib/creators-data.json') ? JSON.parse(readFileSync('src/lib/creators-data.json', 'utf8')) : {};
 mkdirSync(OUT, { recursive: true });
 let units = 0;
+// Channels that never get a page (under 100 videos, or gone). tools/creator-daily.mjs leaves them out of the queue.
+const skipForever = (cid) => appendFileSync(`${OUT}/_skipped.txt`, cid + '\n');
 const api = async (path) => {
   if (units >= budget) throw new Error(`quota budget ${budget} reached`);
   units++;
@@ -50,6 +52,8 @@ async function build(cid) {
     }
   }
   const ok = vids.filter((v) => !v.blocked);
+  // Owner rule: a creator page needs 100+ videos. Thinner channels are remembered so the queue never retries them.
+  if (ok.length < 100) { skipForever(cid); return { slug: '(skipped, under 100 videos)', uploads: vidIds.length, full: 0, shorts: 0, blocked: 0, top: 0 }; }
   const full = ok.filter((v) => v.d > 180), shorts = ok.filter((v) => v.d > 0 && v.d <= 180);
   const byYear = {}; for (const v of ok) byYear[v.p.slice(0, 4)] = (byYear[v.p.slice(0, 4)] || 0) + 1;
   const trig = {}; for (const v of full) for (const [k, re] of Object.entries(TRIG)) if (re.test(v.t)) trig[k] = (trig[k] || 0) + 1;
@@ -84,6 +88,10 @@ for (const cid of ids) {
   const before = units;
   try { const r = await build(cid); console.log(`${r.slug}: ${r.uploads} uploads, ${r.full} full + ${r.shorts} shorts, top ${r.top}, ${r.blocked} blocked, ${units - before} units`); }
   // Stop at the first quota error (ours or YouTube's daily limit); tomorrow's run resumes from the queue.
-  catch (e) { console.log(`${cid}: FAILED ${e.message}`); if (/budget|quota/i.test(e.message)) break; }
+  catch (e) {
+    console.log(`${cid}: FAILED ${e.message}`);
+    if (/budget|quota/i.test(e.message)) break;
+    if (/channel not found/.test(e.message)) skipForever(cid);
+  }
 }
 console.log(`quota used: ${units} of budget ${budget}`);

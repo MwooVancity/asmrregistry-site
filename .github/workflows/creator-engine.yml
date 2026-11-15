@@ -9,6 +9,9 @@ on:
       new:
         description: 'New creators to build'
         default: '100'
+concurrency:
+  group: creator-engine
+  cancel-in-progress: false
 permissions:
   contents: write
 jobs:

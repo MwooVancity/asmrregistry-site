@@ -7,6 +7,7 @@ const urls = [];
 const index = []; // compact creator index for "similar creators" (public/creator-index.json, ~150 bytes each)
 if (existsSync(DIR)) for (const f of readdirSync(DIR).filter((f) => f.endsWith('.json'))) {
   let d; try { d = JSON.parse(readFileSync(`${DIR}/${f}`, 'utf8')); } catch { continue; } // half-written file: skip
+  if (!d?.channel?.title || !d.counts || !d.lengths || !Array.isArray(d.all) || !(Date.parse(d.fetched) > 0)) { console.warn(`prebuild-creator-sitemap: skipped malformed ${f}`); continue; }
   if (Date.now() - Date.parse(d.fetched) > 30 * 864e5) continue; // pages for stale data 410
   const slug = f.slice(0, -5);
   urls.push([`/creators/${slug}/`, d.fetched]);
