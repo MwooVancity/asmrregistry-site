@@ -83,6 +83,7 @@ async function build(cid) {
 for (const cid of ids) {
   const before = units;
   try { const r = await build(cid); console.log(`${r.slug}: ${r.uploads} uploads, ${r.full} full + ${r.shorts} shorts, top ${r.top}, ${r.blocked} blocked, ${units - before} units`); }
-  catch (e) { console.log(`${cid}: FAILED ${e.message}`); if (/budget/.test(e.message)) break; }
+  // Stop at the first quota error (ours or YouTube's daily limit); tomorrow's run resumes from the queue.
+  catch (e) { console.log(`${cid}: FAILED ${e.message}`); if (/budget|quota/i.test(e.message)) break; }
 }
 console.log(`quota used: ${units} of budget ${budget}`);
