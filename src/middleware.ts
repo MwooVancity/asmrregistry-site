@@ -45,7 +45,7 @@ export const onRequest = defineMiddleware(async (context, next) => {
   }
 
   // 2. Lowercase enforcement (skip /video/ — YouTube IDs are case-sensitive)
-  if (!path.startsWith('/video/')) {
+  if (!path.startsWith('/video/') && !/^\/creators\/[^/]+\/v\//.test(path)) { // YouTube IDs are case-sensitive
     const lower = path.toLowerCase();
     if (path !== lower) {
       path = lower;

@@ -1,0 +1,62 @@
+---
+// One page per creator video (owner 2026-11-15: "don't test, just do it"), from public/creator-data/<slug>.json.
+// Facts computed from the creator's whole channel: rank by YouTube views, length against their typical video, the year
+// it came out in their history, trigger words from the title, and more of the same from that creator.
+export const prerender = false;
+import BaseLayout from '../../../../layouts/BaseLayout.astro';
+import { env } from 'cloudflare:workers';
+
+const { slug, id } = Astro.params;
+let d: any = null;
+try {
+  const url = new URL(`/creator-data/${slug}.json`, Astro.url);
+  const r = (env as any)?.ASSETS ? await (env as any).ASSETS.fetch(url) : await fetch(url);
+  if (r.ok) d = await r.json();
+} catch {}
+const i = d?.all?.findIndex((v: any) => v.id === id) ?? -1;
+if (!d || i < 0 || Date.now() - Date.parse(d.fetched) > 30 * 864e5) return new Response(null, { status: 410 });
+Astro.response.headers.set('Cache-Control', 'public, max-age=86400, stale-while-revalidate=604800');
+
+const v = d.all[i], ch = d.channel, all = d.all;
+const fmt = (x: number) => x.toLocaleString('en-US');
+const big = (x: number) => (x >= 1e9 ? `${(x / 1e9).toFixed(1)}B` : x >= 1e6 ? `${(x / 1e6).toFixed(1)}M` : x >= 1e3 ? `${Math.round(x / 1e3)}K` : String(x));
+const len = (s: number) => (s >= 3600 ? `${Math.floor(s / 3600)} h ${Math.round((s % 3600) / 60)} min` : s >= 60 ? `${Math.round(s / 60)} min` : `${s} sec`);
+const typical = d.lengths.medianMin;
+const mins = Math.round(v.d / 60);
+const vsTypical = v.d <= 180 ? 'a Short' : mins > typical * 1.5 ? `longer than their typical ${typical}-minute video` : mins < typical * 0.67 ? `shorter than their typical ${typical}-minute video` : `about their typical length (${typical} minutes)`;
+const yearCount = d.byYear[v.p.slice(0, 4)] || 0;
+const TRIG: [string, RegExp][] = [['whispering', /whisper/i], ['tapping', /tap(ping)?\b/i], ['mouth sounds', /mouth sound/i], ['ear cleaning', /ear clean/i], ['ear licking', /ear lick|licking/i], ['kisses', /kiss/i], ['massage', /massage/i], ['hair play', /hair (play|brush)|scalp/i], ['roleplay', /role ?play|\brp\b/i], ['soft spoken', /soft[ -]?spoken/i], ['no talking', /no talking/i], ['eating', /eating|mukbang/i], ['rain', /\brain\b/i], ['sleep', /sleep/i]];
+const trig = TRIG.filter(([, re]) => re.test(v.t)).map(([k]) => k);
+const same = all.filter((o: any) => o.id !== v.id && TRIG.some(([k, re]) => trig.includes(k) && re.test(o.t))).slice(0, 8);
+const near = all.slice(Math.max(0, i - 4), i + 5).filter((o: any) => o.id !== v.id);
+const title = `${v.t} - ${ch.title}`.slice(0, 95);
+const lead = `"${v.t}" is ${len(v.d)} long, ${vsTypical}. ${v.v != null ? `With ${fmt(v.v)} views it is #${fmt(i + 1)} of ${fmt(all.length)} ${ch.title} videos by YouTube views.` : ''} It came out on ${v.p}, one of ${fmt(yearCount)} videos they uploaded that year.${trig.length ? ` Title words point to: ${trig.join(', ')}.` : ''}`;
+const desc = `${len(v.d)} ${ch.title} ASMR video, #${i + 1} of ${all.length} by views. Play it here, with more like it from the same creator.`.slice(0, 160);
+---
+<BaseLayout title={title} description={desc} canonical={`/creators/${slug}/v/${id}/`}>
+  <p class="crumb"><a href={`/creators/${slug}/`}>{`${ch.title}: all ${fmt(all.length)} videos`}</a></p>
+  <h1>{v.t}</h1>
+  <button type="button" class="vplay hero" data-v={v.id} aria-label={`Play ${v.t}`}>
+    <div class="video-thumb"><img src={`https://i.ytimg.com/vi/${v.id}/hqdefault.jpg`} alt={v.t} width="480" height="360" /></div>
+  </button>
+  <p class="lead">{lead}</p>
+  <p class="src">{`Views and dates from YouTube, checked ${d.fetched}. Trigger words come from the title, not listening.`}</p>
+  {same.length > 0 && (<>
+    <h2>{`More ${trig[0]} from ${ch.title}`}</h2>
+    <ul class="plain">{same.map((o: any) => <li><a href={`/creators/${slug}/v/${o.id}/`}>{o.t}</a> <span class="vm">{len(o.d)}</span></li>)}</ul>
+  </>)}
+  <h2>{`Next to it in ${ch.title}'s most watched`}</h2>
+  <ul class="plain">{near.map((o: any) => <li><a href={`/creators/${slug}/v/${o.id}/`}>{o.t}</a> <span class="vm">{o.v != null ? `${big(o.v)} views` : ''}</span></li>)}</ul>
+  <p class="src"><a href={`https://www.youtube.com/watch?v=${v.id}`} rel="nofollow noopener" target="_blank">Watch on YouTube</a></p>
+  <script src="/js/vplay.js" defer></script>
+</BaseLayout>
+
+<style>
+  .crumb { font-size: 0.9rem; }
+  .hero img { width: 100%; max-width: 640px; height: auto; border-radius: 10px; }
+  .hero { background: none; border: 0; padding: 0; cursor: pointer; }
+  .lead { font-size: 1.05rem; }
+  .src { font-size: 0.85rem; color: var(--text-3, #999); }
+  .vm { font-size: 0.8rem; color: var(--text-3, #999); }
+  .plain { padding-left: 1.1rem; }
+</style>

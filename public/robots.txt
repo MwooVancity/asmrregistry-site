@@ -11,3 +11,5 @@ Allow: /
 
 Sitemap: https://asmrregistry.com/sitemap-pages.xml
 Sitemap: https://asmrregistry.com/sitemap-index.xml
+Sitemap: https://asmrregistry.com/sitemap-creators-1.xml
+Sitemap: https://asmrregistry.com/sitemap-creators-2.xml

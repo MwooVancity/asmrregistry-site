@@ -68,7 +68,7 @@ const card = (v: any) => ({ ...v, meta: [len(v.d), v.v != null ? `${big(v.v)} vi
   <h2>{`All ${fmt(d.all.length)} ${ch.title} videos, most watched first`}</h2>
   <ol class="all">
     {d.all.map(card).map((v: any, i: number) => (
-      <li hidden={i >= SHOW} class={i >= SHOW ? 'more' : ''}><button type="button" class="vplay linkish" data-v={v.id} aria-label={`Play ${v.t}`}>{v.t}</button> <span class="vm">{v.meta}</span></li>
+      <li hidden={i >= SHOW} class={i >= SHOW ? 'more' : ''}><a href={`/creators/${slug}/v/${v.id}/`}>{v.t}</a> <span class="vm">{v.meta}</span></li>
     ))}
   </ol>
   {d.all.length > SHOW && <button type="button" class="showall" onclick="this.previousElementSibling.querySelectorAll('.more').forEach(e=>e.hidden=false);this.remove()">{`Show all ${fmt(d.all.length)}`}</button>}
