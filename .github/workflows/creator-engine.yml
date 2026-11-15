@@ -46,3 +46,6 @@ jobs:
           CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
           YOUTUBE_API_KEY: ${{ secrets.YOUTUBE_API_KEY }}
         run: npm run build && npx wrangler deploy
+      - name: Tell Bing about new pages
+        if: success()
+        run: node tools/indexnow-creators.mjs || true
