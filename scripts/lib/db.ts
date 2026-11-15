@@ -79,8 +79,17 @@ export async function bulkInsertIngestQueue(db: D1RestAdapter, candidates: Inges
     for (const row of r.rows) existing.add(row.id as string);
   }
 
-  const fresh = ids.filter(id => !existing.has(id)).map(id => byId.get(id)!);
+  let fresh = ids.filter(id => !existing.has(id)).map(id => byId.get(id)!);
   if (fresh.length === 0) return 0;
+  // Same daily intake cap and counter as cron-worker/src/lib/helpers.ts (QUEUE_DAILY_CAP): both paths share the
+  // cron_state key, so together they queue at most 1,500 a day (2026-11-15: this path wrote 33K rows uncapped).
+  const capKey = `queue_added_${new Date().toISOString().slice(0, 10)}`;
+  const usedRow = await db.execute({ sql: `SELECT value FROM cron_state WHERE key = ?`, args: [capKey] });
+  const used = parseInt((usedRow.rows[0]?.value as string) ?? '0', 10) || 0;
+  const room = 1500 - used;
+  if (room <= 0) return 0;
+  fresh = fresh.sort((a, b) => String(b.publishDate).localeCompare(String(a.publishDate))).slice(0, room);
+  await db.execute({ sql: `INSERT OR REPLACE INTO cron_state (key, value) VALUES (?, ?)`, args: [capKey, String(used + fresh.length)] });
 
   const stmts = fresh.map(c => ({
     sql: `INSERT OR IGNORE INTO ingest_queue (id, raw_title, raw_channel_id, raw_channel_name, raw_duration_seconds, raw_view_count, raw_publish_date, raw_description, processing_status, queued_at)
