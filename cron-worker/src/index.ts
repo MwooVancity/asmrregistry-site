@@ -1,7 +1,7 @@
 // cron-worker/src/index.ts
 import { D1Adapter } from './d1-adapter';
 import { runStage, type StageName } from './daily';
-import { runWeeklyMaintenance } from './weekly';
+// weekly.ts (AI re-tagging + discovery) no longer imported: no AI spending (2026-11-15)
 import { runLiveNow } from './stages/live-now';
 
 export interface Env {
@@ -33,7 +33,8 @@ export default {
     const u = new URL(req.url);
     const mode = u.searchParams.get('run');
     if (!mode) return new Response('cron worker', { status: 200 });
-    if (u.searchParams.get('key') !== env.DEEPSEEK_API_KEY) return new Response('forbidden', { status: 403 });
+    // Manual runs need CRON_KEY (2026-11-15: was the DeepSeek key; all AI keys removed so nothing can spend on AI).
+    if (!(env as any).CRON_KEY || u.searchParams.get('key') !== (env as any).CRON_KEY) return new Response('forbidden', { status: 403 });
 
     const db = new D1Adapter(env.DB);
     try {
@@ -59,10 +60,7 @@ export default {
     const hour = new Date(event.scheduledTime).getUTCHours();
     const dayOfWeek = new Date(event.scheduledTime).getUTCDay();
 
-    if (hour === 3 && dayOfWeek === 0) {
-      await runWeeklyMaintenance(db, env.YOUTUBE_API_KEY, env.DEEPSEEK_API_KEY);
-      return;
-    }
+    // Weekly maintenance (AI re-tagging + discovery searches) stopped 2026-11-15: owner, no AI spending.
 
     // triggerstats scans the catalog per trigger (~2M D1 reads a run, 40% of the free daily limit): Thursdays only, away from Monday's deploy.
     // Live ASMR streams for /live-asmr/: every 3 hours, own try so a failure never blocks the hour's stage.
@@ -70,7 +68,7 @@ export default {
       try { await runLiveNow(db, env.YOUTUBE_API_KEY); } catch (err) { console.error('live-now failed:', err); }
     }
 
-    const stages = stagesForHour(hour).map(s => (s === 'triggerstats' && dayOfWeek !== 4 ? 'enrich' : s));
+    const stages = stagesForHour(hour).filter(s => !(s === 'triggerstats' && dayOfWeek !== 4)); // no AI enrich fallback
     for (const stage of stages) {
       try {
         await runStage(db, env.YOUTUBE_API_KEY, env.DEEPSEEK_API_KEY, stage);
