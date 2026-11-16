@@ -9,4 +9,7 @@ if (existsSync(DIR)) for (const f of readdirSync(DIR).filter((f) => f.endsWith('
 const skip = new Set(existsSync(`${DIR}/_skipped.txt`) ? readFileSync(`${DIR}/_skipped.txt`, 'utf8').split(/\s+/) : []);
 const stale = [...have].filter(([, f]) => Date.now() - Date.parse(f) > 25 * 864e5).map(([id]) => id).filter((id) => !skip.has(id)); // dropped below 100 videos: not re-fetched daily
 const queue = JSON.parse(readFileSync('state/creator-queue.json', 'utf8')).map((c) => c.id).filter((id) => !have.has(id) && !skip.has(id));
+// Backup schedule: the morning run already built today (any file fetched today) = nothing to do, no second quota spend.
+const today = new Date().toISOString().slice(0, 10);
+if (args.includes('--backup') && [...have.values()].includes(today)) process.exit(0);
 console.log([...stale, ...queue.slice(0, NEW)].join(' '));

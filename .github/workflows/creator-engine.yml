@@ -3,7 +3,10 @@ name: Creator Engine
 # (latest copy only), then build and deploy. YouTube quota capped at 6,000 units (shared with the cron worker).
 on:
   schedule:
-    - cron: '30 14 * * *'
+    # Off the :00/:30 rush (GitHub drops busy-minute schedules; 2026-11-16's 14:30 run never fired).
+    # 19:41 is a backup that does nothing if the morning run already built today.
+    - cron: '17 14 * * *'
+    - cron: '41 19 * * *'
   workflow_dispatch:
     inputs:
       new:
@@ -33,7 +36,7 @@ jobs:
         env:
           YOUTUBE_API_KEY: ${{ secrets.YOUTUBE_API_KEY }}
         run: |
-          IDS=$(node tools/creator-daily.mjs --new ${{ github.event.inputs.new || '100' }})
+          IDS=$(node tools/creator-daily.mjs --new ${{ github.event.inputs.new || '100' }} ${{ github.event.schedule == '41 19 * * *' && '--backup' || '' }})
           [ -n "$IDS" ] && node tools/creator-build.mjs $IDS --budget 6000 || echo "nothing to build"
       - name: Publish creator-data branch
         run: |
