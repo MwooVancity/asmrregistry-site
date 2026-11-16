@@ -2,7 +2,7 @@
 // Pulls every upload of a channel (uploads playlist + videos.list, ~1 quota unit per 50 videos), computes the page's
 // facts, and writes public/creator-data/<slug>.json. Refresh = run again (YouTube 30-day rule).
 //   node tools/creator-build.mjs <channelId> [<channelId> ...]   [--budget 6000]
-import { readFileSync, writeFileSync, appendFileSync, mkdirSync, existsSync } from 'node:fs';
+import { readFileSync, readdirSync, writeFileSync, appendFileSync, mkdirSync, existsSync } from 'node:fs';
 import { SUGGESTIVE, TRIG } from '../scripts/lib/creator-gate-lib.mjs'; // TRIG: title trigger rules, no AI
 
 for (const l of (existsSync('.env') ? readFileSync('.env', 'utf8') : '').split(/\r?\n/)) {
@@ -27,7 +27,11 @@ const api = async (path) => {
   return j;
 };
 const dur = (s = '') => { const m = s.match(/P(?:(\d+)D)?T?(?:(\d+)H)?(?:(\d+)M)?(?:(\d+)S)?/) || []; return (+m[1] || 0) * 86400 + (+m[2] || 0) * 3600 + (+m[3] || 0) * 60 + (+m[4] || 0); };
-const slugify = (t) => t.toLowerCase().normalize('NFKD').replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
+// Accents dropped whole (Münür -> munur, not mu-nu-r).
+const slugify = (t = '') => t.toLowerCase().normalize('NFKD').replace(/\p{M}/gu, '').replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
+// Existing page per channel, so a refresh or a renamed channel keeps its address (no duplicate page).
+const HAVE = new Map();
+for (const f of readdirSync(OUT).filter((f) => f.endsWith('.json'))) { try { HAVE.set(JSON.parse(readFileSync(`${OUT}/${f}`, 'utf8')).channel.id, f.slice(0, -5)); } catch {} }
 const median = (a) => { const s = [...a].sort((x, y) => x - y); return s.length ? s[Math.floor(s.length / 2)] : 0; };
 
 async function build(cid) {
@@ -77,8 +81,13 @@ async function build(cid) {
   };
   // A creator who already has a page keeps its address (one page per creator: asmr-puffin, not a second puffin-asmr).
   const old = Object.entries(OLD).find(([, c]) => c.channelId === cid)?.[0];
-  let slug = old || slugify(ch.snippet.title) || cid.toLowerCase();
-  if (!/asmr/.test(slug)) slug += '-asmr';
+  let slug = HAVE.get(cid) || old;
+  if (!slug) {
+    // Non-Latin names (뭉자ASMR) fall back to the @handle before the raw channel id.
+    const t = slugify(ch.snippet.title), h = slugify(ch.snippet.customUrl);
+    slug = (t.replace(/-?asmr-?/g, '') ? t : '') || h || t || cid.toLowerCase();
+    if (!/asmr/.test(slug)) slug += '-asmr';
+  }
   const prev = existsSync(`${OUT}/${slug}.json`) ? JSON.parse(readFileSync(`${OUT}/${slug}.json`, 'utf8')) : null;
   if (prev && prev.channel?.id !== cid) slug += '-' + cid.slice(-6).toLowerCase(); // two channels, one name
   writeFileSync(`${OUT}/${slug}.json`, JSON.stringify(data));
