@@ -10,7 +10,9 @@ for (const f of readdirSync(DIR).filter((f) => f.endsWith('.json'))) {
     const d = JSON.parse(readFileSync(`${DIR}/${f}`, 'utf8'));
     if (d.fetched !== today) continue;
     const slug = f.slice(0, -5);
-    urls.push(`${SITE}/creators/${slug}/`, ...(d.all || []).map((v) => `${SITE}/creators/${slug}/v/${v.id}/`));
+    // Creator pages only (2026-11-18): pinging every video page pulled ~30K crawler hits a day into a 100K/day free
+    // Workers limit shared with the river site. Video pages stay in the sitemap for crawlers to reach at their pace.
+    urls.push(`${SITE}/creators/${slug}/`);
   } catch {}
 }
 for (let i = 0; i < urls.length; i += 10000) {
