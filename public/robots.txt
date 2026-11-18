@@ -22,7 +22,6 @@ Disallow: /
 User-agent: bingbot
 Crawl-delay: 2
 Disallow: /creators/*/v/
-Disallow: /video/
 Disallow: /creator/
 Disallow: /search/
 Disallow: /api/
@@ -30,7 +29,6 @@ Disallow: /go/
 User-agent: *
 # Per-video pages closed to crawlers 2026-11-18: ~290K pages exhausted the shared 100K/day Workers budget.
 Disallow: /creators/*/v/
-Disallow: /video/
 Disallow: /creator/
 Disallow: /search/
 Disallow: /api/
