@@ -12,7 +12,9 @@ if (existsSync(DIR)) for (const f of readdirSync(DIR).filter((f) => f.endsWith('
   const slug = f.slice(0, -5);
   urls.push([`/creators/${slug}/`, d.fetched]);
   index.push({ s: slug, t: d.channel.title, n: d.counts.public, m: d.lengths.medianMin, sub: d.channel.subs, tr: (d.triggers || []).slice(0, 5).map(([k, c]) => [k, Math.round((100 * c) / Math.max(d.counts.full, 1))]) });
-  for (const v of d.all || []) urls.push([`/creators/${slug}/v/${v.id}/`, d.fetched]);
+  // Per-video pages left out (2026-11-18): crawling ~290K of them used up the Cloudflare account's free 100K
+  // requests/day and took riverwaterlevels (main income site) down. robots.txt also disallows them. Re-add only
+  // after asmrregistry has its own request budget (paid Workers plan or its own Cloudflare account).
 }
 writeFileSync('public/creator-index.json', JSON.stringify(index));
 const files = [];

@@ -13,7 +13,7 @@ export const GET: APIRoute = async ({ url }) => {
   try {
     const u = new URL('/robots.txt', url);
     const r = (env as any)?.ASSETS ? await (env as any).ASSETS.fetch(u) : await fetch(u);
-    const listed = (await r.text()).split(/\r?\n/).map((l) => l.match(/^Sitemap:\s*(\S+)/i)?.[1]).filter((s): s is string => !!s && !/\/sitemap(-index)?\.xml$/.test(s)); // index files are not listed inside an index
+    const listed = (await r.text()).split(/\r?\n/).map((l) => l.match(/^Sitemap:\s*(\S+)/i)?.[1]).filter((s): s is string => !!s && !/\/sitemap(-index)?\.xml$/.test(s) && !/sitemap-videos-/.test(s)); // no index-in-index; /video/ closed to crawlers 2026-11-18
     maps = [...new Set([...maps, ...listed])];
   } catch {} // robots.txt unreadable: still serve the pages sitemap
   const xml = `<?xml version="1.0" encoding="UTF-8"?>

@@ -21,11 +21,16 @@ User-agent: Applebot-Extended
 Disallow: /
 User-agent: bingbot
 Crawl-delay: 2
+Disallow: /creators/*/v/
+Disallow: /video/
 Disallow: /creator/
 Disallow: /search/
 Disallow: /api/
 Disallow: /go/
 User-agent: *
+# Per-video pages closed to crawlers 2026-11-18: ~290K pages exhausted the shared 100K/day Workers budget.
+Disallow: /creators/*/v/
+Disallow: /video/
 Disallow: /creator/
 Disallow: /search/
 Disallow: /api/
@@ -40,14 +45,3 @@ Sitemap: https://asmrregistry.com/sitemap-categories.xml
 Sitemap: https://asmrregistry.com/sitemap-videos-1.xml
 Sitemap: https://asmrregistry.com/sitemap-videos-2.xml
 Sitemap: https://asmrregistry.com/sitemap-creators-1.xml
-Sitemap: https://asmrregistry.com/sitemap-creators-2.xml
-Sitemap: https://asmrregistry.com/sitemap-creators-3.xml
-Sitemap: https://asmrregistry.com/sitemap-creators-4.xml
-Sitemap: https://asmrregistry.com/sitemap-creators-5.xml
-Sitemap: https://asmrregistry.com/sitemap-creators-6.xml
-Sitemap: https://asmrregistry.com/sitemap-creators-7.xml
-Sitemap: https://asmrregistry.com/sitemap-creators-8.xml
-Sitemap: https://asmrregistry.com/sitemap-creators-9.xml
-Sitemap: https://asmrregistry.com/sitemap-creators-10.xml
-Sitemap: https://asmrregistry.com/sitemap-creators-11.xml
-Sitemap: https://asmrregistry.com/sitemap-creators-12.xml
