@@ -12,6 +12,9 @@ User-agent: FacebookBot
 User-agent: PerplexityBot
 User-agent: Google-Extended
 User-agent: AhrefsBot
+User-agent: AhrefsSiteAudit
+User-agent: KeenableBot
+User-agent: meta-webindexer
 User-agent: SemrushBot
 User-agent: MJ12bot
 User-agent: DotBot
