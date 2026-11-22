@@ -6,6 +6,9 @@ import { TRIGGER_GROUPS } from '../lib/constants';
 import { hrefFor } from '../lib/page-content';
 import PreferenceFinder from '../components/PreferenceFinder.astro';
 import HUB from '../lib/hub-data-all.json';
+import SLEEPQ from '../lib/sleep-queue.json'; // built by scripts/prebuild-sleep-queue.mjs from the creator catalog
+const sq: any = SLEEPQ;
+const sqKeys = Object.keys(sq.queues || {});
 // One tap for the 1 a.m. reader: the top sleep pick (build-filtered: 30+ min, no eating, no Shorts), preferring an hour+.
 const sleepVids = ((HUB as any).intentHubs?.sleep?.videos || []) as any[];
 const tonight = sleepVids.find(v => v.duration_seconds >= 3600) || sleepVids[0];
@@ -49,6 +52,18 @@ const jsonLd: any[] = [];
 
   {tonight && (
     <p class="home-tonight">Can't sleep right now? <a href={`/video/${tonight.id}/`}>Play {tonight.title}</a> ({Math.round(tonight.duration_seconds / 60)} min, {tonight.channel_name}). Turn off autoplay and set a sleep timer.</p>
+  )}
+
+  {sqKeys.length > 0 && (
+    <div class="sleepq-wrap">
+      <div class="sleepq" id="sleepq" hidden>
+        <p class="sq-lead"><strong>Play a queue back to back:</strong> {sqKeys.map((k) => <button type="button" data-q={k} aria-pressed="false">{sq.queues[k].label}</button>)}</p>
+        <p class="sq-note" id="sq-note">Picked from video titles that say so, most watched first, two per creator at most.</p>
+        <div id="sq-player"></div>
+      </div>
+      <script type="application/json" id="sq-data" set:html={JSON.stringify(sq)}></script>
+      <script src="/js/sleep-queue.js" defer></script>
+    </div>
   )}
 
   <!-- The same finder as intent pages, unlocked: the home page's job is "what should I play" -->
@@ -203,6 +218,12 @@ const jsonLd: any[] = [];
 </BaseLayout>
 
 <style>
+  .sleepq-wrap { min-height: 4.5rem; margin: 0.75rem 0; }
+  .sleepq .sq-lead { margin: 0 0 0.4rem; display: flex; flex-wrap: wrap; gap: 0.5rem; align-items: center; }
+  .sleepq button { padding: 0.4rem 0.9rem; border-radius: 999px; border: 1px solid var(--border, #2a2a3e); background: var(--bg-2, #1a1a2e); color: var(--accent); cursor: pointer; font: inherit; font-size: 0.9rem; }
+  .sleepq button[aria-pressed="true"] { background: var(--accent); color: #fff; border-color: var(--accent); }
+  .sleepq .sq-note { font-size: 0.82rem; color: var(--text-3, #999); margin: 0 0 0.5rem; }
+  .sleepq :global(iframe) { display: block; width: 100%; max-width: 720px; height: auto; aspect-ratio: 16 / 9; border: 0; border-radius: 10px; }
   @media (max-width: 768px) {
     .about-split { grid-template-columns: 1fr !important; gap: 2rem !important; }
   }

@@ -22,7 +22,7 @@
     "triage": "node tools/auto-triage.mjs",
     "triage:dry": "node tools/auto-triage.mjs --dry-run",
     "triage:cron": "node tools/auto-triage.mjs --cron",
-    "prebuild": "node tools/load-creator-data.mjs && node scripts/penalty-gate.mjs && npm run template-lint && npm run middleware-guard && (node scripts/prebuild-hub-data.mjs || true) && node scripts/prebuild-creators.mjs && node scripts/prebuild-share.mjs && node scripts/prebuild-creator-sitemap.mjs && node scripts/prebuild-categories.mjs && node scripts/prebuild-video-map.mjs && node tools/truth-gate.mjs && node tools/crawl-budget-gate.mjs"
+    "prebuild": "node tools/load-creator-data.mjs && node scripts/penalty-gate.mjs && npm run template-lint && npm run middleware-guard && (node scripts/prebuild-hub-data.mjs || true) && node scripts/prebuild-creators.mjs && node scripts/prebuild-share.mjs && node scripts/prebuild-creator-sitemap.mjs && node scripts/prebuild-categories.mjs && node scripts/prebuild-sleep-queue.mjs && node scripts/prebuild-video-map.mjs && node tools/truth-gate.mjs && node tools/crawl-budget-gate.mjs"
   },
   "dependencies": {
     "@astrojs/cloudflare": "^13.5.5",
