@@ -800,12 +800,8 @@ const fullGraph = {
 
   {!bare && !/^\/(kids|admin)(\/|$)/.test(Astro.url.pathname) && (
     <>
-      {/* Phone-only 320x50 strip at the bottom, closable (owner 2026-11-15). */}
-      <div id="m-ad" style="position:fixed;left:0;right:0;bottom:0;z-index:50;display:none;justify-content:center;background:var(--bg,#fff);border-top:1px solid #ddd">
-        <iframe title="Advertisement" width="320" height="50" data-src="/ads/b320" scrolling="no" style="border:0"></iframe>
-        <button type="button" aria-label="Close ad" onclick="this.parentNode.remove()" style="position:absolute;right:4px;top:-22px;border:1px solid #ccc;background:#fff;border-radius:4px;font-size:12px;line-height:18px">✕</button>
-      </div>
-      <script is:inline>if (matchMedia('(max-width: 767px)').matches) { var m = document.getElementById('m-ad'); m.style.display = 'flex'; m.querySelector('iframe').src = '/ads/b320'; }</script>
+      {/* Phone strip (320x50) removed 2026-11-22: 35% of ad views but $0.20 per 1,000 vs $1.11 for the 300x250 box,
+          about 1 cent a day, and a bar stuck on readers' phone screens (owner: not so intrusive). */}
       {/* Popunder and Social Bar removed 2026-11-16 (owner: "not so intrusive"): $0.02 in their first day, and pop-ups make
           readers bounce while Google re-reads the site. Banners and the phone strip earn ~95% of ad revenue. */}
     </>
