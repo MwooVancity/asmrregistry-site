@@ -12,6 +12,9 @@ on:
       new:
         description: 'New creators to build'
         default: '100'
+      over_budget_ok:
+        description: 'Owner order only: add creators even if the shared Cloudflare request budget check fails'
+        default: 'no'
 concurrency:
   group: creator-engine
   cancel-in-progress: false
@@ -32,11 +35,21 @@ jobs:
           node-version: 22
           cache: npm
       - run: npm ci
+      # Shared 100K/day Worker limit with riverwaterlevels (main income site). Over budget: no new creators (refreshes and
+      # fixes still ship), and the last step fails so GitHub emails the owner.
+      - name: Check shared request budget
+        id: budget
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+        run: node tools/request-budget.mjs && echo "over=no" >> "$GITHUB_OUTPUT" || echo "over=yes" >> "$GITHUB_OUTPUT"
       - name: Build creators
         env:
           YOUTUBE_API_KEY: ${{ secrets.YOUTUBE_API_KEY }}
         run: |
-          IDS=$(node tools/creator-daily.mjs --new ${{ github.event.inputs.new || '100' }} ${{ github.event.schedule == '41 19 * * *' && '--backup' || '' }})
+          NEW=${{ github.event.inputs.new || '100' }}
+          if [ "${{ steps.budget.outputs.over }}" = "yes" ] && [ "${{ github.event.inputs.over_budget_ok }}" != "yes" ]; then NEW=0; echo "over request budget: adding no new creators"; fi
+          IDS=$(node tools/creator-daily.mjs --new $NEW ${{ github.event.schedule == '41 19 * * *' && '--backup' || '' }})
           [ -n "$IDS" ] && node tools/creator-build.mjs $IDS --budget 6000 || echo "nothing to build"
       - name: Publish creator-data branch
         run: |
@@ -52,3 +65,8 @@ jobs:
       - name: Tell Bing about new pages
         if: success()
         run: node tools/indexnow-creators.mjs || true
+      - name: Alert if the shared request budget is over
+        if: steps.budget.outputs.over == 'yes' && github.event.inputs.over_budget_ok != 'yes'
+        run: |
+          echo "::error::Shared Cloudflare request budget is over (riverwaterlevels shares it). See the 'Check shared request budget' step."
+          exit 1

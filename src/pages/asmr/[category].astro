@@ -26,7 +26,7 @@ const lead = `Our catalog has ${fmt(d.count)} videos labelled ${lower} from ${fm
 const src = `Built ${d.built} from video titles in our catalog, not from listening. Views from YouTube.`;
 const topH = `Top creators for ${lower}`;
 const desc = `${fmt(d.count)} ${lower} ASMR videos from ${fmt(d.creators)} creators: median ${d.medianMin} min, the most watched, the newest, and who makes the most.`.slice(0, 160);
-const rows = (list: any[]) => list.map((v: any) => ({ href: `/creators/${v.slug}/v/${v.id}/`, t: v.t, meta: `${v.c}, ${len(v.d)}${v.v != null ? `, ${big(v.v)} views` : ''}` }));
+const rows = (list: any[]) => list.map((v: any) => ({ id: v.id, t: v.t, meta: `${v.c}, ${len(v.d)}${v.v != null ? `, ${big(v.v)} views` : ''}` }));
 const topRows = rows(d.top);
 const newRows = rows(d.newest);
 const creatorRows = d.topCreators.map((c: any) => ({ href: `/creators/${c.slug}/`, title: c.title, meta: `${fmt(c.count)} ${lower} videos${c.typical != null ? `, typical video ${c.typical} min` : ''}` }));
@@ -38,16 +38,21 @@ const creatorRows = d.topCreators.map((c: any) => ({ href: `/creators/${c.slug}/
   <h2>{topH}</h2>
   <ol>{creatorRows.map((c: any) => <li><a href={c.href}>{c.title}</a> <span class="vm">{c.meta}</span></li>)}</ol>
   <h2>Most watched</h2>
-  <ol>{topRows.map((v: any) => <li><a href={v.href}>{v.t}</a> <span class="vm">{v.meta}</span></li>)}</ol>
+  <ol>{topRows.map((v: any) => <li><button type="button" class="vplay linkish" data-v={v.id} aria-label={`Play ${v.t}`}>{v.t}</button> <span class="vm">{v.meta}</span></li>)}</ol>
   <h2>Newest</h2>
-  <ul class="plain">{newRows.map((v: any) => <li><a href={v.href}>{v.t}</a> <span class="vm">{v.meta}</span></li>)}</ul>
+  <ul class="plain">{newRows.map((v: any) => <li><button type="button" class="vplay linkish" data-v={v.id} aria-label={`Play ${v.t}`}>{v.t}</button> <span class="vm">{v.meta}</span></li>)}</ul>
   {others.length > 0 && (<>
     <h2>Other categories</h2>
     <p>{others.map((o: any) => <a class="cat" href={`/asmr/${o.slug}/`}>{o.name}</a>)}</p>
   </>)}
+  <script src="/js/vplay.js" defer></script>
 </BaseLayout>
 
+<style is:global>
+  .vplay-frame iframe { display: block; width: 100%; max-width: 720px; height: auto; aspect-ratio: 16 / 9; border: 0; border-radius: 10px; }
+</style>
 <style>
+  .linkish { background: none; border: 0; padding: 0; color: var(--accent); cursor: pointer; text-align: left; font: inherit; }
   .lead { font-size: 1.05rem; }
   .src { font-size: 0.85rem; color: var(--text-3, #999); }
   .vm { font-size: 0.8rem; color: var(--text-3, #999); }

@@ -30,7 +30,7 @@
     shown = filtered();
     const wl = store.get() || [];
     count.textContent = `${shown.length.toLocaleString('en-US')} videos`;
-    out.innerHTML = shown.slice(0, 300).map((v) => `<li><a href="/creators/${slug}/v/${v[0]}/"><img src="https://i.ytimg.com/vi/${v[0]}/mqdefault.jpg" alt="" loading="lazy" width="96" height="54"></a><div><a href="/creators/${slug}/v/${v[0]}/">${esc(v[1])}</a><span class="vm">${fmtLen(v[3])}${v[2] != null ? ' · ' + big(v[2]) : ''} · ${v[4].slice(0, 4)}</span></div><button type="button" class="cv-wl" data-id="${v[0]}" aria-pressed="${wl.includes(v[0])}">${wl.includes(v[0]) ? 'Saved' : '+ Later'}</button></li>`).join('') +
+    out.innerHTML = shown.slice(0, 300).map((v) => `<li><button type="button" class="cv-one" data-id="${v[0]}" aria-label="Play this video"><img src="https://i.ytimg.com/vi/${v[0]}/mqdefault.jpg" alt="" loading="lazy" width="96" height="54"></button><div><button type="button" class="cv-one" data-id="${v[0]}">${esc(v[1])}</button><span class="vm">${fmtLen(v[3])}${v[2] != null ? ' · ' + big(v[2]) : ''} · ${v[4].slice(0, 4)}</span></div><button type="button" class="cv-wl" data-id="${v[0]}" aria-pressed="${wl.includes(v[0])}">${wl.includes(v[0]) ? 'Saved' : '+ Later'}</button></li>`).join('') +
       (shown.length > 300 ? `<li class="vm">Showing 300 of ${shown.length.toLocaleString('en-US')}. Narrow the filters to see the rest.</li>` : '');
   }
   function play(ids) {
@@ -44,6 +44,7 @@
   $('#cv-random').addEventListener('click', () => { if (shown.length) play([shown[Math.floor(Math.random() * shown.length)][0]]); });
   $('#cv-saved').addEventListener('click', () => { const wl = store.get() || []; play(all.filter((v) => wl.includes(v[0])).map((v) => v[0])); });
   out.addEventListener('click', (e) => {
+    const one = e.target.closest('.cv-one'); if (one) { play([one.dataset.id]); return; } // play here: no per-video page load
     const b = e.target.closest('.cv-wl'); if (!b) return;
     const wl = store.get(); if (!wl) { b.textContent = 'Not available'; return; }
     const id = b.dataset.id, i = wl.indexOf(id);

@@ -85,7 +85,7 @@ const card = (v: any) => ({ ...v, meta: [len(v.d), v.v != null ? `${big(v.v)} vi
 
   {d.sleepPick.length >= 2 && (<>
     <h2>{`${ch.title} for sleep: most watched over an hour`}</h2>
-    <ul class="plain">{d.sleepPick.map(card).map((v: any) => <li><a href={`/creators/${slug}/v/${v.id}/`}>{v.t}</a> <span class="vm">{v.meta}</span></li>)}</ul>
+    <ul class="plain">{d.sleepPick.map(card).map((v: any) => <li><button type="button" class="vplay linkish" data-v={v.id} aria-label={`Play ${v.t}`}>{v.t}</button> <span class="vm">{v.meta}</span></li>)}</ul>
   </>)}
 
   <h2>What they make</h2>
@@ -105,11 +105,11 @@ const card = (v: any) => ({ ...v, meta: [len(v.d), v.v != null ? `${big(v.v)} vi
 
   {d.newest.length > 0 && (<>
   <h2>Newest uploads</h2>
-  <ul class="plain">{d.newest.map((v: any) => <li><a href={`/creators/${slug}/v/${v.id}/`}>{v.t}</a> <span class="vm">{`${monthYear(v.p)} · ${len(v.d)}`}</span></li>)}</ul>
+  <ul class="plain">{d.newest.map((v: any) => <li><button type="button" class="vplay linkish" data-v={v.id} aria-label={`Play ${v.t}`}>{v.t}</button> <span class="vm">{`${monthYear(v.p)} · ${len(v.d)}`}</span></li>)}</ul>
   </>)}
 
   <noscript><h2>{`All ${fmt(d.all.length)} videos`}</h2></noscript>
-  <ol class="all seo-list">{d.all.slice(0, 200).map(card).map((v: any) => <li><a href={`/creators/${slug}/v/${v.id}/`}>{v.t}</a> <span class="vm">{v.meta}</span></li>)}</ol>
+  <ol class="all seo-list">{d.all.slice(0, 200).map(card).map((v: any) => <li><button type="button" class="vplay linkish" data-v={v.id} aria-label={`Play ${v.t}`}>{v.t}</button> <span class="vm">{v.meta}</span></li>)}</ol>
   {similar.length > 0 && (<>
     <h2>{`Creators like ${ch.title}`}</h2>
     <ul class="plain">{similar.map((o: any) => <li><a href={`/creators/${o.s}/`}>{o.t}</a> <span class="vm">{`${o.why}; ${fmt(o.n)} videos, typical ${o.m} min`}</span></li>)}</ul>
@@ -121,7 +121,9 @@ const card = (v: any) => ({ ...v, meta: [len(v.d), v.v != null ? `${big(v.v)} vi
 
 <style is:global>
   #cv-player iframe { display: block; width: 100%; max-width: 720px; height: auto; aspect-ratio: 16 / 9; border: 0; border-radius: 10px; }
+  .vplay-frame iframe { display: block; width: 100%; max-width: 720px; height: auto; aspect-ratio: 16 / 9; border: 0; border-radius: 10px; }
   .ear-ad2 { display: flex; justify-content: center; margin: 1.5rem 0; min-height: 250px; }
+  .cv-list .cv-one { background: none; border: 0; padding: 0; color: var(--accent); cursor: pointer; text-align: left; font: inherit; }
   .cv-list { list-style: none; padding: 0; margin: 0.75rem 0; }
   .cv-list li { display: grid; grid-template-columns: 96px 1fr auto; gap: 0.6rem; align-items: center; padding: 0.35rem 0; border-bottom: 1px solid var(--border); }
   .cv-list img { width: 96px; height: 54px; object-fit: cover; border-radius: 6px; }

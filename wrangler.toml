@@ -9,3 +9,12 @@ database_id = "4f8937a1-9629-4c8b-a343-9cfe238cc319"
 
 [triggers]
 crons = ["0 */6 * * *", "0 4 * * *"]
+
+# 2026-11-27: per-video pages (/creators/<slug>/v/<id>/) must never run the Worker. Bots hit them ~200K/day and ran the
+# account past Cloudflare's free 100,000 requests/day, which also blocks riverwaterlevels (main income site).
+# A "!" pattern is served from static assets only (no Worker, not counted); there is no such file, so it is a 404.
+# Do not remove without an own request budget (see CLAUDE.md "Shared Cloudflare budget").
+[assets]
+directory = "./dist/client"
+binding = "ASSETS"
+run_worker_first = ["/creators/*", "!/creators/*/v/*"]
